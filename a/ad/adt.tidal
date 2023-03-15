@@ -1,0 +1,28 @@
+d1
+$ slow "<8 6>"
+-- $ every 2 ((arp "{pinkyupdown down}%3"))
+$ note (stutWith 12 "1%12" (|+ (7 - "0 12")) ("c4" |+ "<-5>" |+ "['maj7|'min]"))
+# s "<superpiano>"
+# cut "0"
+# attack "{1 0.5}%4"
+# decay 0.5
+# sustain 10
+# rel 15
+# legato "{1 0.7 0.5}%8"
+# voice 1
+-- # delay 0.3
+-- # delayt 1
+-- # delayfb 0.4
+-- # squiz 4
+-- # distort 0.2
+# coarse 4
+# wavelossbus 0 (fast 0.3 $ range 0 40 $ sine)
+# combbus 1 (fast 0.23 $ range 0 0.3 $ cosine)
+# lpfbus 2 (fast 0.11 $ range 800 2500 $ sine)
+# lpqbus 3 (fast 0.32 $ range 0 0.2 $ cosine)
+# room 0.2
+# sz 0.8
+
+import Sound.Tidal.Chords
+
+chordList

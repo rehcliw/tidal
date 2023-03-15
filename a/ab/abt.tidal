@@ -1,0 +1,12 @@
+d1
+$ stutWith 4 "<1 0.75>" ((|+ note "[3,17 21]") . (slow 2))
+$ note "[0*2?]"
+# s "midi"
+# octave 4
+
+d2
+$ slow 2
+$ arp "{updown downup}%3"
+$ note "[c'maj'9]"
+# s "midi"
+# octave 4

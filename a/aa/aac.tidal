@@ -1,0 +1,53 @@
+{-
+notes
+  bad
+load
+  vsco
+  legowelt drum
+-}
+
+setcps 0.7
+
+d1
+$ every 4 rev
+$ speed (
+  struct "t*2 t/2 [t*3 t]"
+  $ fast 5
+  $ (range 0.5 2 $ fast 7 square)
+  )
+-- $ n "4*4 [3 6*2] 5 9"
+# sound "vscotubbell:0"
+# legato 1
+# ring 10
+# ringf "50 [150 10 200]"
+# delay (range 0.2 1 $ fast 2 perlin)
+# delay 0.5
+# delaytime (range 0.01 1 $ fast 6 perlin)
+-- # delaytime 1
+-- # room (range 0.2 1 $ fast 2 perlin)
+# sz (range 0.4 1 $ fast 4 perlin)
+# gain 1
+
+d1 silence
+
+d2
+$ jux rev
+$ slow 0.5
+$ sound "lwwizperc:6(5,11) [lwwizsd:1(3,5) <lwwisperc:13 lwwizsd:12*2>*3]"
+# legato "<1 0.5>"
+# speed "<0.5 [2 1]> 1"
+# crush (range 2 8 $ rand)
+-- # room 0.4
+# gain 1
+
+d2 silence
+
+d3
+$ jux rev
+$ slow 2
+$ n "<6(3,8) [6*9 6(3,5)]>"
+# sound "lwwizbd"
+# crush "5 9"
+# gain 1.1
+
+d3 silence

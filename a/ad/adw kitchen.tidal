@@ -1,0 +1,22 @@
+d2
+$ stack [id
+  $ slow 8
+  -- $ juxBy 0.5 rev
+  $ slice "<15 11>" ("{16 11 9 38 19 45}%3" - "{9 12 -8 0 16 3 6}%3")
+  $ speed "{[1,1.01] 3.5 0.7 0.345 [0.4,0.5]}%3"
+  # s "kitchen"
+  # legato 2.5
+  -- # gain 1.1
+  # cloudspitch "0.9 0.5 0"
+  # cloudspos "{0 0.9 0.2 0.5}%9"
+  # cloudssize "{0.8 0.5}%3"
+  # cloudsdens 0.8
+  # cloudstex 0.5
+  # cloudsgain 1.4
+  # cloudsspread 0.9
+  # cloudsrvb "0.4 0.2"
+  # cloudsfb "{0.6!3 0.2 0.5 0.4!2}%2"
+  # cloudswet "{0.9!8 0.1}%2"
+  # cloudsmode "<2!3 3>"
+  # cloudsfreeze "{0 1!4 0 1!2 0 1}%9"
+]

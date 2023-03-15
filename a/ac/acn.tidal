@@ -1,0 +1,44 @@
+{- | untitled
+recorded (with acm.tidal)
+load: jungle Jungle
+droney & screamy
+-}
+
+
+-- clutchIn 1 8
+-- $ gtfo
+
+-- xfadeIn 1 4
+d1
+$ slow "<4 2>"
+$ striate' 64 (fast 2.6 $ range 0.1 0.3 $ cosine)
+$ n "9 3 6 8"
+# s "jjvocals"
+# speed "[0.74,0.75,1]"
+-- # djf 0.2
+-- # lpf (fast 1.5 $ range 1000 1300 $ sine)
+-- # lpq 0.1
+# pan (fast 2.4 $ range 0 1 $ sine)
+# room 0.2
+-- # legato 2
+
+xfadeIn 2 8 silence
+
+-- xfadeIn 2 4
+d2
+$ slow "<2 4>"
+$ n "<4 12 [1?0.8, [4|12]]>"
+# s "jjpads"
+# rel 16
+# attack 0.3
+# legato 4
+# octersubbus 1 (fast 2 $ sine * 2)
+# phaserdepthbus 2 (fast 2.1 $ range 0 3 $ sine)
+# phaserratebus 3 (fast 2.2 $ range 0.01 0.2 $ cosine)
+# lpf 3000
+# lpqbus 4 (fast 1.3 $ range 0.01 0.4 $ cosine)
+# panbus 5 (fast 2.4 $ range 0.25 0.75 $ sine)
+-- # gain 1.2
+# speed "[0.5, 0.49]"
+# roombus 6 (fast 1.2 $ range 0.25 0.75 $ sine)
+# sizebus 7 (fast 1.1 $ range 0.25 0.75 $ cosine)

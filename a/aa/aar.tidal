@@ -1,0 +1,69 @@
+let harm = pF "harm"
+    timbre = pF "timbre"
+    morph = pF "morph"
+    engine = pI "engine"
+    level = pF "level"
+    decay = pF "decay"
+    lpgcolor = pF "lpgcolour"
+in
+d1
+$ juxBy 0.5 rev $ rarely (striate "2 8") $ every 3 ("0.25 0.5" ~>)
+$ slow "<[4 2 1 4] 2>"
+$ off "<[e 0.5] [s q]>" ((|+ n "<-12 2 -7>") . (# orbit 2) . (# djf 0.7))
+  $ n (scale "<majPent whole>"
+  $ "{2 0 1, 2 <7/2 1*4> 3 <0 3 7*2 5>}%<[1 2] [4 8] [16 32]/2 [32 64]>")
+  |-"<32 24 12 68>" # legato "[0.5 1.1 1 4 2 0.8]*0.7" # s "plaits"
+  # engine "[<9 6> 4 1,[<11 14 9> 3 0]*3.5]"
+  # room (slow 2 $ range 0.2 0.7 sine)
+  # sz 0.8
+  # gain 1
+  # morph "1 0.5 0.6 0.2"
+  # level 2
+  # timbre (slow 2 $ range 0 0.5 $ perlin)
+  # harm 2
+  # decay 0.3
+  # lpgcolor 0.5
+  # cps (iter 4 "0.5 0.6 0.2 0.8")
+
+scaleList
+
+let voice = pF "voice"
+    semitone = pF "semitone"
+    pitch1 = pF "pitch1"
+    speed = pF "speed"
+    pitch2 = pF "pitch2"
+
+d2 $ slow 2
+$ every 2 (0.25 <~)
+$ sew (iter 5 "[t f]*3")
+  (striate 2 $ chunk 4 (fast 2) $ s "[soskick(3,8)]"
+    # voice "<8 2 15 30>*2.5"
+    # pitch1 "[10 1 30 40 2]*1.5"
+    -- # note (scale "egyptian" $ "c1 a2 g1 b2")
+    # speed "0.25 0.125 2 0.5"
+    # decay 0.8
+    # pitch2 0.3
+    # legato "<[2 3] [4 0.5]>"
+    # gain 1.3
+  )
+  (every 3 (chunk 4 (hurry 8))
+  $ off "s e" (|+ n "-12 -7")
+    $ s "[sossnare(5,8),[~ sostoms](5,8)]"
+    # voice "<20 4 8> [30 8] 1"
+    -- # note (scale "egyptian" $ "c2 a g3 b")
+    # semitone (iter 4 "0.15 0.6 0.7 0.2 0.1")
+    # speed "0.25"
+    # legato "2 1"
+  ) # room 0.1
+
+  d3
+  $ (<~) 0.125
+  $ juxBy 0.5 rev $ s "[soshats*16]"
+  # gain 1.3 # note (scale "majPent" $ "c2 a1 g3 b1")
+  # pitch1 15
+  # rate 5
+  # voice "1 2 1 0 3"
+
+  d3 silence
+
+setcps (60/60/4)

@@ -1,0 +1,65 @@
+d1
+$ struct (binary "<230 231>") -- 8 bits of 1s and 0s
+$ s "gretsch"
+
+binary 230
+
+d1
+$ struct (binaryN 16 "<400 377 211 123123>") -- specified number of bits
+$ s "gretsch:4"
+
+binaryN 16 800
+
+let pat = binaryN 16 "<400 377 211 123123>"
+
+d1 -- remember, can invert binary patterns
+$ stack [id
+  $ struct (inv pat)
+  $ s "peri:2"
+  , id
+  $ struct pat
+  $ s "peri"
+]
+
+d1
+$ struct (ascii "<a e i o u>") -- ascii encoding to binary values
+$ s "gretsch:4"
+
+d1
+-- $ n "0 ~ ~ 0 ~ ~ 0 ~" -- rests
+-- $ n "0 _ _ 0 _ _ 0 _" -- plays thru length of _ (need legato)
+$ n "0@3 0@3 0@2" -- shorthand
+# s "pad"
+# legato 1
+
+let pat = binaryN "16 8" "<344 300 150 13123>"
+    pat2 = "{0@5 1@2 0@3 0@10}%16"
+in
+d1
+-- $ hurry "<1 2 1 2>*1.5"
+$ stack [id
+  $ n pat2 -- @ fun w polymeter
+  # note "{0 5 -5}%5"
+  # s "[cpu,~ bleep]" # gain 1.2
+  , id
+  $ n "3*2"
+  # s "cpu"
+  # gain 1.3
+  , id
+  $ struct pat
+  $ n "15 11 12"
+  # s "cpu"
+  -- # nudge 0.2
+  , id
+  $ slow 2
+  $ rot "<0 2 0 0>"
+  $ whenmod 4 3 rev
+  $ whenmod 5 4 (# voice "0.5")
+  $ stutWith 2 "3%32 1%32" (|+ n "7 -7")
+  $ struct (inv pat)
+  $ n "-7 -6 -5"
+  # s "supergong"
+  # legato "{0.8 1.7}%5"
+  # accelerate "0 5"
+  # voice 1
+] # room 0.1

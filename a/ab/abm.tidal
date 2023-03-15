@@ -1,0 +1,58 @@
+let pat = "{1 0 {1 0 1}%6 1 1}%8"
+    pat2 = "{1 1 1 0 [1 0 1] 1 0 0 1}%8"
+
+d1
+$ stutWith 3 "<e 0 s>" (hurry 1.5)
+$ loopAt "<0.5 [1 0.5]>"
+$ repeatCycles 3
+$ slow 16
+-- $ mask pat2
+$ mask pat
+$ stutWith "<2 1 0 2>" "{0 e}%6" (id
+  . rev
+  . (slow 4)
+  . (|* speed "<-1.2 [0.76,1.673] 0.893>")
+)
+$ chunk 5 (chop 3)
+$ striate "{8 4 8}%3"
+$ juxBy 0.25 rev
+$ n "<1 2 3 4 5>*<4 3 4>"
+# s "<moog brbass>*1.3"
+# legato 1
+# shape 0.6
+# room 0.1
+# coarse 2
+-- # djf 0.8
+
+d2
+$ slow 1
+$ loopAt "<0.5 [1 0.5]>"
+$ every 3 ("<e q>" ~>)
+$ repeatCycles 3
+$ stack [id
+  $ mask pat2
+  $ mask pat
+  $ n "<0 1 2 5 4 3>*8"
+  # s "ghostysnare"
+  # legato 1
+  , id
+  -- $ (0.125 ~>)
+  $ juxBy 0.5 rev
+  $ mask pat2
+  $ stutWith 3 "s e" (|+ note "{-14 7 -7 -14}%7")
+  $ mask (inv pat)
+  $ n "<2 8 1>*2"
+  # s "ghostyperc"
+  # legato 1
+  # cut "1 2"
+  # speed 0.7
+  , id
+  $ mask (inv pat2)
+  $ n "<6 7 3 9>*8"
+  # s "ghostyhat"
+  # legato 1
+]
+# shape 0.6
+# room 0.1
+# coarse 2
+# cut 1

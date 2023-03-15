@@ -1,0 +1,11 @@
+-- nilo chug 106 bpm
+once $ s "nihiloxica"
+
+-- anima bulldozer 125 bpm
+once $ s "esagglia" # gain 1.7
+
+-- she's a murderer 95 bpm
+once $ s "cxkidtronik" # gain 2
+
+-- stardust 140 bpm
+once $ s "oobe"

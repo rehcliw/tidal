@@ -1,0 +1,37 @@
+let pitchmod = "<2 0.25 4 0.5>"
+in
+d4
+$ every 2 (("s" <~) . (rev))
+$ slow "<<4 [1%2 7%4 2]>!4 1>"
+$ almostNever (striate "8 4")
+$ stack [id
+  $ stutWith "<3!4 2>" "s t" ((|* note pitchmod) . (sometimes (rev . (# octave "[3|2]") . (# resonance "9%8 4%8"))))
+  $ note "0 1 2 [3 4]/3 5 6 7"
+  # octave 4
+  # s "supercomparator"
+  # shape "0.6 0.3"
+  # pan "0.55 0.45"
+  # voice "{5 3 8}%5"
+  # decay 0.4
+  # pitch1 "3 8"
+  -- # resonance 0.8
+  , id
+  $ sometimes (rev . (# octave "[4|6]") . ("s t" <~))
+  $ note "{0 1 2 3 4 5 6 7}%3"
+  # n "3*2 4"
+  |* note pitchmod
+  # s "ghosty808"
+  # delay 0.1
+  # legato 0.5
+  # shape 0.5
+  # pan "0.45 0.55"
+  , id
+  $ stutWith "<2!4 3>" "<[t/2 t]!6 [t t/2]>" ((|* note pitchmod) . (sometimes (rev . (# octave "[5|3]") . (|* speed "-1"))))
+  $ note "0*6"
+  # n "0 1 2 3 4"
+  # s "{ghostyhat ghostysnare}%7"
+] # room 0.2 # cut "{1 2 3 4}%3"
+-- # sustain 1
+
+-- pairs ok with bap
+d4 silence

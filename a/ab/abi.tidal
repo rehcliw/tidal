@@ -1,0 +1,35 @@
+d1
+$ degradeBy 0.1
+$ almostNever (arp "up down")
+$ n (scale "minPent"
+  $ stutWith 2 "<0!3 q!3 e>" (|+ "[-7 2,-4 3]")
+  $ "4*2 <2 [3 4] 6>" + "1 [2 3]*2 4" - "<8!2 3 6>")
+# s "superhammond"
+# voice (fast 3 $ "<0 1 2 3 4 5 6 7 8 9>")
+-- # voice "{1 9}%3"
+# room 0.3
+# sustain 1
+# legato 1
+# cut "{1 2}%5"
+
+d2 $ every 3 ("1%4" <~)
+$ stack [id
+$ n "0!2 10*2 0"
+# s "bd"
+# shape 0.4
+# decay 0.9
+, id
+$ ("1%8" ~>)
+$ n "0!2 1 <2 4>"
+# s "hh27"
+] # room 0.3 # gain 1.1
+
+d3 $ scramble 8
+$ slice 8 (run 8)
+$ n "0 2 3 29"
+# s "diphone"
+# speed 1.5
+# shape 0.3
+# pan "[0.25,0.75]"
+
+scaleList

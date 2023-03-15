@@ -1,0 +1,135 @@
+d1
+$ fast "1%4"
+$ freq "200"
+# s "superfm"
+# amp1 1
+# amp2 1
+# ratio1 1
+# ratio2 "<5%12 5%6 5%3 10%3 20%3>" -- 5/12=5/6=5/3... in JI. we want 1<=x<=2
+
+d1
+$ fast "1%4"
+$ freq "[200,300]" -- perfect 5th
+# s "superfm"
+# amp1 1
+# ratio1 1
+
+--should be same as this, but 2nd ops much quieter..
+d1
+$ fast "1%4"
+$ freq "200"
+# s "superfm"
+# amp1 0.5
+# amp2 1
+# ratio1 1
+# ratio2 "3%2"
+
+--what if freq mod instead...
+d1
+$ fast "1%4"
+$ freq "200"
+# s "superfm"
+# amp1 1
+# amp2 0
+# ratio1 1
+# ratio2 "3%2"
+# mod12 "1"
+
+d1
+$ fast "1%4"
+$ freq "[200,250]" -- maj 3rd
+# s "superfm"
+# amp1 1
+
+--zarlino
+d1
+$ fast "1%2"
+$ freq "200"
+*| freq "[1,<[25%24 10%9 9%8 32%27] [6%5 5%4 4%3 25%18] [45%32 3%2 25%16 5%3] [16%9 9%5 15%8 2%1]>]"
+# s "superfm"
+# amp1 1
+
+-- basically even ratios sound alright. smaller numbers, more consonance
+d1
+$ stutWith 2 "0" (|* freq "<2 4%6>")
+$ fast "1"
+$ freq ("<200>")
+*| freq "[<1 1%2 1%4>,[4%3 3%4] [3%2 5%3] [7%8 5%4] [6%5 2%3]]"
+# s "gabor"
+-- # legato 2
+-- # real 0.8
+-- # lpf 400
+# room 0.3
+# size 0.9
+
+d1
+$ fast "1%4"
+$ freq "[200,300]"
+# s "superfm"
+# amp1 1 -- carrier
+-- # amp2 1
+-- # amp3 "<1 0>"
+-- # amp4 "<0 1 0>"
+-- # amp5 0.25
+-- # amp6 "<0!2 1 0!2>"
+-- # mod12 "2"
+-- # mod13 "3"
+-- # mod15 "1.5"
+-- # mod22 1
+-- # mod34 "1"
+-- # mod56 "1"
+# ratio1 1
+-- # ratio2 "<5%12 5%6 5%3 10%3 20%3>" -- 5/12=5/6=5/3... in JI
+-- # ratio3 "<2.3>"
+-- # ratio4 "<3.24 3.76>"
+-- # ratio5 "<4.5 4.3>"
+-- # ratio6 "<7.24 5.76>"
+-- # feedback 0.7
+-- # egrate11 0.001
+-- # egrate12 0.01
+-- # egrate13 0.05
+-- # egrate14 0.4
+-- # eglevel11 1
+-- # eglevel12 0.5
+-- # eglevel13 1
+-- # eglevel14 0.2
+-- # egrate21 0.1
+-- # egrate22 94
+-- # egrate23 0.05
+-- # egrate24 22
+-- # eglevel21 1
+-- # eglevel22 1
+-- # eglevel23 0.1
+-- # eglevel24 0.1
+-- # egrate31 29
+-- # egrate32 35
+-- # egrate33 22
+-- # egrate34 38
+-- # eglevel31 1
+-- # eglevel32 0.1
+-- # eglevel33 1
+-- # eglevel34 0.1
+-- # egrate41 33
+-- # egrate42 35
+-- # egrate43 22
+-- # egrate44 99
+-- # eglevel41 1
+-- # eglevel42 0.1
+-- # eglevel43 1
+-- # eglevel44 0.1
+-- # egrate51 26
+-- # egrate52 35
+-- # egrate53 15
+-- # egrate54 38
+-- # eglevel51 1
+-- # eglevel52 0.1
+-- # eglevel53 1
+-- # eglevel54 0.1
+-- # egrate61 33
+-- # egrate62 35
+-- # egrate63 25
+-- # egrate64 99
+-- # eglevel61 1
+-- # eglevel62 0.1
+-- # eglevel63 1
+-- # eglevel64 0.1

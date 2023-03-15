@@ -1,0 +1,52 @@
+d1
+$ sometimes (chop 2)
+$ slow "2 [1 2] <4 0.75 4>"
+$ iter 6
+$ stutWith "<3 4>" "<1%6 5%12 7%12>" ((|+ n "<3 -5 7 -3>") . (# legato 0.2))
+$ n (scale "majPent" "1'maj [3 6] 5")
+# octave "<4 3 5>"
+# s "superfm"
+# fma [1,0,"<1 0>","<0 1 0>",0.25,"<0!2 1 0!2>"]
+# fmm 1 [0,2,3,0,1.5]
+# fmm 2 [0,1]
+# fmm 3 [0,0,0,1]
+# fmm 5 [0,0,0,0,0,1]
+# fmr [1,"<2.01 2.2 2.1>","<2.3>","<3.24 3.76>","<4.5 4.3>","<7.24 5.76>"]
+# fmer 1 [3,3,1,0.4]
+# fmel 1 [1,0.7,1,0.2]
+# fmer 2 [6,94,25,22]
+# fmel 2 [1,1,0.1,0.1]
+# fmer 3 [29,35,22,38]
+# fmel 3 [1,0.1,1,0.1]
+# fmer 4 [33,35,22,99]
+# fmel 4 [1,0.1,1,0.1]
+# fmer 5 [26,35,15,38]
+# fmel 5 [1,0.1,1,0.1]
+# fmer 6 [33,35,25,99]
+# fmel 6 [1,0.1,1,0.1]
+# fmfb 0.7
+# legato "[0.5 0.25 1 0.6]*1.5"
+# room (fast 2 $ range 0.2 0.7 saw)
+# sz 0.6
+# fshift (fast 9 $ range 0.5 (-0.5) tri)
+# delay 0.5
+# pan "0.25 0.75"
+# gain 1.5
+
+d2
+$ jux rev
+$ arp "down up pinkyup"
+$ n (scale "superLocrian" "<b'maj [c'maj a'min]> <[a'maj d'min] d'min>")
+# s "supervibe"
+# octave "<3 4>"
+# shape 0.4
+# decay "<1 2 0.5 3> 1.5 1"
+# sustain "2 1 4"
+# legato "2 1"
+# voice "[1 2 5]*3"
+# pitch1 "<2 3 1 4 6>"
+# lfo "8 4 16"
+# accelerate "[0.25 -0.25]*5"
+# gain 0.85
+
+scaleList

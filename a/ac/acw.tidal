@@ -1,0 +1,87 @@
+{- | ngembory
+recorded
+load: carillon
+droney, calming bells
+parts compatable
+-}
+
+resetCycles
+
+-- xfadeIn 1 32
+d1
+-- $ qtrigger 1
+$ slow 1 -- start slower
+$ rarely (# speed "-1")
+$ n (id
+  $ scale "minPent"
+    $ stutWith 3 "<1>" (|+ "<7>")
+    $ "[10/3,~ ~ 19/5,~ 0/2,7/4]"
+)
+|- note 7
+# s "carillon"
+# begin 0.28 -- bang a 0 at end? gets so loud.. do with 2 below
+# attack 0.12
+# rel 8
+# distort 0.02 -- increase for dramA.. btwn 0 & 0.09
+# shape 0.5
+# lpfbus 0 (fast 0.25 $ range 950 1050 $ sine)
+# lpq 0.34
+# coarse 3 -- increase for other sect
+# room 0.4 -- increase to 0.4
+# size 0.9
+# gain 1.3
+
+xfadeIn 2 16 silence
+
+-- xfadeIn 2 16
+d2
+$ slow 2
+$ juxBy 0.5 rev
+$ n (id
+  $ scale "minPent"
+    $ stutWith 3 "<9%8 1 0>" (|+ "5")
+    $ "[10/3,~ ~ 19/5,~ 0/2,7/4]"
+)
+|- note "<0!8 5!4>"
+# s "carillon"
+# begin (fast 1.1 $ range 0.2 0.3 $ sine)
+# end (fast 1.2 $ range 0.1 0.4 $ cosine)
+-- # attack 0
+# delay 0.7
+# delayt "[0.15 0.2 0.1]/5"
+# delayfb 0.95
+# lpf "1000"
+-- # lpq 0.1
+# hpfbus 0 (fast 15.1 $ range 1500 2000 $ sine)
+# hpqbus 1 (fast 7.2 $ range 0 0.2 $ saw)
+-- # panbus 0 (fast 1.5 $ range 0 1 $ sine)
+# room 0.2
+# size 0.9
+# gain 1.2
+
+xfadeIn 3 16 silence
+
+-- xfadeIn 3 16
+d3
+$ fast "1%4"
+$ n (id
+  $ scale "minPent"
+    $ stutWith 3 "<s 1!3>" (|+ "7")
+    $ "[10/3,~ ~ 19/5,~ 0/2,7/4]"
+)
+|- note "<7!8 5!4>"
+# s "carillon"
+# begin (fast 1.1 $ range 0.1 0.2 $ sine)
+# end (fast 1.2 $ range 0.4 0.5 $ cosine)
+-- # vowel "<a e o i u>"
+-- # fshiftbus 0 (fast "<1 2 1%2>" $ range "-5" 5 $ sine)
+-- # fshiftphase 4.9
+-- # attack 0.1
+-- # relbus 1 (range 0 1.9 $ sine)
+# shape 0.4
+# real "<0.3 0.9 0.7 1.9>"
+# room 0.2
+# size 0.9
+# gain 1.2
+
+scaleList

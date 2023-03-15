@@ -1,0 +1,60 @@
+setcps (134/60/4)
+
+resetCycles
+
+d1
+$ splice 64 "13!8"
+$ s "nickiminaj"
+# distort 0.4
+# gain 1.6
+
+d1
+$ fast "0.5 2 2 1.5!2"
+-- $ every 4 (hurry 0.75)
+-- $ every 2 (|* speed "1.5 0.5 2")
+-- $ every 2 (# squiz (fast 3 $ range 0.2 3 sine))
+$ every 5 (fast "0.5 2 4 8")
+$ every 3 (|* delay "1.5 0")
+$ juxBy 0.5 rev
+-- $ splice 2 "<12 13 12 20*2 15 21 18 30 31*<1 2> 19 20>*32"
+-- $ splice 3 "6"
+$ shuffle 4
+-- $ splice 16 "<3 4 3*[1|2] 5 3 6*[1|2] 2 7*[1|2] 1 3 10 15*[1|2] 14 13*[1|2] 0 1>*[16 8 32]"
+$ sound "nickiminaj"
+-- # ring "7 15 9"
+-- # ringf (fast 3 $ range 50 400 sine * sine)
+-- # crush (fast 0.75 $ range 2 10 perlin)
+-- # squiz (fast 3 $ range 0.2 3 sine)
+-- # lpf (fast 1.5 $ range 2000 8000 sine * sine)
+-- # room "0.6!2 0.8 0.3!2 0.8 <0.4 0.8> 0.8" # sz "[0.6!2 0.8 0.3!2 0.8 <0.4 0.8> 0.8]!2"
+# speed "0.03125 <-0.03125 -0.0625>"
+-- # speed "0.125"
+-- # delay (slow 3 $ "<0.3 0.5>")
+-- # delaytime (slow 2 $ "<0.75 1>")
+-- # legato (range 0.6 1.5 perlin)
+# gain 1.3
+
+d1 silence
+
+d2
+$ slow 2
+$ every 3 (|* delay "0.5 1.2 4")
+$ jux rev
+$ striate (slow 4 $ "[4 16 32 8]? 3")
+-- $ sound "nickiminaj*<16 2 4 8>"
+$ sound "nickiminaj(5,<16 2 4 8>)"
+# speed "0.25 1 0.5 1 0.25 1"
+# distort "[0.25 0.6 0.5 0.6 0.25 0.6]/2"
+# room "0.6/3 0.3/6 0.5/3" # sz "0.8/3 0.3/6 0.8/3"
+# delay "0.6/3 0.3/3 0.5/3"
+# delaytime "1/3 2/2 0.75/6" |* delaytime "0.5 0.25 1.25"
+# legato "0.6 1 0.6 5?"
+# gain 1.4
+
+hush
+
+d2 silence
+
+d3
+$ splice (struct "t t ~ t" $ choose ["0", "1", "2"])
+$ sound "nickiminaj"

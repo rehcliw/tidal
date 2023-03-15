@@ -1,0 +1,48 @@
+d1
+$ slow "8 2"
+$ jux rev
+$ note (scale "minPent" $ stutWith 7 "3%8 1%8" (|+ "-5 1 -2") $ "[5*5|7*4]")
+# s "midi"
+# legato 0.7
+# ccn "1"
+# ccv "4 50"
+# ccn "2"
+# ccv "4 10 80 90"
+
+-- scaleList
+
+d2
+$ slow "2 1"
+$ note (scale "romanianMinor" $ plyWith 7 (|+ "-5 1 -7") $ "[5|7](<3 5>,8)")
+# n (scale "romanianMinor" $ plyWith 6 (|+ "-7 8 -5") $ "[2*3|4*4]")
+# s "foley"
+# shape 0.5
+# cut "{1 2 3}%8"
+
+d1
+$ slow "8 2 4"
+-- $ jux rev
+$ note (scale "minPent" $ stutWith 7 "3%8 1%8" (|+ "-8 1 -2") $ "[5*5|7*4]")
+# s "midi"
+# legato 0.2
+# ccn "1"
+# ccv "4 50"
+# ccn "2"
+# ccv "4 10 40 20"
+
+scaleList
+
+d2
+$ juxBy 0.5 rev
+$ slow "2 1"
+$ note (scale "romanianMinor" $ plyWith "7 2 1" (|+ "-5 1 -7") $ "[5|7](<3 5>,8)")
+# n (scale "romanianMinor" $ plyWith 6 (|+ "-7 8 -5") $ "[2*3|4*4]")
+# s "foley popkick peri"
+-- # crush "[5|16]"
+-- # shape 0.5
+# room (range 0 0.2 perlin)
+# ring 7
+# ringf "50 5 100"
+# cut "{1 2 3 2}%7"
+# speed "1 0.5"
+# gain 0.9

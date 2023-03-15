@@ -1,0 +1,32 @@
+d2
+$ outside 4 (id
+  . hurry "1%4 1%8"
+  . juxBy "<0.5 -0.5 0 1 -1>" (id
+    . rev
+    . plyWith "{6 4}%3" (id
+      . (|* gain 0.9)
+      . (|* legato 0.9)
+      . (|* velocity 0.9)
+      . (|* coarse 1.5)
+      . (# comb 0.5)
+      )
+    )
+  . rot "<1 0 1 1>"
+  )
+-- $ degrade
+$ note (scale "minPent" $ stutWith "<4 3 2>" "q 1 e 1%2" (|+ "<-3 4 -6 2>") $ "{0 9 15 3 -5}%2")
+-- # n "8"
+# s "superpiano"
+# attack "<0.2 0>"
+# rel 15
+# sustain 15
+# velocity 1
+# coarse 1
+-- # crush 8
+# lpf 1700
+# lpq 0.2
+# room 0.2
+# sz 0.8
+-- |+ note 19
+
+scaleList

@@ -1,0 +1,66 @@
+xfadeIn 1 4
+-- $ juxBy 0 rev
+-- $ slow 2
+$ stutWith 2 "<e 9%8 e>" (|* speed 0.98)
+-- $ chunk 4 (hurry 2)
+-- $ rarely (# n "~")
+$ slice 32 "<8!3 16>"
+-- $ striateBy "{16 32 64 4 8}%4" "{0.01 0.1 0.2}%4"
+-- $ slow 8
+$ s "holy"
+-- # cut "{0 1 2}%4"
+# n "1"
+-- # shape 0.2
+# legato "1"
+# room 0.2
+# sz 0.7
+# cut "{1 0}%32"
+
+xfadeIn 2 8
+-- $ palindrome
+-- $ stutWith 3 "<q s>" (|+ note "-7")
+-- $ fast 2
+-- $ stutWith 3 "<1%32 e>" (|* speed "1.1 0.5")
+-- $ rarely (striate 16)
+-- $ plyWith 4 ((|* gain 0.95) . (|* legato 0.95) . (|* speed "<0.98 1>"))
+$ slice 7 "9"
+$ s "holy"
+-- # attack 0.1
+-- # rel 6
+# speed "[0.9,0.7]"
+# n "0"
+# legato "{3 2 1}%4"
+# gain 0.9
+-- # lpf 2500
+-- # lpq 0.2
+# room 0.2
+# sz 0.7
+-- # cut "{0 1}%32"
+
+d3 silence
+
+clutchIn 3 4
+$ stack [id
+  $ jux (rev)
+  $ chunk 4 (hurry 2)
+  $ n "2*8 <3 23>"
+  # s "hougfx"
+  # legato 1
+  # cut 0
+  , id
+  $ sometimes (|+ n "15")
+  $ chunk 4 (hurry 2)
+  $ n "4(5,8)"
+  # s "houk"
+]
+
+d3
+$ juxBy 0 rev
+$ slow 1
+$ plyWith "{3!3 6 2}%4" ((|* gain 0.95) . (|* legato 0.95) . (|+ note "{7 -7 0}%4"))
+$ degradeBy 0.7
+$ n ("{0 1 2 3}%<2 4>" + "{0 4 7}%4")
+# s "{popkick snare}%3"
+# gain 0.9
+# cut "{0 1 2 3 4}%8"
+-- # comb

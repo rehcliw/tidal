@@ -1,0 +1,25 @@
+-- = AEB
+-- == notes
+-- - playing with synthdefs
+-- == load
+-- - kk
+
+let invply = "{4 2 1 3}%3"
+in
+d1
+    $ juxBy "0.25 -0.25" rev
+    $ stutWith 3 "5%4" (rot "<2 0 2>"  . (|+ n 7))
+    -- $ plyWith invply ((|* gain 0.95) . (|+ accelerate 0) . (# voice 1) . (# decay 0.1) . (|+ attack 0.005) . (# rel 3))
+    $ slow (invply)
+    $ degrade
+    $ n ("0 [2 1]*1.5 9 [3 5]/3" + "{-7 7 5 -9}%3" - 14)
+    # s "{kk supersnare supergong}%4"
+    -- # s "supergong"
+    -- # cut "1 0"
+    # legato "{1 0.5 1.5}%7"
+    -- # comb 0
+    # distort "{0.2 0 0.1 0}%3"
+    # bpf (invply * "{800 1200 40 1500 150}%6")
+    # bpq "{0.01 0.6 0.3}%5"
+    # room 0.1
+    # sz 0.8

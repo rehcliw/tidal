@@ -1,0 +1,51 @@
+d1
+-- $ n (scale "minPent" $ stutWith 2 "0" (|+ "-7") $ "7 2 4 9")
+$ n "1(<3 5>,8,<0 1 2>)"
+# nTake "a" [7,2,4,9]
+# s "plaits"
+# engine "{3 1 5 7 12}%4"
+# ringsbright tri
+# ringsfreq "{90 30 60}%4"
+# slow 2 (ringspos saw)
+# ringsmodel "1"
+# ringsstruct 0.75
+# ringsdamp 0.9
+
+
+scaleList
+
+d2
+$ rot "<0 0 1 0 0 2 1>"
+$ stack [id
+  $ fast "{1 0.25 0.5}%4"
+  $ jux rev
+  $ repeatCycles 4
+  -- $ degrade
+  $ sometimes ((|+ n "7 -7") . (plyWith "<2 3>" (|+ engine "<1!3 4>")))
+  $ n "{7 2 4 9 0}%4"
+  # s "plaits"
+  # engine 2
+  # cut 0
+  , id
+  $ note "0*4"
+  # s "gabba"
+  # cut "<0 1 0>"
+]
+# ringsbright sine
+# ringsfreq "<90 50 0>"
+# slow 2 (ringspos saw)
+# ringsmodel "{1 2 1 0 2}%4"
+# ringsstruct "{0.2 0.5 0.8}%4"
+# ringsdamp 0.4
+# cloudspitch "<0 5 10>"
+# cloudspos "0"
+# cloudssize "{1 0.5 0.1}%5"
+# cloudsdens "{1 0.1 0.5 1 0.5}%8"
+# cloudstex (fast 1.1 saw * (fast 1.2 $ sine))
+# cloudsgain 3
+# cloudswet (fast 0.3 $ range 0.1 0.8 $ sine)
+# cloudsrvb "{0.8 0 0.2}%4"
+# cloudsfb 0.3
+# cloudsfreeze "<0 1>/5"
+# cloudsmode "<0 3 0 1>"
+-- # mu 1

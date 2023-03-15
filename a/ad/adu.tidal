@@ -1,0 +1,98 @@
+d1
+$ fast "1%4" --
+-- $ rot "[0 1 0]/8"
+-- $ whenmod 2 7 (juxBy 0.25 (rev . (|* gain "0.9") . ("e" ~>)))
+$ whenmod 5 2 (juxBy 0.5 (rev . (|+ note "-7")))
+$ stutWith "{4 5 4 2 3!2}%3" "<e q [0 e]>" (id
+  . (|+ n "{4 0 -1 0 0 -7 15}%4")
+  . (|* speed "{-1 2 -0.75 1.01}%5")
+  . (# leslie (fast 1.4 $ range 0 0.6 $ perlin))
+  . (# lrate (fast 1.7 $ range 0.7 6.7 $ perlin))
+  . (# lsize (fast 1.2 $ range 0.2 5 $ perlin))
+  . (# pan (fast 2 $ range 0 1 $ perlin))
+  . (# room (fast 2.1 $ range 0 0.2 $ perlin))
+  . (# sz (fast 1.1 $ range 0 0.3 $ perlin))
+  )
+-- $ cut "{0 1 2 3}%3"
+-- $ iter 4
+$ hurry "{1%2 1 1%8 1%4 2}%4"
+$ struct "t*16"
+$ slice 8 (fast 2 $ irand 8)
+$ n (fast 0.5 $ irand 30)
+-- # cut "{0 1 2 3 5 4 6}%16"
+# note "{0 7 -7 14}%3"
+# s "<gfx pfx>"
+# legato "{2 0.5 1.5!2 1 2.25}%4"
+
+d2 silence
+
+d2
+$ fast 2 -- 4
+$ whenmod 5 2 (juxBy 0.5 (rev . (|+ note "<-7 7>")))
+$ stack [id
+  $ degradeBy 0.8
+  $ hurry "{1%2 1 1%8 1%4 2}%4"
+  $ s "dyskick*2 dyssnare:1 dyskick"
+  # n "{0 19 0 0}%5"
+  # legato 1.3
+  # coarse 5
+  # gain 1
+  , id
+  -- $ fast 1
+  $ whenmod 6 2 (fast 2)
+  -- $ degradeBy 0.2
+  -- $ hurry "{1%2 1 1%8 1%4 2}%8"
+  $ n "<0*3 [0 0 19]>"
+  # s "dyshh"
+  # legato "{0.5!3 1 1.5}%4"
+  # crush (fast 1.1 $ range 2 16 $ sine)
+  # coarse 3
+  # lpf 2500
+  , id
+  $ fast "1%4"
+  $ hurry "{1%2 1 1%8 1%4 2}%4"
+  -- $ struct "t*4"
+  -- $ slice 8 (fast 2 $ irand 8)
+  $ n "{5 1 0 2 3}%8"
+  # s "arpy"
+  # shape 0.5
+  # coarse 5
+  # legato 1
+  # gain 1 --1
+]
+
+d3 silence
+
+let modamp = pF "modamp"
+in
+d3
+$ stack [id
+  $ fast 4
+  $ rarely (plyWith "<2>" (|* gain 0.8))
+  $ stutWith "3" "<0 1%2 1 0 2>" (|+ n "{-5 7 -12 14}%2")
+  $ whenmod 5 2 ("e" ~>)
+  $ n "[~ ~ ~ d6 g5 ~ g6 ~!7]/7"
+  # shape 0.4
+  # s "supervibe"
+  # decay 4
+  # modamp "{2 1 0}%4"
+  # accelerate "[0 0 2 0]/5"
+  # gain 0.2
+  , id
+  $ juxBy 0.25 (rev . (id) . (|+ note "-7 7"))
+  $ fast 2
+  $ stutWith 2 0 (hurry "2 1%2")
+  $ degradeBy 0.9
+  $ struct "t(5,8,<1 0 3>)"
+  $ sound "gretsch"
+  # nCountTo "rachael" "<17 19 4>"
+  # gain 0.1
+  , id
+  $ degradeBy 0.2
+  $ juxBy 0.25 (rev . (id) . (|+ note "{-5 -7 7 -12 14}%2") . (|+ n "<5 10 4 10>"))
+  $ stutWith 2 1 (hurry "2 1%2")
+  $ n "0 2 4 9"
+  # s "flbass"
+  # legato 0.1
+  # gain 1
+] # room 0.2 # sz 0.7

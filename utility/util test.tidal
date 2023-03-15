@@ -1,0 +1,189 @@
+
+d1
+$ juxBy 0.5 rev
+$ every 2 ("<0.1 0.2 0.3>" <~)
+$ rot "<1 0> <1 0 1 0 0>"
+$ fast "<0.5!3 [0.25 0.75]>"
+$ note ("a [~ g] [c b] [g gs]" + (cN 0 "64"))
+# s "plaits"
+# engine "{12 6 13}%2"
+# octave "{3 6 4 5}%3"
+# sustain "{0.1 1 0.2}%8"
+# timbre (cF 0 "64")
+# harm ("1 0.5" * (cF 0 "64"))
+# morph 0.9
+# level 0.5
+
+d1  $ s "plaits" <| note "a [~ g] [c b] [g gs]" 
+    # octave "<3 4 5 6 7 8>"
+    # sustain "{1 2 1}%8"
+    # engine (slow 16 $ run 16)
+    # timbre (slow 3 sine)   
+    # harm (slow 4 saw)  
+    # morph (slow 9 saw)
+    # level (slow 8 sine)
+
+d1
+$ n "0 1 2 3"
+# s "[midi,hh]"
+
+d2
+$
+
+-- Set cps to be a fast house beat
+-- 130 bpm, 4 beats per cycle
+setcps (130/60/4)
+
+p "drums" $ s "bd(3,8) drum*4"
+
+xfade "drums" $ s "arpy*8" # n (run 8)
+
+let pat = ("0 4 [7 0 5] [~ [2 0 6]/2] ~ 0" * "{2.5 1.5 -5.5 0.5 -9.5}%4")
+in
+d1
+$ juxBy 0.2 rev
+$ slow "{4 0.5 2.5 8 1}%2"
+$ degradeBy "{0 0.5 0.8 0.2}%2"
+$ stack [id
+  $ timeCat [id
+    $ (1.5, jux rev $ n pat # room "0.2 0.1")
+    , (1.1, stutWith 2 "0 e" (|+ note "-7 7") $ n ("<6*4 [[6,2] 7 15]*<9 3 6>>" + (rev pat) * 9))
+    , (2, juxBy "<-1 1>" palindrome $ n (pat + "4 -7 8 15") # room "0 0.2")
+  ] # sound "{industrial dysfx gfx}%4"
+  # shape 0.4
+  # legato "{1.5 0.5 2}%7"
+  , id
+  -- $ slow "<4 8 1>"
+  -- $ repeatCycles 4
+  -- $ slow 4
+  $ timeCat [id
+    $ (2, juxBy 0.25 rev $ n (pat - 14) # room "0.2 0.1")
+    , (1.1, stutWith 2 "<0 e>" (|+ note "-7 7") $ n ("<6*4 [[6,2] 7 15]*<9 3 6>>" + (rev pat) * 9))
+    , (1.5, juxBy "<-0.5 0.5>" palindrome $ n (pat + "4 -7 8 15") # room "0 0.2")
+  ]
+  # s "superpwm"
+  # voice "{0.1 1 3 6 2}%4"
+  # rate 2
+  # decay 0.1
+  # accelerate "{0.1 0 3 -1}%3"
+  # lfo "{0.1 1 3 7 9 2}%4"
+  # pitch1 "{0.2 1.4 0.9}%4"
+  # resonance 0.1
+  # semitone "{5 19 14 8}%3"
+  -- # legato 1
+  # combbus 1 (range 0 0.6 $ fast 1.8 $ sine)
+  # shape 0.6
+  -- # legato "{1.5 2 0.5}%7"
+]
+# sz 0.8
+-- ~rest
+-- [] happens in one portion
+
+let target =
+      Target {oName = "visualiser",   -- A friendly name for the target (only used in error messages)
+              oAddress = "localhost", -- The target's network address, normally "localhost"
+              oPort = 12000,           -- The network port the target is listening on
+              oLatency = 0.2,         -- Additional delay, to smooth out network jitter/get things in sync
+              oSchedule = Live,       -- The scheduling method - see below
+              oWindow = Nothing,      -- Not yet used
+              oHandshake = False,     -- SuperDirt specific
+              oBusPort = Nothing      -- Also SuperDirt specific
+             }
+
+let oscplay = OSC "/play2" $ ArgList [("s", Nothing),
+                                     ("vowel", Just $ VS "a"),
+                                     ("pan", Just $ VF 0.5),
+                                     ("volume", Just $ VF 1),
+                                     ("cut", Just $ VI 1),
+                                     ("intensity", Just $ VI 0),
+                                     ("cps", Just $ VF 0),
+                                     ("cycle", Just $ VF 0),
+                                     ("delta", Just $ VF 0)
+                                   ]
+
+    intensity = pF "intensity"
+
+    oscmap = [(target, [oscplay])]
+
+
+stream <- startStream defaultConfig oscmap
+
+let x1 = streamReplace stream 1
+    x2 = streamReplace stream 2
+    x3 = streamReplace stream 3
+    x4 = streamReplace stream 4
+
+x1 $ s "hello" # cut 1 # intensity 5 # vowel "<a e i o u>"
+
+let modfreq = pF "modfreq"
+in
+d1
+$ slow 1
+$ iter "4 2"
+$ stutWith 2 "<e 0>" ( id
+  . (juxBy 0.3 rev)
+  . (# s "sossnare")
+  . (# sustain 0.2)
+  . (# pitch1 4e2)
+  . (# decay "0.2")
+  . (# resonance 3)
+  . (# semitone 0.5)
+  . (# voice 1)
+  . (|+ n 15)
+  . (|* gain 1.2)
+  . (# shape 0.5)
+  . (# cut "2 1")
+  )
+$ n "<20 13 <6 27> <24 6 31>>(<4 3 6>,16,[0,1,3])"
+# octave "<3 2>"
+# s "psin"
+# cut "1 2"
+# sustain "<0.1!2 [1 0.2!2 0.3]>"
+# speed "1 2 4"
+# accelerate 2
+# modfreq "[140 40]*3"
+
+d2
+$ slow 2
+$ whenmod 4 2 ("1%16" ~>)
+$ every 2 (chop "4 5 2 2")
+$ stutWith 2 "<0 s e>" (|+ n "-7 14")
+$ slowcat [
+n "<[8 9.25 9 8.5]*8 [8.75 8.5]*8 9*8 [9.25*4 7.75*4]*2>"
+# s "sostoms"
+# pitch1 "200 5 300 400 500 600"
+# resonance "0.1 0.9 0.23"
+# sustain "[0.5 0.3]*3"
+# voice "0.9 1.5 2 0.4"
+# gain 1.2
+|+ n "-7"
+, id
+$ iter "4 2"
+$ n "<[-8 9.25 -9 8.5]*8 [-8.75, 8.5]*8 -9*8 [9.25*4 -7.75*4]*2>"
+# s "supergong"
+# voice (slow 3 $ range 0.2 3 sine * saw)
+# accelerate 3
+# sustain "1"
+]
+
+-- out, sustain=1, pan, accelerate, freq, voice=0, decay=1
+
+d1 $ n (slow 2 $ fmap (*7) $ run 8) # s "supergong" # decay "[1 0.2]/4" # voice "[0.5 0]/8"
+
+
+d1 $ seqPLoop [
+  (0, 8, s "flbass"),
+  (4, 8, sound "~ flbass:1"),
+  (8, 12, n (run 16) # s "flbass")
+] # legato 1
+
+
+
+  scaleList
+
+--default
+setcps 0.5625
+
+setcps (60/60/4)
+
+hush

@@ -1,0 +1,70 @@
+-- nesting polys in []
+let pat = "[5*2 [5, 2 2 [0 24 0, 10 18] 2] 5, [3 0] [3 0]]"
+    vibrato = pF "vibrato"
+    perc = pF "perc"
+    percf = pF "percf"
+in
+d2
+$ hurry "<6%8 [3%4 3%2]>"
+$ repeatCycles "<3 3 3 2 2>"
+$ iter "5 9"
+$ stack [ id
+$ chop "4 8"
+$ n (pat)
+# s "cpu2"
+# shape 0.2
+# ring 5
+# ringf "[50 [50, 200 20 [0 78 0, 100 180] 20] 50, [30 0] [30 0]]"
+# pan (fast 1.2 $ range 0.2 0.8 sine)
+, id
+$ chop "[4 [4 8] 4 4] [8 8 [4 8] 8]"
+$ hurry "1%3"
+$ stutWith "3 2" "<1 0.5 1 1>" (|* n "0.95")
+$ every 3 rev
+$ n (pat * "<2 -0.5>")
+# s "superreese supercomparator superpwm"
+# voice "[0.5 [0.5, 0.2 0.2 [0 0.78 0, 0.1 0.18] 0.2] 0.5, [0.3 0] [0.3 0]]"
+# pan (fast 1.3 $ range 0.4 0.6 sine)
+# octave "5 [8 2] [4 8] 3"
+# legato "0.25 0.5 0.25"
+# accelerate "0.2 -0.2"
+# detune "8 2 1 6"
+# speed "0.75 2"
+# gain 0.8
+]
+
+xfade 3 silence
+
+d4
+$ stack [ id
+$ stutWith "<4!3 3>" "<[s!3 e] s s [e s!3]>" (|+ n "2 1 3 -5")
+$ n "{3 5 <8 1>, 5 4}%8"
+# s "arpy"
+# legato 1
+# gain 1
+# crush "{16 3 6 5}%6"
+, id
+$ degradeBy 0.7
+$ stutWith "<3!3 2>" "<[s!3 e] s s [e s!3]>" (|+ n "2 1 3 -5")
+$ n "{3 5 <1 8>, 5 4}%8"
+# s "amencutup"
+# legato 1
+# shape 0.6
+# gain 1
+# phasdp "{16 4 6 5}%6"
+# phasr 15
+|* speed 0.9
+, id
+$ n "{1!5, 2 5}"
+# s "peri"
+# speed "{1.5 0.75}%3"
+# legato 1
+# shape 0.8
+# gain 1.1
+]
+
+
+
+setcps 0.7
+
+resetCycles

@@ -1,0 +1,61 @@
+let modfreq = pF "modfreq"
+    modamp = pF "modamp"
+in
+d1
+$ fast "{1%2 1%8 1%4}%4"
+-- $ jux (rev . (hurry 0.25))
+-- $ degradeBy 0.2
+$ plyWith 3 (|* gain 0.9)
+$ stutWith "<2 3 4>" "0 e" ((|+ note "-7") . (hurry "1 1%2"))
+$ n "0(<3 5>,<[8 6]>)"
+# noteTake "noteL" [1, -9, 5, 9, 7, 2]
+-- # octave 4
+# s "[midi,supervibe]"
+# accelerate "0.9"
+# legato (fast "1%2" $ range 1 1.5 $ sine)
+# room (fast "1" $ range 0 0.7 $ sine)
+# modamp "4"
+# modfreq (fast "2" $ range 7 14 $ sine)
+# detune "3"
+# decay 1
+# midichan 2
+# room 0.3
+
+d2
+$ n "4"
+# s "[midi, hougfx]"
+# midichan 2
+
+d1
+$ fast 1
+$ jux (rev . (|+ n 1))
+-- $ degradeBy 0.8
+$ stutWith 5 "1%16" (id
+  . (|* gain 0.95)
+  . (|* legato "0.9")
+  . (|+ n 1)
+  . (sometimes ((|* speed "-1.1")
+    . (# s "ravemono"))
+  )
+  . (# midichan 3)
+)
+-- $ stutWith "<2 3 4>" "0 e" ((|+ note "-7") . (hurry "1 1%2"))
+$ n "[9](<3 5>,8)"
+# noteTake "noteL" [1, -5, 5, -9, 7, 2]
+-- # octave 4
+# s "[midi,dyskick]"
+-- # accelerate "0.9"
+# legato (fast "1%3" $ range 0.25 1 $ sine)
+# room (fast "1" $ range 0 0.7 $ sine)
+-- # modamp "4"
+-- # modfreq (fast "2" $ range 7 14 $ sine)
+-- # detune "3"
+-- # decay 1
+# shape 0.2
+# midichan 2
+
+d2
+$ n "19*2"
+# s "[midi, print]"
+# midichan 1
+# legato 0.5

@@ -1,0 +1,20 @@
+do
+  let voiceP = 40
+      delFb = 53
+      delTm = 52
+      cutoff = 44
+      attack = 49
+      sus = 51
+      lfoRate = 46
+  d1
+    $ fast 2 $ stack [
+    n (scale "harmonicMin" $ "a2*2 e4 g2 d"),
+    ccn delTm # ccv "<0>",
+    ccn delFb # ccv "<0>",
+    ccn voiceP # ccv "100",
+    ccn cutoff # ccv "50",
+    ccn attack # ccv "2",
+    ccn sus # ccv "20",
+    ccn lfoRate # ccv "0"
+    --ccn 44 # ccv (range 10 120 sine)
+    ] # s "midi"

@@ -1,0 +1,17 @@
+scaleList
+
+d1 $ ur 8 "[zow:slowly zow:crunch, ~ drums, [~ drums:crunch ~ drums:slowly] ~]"
+  [("zow", jux rev $ fast "0.25" $ every 3 (striate "4 1!2 8 1")
+    $ stutWith 3 "s e 0 q s" (|- n "<7 [-7 1] 5 12>") $ n (scale "minPent" $ "[2 1 0] <9 6> [~ 5] 7")
+    # sound "superzow"
+    # gain 1
+    # room (range 0 0.6 sine)
+    # orbit 2
+    # legato "0.3 0.8"
+    # djf 0.4
+    # detune (slow 2 $ range 1 8 sine)
+    # decay (slow 3 $ range 1 19 sine)
+    # accelerate (slow 5 $ range "-1 2 -3" "1 -2 3" sine)
+    ),
+    ("drums", s "break:27(<3 5>,8)" # gain 1.2 # shape 0.3 # legato "4 5 1" # speed "1.4!3 -1.4")
+  ] [("crunch", (# crush 4)), ("slowly", (slow 4))]

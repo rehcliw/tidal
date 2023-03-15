@@ -1,0 +1,45 @@
+let drumMachine name ps = stack
+                    (map (\ x ->
+                        (# s (name ++| (extractS "s" (x)))) $ x
+                        ) ps)
+    drumFrom name drum = s (name ++| drum)
+    drumM = drumMachine
+    drumF = drumFrom
+
+let pat = "{1 0 1 1 1 0 1 0 1 0}%8"
+    rest = "{1 1 0 1 1 0 1 0 1 1 1 1}%9"
+
+d1
+-- $ repeatCycles 2
+$ fast 2
+$ every 2 ((|- note "{1 7 2 3 0 5}%3") . (fast "1 0.5") . (rev))
+$ mask rest
+$ drumMachine "rolandtr808" [ id
+    $ juxBy 0.5 rev
+    $ mask pat
+    $ striateBy "4 2 1" (fast 3 $ range 0.1 0.6 $ sine)
+    $ note "0*<8 2>"
+    # s "lt ht"
+    , id
+    $ mask (inv pat)
+    $ note "-1*8"
+    # s "bd"
+    # distort 0.5
+    , id
+    $ jux rev
+    $ mask (inv pat)
+    $ striateBy "2 1" (fast 2 $ range 0.01 0.2 $ sine)
+    $ note "0*8"
+    # s "{hh oh}%5"
+    # legato 1
+    # shape 0.5
+] -- # room 0.2
+
+d2
+-- $ stutWith 2 "e" (|+ note "0 7 4 3")
+$ mask pat
+$ note "0*2"
+# s "supersaw"
+# sustain 0.1
+
+setcps(135/60/4)

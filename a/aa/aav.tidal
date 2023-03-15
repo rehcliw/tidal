@@ -1,0 +1,13 @@
+d3
+$ juxBy 0.5 (palindrome . (0.25 ~>))
+$ every 3 (0.125 <~)
+$ someCycles rev
+$ plyWith "<2 8 2 16 2 4 8>" ((|* speed (-1.2)) . (|* gain 1.05) . (|* legato 0.9) . (# djf 0.4))
+$ iter 9
+$ s "foley:55 <popkick:4 rash:7 print:4 popkick:6> [snare:57 foley:6] <rash:14 popkick:2 print:7>"
+# legato 1.2
+# decay 0.7
+# gain 1.2
+-- # cps "{0.4 0.8 0.5}%5"
+
+d2 $ s (iter 5 "<print:4*4 rash:c print:27*4>") # gain 1.4

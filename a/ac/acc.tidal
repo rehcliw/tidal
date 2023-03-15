@@ -1,0 +1,29 @@
+d1
+$ slow 1
+$ stack [id
+$ arp "updown"
+  $ slow 12
+  $ fast "2 3"
+  $ stutWith 3 "s e" (|+ note "<7 <5 -9 4>> 3")
+  $ ply "5 {15 2 10}%7 3"
+  $ note (scale "minPent" $ "4 7")
+  # s "midi"
+  # octave "[<6 2>,4 ~,~ 3]"
+  # cut "<[1 2 6] <3 2> [7 4 5 8]>"
+  ,id
+  $ jux rev
+  $ stutWith 2 "e" ((|+ note "7") . (|+ n "5"))
+  $ every 3 (palindrome . (|* speed "{1 -1%2}%3"))
+  $ ply "7 {5 1 2}%5 5 2"
+  $ splice "8 2 16" "{1 [2 3](3,8) 7}%2"
+  $ note "0 1(2,3) -7(7,8) -5"
+  # n "{3 31 34 35}%5"
+  # s "jjriffarphit jjfx jjbass"
+  # gain 0.7
+  # crush "4"
+  # delay "9" # delaytime "1"
+  # ring "4 7 2" # ringf "10 100 25"
+  # room (slow 1.1 $ range 0.2 0.6 $ sine) # size (slow 2 $ range 0.2 0.4 $ sine)
+  # shape "0.7 0.4"
+  # cut "<[1 2 6] <3 2> [7 4 5 8]>"
+]

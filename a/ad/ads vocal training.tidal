@@ -1,0 +1,76 @@
+{-
+load:
+  myvoice
+-}
+
+d1
+$ fast "0.28"
+$ striateBy 16 0.9
+$ n "0"
+# s "myvoice"
+# legato 1
+# lpfbus 0 (fast 2.9 $ range 400 2500 $ sine)
+
+d1 silence
+
+d2
+$ slow "4"
+$ stutWith "{2 1}%3" 0 (palindrome . (ply 5))
+$ hurry "{0.25!2 1.5 0.5 0.1}%3"
+$ stutWith "{6!5 0}%5" "<1 [e 2]>" ((|+ n "<12 [101 16] 24 29>") . (|* speed "<-1 0.5 2>"))
+$ splice "<16 8 4>" "0 7 5 2 1 4 3 6"
+$ striateBy "{1 2 4 2}%3" "{0.2 0.1 0.3 0.2 0.05}%2"
+$ every 3 (# hpfbus 0 (fast 2.9 $ range 100 3500 $ sine))
+$ n "<0 7>"
+# s "kitchen"
+# legato "{0.5 2 1.5}%5"
+# comb "{0 0.3 0.5}%2"
+-- # lpfbus 1 (fast 4.9 $ range 100 3500 $ sine)
+# delay "0 0.5"
+# delayt "<0.5 0.1>"
+# delayfb "0.6"
+# room 0.05
+# sz 0.8
+
+d2 silence
+
+d3
+$ fast 2.2
+$ striateBy 2 0.1
+$ n "2"
+# s "myvoice"
+# legato 1
+
+d4
+$ fast 2.4
+$ n "3"
+# s "myvoice"
+# legato 1
+
+d5
+$ fast 0.4
+$ striateBy 64 (fast 0.05 $ range 0.3 0.4 $ sine)
+$ juxBy 0.5 (rev)
+$ stutWith 3 "e" ((|+ n "<6 3>"))
+$ note "0"
+# n "1 5"
+-- # note "{0 3 14 -14 7}%4"
+# s "[myvoice]"
+# attack 0.5
+# release 16
+# coarse 2
+# hpfbus 0 (fast 3.5 $ range 1500 2500 $ saw)
+-- # hpq 0.2
+-- # legato 4
+# room 0.2
+# sz 0.8
+-- # begin 0.5
+
+d6
+$ fast 2
+$ striateBy 16 0.1
+$ n "5"
+# s "myvoice"
+-- # legato 1
+-- # fshift 3
+-- # fshiftnote "[0,3]"

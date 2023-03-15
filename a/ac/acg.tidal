@@ -1,0 +1,25 @@
+d1
+$ slow 15
+-- $ chunk 4 (fast 2)
+-- $ every 4 ("1" <~)
+-- $ degradeBy 0.7
+$ plyWith "3 4" (|* legato 0.5)
+$ n "<0 3>([3,5],8)"
+# s "midi"
+# octave "2 4"
+-- # legato "<1 1>"
+# midichan 0
+
+d2
+$ slow 5
+-- $ degradeBy 0.8
+$ plyWith "4 3" (|* legato 0.9)
+$ chunk 4 (fast 1.5)
+-- $ every 8 ("2" <~)
+$ n "<0 3 6 12>([3,5],8)"
+# s "midi"
+# ccn 42 # ccv "[0 10]*1.5"
+# nudge 0.3
+# legato 1
+# octave "7 5 2"
+# midichan 1

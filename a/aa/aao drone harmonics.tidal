@@ -1,0 +1,33 @@
+setcps 0.4
+
+d1
+$ s "superpwm"
+-- # begin 0.02
+-- # end 0.03
+|+ freq "[35,70,105,140,175,210,245,280,315,350,385]"
+# pan (slow 5 $ range 0.25 0.75 cosine)
+# legato "2 3"
+# voice (slow 4 $ range 0 4 cosine)
+# decay (fast 8 $ range 0 10 cosine)
+# gain (slow 3 $ range 0.8 1 cosine)
+# resonance (slow 3 $ range 0.1 0.3 cosine)
+# semitone 12
+-- # lfo 1.2
+-- # rate (slow 3 $ range 0.1 2 cosine)
+# pitch1 2
+
+d2
+$ striate "[1 2]*1.5"
+$ jux rev
+-- $ off (<~ 0.125)
+$ s "supervibe"
+# freq "[[35|70|105],[140|175],210,[245|280],[315|350],385,420]"
+# distort "1 1.3"
+# room 0.6
+# gain 1
+# legato 4
+
+d4 $ jux rev $ n "[0 1 3 5]*2"
+  # s "print"
+  # gain 1.5
+  # legato 1

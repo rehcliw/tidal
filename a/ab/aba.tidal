@@ -1,0 +1,42 @@
+let speed = pF "speed"
+    accelerate = pF "accelerate"
+    tidesshape = pF "tidesshape"
+    slope = pF "slope"
+    tidessmooth = pF "tidessmooth"
+    shift = pF "shift"
+    mode = pF "mode"
+in
+d2
+$ stack [ id
+$ juxBy 0.5 rev
+$ stutWith "<2!2 3>" "<e q s>" ((|+ n "<[-7 7] [7 -14]>") . (# djf 0.4))
+$ slow "1 2"
+$ iter 4
+$ n (scale "majPent" $ "a d g e")
+# s "tides"
+# sustain "<1 [1 0.5 2]>"
+# tidesshape 0.5
+# mode "2 0 2 3"
+# slope (slow 2 $ range 0.1 0.9 sine)
+# shift (slow 3 $ range 0.1 0.9 sine)
+# tidesshape (slow 1.5 $ range 0.1 0.9 sine)
+# tidessmooth 0.8
+# speed "2 0.5 -1"
+# decay 0.1
+# room 0.3
+, id
+$ jux rev
+$ slow "2 1 3 1"
+$ iter "3 2"
+$ chop "2 3"
+$ n "4 [2 5? 7] 34!2 [20 9] 16"
+# s "yeah"
+# legato 1
+# gain 1.2
+# djf 0.45
+# room 0.1
+]
+
+setcps 0.4
+
+-- working mutables: omi, plaits, tides

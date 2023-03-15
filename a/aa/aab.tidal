@@ -1,0 +1,45 @@
+-- = AAB
+-- == notes
+-- - broken breaks
+-- - repetitive
+-- == load
+-- - Jungle Jungle - 1989 to 1999 Samplepack
+-- - Legowelt Drum Wizardry
+
+setcps (128/60/4)
+
+d5
+$ degradeBy 0.9
+$ sometimes rev
+$ juxBy 0.5 rev
+$ every 4 (hurry "0.75 1.75 1")
+$ every 3 (# squiz "1 0.5 2")
+$ splice 8 "1 1 <2*4 2> 0 <4(2,3) 4> <[5 6*2] 8> 1 7"
+$ n "7 [4 8]*2 19"
+# sound "jjbreaks"
+# delay 0.3
+# delayfb 0.3
+# delaytime (1/3)
+# gain 1.2
+# speed 1
+
+d2
+$ juxBy 0.25 (rev)
+$ sometimes (# squiz 3)
+$ n "7(<3 5>,8)"
+# sound "lwwizbd"
+-- # squiz "<1.2 [0.4 1.5]>"
+# room 0.4
+# gain 1.1
+
+d3
+-- $ degradeBy 0.9
+-- $ slow 4
+$ every 2 (# speed "[0.25|1.25]")
+$ loopAt 4
+$ striate "4 [32|64|124]"
+$ n "7*2 9*8 4*16"
+# sound "jjriffarphit"
+# room 0.3
+
+d3 silence

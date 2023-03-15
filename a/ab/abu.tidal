@@ -1,0 +1,97 @@
+let drumMachine name ps = stack
+                    (map (\ x ->
+                        (# s (name ++| (extractS "s" (x)))) $ x
+                        ) ps)
+    drumFrom name drum = s (name ++| drum)
+    drumM = drumMachine
+    drumF = drumFrom
+
+let pat = "{1@3 1@8 1@2 1@3 1@7}%8"
+in
+d1
+$ fast "2 0.5 1"
+$ (|* gain 1.25)
+-- $ fast 2
+$ stack [id
+  $ plyWith 7 ((|+ note "<7 3>") . (|+ squiz "<1.5 1>") . (|* gain "0.9"))
+  $ gain (pat * 2)
+  # s "cpu"
+  # n (choose [8,1,2,17,5,9])
+  # shape 0.5
+  # pan (range 0.25 0.75 perlin)
+  |* gain 0.5
+  # decay "0.5"
+  ,id
+  $ stutWith 3 "s" ((|+ note "<7 5>") . (|* pan "-0.25"))
+  $ fast 2
+  $ iter 4
+  $ gain pat
+  # note ("{-19 -10}%8" + (irand 8))
+  # s "midi"
+  # legato 0.5
+  # ccn 2
+  # ccv "40 60 100"
+]
+
+let pat = "{1@3 1@8 1@2 1@3 1@7}%16"
+in
+d1
+$ slow "0.5 4 1 2"
+$ fast "2 0.5 1"
+$ (|* gain 1.25)
+-- $ fast 2
+$ stack [id
+  $ plyWith 7 ((|+ note "<7 3>") . (|+ squiz "<1.5 2>") . (|* gain "0.9"))
+  $ gain (pat * 2)
+  # s "cpu"
+  # n (choose [8,1,2,17,5,9])
+  # shape 0.5
+  # pan (range 0.25 0.75 perlin)
+  |* gain 0.5
+  # room 0.2
+  # decay "0.5"
+  # crush "4"
+  ,id
+  $ slow 4
+  $ stutWith 3 "s" ((|+ note "<7 5>") . (|* pan "-0.25"))
+  $ fast 2
+  $ iter 4
+  $ gain pat
+  # note ("{-19 -10}%8" + (irand 8))
+  # s "midi"
+  # legato 0.5
+  # ccn 2
+  # ccv "40 60 100"
+]
+
+let pat = "{1@3 1@8 1@2 1@3 1@7}%16"
+in
+d1
+$ slow "0.5 4 1 2"
+$ fast "2 0.5 1"
+$ (|* gain 1.25)
+-- $ fast 2
+$ stack [id
+  -- $ plyWith 7 ((|+ note "<7 3>") . (|+ squiz "<1.5 2>") . (|* gain "0.9"))
+  -- $ gain (pat * 2)
+  -- # s "cpu"
+  -- # n (choose [8,1,2,17,5,9])
+  -- # shape 0.5
+  -- # pan (range 0.25 0.75 perlin)
+  -- |* gain 0.5
+  -- # room 0.2
+  -- # decay "0.5"
+  -- # crush "4"
+  -- # gain 0.8
+  -- ,id
+  $ slow 4
+  $ stutWith 3 "s" ((|+ note "<7 5>") . (|* pan "-0.25"))
+  $ fast 2
+  $ iter 4
+  $ gain pat
+  # note ("{-19 -10}%8" + (irand 8))
+  # s "midi"
+  # legato 0.5
+  # ccn 2
+  # ccv "40 60 100"
+]

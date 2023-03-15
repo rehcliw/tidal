@@ -1,0 +1,51 @@
+d1
+$ juxBy 0.5 rev
+$ fast ("2 4" * "{1%4 2 1%2}%4")
+$ note ("{-14/5 [5|-40] -27}%2" + "<10!5 0!2 -10>")
+# s "[soskick/2 ~/4 sostoms/5]"
+# voice (fast 0.7 $ range 0 6 $ sine)
+# pitch1 (fast 0.8 $ range 0 200 $ sine)
+# pitch2 (fast 1.1 $ sine)
+# speed (fast 0.9 $ sine)
+# sustain 8
+# comb 0.1
+# lpf 2500
+# lpq 0.1
+# legato "{1.5 4 2}%4"
+-- dry/wet (0-1)
+# gverb "{1 0.1 0.4 0.8}%9"
+-- approximate reverberation time in seconds (0.1 - 60 sec)
+# gdelay "<4 1 0.1 13 0.7 15>"
+-- controls damping of high-frequencies as the reverb decays.
+-- 0 is no damping, 1 is very strong damping. Values should be between (0..1).
+# gdamp "<0 0.5 0.9>"
+-- scales size of delay-lines within the diffusion unit, producing the impression of a larger or smaller space.
+-- Values below 1 can sound metallic. Values should be between (0.5..5).
+# gsize "{0.8 0.3 3.5 1.5}%5"
+-- amount of feedback through the system. Sets the number of repeating echoes.
+-- A setting of 1.0 produces infinite sustain. Values should be in the range (0..1)
+# gfdbk 0.9
+-- controls pattern of echoes produced by the diffuser. At very low values,
+-- the diffuser acts like a delay-line whose length is controlled by the 'size' parameter.
+-- Medium values produce a slow build-up of echoes, giving the sound a reversed-like quality.
+-- Values of 0.707 or greater than produce smooth exponentially decaying echoes.
+-- Values should be in the range (0..1).
+# gdiff "{0 0.9 0.5 1 0.1}%3"
+-- depth (0..1) of delay-line modulation. Use in combination with modFreq to produce chorus
+-- and pitch-variations in the echoes.
+# gdepth "<1 0.2 0.5 0.7 0>/2"
+-- frequency (0..10 Hz) of delay-line modulation.
+-- Use in combination with modDepth to produce chorus and pitch-variations in the echoes.
+# gfreq "<[15 0.5 1] 0 0.2 10>"
+
+-- solo d1
+d2 silence
+
+d2
+-- $ jux (hurry "1%2")
+-- $ hurry "1%2"
+$ splice 16 "0 1 2 3 4*<1 2 1> <5 4 0*<3 0 1> 5> 6 7"
+$ s "{break:4}%3"
+# shape 0.5
+# lpf 3500
+# lpq 0.1

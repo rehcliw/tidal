@@ -1,0 +1,34 @@
+-- Composing functions together
+
+-- Lets say you wanted to both chop up, _and_ reverse this pattern,
+-- every 3 cycles.
+d1 $ sound "bd [~ sd] bd sd" # squiz 2
+
+-- You could do it like this:
+d1 $ every 3 (rev) $ every 3 (chop 8) $
+  sound "bd [~ sd] bd sd" # squiz 2
+
+-- That works, but is a bit fiddly. This is where the `.` operator
+-- comes in handy, by turning two functions into one:
+d1 $ every 3 (rev . chop 8) $
+  sound "bd [~ sd] bd sd" # squiz 2
+
+-- That works the same, but with less typing, good!
+
+-- You can just think of the `.` as piping together two functions
+-- into one.
+
+-- But technically speaking:, the `.` will take the input, pass it into the
+-- function on the right, take the output from _that_ function, pass
+-- it to the function on the left, and finally return the return of
+-- _that_ function.
+
+-- You can keep piping in more functions, if you want:
+d1 $ every 3 (rev . chop 8 . fast 2) $
+  sound "bd [~ sd] bd sd" # squiz 2
+
+-- You can also add in effects:
+d1 $ every 3 ((# room 0.7) . rev . chop 8 . fast 2) $
+  sound "bd [~ sd] bd sd" # squiz 2
+
+Have fun!

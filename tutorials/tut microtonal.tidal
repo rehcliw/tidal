@@ -1,0 +1,29 @@
+let degree = pF "degree"
+    ctranspose = pF "ctranspose"
+    mtranspose = pF "mtranspose"
+    gtranspose = pF "gtranspose"
+    harmonic = pF "harmonic"
+    detune = pF "detune"
+    scalename = pS "scaleName"
+    tuning = pS "tuningName"
+    stepsPerOctave = pI "stepsPerOctave"
+    octaveRatio = pF "octaveRatio"
+
+d1 $ slow 2 $ s "gabor*8" # degree "0 1 2 3 4 5 6 7 8 9" # octave "4" # mtranspose "{0 1}/8"
+
+d1 $ slow 2 $ s "gabor*8" # degree "0 1 2 3 4 5 6 7 8 9" # octave "4" # mtranspose "{0 1}/8" # scalename "locrianMajor"
+d1 $ slow 2 $ s "gabor*8" # degree "0 1 2 3 4 5 6 7" # scalename "ritusen"
+
+d1 $ slow 2 $ s "gabor*8" # degree "0 1 2 3 4 5 6 7" # scalename "ritusen" # tuning "young"
+d1 $ slow 2 $ s "gabor*8" # degree "0 1 2 3 4 5 6 7" # scalename "ritusen" # tuning "just"
+
+d1
+$ juxBy 0.5 rev
+$ rot "<1 0 1 0 0 1>"
+$ n (id
+  $ toScale' 19 [0, 1, 3, 4, 6, 8, 11, 12, 14, 15, 17, 18]
+  $ stutWith "<4 2 3>" "{e 0 s}%4" (|+ "<7 -5>")
+  $ degrade
+  $ "0 -5 7 -7"
+  )
+# sound "supervibe"

@@ -1,0 +1,40 @@
+{- | ado
+!rec
+load: prepbass
+----
+
+-}
+
+d1
+$ fast "1%32"
+$ juxBy 0.5 rev
+$ stutWith 2 "<0!8 4 q>" ((|+ note "<14 0>") . (|+ n "[-1|0]") . (|* speed "-1"))
+$ striateBy 64 "0.1 0.05 0.2"
+$ n "{2*2 1*2 0}%2"
+# speed "-0.25"
+# s "prepbass"
+-- # shape 0.5
+-- # legato 2
+-- # crush 8
+-- # comb 0.4
+-- # cut "{0 1 2 3 4 5}%7"
+# coarse "{4 2 1}%4"
+-- # smear 0.9
+# triode 3
+# attack 0.3
+# rel 5
+# pan (fast 7.3 $ sine)
+# hpf (fast 3.6 $ range 500 8000 $ sine)
+# hpq 0.4
+# gain 1.3
+# room 0.2
+# sz 0.4
+
+d2
+$ plyWith 5 (|* gain 0.9)
+$ note ()
+# s "prepbass:3"
+# attack 0.02
+# rel 5
+# room 0.2
+# sz 0.4

@@ -1,0 +1,65 @@
+p "scroll"
+$ s "[bd*4, [arpy:1([5|2],8),arpy:2([5|2],8),arpy:3([5|3],8),arpy:4([5|3],8),arpy:5([2|7],8)]*2]"
+# speed 0.5
+
+
+
+d1 $ s "{bd hh 808:4}%8"
+
+d2 $ s "{bd cp 808:5}%5" # speed 2
+
+d2 silence
+
+d1
+$ sound "drum*16"
+# n (irand 8)
+# cps (slow 8 $ 0.5 + saw)
+
+setcps 0.7
+
+xfade 1 $ s "arpy*8" # n (run "<4 8 16>") # cps 0.7
+
+d2
+-- $ vowel (randcat ["a e*2 i o", "e o u", "o*8"])
+$ sometimes (repeatCycles 2)
+$ every 3 rev
+$ every 2 (# speed 0.5)
+$ s "pss795*16?"
+# n (irand 8 + run 8)
+# legato 2
+
+
+d3
+$ s "[[lwwizhh:6*8], [lwwizbd:13*[2 [<3 6>]]]]"
+# room 0.4
+# speed (slow 2 $ range 1 2 sine)
+
+
+d4
+$ slow 8
+$ striate' "8 16" "0.01 0.05"
+$ s "jjriffarphit:9 jjriffarphit:10"
+|+| speed "[1 2 0.25 0.5 1.5 2.5]"
+
+d4
+$ jux palindrome
+$ slow 4
+$ chunk 8 (hurry 4)
+$ linger "<0.9 0.2>"
+-- $ rev
+-- $ palindrome
+-- $ striate' "<16 8 32>" "[0.4 0.2]/2"
+$ chunk 4 (# squiz 3)
+$ striate' (struct "t(3,8)" $ irand 64) (slow 1 $ range 0.01 0.1 saw)
+$ s "lwwizbd:19 lwwizsd:19"
+|+| speed "[[0.8 1.7 1.4 0.4 0.1], [~ 0.5 0.25]/<2 1.5>, [0.5 3 1 [6 5] [9|8|7]]*<4 3 5>]"
+
+d5
+$ s "[lwwizbd:19(<3 5>,8), [~ lwwizsd:19]]"
+# speed "[~ 0.5 0.25 1]/<2 1.5>"
+# legato 1.5
+# room 0.4
+# gain 1.1
+-- # cps "0.4 0.7"
+
+hush

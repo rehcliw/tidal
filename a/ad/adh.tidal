@@ -1,0 +1,23 @@
+d1
+$ plyWith "3 0" (# cut "{1 0}%3")
+$ note (scale "lydianMinor" $ stutWith 3 "[0,<s e>]" (|+ "<2 -3 -5>") $ "-5")
+# s "superhammond"
+# voice 10
+
+
+xfadeIn 1 16
+-- d1
+$ juxBy 0.5 rev
+$ striateBy "<32 16>" (fast 1.2 $ range 0.01 0.2 $ sine)
+$ chunk 4 (|+ n "<[19 15]!4 5 [16 8]!2 1>")
+$ degrade
+$ n "[4 98]*4"
+# s "ae_live"
+# gain 0
+# delay 0.8
+# delayt 1
+# delayfb 0.9
+# room 0.2
+# sz 0.9
+
+scaleList

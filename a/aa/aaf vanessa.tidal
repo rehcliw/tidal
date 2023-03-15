@@ -1,0 +1,38 @@
+setcps (95/60/8)
+
+d1
+$ slow 4
+$ jux rev
+$ loopAt "{1 4 3}%4"
+$ striate' "[32 8 16]" (1/8)
+$ sound "vanessacarlton:0*<4>"
+-- # speed (wchoose [(-1, 1), (1, 2)])
+# room (slow 4 $ range 0.2 0.6 sine) # sz 0.5
+
+xfade 1 silence
+
+d2
+$ jux rev
+$ fast 4
+$ n "1!16?"
+# sound "vanessacarlton"
+# speed "[1|2|0.5]"
+-- # distort 0.2
+# delay 0.4
+# delaytime "1%3"
+# delayfb 0.7
+# room 0.6
+# legato (fast 4 $ range 0.2 1 saw)
+
+d2 silence
+
+d3
+$ repeatCycles 4
+$ scramble 2
+-- $ fast 2
+$ n "[6*32?, 9*16?, 1*32?, 14*64]"
+# sound "drum"
+# distort (choose [3, 1, 0, 5])
+# gain 1.2
+
+d3 silence

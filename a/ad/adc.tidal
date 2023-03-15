@@ -1,0 +1,27 @@
+{- joy empire a -}
+d1
+$ jux rev
+$ stutWith 3 "1%12 3%12" (|+ n "<7 -7 14>")
+$ n "[0 5 9]*<2 2.5 1.5 0.5>"
+# s "midi"
+# midichan "0"
+# legato "1.5 1.7"
+
+{- joy empire b-}
+d1
+$ plyWith "5 2" ((|* legato 0.9) . (|+ n "7"))
+$ (stutWith 4 "1%12 3%12" (|+ n "<7 -7 14>")
+$ n "[0 5 9]*<2 2.5 1.5 0.5>"
+# s "midi")
+# midichan "{0 1}%5"
+# legato "1 0.8"
+
+-- joy empire c
+d1
+$ fast "<14%11!3 9%9>"
+$ plyWith "<3 5>" ((|* n 0.9) . (|+ n "7"))
+$ (stutWith 3 "<0 1%12> 3%12" (|+ n "<7 -7 14>")
+$ n "[<0 0 7> <0 7> -7]*<2 2.5 1.5 0.5>"
+# s "midi")
+# midichan "{0 1}%7"
+# legato "<.5 1.8> 3 2.5"

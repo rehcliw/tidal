@@ -1,0 +1,8 @@
+d1
+$ stack [id
+  $ jux rev
+  $ stutWith 2 "<e 1>" ((|+ n "<7 0 -14>") . (fast 2))
+  $ n "8 3 0 [7 4]"
+  # s "supermandolin"
+  # accelerate "{0.5 0 1}%4"
+]

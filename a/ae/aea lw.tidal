@@ -1,0 +1,22 @@
+-- = AEA
+-- == notes
+-- - dubby
+-- - (un)comment lines
+-- == load
+-- - Legowelt Drum Wizardry
+
+d1
+$ every 1 (juxBy 0.25 (rev . (|+ n 2)))
+-- $ stutWith 3 "q" ((|+ n 3) . (|- lpf 500))
+$ stutWith 5 "<q [q e 0]>" ((|+ note "-7") . (|- lpf 500) . (|* gain 0.8))
+-- $ plyWith "2" ((|* gain 0.9) . (|* legato 0.9))
+$ degradeBy 0.5
+-- $ sometimes (# legato 0.25)
+$ note ("0 7 0" - "4 9 -9 3")
+# s "{<lwwizsd lwwizperc> lwwizbd}%3"
+# n ("<0!3 5 0 [6 9]>")
+# cut "{1 0 2}%4"
+# lpf 4000
+# shape 0.2
+# room 0.1
+# sz 0.2

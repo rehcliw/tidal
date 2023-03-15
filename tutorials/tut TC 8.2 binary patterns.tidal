@@ -1,0 +1,115 @@
+-- Binary patterns
+
+-- The patterns you send to SuperDirt tend to contain values of type
+-- String (for words), Double (for decimal numbers) or Int (for whole
+-- numbers). One pattern type you probably won't send to SuperDirt is
+-- of type Bool - short for Boolean.
+
+-- Boolean values can be either True or False. You've probably seen
+-- then used with with 'struct', e.g.:
+
+d1 $ struct "t f t t f t f f" $ sound "snare:4"
+
+-- 'struct' provides structure for the pattern on the right; whenever
+-- there's a 't' (i.e., a true value) in the boolean pattern, the
+-- snare fires.
+
+-- It works with euclidean syntax too:
+d1 $ struct "t(3,8)" $ sound "snare:4"
+
+-- The above creates a new pattern with three events per cycle,
+-- according to a Euclidean pattern.
+
+-- Lets have a look at that euclidean pattern:
+drawLine $ struct "t(3,8)" "a"
+
+-- So what do you think would happen if you changed that 't' (for
+-- true) for an 'f' (for false)? Lets try:
+drawLine $ struct "f(3,8)" "a"
+
+-- Lets listen to that structure too:
+d1 $ struct "f(3,8)" $ sound "snare:4"
+
+-- You can see and hear that the *inverse* of the Euclidean pattern is
+-- played. What was true, is now false, and vice-versa.. It's the
+-- 'empty' steps which get the true values, and which we end up
+-- hearing.
+
+-- This is clearer if we play a t(3,8) against an inverted f(3,8):
+d1 $ stack [struct "t(3,8)" $ sound "kick:4",
+            struct "f(3,8)" $ sound "snare:4"
+           ]
+
+-- You can hear that the snares are 'filling in' where the kicks
+-- aren't playing - they never play at the same time.
+
+-- Filling in patterns like this is a lot of fun, and there's a
+-- function called 'stitch' that makes it easier:
+d1 $ stitch "t(3,8)" (sound "kick:4") (sound "snare:4")
+
+-- You only have to give the boolean pattern once, 'stitch' takes care
+-- of inverting the pattern for the second pattern. It's called
+-- 'stitch', because it's like going up and down to stitch two things
+-- together.
+
+-- You can make more complicated boolean patterns to quickly get some
+-- fun patterns going:
+d1 $ stitch "t(<3 5>,8,<0 2 3>)" (sound "kick:4") (sound "hc")
+
+d1 $ stitch "t(<3 5>,<8 8 8 6>,<0 2 4>)" (sound "kick:4") (sound "hc")
+
+-- Actually it'd be less typing do the stitching _inside_ the sound
+-- control pattern:
+d1 $ sound (stitch "t(<3 5>,<8 8 8 6>,<0 2 4>)" "kick:4" "hc")
+
+-- In the above, I only have to write 'sound' once, because the
+-- 'stitch' is working on patterns of words, not patterns of sounds.
+
+-- You can also alternate between patterns of true, and patterns of false
+-- values:
+drawLine $ struct "<t f>(3,8)" "a"
+
+-- If you prefer you can use '1' or '0' instead of 't' and 'f', the
+-- result is exactly the same:
+drawLine $ struct "<1 0>(3,8)" "a"
+
+d1 $ struct "<1 0>(3,8)" $ sound "clap"
+
+-- You don't have to use the Euclidean syntax, you can just right them
+-- out by hand:
+d1 $ stitch "t f t t f f t f" (sound "kick:4") (sound "hc")
+
+-- .. and use the usual mininotation syntax:
+d1 $ stitch "t f t [t f]*2 f ~ t f" (sound "kick:4") (sound "hc")
+  # room 0.2 # sz 0.8
+
+-- With stitch, the rhythmic structure comes from the boolean
+-- pattern. It has a synonym friend called 'sew', which instead
+-- preserves the structure of the patterns it's sewing together.
+
+-- Lets try it:
+d1 $ sew "t f" (sound "kick") (sound "clap:4")
+
+-- Oh! We only hear the kick. That's because the 'f' only switches to
+-- the second pattern for the second half of the cycle, and no new
+-- 'clap's happen then.
+
+-- If we have four claps spread over the cycle, we hear the second two
+-- of them:
+d1 $ sew "t f" (sound "kick") (sound "clap:4*4")
+
+-- Sew can be really nice for blending together two more complicated
+-- patterns. Lets have a listen to them individually first:
+
+d1 $ chunk 4 (hurry 2) $ n "0 .. 7" # sound "cpu"
+
+d1 $ n "0 .. 7" # sound "cpu2" # speed 1.5 # squiz 2
+
+-- And now sewn:
+d1 $ sew (iter 4 "t f")
+  (chunk 4 (hurry 2) $ n "0 .. 7" # sound "cpu")
+  (n "0 .. 7" # sound "cpu2" # speed 1.5 # squiz 2)
+
+-- In the above I have a really simple "t f" binary pattern, but use
+-- 'iter 4' so that it shifts by a quarter every cycle.. So you get
+-- different parts of the sewn patterns coming through.

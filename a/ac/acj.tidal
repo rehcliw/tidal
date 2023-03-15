@@ -1,0 +1,36 @@
+d1
+$ rot "<1 0 0 2 0>"
+$ often (id
+  . (striateBy "16 8" "<1%16 1%2 1%8>")
+  . (# speed 0.5)
+  . (# pan (range 0.25 0.75 rand))
+  )
+$ n "[1 2 5]*<2 1 3 1>"
+# s "bbc"
+# legato 1
+# gain 1.4
+# room 0.1
+
+d2 -- anticipateIn 1 2
+$ juxBy 0.5 (rev . (hurry 2))
+$ rot "<1 0 0 3 0>"
+$ whenmod 5 4 (plyWith "<5 10 2>" ((|- gain 0.05)) . (|+ size 0.05) . (|+ note 1))
+$ n "~ <3*2 1 3 1*2> 0 3"
+# note "~ 0 <-6 0> -6"
+# s "ae_live"
+# legato "{1 1.1 0.8}%9"
+# gain 1.2
+# crush "{5 13 3 8}%3"
+# room 0.1 # size 0.3
+
+clutchIn 2 4
+$ juxBy 0.6 (rev . (hurry 2))
+$ rot "<1 0 0 3 0>"
+$ whenmod 5 4 (plyWith "<5 10 2>" ((|- gain 0.05)) . (|* size "0.9") . (|+ note 1))
+$ n "3 <3*2 1 3 1*2> 0 3"
+# note "~ 0 <-7 -2> -6"
+# s "ae_live"
+# legato "{1 1.1 0.8}%2"
+# gain 1.2
+# crush "{5 13 3 8}%5"
+# room 0.1 # size 0.4

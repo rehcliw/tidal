@@ -1,0 +1,7 @@
+d1
+$ slow "8 2"
+$ arp "{downup updown}%3"
+$ every 3 (# nudge "-0.2")
+$ note (scale "minPent" $ "4 5 {2 0, 7 8 9} 2")
+# s "midi"
+# octave "[4,2,3,6]"

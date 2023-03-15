@@ -1,0 +1,49 @@
+let drumMachine name ps = stack
+                    (map (\ x ->
+                        (# s (name ++| (extractS "s" (x)))) $ x
+                        ) ps)
+    drumFrom name drum = s (name ++| drum)
+    drumM = drumMachine
+    drumF = drumFrom
+
+d1 $ drumMachine "{rolandtr808 linnlm1}%5" [
+    s "[~perc]*2" # note 7
+    ,s "bd:4(3,8)"
+    ,s "~[cp,sd]"
+    ,s "hh*8"
+]
+
+--The drum machine can be pattern'd:
+d1 $ drumMachine "<viscospacedrum rolandtr808>" [
+    s "[~perc]*2" # note 2
+    ,s "bd:4(3,8)"
+    ,s "~[cp,sd]"
+    ,s "hh*8"
+]
+
+--You can also just call one percussive element:
+d1 $ drumFrom "linn9000" "bd*2"
+
+--This method could be useful for live performance:
+do
+ let dm = "linn9000"
+ d1 $ drumFrom dm "bd*2"
+
+--Drum	             | Abbreviation
+Bass drum, Kick drum	               bd
+Snare drum	                         sd
+Rimshot	                             rim
+Clap	                               cp
+Closed hi-hat	                       hh
+Open hi-hat	                         oh
+Crash	                               cr
+Ride	                               rd
+Shakers (and maracas, cabasas, etc)	 sh
+High tom	                           ht
+Medium tom	                         mt
+Low tom	                             lt
+Cowbell	                             cb
+Tambourine	                         tb
+Other percussions	                   perc
+Miscellaneous samples	               misc
+Effects	                             fx

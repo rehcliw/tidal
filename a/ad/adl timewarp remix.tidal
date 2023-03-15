@@ -1,0 +1,209 @@
+{- | timewarp remix
+rec
+load: timewarp
+----
+careful with 'late' behavior.. try not to have >2 dn
+combine & switch the diff parts
+-}
+
+-- util: shift+ent single line
+xfadeIn 1 8 silence
+d1 silence
+xfadeIn 2 8 silence
+d2 silence
+
+resetCycles
+
+-- ambientish, slow, lowend; change up hurry?
+clutchIn 1 16
+-- d1
+$ hurry "<1%8 1%4 1%16 1%2>"
+$ stack [id
+  $ rot "<1 0 [0 1] 1 0>"
+  $ stutWith "<2 1 2>" "1 <1%2 0>" ((|+ note "{7 -7 -14}%4") . (|* legato 0.5))
+  $ juxBy "<0.5!2 0 -0.5 1>" rev
+  -- $ chop 16
+  $ slice "<16 8>" "0 <8 3 7> [16 17] 19"
+  -- $ sometimes ((striateBy "<2 [8 4]>" "0.01 0.1") . (# speed "{-1 1 2}%5"))
+  -- $ striate "{1 2 16}%4"
+  $ n "{0 3 4 2 5 1}%16"
+  # s "warpfull"
+  # legato "{1 2 0.5 1.5 1}%4"
+  # distort "<0.2 0!4 0.3>"
+  # attack 0.08
+  # rel 4
+  # coarse "{0 2 4}%4"
+  # leslie "{0.9 0 0.4}%5"
+  # lrate "{4 6 1}%3"
+  # lsize "4 1"
+] # comb "{0 0.2 0.1}%4"
+# room 0.2
+# size "{0 0.9 0.2 0.4}%3"
+
+-- often 'late', glitchy.. hurry out
+-- clutchIn 2 16
+d2
+$ hurry "1%2 2"
+$ repeatCycles 4
+-- $ degradeBy 0.3
+$ chunk 4 (hurry "<2 1%2>")
+$ stack [id
+  -- $ stutWith 2 "1" (|+ note "7")
+  $ rot "<1 0 [0 1] 1 0>"
+  $ juxBy "1 0 -1" rev
+  $ often (striateBy "<8 [8 4]>" "1%2")
+  $ n "{0*8 3*2 4*8 2*4 5*8 1}%3"
+  # s "warpfull"
+  # legato "{1 2 0.5 1.5 1}%4"
+] # comb "{0 0.6 0.1}%4" # room 0.1 # size 0.7
+
+resetCycles
+
+-- often late, glitchy, unmelodic
+-- xfadeIn 2 8
+d2
+$ fast "{1 1%2 1%4}%4"
+$ juxBy "<0.5 0 -0.5>" rev
+-- $ repeatCycles 4
+$ degradeBy 0.8
+$ rot "<1 0 [0 1] 1 0>"
+$ chunk 4 (hurry "<2 1%4 1%2>")
+$ stack [id
+  $ stutWith "<2 1>" "1 1%2" ((|+ note "7 -7") . (|* legato 0.5))
+  -- $ slice 16 "0 8 16 19"
+  $ sometimes ((striateBy "<2 [8 4]>" "0.01 0.1") . (# speed "{-1 1 2}%5"))
+  $ n "{0*2 3 4 2*4 5*2 1}%4"
+  # s "warpfull"
+  # legato "{1 2 0.5 1.5 1}%4"
+  # attack 0.05
+  # rel 4
+  # delay 0.5
+  # delayt 0.3
+  # delayfb 0.9
+] # comb "{0 0.4 0.2}%4" # room 0.2 # size 0.8
+
+xfadeIn 2 16 silence
+
+
+-- lpf & hpf both useful (fade btwn!), repetitive
+-- xfadeIn 2 16
+d2
+$ fast 2
+-- $ almostNever (# cut 1)
+$ whenmod 8 7 (rev . (# octer 0.5))
+$ juxBy 0.25 (rev . (# speed "-1"))
+$ note "[-7,-14]"
+# s "warpfx"
+# leslie 0.5
+# lrate 2
+# lsize 0.3
+# legato 1.5
+# coarse "[5 2 4]/8"
+# lpf "700"
+# room "{0 0.05 0 0.2 0}%3"
+# sz "{0.9 0 0.3 0}%3"
+
+-- bassy, structured
+-- clutchIn 1 8
+d1
+$ rot "<0!6 1 0!3>"
+$ stack [id
+  $ rot "<1 1 0 0 1 0>"
+  $ hurry "{1%4 1%2 3%4 3%2 1}%4"
+  $ repeatCycles 4
+  $ juxBy "<0.5 -0.75 0 0.75 -0.5>" (rev . ("{3%16 0 1%16 0 -5%16}%4" ~>))
+  $ stutWith "<3 2 1>" "<5%16 9%16>" (|+ note "{7 14 -7 0}%4")
+  $ degradeBy 0.2
+  $ sometimesBy 0.3 (# vowel "<a e>")
+  $ whenmod 5 2 (|+ n "{1 -3 2 5 4 6 9}%4")
+  $ whenmod 6 2 (struct "~ t ~ ~ ~ t ~ t")
+  $ struct "t*8"
+  $ n "0"
+  # s "{warpshort warpkit}%3"
+  # cut "{1 2}%3"
+  , id
+  $ whenmod 8 7 ((struct "t ~ t? ~") . (|+ note "<7 14 -7>"))
+  $ rarely (# cut 1)
+  $ n "0*4"
+  # s "warpkit"
+  # legato 1
+  # lpf 1000
+  # lpq "0.2"
+  , id
+  $ rarely (# cut 2)
+  $ juxBy 0.25 rev
+  $ degradeBy 0.4
+  $ stutWith 3 "{e s 1}%2" (|+ note "{7 14 -7}%4")
+  $ note "0"
+  # s "warplead"
+  # n "{0 1 2}%5"
+  # legato "{1.5 0.75 0.5 0.1 2}%4"
+  # lpfbus 0 (fast 1.5 $ range 1000 3000 $ sine)
+  # lpq "0.1"
+  # speed "<-1 1>"
+]
+# room "{0 0.05 0 0.2 0}%3"
+# sz "{0.9 0 0.3 0}%3"
+# shape 0.4
+# cps (136/60/4)
+
+xfadeIn 2 16 silence
+
+
+
+-- faster, more melodic, fun, groovy
+-- clutchIn 1 4
+d1
+$ stack [id
+  -- $ whenmod 12 8 (# sz "")
+  -- $ loopAt "{1%2 2 4}%4"
+  -- $ hurry "1%2"
+  -- $ chunk 4 (fast 2)
+  --  (|+ n "-4")
+  $ every 4 (# sz "")
+  -- $ often (juxBy 0.15 rev)
+  -- $ degradeBy 0.9
+  -- $
+  $ often (plyWith "<4 2>" ((|* gain "<0.9 1 1>") . (|+ note "<0 14> <0 7 -7 7>")))
+  $ slice 8 (plyWith "<1 2>" (|+ "{1 -4 -8}%4") $ "2*2" + "{7 9 1}%4")
+  $ s "warpacid"
+  # shape 0.5
+  -- # distortbus 0 "{0 1 0.5}%4"
+  # attack 0.01
+  # rel 3
+  # legato 0.9
+  # gain 0
+  -- # speed "<1 -1>"
+  , id
+  $ whenmod 16 15 (# sz "")
+  $ whenmod 8 7 (# gain "1 0 1 1")
+  $ stutWith "<3 2>" "<e [s q] e>" (rev . (# pan "{0 1 0.25}%5") . (# speed "{1 -1 1 1}%4"))
+  $ chunk 16 (hurry "<1%2 2>")
+  $ striate 16
+  $ s "warpdrums"
+  # pan "{1 0 0.75 0.25 0.5}%4"
+  -- # squiz "{2 1}%4"
+  , id
+  $ whenmod 20 19 (# squiz 2)
+  $ whenmod 18 17 (# sz "")
+  $ juxBy 0.25 (rev)
+  $ chunk 4 (hurry "1%2")
+  $ degradeBy 0.6
+  $ repeatCycles 3
+  $ stutWith "3 2" "<q e 0 1>" ((|+ note "-7") . (|* speed "-1") . (|* legato 0.9))
+  $ chop 16
+  $ n "3"
+  # s "warplead"
+  -- # comb 0.1
+  # leslie 0.5
+  # lrate 4
+  # shape 0.4
+  -- # coarse 2
+  -- # distort 0.1
+  # attack 0.0
+  # rel 3
+  -- # lpf "{1500 1200 1000 2000}%3"
+  # lpq "0.05"
+  # legato "2 1.5"
+  -- # orbit 1
+] # room "{0.15 0.1 0}%4" # sz "{0.8 0 0.3}%4"

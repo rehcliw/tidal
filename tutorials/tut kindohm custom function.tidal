@@ -1,0 +1,48 @@
+-- see util functions
+-- samps: house
+
+let w = rev
+    z p = rev $ (|* speed 1.5) $ p
+    y speedAmount p = rev $ (|* speed speedAmount) $ p
+    x speedAmount num p = rev
+                          $ (|* speed speedAmount)
+                          $ striate num
+                          $ p
+    gtfo = (const $ s "~")
+    gtfo2 = degradeBy 1
+in
+d2
+$ stack [id
+  $ gtfo2
+  $ x "1.5 2" "{6 1 2 0 3}%4"
+  $ note "0 7 12 5"
+  # s "{flbass:1 flbass:3 flbass:9}%4"
+  # crush 5
+  # lpf 4000
+  # legato 2
+  , id
+  $ rip "0.8" "<t s>"
+  $ x "{16 1 1 <32 1> 1}%4" "3 2 1"
+  $ n "<[3 5 8]*2 [5 3]!6>"
+  # s "houride"
+  # hpf 4000
+]
+
+
+let asdf sampleName = density 8
+                          $ s sampleName
+                          # n (irand 32)
+                          # unit "c"
+                          # speed 8
+
+d1
+  $ asdf "[amencutup]"
+  -- $ n "19 2 151 211 435 68 89 50"
+  -- # s "jjpads"
+  -- # unit "c" -- makes each note slow down to length of cycles, overlap w/o legato
+  -- # speed "8" -- so then can make them fit into cycle portion, w/o legato
+  # cps (0.5 * (slow 3 $ range 1 2 $ sine)) -- now fits whatever speed
+  # shape 0.5
+  # room 0.2
+
+:t asdf

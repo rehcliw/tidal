@@ -1,0 +1,29 @@
+setcps (135/60/4)
+
+d1
+$ every 2 (# speed (slow 2 $ range (-0.1) 0.25 sine * (saw + 1)))
+$ fast "2 1 0.5 2"
+$ jux rev
+$ splice 16 "0 1 2 3"
+-- $ splice 32 "0*2 10 20 30 <4 5> 6!2 8 9 10?0.2 [11(<3 5>,8)]/2 12 13 14 24"
+$ sound "theminticecream"
+# speed (slow 2 $ range (-0.1) 0.25 sine * (saw + 1))
+# legato (slow 3 $ range (0.1) 2 sine * (range 0.25 1.5 saw))
+# delay (slow 3 $ range (0.1) 0.2 sine * (range 0.25 1.5 sine))
+# delaytime (slow 2 $ range (0.1) 5 sine * (range 0.25 1.5 sine))
+-- # distort (slow 0.5 $ range (0.1) 0.7 sine * (range 0.25 1.5 saw))
+-- # ring (fast 4 $ range 2 6 sine * (range 0.5 1.5 saw))
+-- # ringf (fast 3 $ range 20 400 sine * (range 0.5 1.5 saw))
+# room (slow 1 $ range (0.1) 0.3 sine * (range 0.25 1.5 saw))
+# gain 1.2
+
+d1 silence
+
+d2
+$ slow 2
+$ striate (slow 4 "8 7 6 5 4 3 2")
+$ sound "[theminticecream(<3 5>,16)]*<2 0.5>"
+# delay 0.7
+# delaytime "1/3"
+# legato "[0.1|5]"
+# speed "1"

@@ -1,0 +1,27 @@
+-- = AEC: Experiments with MPD218 and Control Busses
+-- == notes:
+-- - 
+-- == load samples:
+-- == run in sc:
+-- - dirt midi in.scd
+
+d1 $ n "<d6'm9 g6'dom7'ii>" # s "superhoover" # djfbus 1 (cF 0.5 "3")
+
+-- noisy
+d1
+$ rot "<0 1 0 0>"
+$ juxBy 0.5 rev
+$ slow ("{1%4 4 1%2}%4" * 8.5)
+-- $ degradeBy 0.3
+-- $ striateBy 16 0.1
+$ sound "{watley:1 watley:0}%4" 
+# legato 3
+# speed 0.1
+-- # speed "{1 0.25  0.1 0.5}%4"
+# shape 0.4
+# squizbus 1 (7 * "^3" + 1)
+# comb 0.1
+# lpfbus 2 (5000 * "^9" + 1)
+# lpq 0.25
+# room 0.15
+# sz 0.8

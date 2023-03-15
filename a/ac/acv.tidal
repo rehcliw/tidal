@@ -1,0 +1,88 @@
+let pats =
+
+d1
+$ slow "4"
+$ stack [id
+  -- $ jux rev
+  $ striate "<1 2 4>"
+  $ bite "{4 2}%3" "[2!4,0!2,7!4]"
+  $ slice "{32 16}%5" "0 .. 31"
+  $ note "[0,[14 [5 7]]]"
+  # n "[10,8]"
+  # s "vscocelloens"
+  # legato "<8!3 16>"
+  -- # cut 1
+  , id
+  $ note "<0*8>"
+  # n "0"
+  # s "vscocelloens"
+  # gain 1.3
+]
+# room 0.2
+# size 0.9
+
+let pats =
+      [
+        ("a",
+          stack [id
+            -- $ jux rev
+            $ striate "<1 2 4>"
+            $ bite "{4 2}%3" "[2!4,0!2,7!4]"
+            $ slice "{32 16}%5" "0 .. 31"
+            $ note "[0,[14 [5 7]]]"
+            # n "[10,8]"
+            # s "vscocelloens"
+            # legato "<8!3 16>"
+            -- # cut 1
+            , id
+            $ note "<0*8>"
+            # n "0"
+            # s "vscocelloens"
+            # gain 1.3
+          ]
+        # room 0.2
+        # size 0.9
+        ),
+        ("b",
+          bite "{4 2}%3" "[2!4,0!2,7!4]"
+          $ stack [id
+            -- $ jux rev
+            $ striate "<1 2 4>"
+            $ slice "{32 16}%5" "0 .. 31"
+            $ note "[0,[14 [5 7]]]"
+            # n "[10,8]"
+            # s "vscocelloens"
+            # legato "<8!3 16>"
+            -- # cut 1
+            , id
+            $ note "[0*8 14*4]*2"
+            # n "0"
+            # s "vscocelloens"
+            # gain 1.3
+          ]
+        # room 0.3
+        # size 0.9
+        ),
+        ("c",
+          bite "4" "[2!4,0!2]"
+          $ stack [id
+            -- $ jux rev
+            -- $ striate "<1 2 4>"
+            $ slice "32" "0 .. 31"
+            $ note "[0,14]"
+            # n "[10,8]"
+            # s "vscocelloens"
+            # legato "<8!3 16>"
+            -- # cut 1
+            , id
+            $ note "<0*8 14*8>"
+            # n "0"
+            # s "vscocelloens"
+            # gain 1.3
+          ]
+        # room 0.3
+        # size 0.9
+        )
+      ]
+in
+d1 $ slow 4 $ ur 12 "a b c" pats []

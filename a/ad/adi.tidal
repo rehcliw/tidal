@@ -1,0 +1,24 @@
+let vibrato = pF "vibrato"
+    vrate = pF "vrate"
+in
+d1
+$ fast "1%4"
+$ juxBy "<0.5 -0.5>/4" ((|* freq "<3%2 4%5>") . (hurry "3%5") . (# enhance 0.2))
+$ freq "[<55!5 61.875>,<206.250 220!4>]"
+# legato 4.6
+# s "superhammond"
+# vibrato 0.9
+# vrate 0.01
+# voice "<0>"
+# coarsebus 0 (fast 0.8 $ range 1 5 $ cosine)
+-- # mode 2
+# krush 0.8
+# waveloss "<80 10 50>"
+# scram "<0.2 0.1>"
+# attack 2
+# sustain 23
+# rel 25
+# decay 21
+-- # combbus 1 (fast 0.7 $ range 0.2 0.9 $ sine)
+# room 0.2
+# sz 0.9

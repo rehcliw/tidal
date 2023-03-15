@@ -1,0 +1,66 @@
+{- | untitled
+recorded (with acn.tidal)
+load: dystopia
+drums
+-}
+
+clutchIn 1 4
+-- d1
+$ rot "<1 0 1 0 0>"
+$ stack [id
+  -- $ slow 2
+  $ every 2 (# note "{-5 5 0 12*2 0 9}%<8 4>")
+  $ n "{0 5 ~ 12*2 17*3 29}%<4 8>"
+  # s "dyskick"
+  # crush "{6 4 10}%4"
+  # pan (fast 1.5 $ range 0.25 0.75 $ cosine)
+  # cut 1
+  # lpf (fast 2.6 $ range 1000 4000 $ cosine)
+  , id
+  $ rot "<0 1 1 0>"
+  $ stutWith 2 "0 e" (|+ note "5 7")
+  $ whenmod 3 5 (rev . (# speed "-2 1") . hurry 2 . (|* n 2))
+  $ n "~ {1 15 8 12 22}%2 ~ {22 5 1 12 8}%2"
+  # s "<gfx pfx>"
+  # cut "<1 2 [1 3] [2 1]>"
+  # pan (fast 3 $ range 0 1 $ sine)
+  , id
+  $ rev
+  $ striate "<4 16>"
+  $ n "1*2 26?"
+  # s "pfx"
+  # nudge 0.4
+  # cut 2
+] # room (range 0.1 0.3 $ sine * (fast 2.1 $ sine)) # size (range 0.1 0.3 $ cosine)
+
+xfadeIn 1 4
+
+anticipateIn 1 2
+-- $ rot "<1 0 1 0 0>"
+$ stack [id
+  $ slow 2
+  -- $ every 2 (# note "{-5 5 0 12*2 0 9}%<8 4>")
+  $ n "{0 5 ~ 12*2 17*3 29}%<4 8>"
+  # s "dyskick"
+  -- # crush "{6 4 10}%4"
+  -- # pan (fast 1.5 $ range 0.25 0.75 $ cosine)
+  -- # cut 1
+  -- # lpf (fast 2.6 $ range 1000 4000 $ cosine)
+  , id
+  -- $ gtfo
+  $ rot "<0 1 1 0>"
+  $ stutWith 2 "0 e" (|+ note "5 7")
+  $ whenmod 3 5 (rev . (# speed "-2 1") . hurry 2 . (|* n 2))
+  $ n "~ {1 15 8 12 22}%2 ~ {22 5 1 12 8}%2"
+  # s "<gfx pfx>"
+  # cut "<1 2 [1 3] [2 1]>"
+  # pan (fast 3 $ range 0 1 $ sine)
+  , id
+  -- $ gtfo
+  $ rev
+  $ striate "<4 16>"
+  $ n "1*2 26?"
+  # s "pfx"
+  # nudge 0.4
+  # cut 2
+] # room (range 0.1 0.3 $ sine * (fast 2.1 $ sine)) # size (range 0.1 0.3 $ cosine)

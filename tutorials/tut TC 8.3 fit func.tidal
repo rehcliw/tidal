@@ -1,0 +1,46 @@
+
+-- Lets fit things from a list, into a pattern!
+
+-- Here's the 'type signature', what's it telling us?
+fit :: Int -> [a] -> Pattern Int -> Pattern a
+
+-- 'fit' takes a whole number, a list of things, a pattern of whole numbers,
+-- and then gives back a pattern of things.
+
+-- Int - a 'step size' - how far to advance through the list each cycle
+-- [a] - a list - the things you want to put in the tattern
+-- Pattern Int - a pattern of numbers referring to things in the list
+-- Pattern a - the result! 'Pattern a' means it can work with any kind of
+-- pattern
+
+-- Let's start simple, with a step size of 0
+
+d1 $ n (fit 0 [9,10,11,12,13,14] "0 1 2 3") # s "alphabet"
+
+-- That's just cycling through four letters of the alphabet (j,k,l,m).
+-- We have six numbers in our list, but we're only using the first four
+-- (from 0 to 3).
+
+-- Let's use all six, and add a bit more structure:
+d1 $ n (fit 0 [9,10,11,12,13,14] "[0 3] [1 2] 4 [~ 5]") # s "alphabet"
+
+-- Note that if you go past the end of the list, you go back to the start again.
+-- So '0' and '6' end up pointing at the first of the six numbers, which is '9'
+-- (which gives us 'j')
+d1 $ n (fit 0 [9,10,11,12,13,14] "0 6") # s "alphabet"
+
+-- Ok what if we start playing with that 'step size'?
+d1 $ n (fit 1 [9,10,11,12,13,14] "0 1 2 ~") # s "alphabet"
+
+-- It starts getting confusing, but you should be able to hear that each cycle,
+-- the pattern moves through the list by one step, until it gets back to the
+-- start again. So if it starts from 'j', 'k', 'l', the next cycle it'll shift
+-- along by one and give 'k', 'l', 'm', and so on, until it starts wrapping
+-- around to the start again.
+
+-- This can be nice for generating melodies. The rhythm stays the same, but
+-- the notes evolve, moving through the pattern
+d1 $ note (fit 2 [0,2,7,5,12] "0 ~ 1 [2 3]") # sound "supermandolin"
+  # legato 2 # gain 1.3
+
+d2 $ n "0 ~ 2 [3*2 4*2]" # sound "cpu" # speed 2

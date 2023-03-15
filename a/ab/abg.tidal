@@ -1,0 +1,53 @@
+d1
+$ note "c c'maj"
+# s "<plucklead flutter futuresub acid wob donk eris wub sawpluck vibsawpluck noisebuild fmp ab2 futuresaw ultrasaw sinosc>"
+
+attackCurve=1,decayCurve=1,atk=1
+
+let cStartFreq = pF "cStartFreq"
+    dcy = pF "dcy"
+    cEndFreq = pF "cEndFreq"
+    cEnvFMod = pF "cEnvFMod"
+    mStartFreq = pF "mStartFreq"
+    mEndFreq = pF "mEndFreq"
+    mEnvFMod = pF "mEnvFMod"
+    fMod = pF "fMod"
+    pMod = pF "pMod"
+    cFFeedback = pF "cFFeedback"
+    cPFFeedback = pF "cPFeedback"
+    mFFeedback = pF "mFFeedback"
+    mPFeedback = pF "mPFeedback"
+    feedbackDelay = pF "feedbackDelay"
+    attackCurve = pF "attackCurve"
+    decayCurve = pF "decayCurve"
+    atk = pF "atk"
+in
+d1
+$ stack [id
+$ slow 1
+$ jux rev
+-- $ almostNever (stutWith 2 "<0 e q 3%8 s>*6" (|+ n 7))
+$ iter "4 2"
+-- $ arp "pinkyupdown thumbupdown"
+$ rev
+$ note "a*16?"
+# s "fmp"
+# gain 1.2
+-- # begin "0 0.3 0.2"
+# sustain "0.2 0.6 0.2"
+# cStartFreq "100 500"
+# cEndFreq "220 520"
+# cEnvFMod "15 0"
+# mStartFreq "250 505"
+# mEndFreq "290"
+# mEnvFMod "5 15"
+# fMod "14 4 1"
+# pMod "8 1 4 16"
+# cFFeedback 17
+# cPFFeedback 9
+# mFFeedback 9
+# mPFeedback 15
+# feedbackDelay "0.1 1 0.2 0.3"
+# dcy 0.3
+# atk "0.01"
+] # legato 1

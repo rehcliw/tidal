@@ -1,0 +1,78 @@
+import qualified Sound.OSC as O
+
+get_length:: String -> Int -> IO ()
+get_length sampleName n = do sendO False (sListen tidal) (head $ sCxs tidal) $ O.Message "/sampleLength" [O.string sampleName, O.int32 n]
+
+get_length "bsperc" 0
+
+get_length "bsperc" 1
+
+get_length "bsperc" 2
+
+d1 $ s "<bsperc bsperc:1 bsperc:2>" # speed ("<^bsperc0 ^bsperc1 ^bsperc2>")
+
+get_length "nimb" 0
+
+d1
+-- $ juxBy 0.5 rev
+-- $ sometimes (|+ n "1 2 3 4")
+-- $ loopAt "[{1%16 1%8 1%4}%4, <2 4>]"
+-- $ striate "<8 4 16 1>"
+-- $ n "26*<2 8 1>"
+$ n 27
+# s "nimb"
+|+ begin 1
+-- |- end 0.1
+
+-- xfadeIn 1 8
+d1
+-- $ juxBy 0.1 rev
+-- $ loopAt "{1%6 1%3}%3"
+$ (id
+  -- $ chop "<12 9>"
+  $ striateBy 18 0.001
+  $ n "<31 28 33>"
+  # s "nimb"
+  # speed "{-1%12 1%9 1%3 3}%3"
+)
+-- # begin (fast "5%6" $ sine)
+-- # end (fast "5%9" $ cosine)
+# room 0.2
+# size 0.9
+
+let modamp = pF "modamp"
+in
+d1
+-- $ jux rev
+-- $ degradeBy 0.5
+$ (id
+  $ slow 8
+  -- $ chop "<2>"
+  -- $ every 4 (# speed "-1")
+  $ n "[0,14,7] [-7,-14,21]"
+  # s "superhammond"
+  # attack "0.5"
+  # rel 9
+  # sustain 9
+  # voice "{6 2 5 2}%2"
+  -- # decay 0.2
+  # lpfbus 0 (fast "1%4" $ range 500 1500 $ sine)
+  # lpq 0.1
+  |- n "<7 0>"
+)
+-- # modamp 1
+-- # velocity 2
+-- # detune 0.5
+-- # legato 1
+-- # cut "{0 1 2}%4"
+# coarse 6
+# room 0.2
+# size 0.8
+
+
+
+get_length "pad" 0
+
+setcps (1/"^pad0")
+
+d1 $ s "pad"

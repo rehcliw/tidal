@@ -1,0 +1,74 @@
+let stereo = pF "stereo"
+    muffle = pF "muffle"
+in
+d1
+-- $ juxBy 0.5 rev
+$ slow "<4 1 2 2>"
+-- $ rarely ((# smear "0.5") . juxBy 0.5 rev)
+$ note (id
+  $ scale "ritusen" (id
+    -- $ rev
+    $ stutWith "3 2 4" "1 s e 0" (|- "<-7 7 3>")
+    $ "0 7 2 5" + "<[3 1] [7 6]>"
+    )
+  )
+# s "superpiano"
+# stereo 0.5
+# muffle 1.5
+# attackbus "3" (fast 0.5 $ range 0.1 0.4 $ sine)
+# relbus "4" (fast 0.6 $ range 1 8 $ sine)
+-- # sustain "16 4"
+-- # legato "4 16"
+-- # smear "[1,0.1]"
+# coarsebus "2" (fast 0.7 $ range 0 1.5 $ sine)
+-- # combbus "0" (fast 0.8 $ range 0 0.4 $ sine)
+# lbrickbus "1" (fast 1.2 $ range 0.8 0.9 $ sine)
+-- # xsdelay 0.7
+-- # tsdelay "2 1 0.5 1.5"
+# room 0.5
+# size 0.5
+# gain 1
+
+d2
+$ slow "4"
+$ stack [id
+  $ almostAlways (id
+    . plyWith "2" ((|* gain 0.9) . (|* legato 0.9))
+    )
+  $ juxBy 0.9 rev
+  $ rot "<1 0 0 2 0>"
+  -- $ degradeBy "0 0.5"
+  $ note (id
+    $ scale "ritusen"
+    $ stutWith "<2>" "<[s e]>" (|+ "<4 -4>")
+    $ "{-12 -15 0 -19 -9}%2"
+    )
+  # s "{soskick sossnare}%6"
+  # pitch1 "{7 2 4}%2"
+  -- # pitch2 "{0 0.3 0.2}%8"
+  # voice 4.4
+  # semitone 1
+  # resonance 0.8
+  # speed 0.9
+  -- # gain 0.9
+  # lpf 3000
+  # lpq 0.5
+  # cut "{1 2 3}%2"
+  # gain "1.2"
+  , id
+  -- $ fast "4"
+  $ juxBy 0.8 rev
+  $ rot "<1 0 0 2 0>"
+  -- $ degradeBy 0.4
+  $ stutWith "4 2" "s e q 0" (|+ n "1 2")
+  -- $ sine "<4 2 15>"
+  $ n "<0 4 2 8>*8"
+  # s "arpy"
+  # speed "[[1 2?],[1.75? 1.5],[0.5 0.75]]"
+  # legato 1.5
+  # gain "1"
+]
+# room 0.4
+-- # pan (fast 0.7 $ range 0.25 0.75 $ sine)
+
+scaleList

@@ -1,0 +1,13 @@
+d1
+$ fast (range 0.25 4 "<^9 ^12> ^3")
+-- $ repeatCycles 4
+$ s "{jungle!<6 5> industrial*<6 3> kick*2 jungbass*3 break}%5"
+# n (range 0 20 "<^3 ^12> ^9")
+-- # djf (cF 0.5 "3")
+# djf ("^9 ^12 ^3")
+# speed (range 0.5 2 "^9 ^3 ^12")
+# ring (range 1 10 "^3 ^9")
+# ringf (range 10 100 "^3 ^12 ^3 ^9")
+# legato 1
+# room (range 0.1 0.5 "^12 ^3 ^9")
+# size "^9 ^12 ^3"

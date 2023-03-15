@@ -1,0 +1,42 @@
+d1
+$ s "techno*8"
+# n "0"
+# note "2"
+# legato 1
+# crush 14
+
+-- transitions with slow change to ctrl parameters; immediate change to main pat
+-- shift+enter
+:t interpolate
+
+interpolateIn 1 2
+$ s "techno*8"
+# n "7"
+# note 9
+# legato 0.25
+# crush 4
+
+-- comb filter build with sudden pattern change
+:t anticipate
+
+anticipate 1 -- in 4 cycles
+$ s "techno*4"
+# n "4"
+# legato 1
+
+anticipateIn 1 2 -- in 2 cycles
+$ s "techno*4"
+# n "9"
+# legato 1
+
+-- jumps in specified time
+jumpIn 1 2
+$ s "techno*4"
+# n "2"
+# legato 1
+
+jumpMod 1 3 $ fast 2 $ whenmod 5 3 (# speed "0.5 2") $ s "bsvocals*2" # speed 1
+
+xfadeIn 1 3 $ n "1" # s "bsvocals*4" # speed 1 # legato 1 -- crossfade
+
+clutchIn 1 3 $ s "bsnoise:2*8" # legato 1 -- degrade transition

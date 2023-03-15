@@ -1,0 +1,16 @@
+--change these numbers around real good
+d1
+$ fast "1%32"
+$ freq ("<200 150 300 250>" - 125)
+*| freq "[<1 1%2 2>,[4%13 13%4] [3%12 5%3] [17%8 5%4] [6%15 12%13]]"
+# s "supergrind"
+# legato 2
+# voice 4
+# accelerate "-4"
+# detune "-15" -- dont make freq go sub0
+# rate 9
+-- # lpf 5000
+-- # lpq 0.1
+# real 2.8
+# room 0.3
+# size 0.9

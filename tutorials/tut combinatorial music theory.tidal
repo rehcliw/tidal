@@ -1,0 +1,189 @@
+{- | combinatorical music theory: http://www.andrewduncan.net/cmt/index.html
+    0
+  11 1
+ 10   2
+ 9     3
+  8   4
+   7 5
+    6
+-}
+
+d1
+$ slow 2
+$ freq "6 8 16 32 64"
+-- at <=6 hz for fork isnt very resonant
+-- freq*2 = octave+1
+# s "superfork"
+# legato 2
+
+d1
+$ slow 2
+$ note "0 c c5 -12 -24 -36 -48 -60 c0 60 c10"
+-- 0 = c5; -60 = c0; 60 = c10
+# s "superfork"
+# legato 2
+
+d1
+$ slow 2
+$ note "0 1 2 3 4 5 6 7 8 9 10 11"
+-- $ note "c cs d ds e f fs g gs a as b"
+-- $ note "b bf a af g gf f e ef d df c"
+# s "superfork"
+# legato 2
+
+d1
+$ slow 2
+$ freq "256 261" -- scientific middle c (low c = 0hz) / a 440 middle c
+-- $ note "0" -- uses a 440
+# s "superfork"
+# legato 2
+
+d1
+$ slow 2
+-- $ note "c d e f g a b" -- c major
+-- $ note "0 2 4 5 7 9 11"
+-- $ note "cs d e fs g a b" -- d major ("rotation" of c major)
+-- $ note "1 2 4 6 7 9 11"
+-- above same as:
+$ note ("-1 0 2 4 5 7 9" + 2) -- c maj starting from -1, shift 2 half steps
+-- these are both the diatonic/major/minor scale
+# s "superfork"
+# legato 2
+# octave 4
+
+-- 19 possible triads
+-- careful! most combos are transpositions: 0 1 2 = 0 1 11
+-- https://rudiseitz.com/2013/02/04/the-nineteen-trichords/
+d1
+$ fast 2
+$ every 18 arpeggiate
+$ note (id
+  $ cat [id
+    $ "[0,~1,2]" -- semitone cluster
+    , "[0,1,3]" -- semi-whole
+    -- , "[0,1,4]"
+    , "[1,4,~12]" -- above w root @ 1: minor/major 7th
+    --, "[0,1,5]"
+    , "[1,5,12]" -- above w root @ 1: major 7th
+    -- , "[0,1,6]"
+    , "[-6,0,1]" -- above w root @ 6: lydian sus4
+    , "[0,~1,7]" -- phrygian sus2
+    -- , "[0,1,8]"
+    , "[~1,8,12]" -- above w root @ 1: major 7th shell
+    -- , "[0,1,9]"
+    , "[1,9,12]" -- above w root @ 1: aug maj 7
+    -- , "[0,1,10]"
+    , "[-2,0,1]" -- above w root @ 10: whole-semi
+    , "[0,2,4]" -- whole tone cluster
+    -- , "[0,2,5]"
+    , "[2,5,12]" -- above w root @ 10: min 7
+    -- , "[0,2,6]"
+    , "[2,6,12]" -- above w root @ 2: dom 7
+    , "[0,~2,7]" -- sus
+    -- , "[0,2,8]"
+    , "[2,8,~12]" -- above w root @ 2: half dim
+    -- , "[0,2,9]"
+    , "[2,9,12]" -- above w root @ 2: min 7 shell
+    , "[0,3,6]" -- dim
+    , "[0,3,7]" -- min
+    -- , "[0,3,8]"
+    , "[~-4,0,3]" -- above w root @ 8: maj
+    , "[0,4,8]" -- aug
+  ]
+)
+# s "superfork"
+# legato 2
+|+ note "[-7,-14]"
+
+-- 6 possible intervals
+d1
+$ fast 2
+$ every 2 (arp "[up|down]")
+$ note (id
+  $ randcat [id
+    $ "[0,1]" -- m2/M7
+    , "[0,2]" -- M2/m7
+    , "[0,3]" -- m3/M6
+    , "[0,4]" -- M3/m6
+    , "[0,5]" -- P4/P5
+    , "[0,6]" -- +4/-5
+  ]
+)
+# s "superfork"
+# legato 2
+# octave 4
+
+-- fingerboard. moves to next string (5 steps) then to next fret
+d1
+$ note (id
+  $ sometimes (id
+    -- $ mask "1 1 1 0 1"
+    $ stutWith 2 "1%8" (|+ 5)
+  )
+  $ stutWith 4 "1%4" (|+ 5)
+  $ "1"
+  |+ "<0 1 2 3 4>"
+)
+# s "flbass"
+# cut 1
+# octave 5
+
+-- major and minor are reflections across the axis intersecting 0 and 6
+-- this reflection is the inversion I, multiplying by 11
+d1
+$ note (id
+  $ cat [id
+    $ "[0,4,7]" -- major
+    , "[0,5,8]" -- minor
+    , ("[0,4,7]" |* 11 |% "12") -- results in [0,5,8]
+    , ("[0,5,8]" |* 11 |% "12") -- results in [0,4,7]
+  ]
+)
+# s "superfork"
+# legato 1.5
+
+-- operation M, which turns melodic into harmonic, multiply by 5
+d1
+$ note (id
+  $ cat [id
+    $ "0 1 2 3 4" -- melodic
+    , ("0 1 2 3 4" |* 5 |% "12") -- yields 0 5 10 3 8, a pentatonic scale species
+    , ("0 1 2 3 4" |* 5 |% "12" |* 5 |% "12") -- symmetry! back to 0 1 2 3 4
+  ]
+)
+# s "superfork"
+# legato 1.5
+
+-- operation MI, multiply by 7 (not a factory of 12, so also symmetric)
+let pat = "<[0 1 2 3 4]!6 [4 3 2 1 0]!6>"--"0 1 2 3 4"
+in
+d1
+$ fast 1
+$ stack [id
+  $ note (id
+    $ cat [id
+      $ pat -- melodic
+      , (pat |* 7 |% "12") -- yields 0 7 2 9 4
+      , (pat |* 7 |% "12" |* 7 |% "12") -- symmetry! back to 0 1 2 3 4
+      , (pat |* 7 |+ 5 |% "12") -- T5 MI
+      , (pat |* 7 |+ 1 |% "12") -- inverse of above, T1 MI
+      , (pat |* 7 |+ 7 |% "12") -- T7 MI
+      , (pat |* 7 |+ 11 |% "12") -- inverse of above, T11 MI
+    ]
+  )
+  # s "superfork"
+  # legato 2
+  # octave 5
+  # nudge 0.7
+  , id
+  $ n "4*10?"
+  # s "bshihat"
+  # nudge 0.2
+  # gain 0.7
+  , id
+  $ n "{19 0 13*<0 2>}%5"
+  # s "cpu2"
+  # nudge 0.1
+  # djf 0.6
+  # gain 0.7
+]

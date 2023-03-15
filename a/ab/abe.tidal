@@ -1,0 +1,32 @@
+let pat = (scale "kumai" "0 <1 4> <3 3 2> <8 9>")
+in
+d1
+$ slow "1 0.5"
+$ whenmod 4 3 (rev . chop "4 1 2 1")
+$ stack [ id
+$ stutWith 3 "<s e>" ((|+ n "<-7 7 -5>") . (# pan 0.25))
+$ stutWith 2 0 ((|+ n "-7") . (# shape 0.4) . (# pan 0.75))
+$ n pat
+, id
+$ chunk 4 (# coarse 5)
+$ rev
+$ stutWith 3 "<e s>" ((|+ n "-7 -14") . (|- sustain 0.1) . (# pan 0.5))
+$ n pat
+] # s "{supersaw futuresaw}%8"
+# octave 4
+# sustain "<0.1!6 0.4!2>"
+# resonance 0.3
+# pan 0.5
+# accelerate "{0.1 -0.1}%<5 3>"
+# voice "{0 0.5 1}%4"
+# semitone 14
+# lfo 8
+# pitch1 "{0.9 0.2}%6"
+
+d2
+$ slowcat [
+n "*8",
+n ""
+] # gain 1.2
+
+scaleList

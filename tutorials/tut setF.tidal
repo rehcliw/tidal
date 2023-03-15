@@ -1,0 +1,17 @@
+-- try changing these..
+setF "f1" 108.73
+setF "f2" 109.51
+setF "f3" "150 318.51" -- pattern fits in segment, like []
+
+-- auto updates when u setF!
+d1 $ freq "[^f1]*2 ^f2 [^f3 [^f1 ^f2]] ^f3" # s "supersaw"
+
+--chords!
+-- evaluate either
+setF "f4" "[1108.73, 318.51, 1161.22]"
+setF "f4" "[554.37, 1318.51, 1661.22]"
+
+d1 $ freq "[^f4]*2 ^f4 [^f4 [^f4 ^f4]] ^f4" # s "supersaw"
+
+-- using take
+d1 $ struct "t*2 t [t [t t]] t" $ freqTake "f0" [108.73, 318.51, 661.22] # s "supersaw"

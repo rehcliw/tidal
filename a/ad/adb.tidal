@@ -1,0 +1,46 @@
+let poly = 0
+    unisonVoices = 1
+    unisonDetune = 2
+    portamentoEnabled = 3
+    fmType = 10
+    driveLvl = 63
+    fmAmt = 9
+    osc1waveform = 11
+    osc1waveshape = 12
+    ringModLvl = 32 -- 0 100
+    driveType = 62 -- 0 6
+    prefiltPan = 59
+    env1sustainTime = 70
+in
+d1
+$ plyWith "3 2" (|+ n "1")
+$ fast "<[1 5%8] [2 7%8]>"
+$ n "[-5,<-12 5> 1](<3 5 1>,<8 16>,1)"
+-- $ n "0(3,8)"
+# s "midi"
+-- # nrpnn ringModLvl # nrpnv "<100>"
+# nrpnn poly # nrpnv "<0>"
+-- # nrpnn unisonVoices # nrpnv "<2>"
+-- # nrpnn unisonDetune # nrpnv "<4>"
+# nrpnn portamentoEnabled # nrpnv "<1>"
+# nrpnn osc1waveform # nrpnv "<0>"
+# nrpnn osc1waveshape # nrpnv "<0>"
+# nrpnn fmAmt # nrpnv "<0>"
+# nrpnn fmType # nrpnv "<1>"
+-- # nrpnn prefiltPan # nrpnv "<-100 100>"
+# nrpnn env1sustainTime # nrpnv "<25>"
+-- # nrpnn 66 # nrpnv "<150 100>"
+-- # nrpnn 71 # nrpnv "<0>"
+-- # nrpnn 17 # nrpnv "<1>"
+-- # nrpnn 68 # nrpnv "<250 200 0>"
+-- # nrpnn 230 # nrpnv "<50 -50>"
+# nrpnn 231 # nrpnv "<3 2 0 4>"
+# nrpnn 232 # nrpnv "<100 50>"
+# nrpnn 233 # nrpnv "<100 50 -50>"
+# nrpnn 35 # nrpnv "<50>"
+# nrpnn 5 # nrpnv "<25>"
+# legato 1
+-- # octave "-1"
+
+
+scaleList

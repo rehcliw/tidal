@@ -1,0 +1,27 @@
+{- | untitled
+!rec
+load: ae-live
+-}
+
+d1
+$ juxBy 0.5 (rev . (|* speed "-1"))
+$ fast "<4 2 [1%2 8] [4 2]>"
+$ rot "<1 0 0 2 0>"
+$ repeatCycles "8"
+$ degradeBy 0.9
+$ sometimes (stutWith 2 "<0 e>" (|+ note "<-7 5>"))
+$ hurry "{1%8 1 2 1%4}%3"
+$ chunk 4 (rev . (|- note 7))
+$ striateBy "<4 2>" (slow 2 $ range 0.01 0.2 $ sine)
+$ struct "t*4"
+$ n (irand 168)
+# s "ae_live"
+-- # legato "{1.5 0.5 1}%4"
+# legato 2
+-- |* speed "<1%8 1 1%2>"
+# coarse 2
+# lpf "[700,~ 3400]"
+# lpq 0.2
+# xsdelay 1
+# tsdelay 1
+# room 0.2 # size "0.8"

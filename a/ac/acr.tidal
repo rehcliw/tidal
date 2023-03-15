@@ -1,0 +1,189 @@
+d1
+$ juxBy 0.5 (rev . hurry "1%2")
+$ rot "<1 0 0 1 2>"
+$ fast "1 0.5 2"
+$ repeatCycles 4
+$ stutWith "4" "0 7%8" ((|* speed "-0.9") . rev)
+-- $ whenmod 7 5 (# cut "[1 3 2 4]*1.5")
+$ slice "<7 4 60 128>" "17 63 ~ 23 ~ [38,~ 28]"
+$ s "waspfactory:2"
+# legato 1.5
+# speed "[1, ~ 0.75, 1.5]"
+# room 0.3
+# size 0.7
+# shape 0.5
+-- # pan 1
+
+-- industrial, noisy...
+d1
+$ fast "{4 1 2}%4"
+$ plyWith "{4 2 3}%4" (|+ note "-7 2 14")
+$ splice "32 128 64" "500 [2 8]"
+$ s "waspfactory:5"
+# legato "1.9 1"
+# ring "8 4 15"
+# ringf "{1000 25 2500 500}%3"
+# room (fast 1.8 $ range 0 0.2 $ sine)
+# size (fast 1.3 $ range 0 0.2 $ sine)
+
+-- highend
+d2
+$ whenmod 4 5 (juxBy 0.5 (rev))
+$ fast "{7%4 5%4 6%5}%4"
+$ plyWith "{3 2 3}%5" (|+ note "-7 2 14")
+$ slice "{200 400 350 100}%5" "500 [2 8]"
+$ n "0"
+# s "waspfactory"
+# legato "1.9 0.5 2.3"
+# ring "8 4 15"
+# ringf "{1000 25 2500 500}%3"
+# room (fast 1.5 $ range 0 0.2 $ sine)
+# size (fast 1.3 $ range 0 0.2 $ sine)
+
+-- breathy, dreamy; buffering prob
+-- xfadeIn 1 10
+d1
+$ slow 4
+$ sometimes (juxBy 0.4 rev)
+$ fast "{1%9 [1%5,1%4] [10%9,11%9] [9%8,10%8]}%4"
+$ stutWith "{4 2 3}%6" "0" ((|+ note "7 -3 2") . (|* speed "-1"))
+$ slice ("{14 5 3 26}%5") ("26 25 [2 8]" * "<7 19 0 17>")
+$ note "0 -7 7"
+# n "0"
+# s "waspfactory"
+-- # legato "{3 1.5 4 2.3}%5"
+-- # ring "3"
+-- # ringf "{1000 2500 5 500}%3"
+-- # vowel "{~ a ~ i ~ o e}%6"
+# attack "0.09"
+# rel "{3.5 4 5}%4"
+# speed "-0.5"
+# room (fast 1.5 $ range 0 0.7 $ sine)
+# size (fast 1.3 $ range 0 0.7 $ sine)
+# lpf (fast 0.8 $ range 0 5000 $ ((sine * 2) + (fast 0.9 $ saw)))
+# lpq "0.3 0.2 0 0.15"
+
+-- silent for some reason? also breathy dreamy
+d2
+$ sometimes (juxBy 0.6 rev)
+$ fast "<17%9 [1%5,1%4] [10%9,11%9] [9%8,10%8]>"
+$ slice ("{3 5 2}%5") ("<2 4>")
+$ note "0 -7 7"
+# n "0 4"
+# s "waspfactory"
+-- # legato "3 1.5 2.3"
+# vowel "{~ a i ~ o}%6"
+# attack "0.2"
+# rel "5 3.5"
+# speed "[-0.005,0.25]"
+-- # roombus "3" (fast 1.5 $ range 0 0.3 $ sine)
+-- # sizebus "4" (fast 1.4 $ range 0 0.5 $ sine)
+-- # lpfbus "5" (fast 1.6 $ range 5000 7000 $ ((sine * 2) + (fast 0.9 $ saw)))
+-- # lpqbus "6" (fast 1.3 $ range 0 0.3 $ sine)
+
+-- can hear more of song; choppy, quiet
+d3
+$ juxBy 0.5 rev
+$ fast "{0.5 0.7!6}%3"
+$ striate' "<4 2>" "{0.01 0.03 0.2}%4"
+$ repeatCycles 8
+$ slice "<228 114 68>" ("{120 130(3,8) 125(9,8) 100(5,8)}%<3>" + "8 0 68")
+$ note "<0 5>"
+# n "0"
+# legato "[[1 2]|[1.5 1]]"
+# combbus "0" (fast 1.9 $ range 0 0.7 $ sine)
+# roombus "1" (fast 1.5 $ range 0 0.6 $ sine)
+# sizebus "2" (fast 1.4 $ range 0 0.7 $ sine)
+# gain 1.2
+# delaybus "3" (fast 1.3 $ range 0.8 0.9 $ sine)
+# delaytimebus "4" (fast 0.9 $ range 0.005 0.2 $ sine)
+-- # panbus "5" (fast 1.2 $ range 0 0.75 $ sine)
+# delayfeedbackbus "5" (fast 1.1 $ range 0.6 0.9 $ tri)
+-- #  "1" (fast 1.5 $ range 1 1.5 $ sine)
+# s "waspfactory"
+
+resetCycles
+
+-- choppy, jilted.. not groovy; but audible sample!
+d3
+$ jux rev
+$ fast ("{0.5 0.2!6}%3" + 1)
+-- $ striate' "<4 2>" "{0.01 0.03 0.2}%4"
+$ slice "228 114" "{120 130 125 100}%<3>"
+$ repeatCycles 2
+$ note "<0 5>"
+# n "0"
+# legato "[[1 1]|[1.5 1]]"
+# combbus "0" (fast 1.9 $ range 0 0.7 $ sine)
+# roombus "1" (fast 1.5 $ range 0 0.6 $ sine)
+# sizebus "2" (fast 1.4 $ range 0 0.7 $ sine)
+# gain 1.2
+# delaybus "3" (fast 1.3 $ range 0.8 0.9 $ sine)
+# delaytimebus "4" (fast 0.9 $ range 0.005 0.2 $ sine)
+-- # panbus "5" (fast 1.2 $ range 0 0.75 $ sine)
+# delayfeedbackbus "5" (fast 1.1 $ range 0.6 0.9 $ tri)
+-- #  "1" (fast 1.5 $ range 1 1.5 $ sine)
+# s "waspfactory"
+
+-- slightly more groovy.. possible latency handshake issue
+d3
+$ juxBy 0.5 rev
+$ fast "{0.5 0.7!6}%3"
+$ striate' "<4 2>" "{0.01 0.03 0.2}%4"
+$ repeatCycles 4
+$ slice "228 114" ("{120 130(3,8) 125 100(5,8)}%<3>" + "8 0")
+$ note "<0 5>"
+# n "0"
+# legato "[[1 1]|[1.5 1]]"
+# combbus "0" (fast 1.9 $ range 0 0.7 $ sine)
+# roombus "1" (fast 1.5 $ range 0 0.6 $ sine)
+# sizebus "2" (fast 1.4 $ range 0 0.7 $ sine)
+# gain 1.2
+# delaybus "3" (fast 1.3 $ range 0.8 0.9 $ sine)
+# delaytimebus "4" (fast 0.9 $ range 0.005 0.2 $ sine)
+-- # panbus "5" (fast 1.2 $ range 0 0.75 $ sine)
+# delayfeedbackbus "5" (fast 1.1 $ range 0.6 0.9 $ tri)
+-- #  "1" (fast 1.5 $ range 1 1.5 $ sine)
+# s "waspfactory"
+
+d3
+$ juxBy 0.5 rev
+$ fast "{0.5 0.7!6}%3"
+$ striate' "<4 2>" "{0.01 0.03 0.2}%4"
+$ repeatCycles 4
+$ slice "228 114" ("{120 130(3,8) 125 100(5,8)}%<3>" + "8 0")
+$ note "<0 5>"
+# n "0"
+# legato "[[1 1]|[1.5 1]]"
+# combbus "0" (fast 1.9 $ range 0 0.7 $ sine)
+# roombus "1" (fast 1.5 $ range 0 0.6 $ sine)
+# sizebus "2" (fast 1.4 $ range 0 0.7 $ sine)
+# gain 1.2
+# delaybus "3" (fast 1.3 $ range 0.8 0.9 $ sine)
+# delaytimebus "4" (fast 0.9 $ range 0.005 0.2 $ sine)
+-- # panbus "5" (fast 1.2 $ range 0 0.75 $ sine)
+# delayfeedbackbus "5" (fast 1.1 $ range 0.6 0.9 $ tri)
+-- #  "1" (fast 1.5 $ range 1 1.5 $ sine)
+# s "waspfactory"
+
+d3
+$ fast "{1%6 3!2 1%3!2 1}%3"
+$ stutWith 3 "1%8 0 1%16" (|+ note "-7 7")
+$ repeatCycles 4
+$ striate' "<4 2>" "{0.01 0.03 0.2}%4"
+$ juxBy 0.2 (rev . hurry "0.25")
+$ slice "<228 114 57 171>" ("{120 130(3,8) 125(9,8) 100(5,8)}%<3>" + "8 0 68")
+$ note "<0 7>"
+# n "0"
+# legato "[[1 2.5]|[1.5 1]]"
+# cut "{1 2 3 4}%3"
+# combbus "0" (fast 1.2 $ range 0 0.4 $ cosine)
+# roombus "1" (fast 1.5 $ range 0 0.6 $ sine)
+# sizebus "2" (fast 0.4 $ range 0 0.9 $ cosine)
+# gain 1.2
+# delaybus "3" (fast 1.3 $ range 0.2 0.9 $ sine)
+# delaytimebus "4" (fast 0.9 $ range 0.005 0.2 $ sine)
+-- # panbus "5" (fast 1.2 $ range 0 0.75 $ sine)
+# delayfeedbackbus "5" (fast 1.1 $ range 0.2 0.8 $ cosine)
+-- #  "1" (fast 1.5 $ range 1 1.5 $ sine)
+# s "waspfactory"

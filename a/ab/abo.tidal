@@ -1,0 +1,31 @@
+let harm = pF "harm"
+    timbre = pF "timbre"
+    morph = pF "morph"
+    engine = pI "engine"
+    level = pF "level"
+    lpgcolor = pF "lpgcolour"
+    begin = pF "begin"
+    end = pF "end"
+    lpgdecay = pF "lpgdecay"
+
+scaleList
+
+d3
+$ slow 1
+$ every 2 ("2%7" ~>)
+$ iter "<3 5>"
+$ chunk 3 ((hurry "<2 0.5>") . (# harm "<0.3 1 0.2>"))
+$ n (scale "minPent"
+  $ stutWith "<2 1>" "3%7 {1%7 4%7}%5" ((+ "{3 <-14 -2 -12>}%5"))
+  $ "{1 <[~ 3]*2 4 8@4> 4, <8 [~ 4]*2> 6 <9@4 [~ 7]*2> 3}%7"
+)
+# s "plaits"
+# octave 4
+# engine "{13 6 13}%5"
+-- # accelerate "-0.05"
+# detune 0.2
+# velocity 1.5
+# timbre 0.1
+# morph "{0.9 0.6}%7"
+-- # shape 0.5
+-- # sustain 0.5

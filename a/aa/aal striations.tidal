@@ -1,0 +1,44 @@
+d1 $ hurry 0.5 $ stack [
+  degradeBy 0.5
+  $ slow 16
+  $ striate 32
+  $ s "jjbreaks:19"
+  # speed "[[1 0.5 0.25],[1.25 1.5 1.75 2 2.25 2.5]*2]"
+  # gain 1.3,
+  degradeBy 0.3
+  $ slow 2
+  -- $ trunc 0.8
+  $ sometimes rev
+  $ striate' 64 0.1
+  $ s "jjriffarphit:19"
+  # speed "[[1 0.5 0.25]/2,[1.25 [1.5 1.75/2 2*2] [2.25 3 4 5] 3.25]/3]"
+]
+# room 0.4
+-- # delay 0.5
+-- # delayfb 0.9
+-- # delaytime "0.5 1"
+|* speed 0.87
+
+d4
+$ almostAlways (slow 32)
+$ trunc 0.4
+$ rev
+-- $ sometimes rev
+$ striate' "512 256" (fast 8 $ 1/(range 0.01 0.1 saw))
+$ n "1"
+# s "ghostykick"
+|+| speed "[[12(6,8)]/4,[5(5,8)]/3,[3(3,8)]/2]"
+# gain 1.4
+--  pan rand
+
+d4 silence
+
+d5
+-- $ fast 2
+$ n "1*4"
+# s "ghostykick"
+-- # room 0.8 # sz 0.8
+-- # distort 0.5
+# gain 1.5
+-- +| speed "[[12(6,8)]/4,[5(5,8)]/3,[3(3,8)]/2]"
+-- |* speed 0.5

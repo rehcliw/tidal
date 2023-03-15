@@ -1,0 +1,100 @@
+-- syncopation
+d1
+$ stack [id
+  $ every 2 press -- offbeats please :)
+  $ n "9 5*2 17 9*2"
+  # s "peri"
+  , id
+  -- $ every 3 press
+  $ n "0*4"
+  # s "bd"
+]
+
+-- change, busses (drone time...)
+-- A simple sax sound
+d1 $ sound "sax" # legato 1
+
+-- This doesn't do anything different
+d1 $ sound "sax" # legato 1 # squiz "0 1.5 0 1.5"
+
+-- A workaround is to chop up the sounds into parts:
+d1 $ chop 4 $ sound "sax" # legato 1 # squiz "0 1.5 0 1.5"
+
+-- But now you can use a bus to change a single sound while it plays:
+d1 $ sound "sax" # legato 1 # squizbus 1 "0 1.5 0 1.5"
+
+-- You can add a bus to most things but have to take care to give each thing a different bus number:
+d1 $ sound "sax" # legato 1 # squizbus 1 "0 1.5 0 1.5" # lpfbus 2 "400 2000 3000" # lpq 0.2
+
+-- You can pattern things within bus patterns:
+d1 $ sound "sax" # legato 1 # squizbus 1 (chunk 4 (fast 4) "0 1.5 0 1.5")
+
+-- A big limitation is that bus patterns are monophonic. So if you do some patterning that layers them up, you'll be disappointed with the results:
+d1 $ jux rev $ s "sax" # ampbus 1 ("[1 0 [1 0] 1]*6") # legato 1
+
+-- A workaround is to add 1 to the bus number, and 0 to the value:
+d1 $ jux (rev . (|+ ampbus 1 0)) $ s "sax" # ampbus 1 ("[1 0 [1 0] 1]*6") # legato 1
+
+-- Or replace the control using a different bus number with `#`
+d1 $ jux (rev . (# ampbus 2 "1 0 1 0")) $ s "sax" # ampbus 1 ("[1 0 [1 0] 1]*6") # legato 1
+
+-- counting
+-- So what's the problem?
+-- It's tricky to get events to line up, lets say you wanted to
+-- pattern the structure independently from the notes (isorhythm?):
+d1 $ slow 2 $ sound "alphabet(5,8)" # n "0 .. 4"
+
+-- There are ways to fix this (e.g. with the 'fix' function), but they are not too satisfying/easy.
+
+-- But now you can...
+
+-- Use a state value called "susan" to take values from a (circular) list
+
+d1 $ sound "alphabet(5,8)" # nTake "susan" [0 .. 4]
+
+-- If you change it on-the-fly then you have to wait for the list to
+-- empty before it changes:
+d1 $ sound "alphabet(5,8)" # nTake "susan" [7]
+
+-- It can cope with infinite lists, but then the list will never empty.
+d1 $ sound "alphabet(5,8)" # nTake "susan" [0 ..]
+
+-- You can stop it:
+
+-- And it will always start from where it left off:
+d1 $ sound "alphabet(5,8)" # nTake "susan" [0 ..]
+
+-- You can also just count without a list:
+d1 $ sound "alphabet(5,8)" # nCount "harold"
+
+-- This is the same named state as used by setF and for reading from
+-- OSC/MIDI. So you can reset the counter like this:
+setF "harold" 0
+
+-- Or have another pattern use it:
+d2 $ sound "newnotes*16" # n "^harold" # gain 1
+
+-- There is also 'nCountTo' to counting to a modulo:
+d1 $ struct "t(7,12,3)" $
+  sound "gretsch"
+  # nCountTo "rachael" 5
+
+-- You can pattern that.. It starts behaving in ways you wouldn't
+-- expect from a Tidal perspective though.. Because the counter runs
+-- independently from the pattern:
+d1 $ struct "t(7,12,3)" $
+  sound "gretsch"
+  # nCountTo "rachael" "<4 8>"
+
+-- Likewise, 'rev' won't reverse the counter:
+
+-- notes go up
+d1 $ sound "newnotes(5,8)" # nCount "harold"
+
+-- the structure is reversed, but the notes still go up
+d1 $ rev $ sound "newnotes(5,8)" # nCount "harold"
+
+-- you should be able to add 'Take' to any control, and Count /
+-- CountTo to any numerical control.
+
+-- This feature is unstable, so these names might change.

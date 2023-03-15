@@ -1,0 +1,38 @@
+d1
+$ slow "10 5"
+$ stutWith 2 "1%13" (rev . (# ccn 1) . (# ccv (range 30 95 rand)) . (# pan (range 0.25 0.75 rand)))
+$ every 2 ((|+ note (scale "mixolydian" $ "2 -10 7")) . ("3%13" <~))
+$ degradeBy 0.9
+$ stack [id
+  $ note (scale "mixolydian" $ stutWith 4 "1%13 7%13" (|+ "2 -10 7") $ "[5*5 4 8|-7*4 9]")
+  # s "midi"
+  # legato 0.1
+  ,id
+  $ note (scale "mixolydian" $ "8*3")
+  # s "midi"
+  # octave 3
+  # legato 0.2
+  ,id
+  $ note (scale "mixolydian" $ stutWith "<2 1 0>" "<[7%13 1%13] [1%13 7%13]>" (|+ "2 -10 7") $ "[5*5 4 8|-7*4 9]")
+  # s "soskick"
+  # legato 0.2
+  # voice 1
+  # octave 2
+  # pitch2 "0.2"
+  # pitch1 0.1
+  # nudge "<1%13 0>"
+  ,id
+  $ striateBy "13 26" "<1%13 9%13 3%13>"
+  $ s "soshats*<8 4 13>"
+  # resonance "0.2 0.9"
+  # legato "<0.2 0.4>"
+  -- # pan 0.2
+] -- # ccn 1 # ccv (range 30 95 rand)
+# ccn 2 # ccv (range 10 120 rand)
+# room 0.3
+# size 0.4
+# octave "4 1 2"
+
+-- # cut 1
+
+scaleList
