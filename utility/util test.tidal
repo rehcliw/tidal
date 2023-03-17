@@ -1,3 +1,12 @@
+-- pairs with orca
+d1
+$ n "1"
+-- # s "gretsch"
+# clouds "0 0.5" 0.9 0.1 "0.9 0.1 0.4"
+# cloudspitch "<0.2 0.9>"
+# cloudsblend 1 0.1 "{0.3 0.2 0 0.6}%5" 0.8
+# cloudsfreeze "{0 1}%5"
+# orbit 0
 
 d1
 $ juxBy 0.5 rev
