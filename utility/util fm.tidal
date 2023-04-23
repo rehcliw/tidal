@@ -1,27 +1,27 @@
 {-
 -}
 
-d1 
+d1
 $ juxBy 0.5 rev
-$ fast "1" --"<0.5 4 2 0.25>(<3 5 7>,<8 8 12>)"
+-- $ fast "<0.5 4 2 0.25>(<3 5 7>,<8 8 12>)"
 $ sometimes (plyWith "2 3" (|* gain 0.7) . (|* legato 0.9))
-$ stutWith 2 "{2 [.5 e] 1.5 s}%3" ((|+ n "7 -7 0") . (|* gain 0.9))
-$ repeatCycles 8
+$ stutWith 3 "{2 [.5 e] 1.5 s}%3" ((|+ n "7 -7 0") . (|* gain 0.9))
+-- $ repeatCycles 8
 -- $ degradeBy 0.5
 $ s "superfm"
-# n ("<-7 -9>" + (arp "<up up&down down>" "[0,7,<-5 5 14>,<10 -7>] [-10,-14,15,<-15 11>]" ))
+# n ((arp "<up updown down>" "<[0,7,<-5 5 14>,<10 -7>] [-10,-14,15,<-15 11>]>") + "<-7 9>")
 # fmfb "{0 0.3 0.4 0.1}%3" -- feedback
 -- # fmdt 5 3 -- detune
-# fmel 1 [1, 0.5, 0, 0]     -- EG Level (Operator 1)
-# fmer 1 [10, 0.1, 0.1, 1]  -- EG Rate (Operator 1)
+# fmel 1 [1, 0.5, 0.25, 0]     -- EG Level (Operator 1)
+# fmer 1 [10, 5.1, 0.1, 1]  -- EG Rate (Operator 1)
 # fmel 2 [1, 0, 0, 0]       -- EG Level (Operator 2)
 # fmer 2 [1, 0.1, 0.7, 1]   -- EG Rate (Operator 2)
 # fmel 3 [1,0.9,0,0.5]        -- EG Level (Operator 3)
 # fmer 3 [10,0.5,0.8,1]     -- EG Rate (Operator 3)
 # fma [1, "{0 0 0.1 0}%7", "{0.3 1 0}%5", "{0 0.5 1 0 0.2}%3", 0, 0]    -- Amps (Operators 1..6)
 # fmr [1, 0.25, 0.49, "0.98 3", 4]        -- Ratios (Operators 1..3)
-# fmm 1 ["<2 1 3>"]
-# fmm 2 [3,"{4 1 2 5}%5"]
+# fmm 1 ["<0 1 0>","<1 0 0>","<0 0 1>"]
+# fmm 2 ["{0 1 0 0}%5","{0 0 1 0}%5",1,"{1 0 0 0}%5","{0 0 0 1}%5"]
 # gain 1.2
 # clouds "0 0.5" 0.9 0.1 "0.9 0.1 0.4"
 # cloudspitch "<0.2 0.9 0.5>"
@@ -29,6 +29,31 @@ $ s "superfm"
 # cloudsfreeze "{0 1}%5"
 # cloudsfb 0.3
 # orbit 0
+# cut 0
+
+-- delbargia bars
+d1 
+-- $ ("<0 q 1>" <~)
+$ rot "<1 0 1 1>"
+-- $ juxBy 0.5 rev
+-- $ iter 4
+-- $ plyWith 4 ((|* gain 0.9) . (|* legato 0.9))
+$ n ("-14 [14 0] -7")
+# s "superfm"
+# fmfb 0.2
+# fma [0,1,0,1,0,0]
+# fmr [5.19, 0.5, 9.42, 2]
+# fmm 1 [1]
+# fmm 2 [0,1]
+# fmm 4 [0,0,1]
+# fmel 2 [1, 0.5, 0.25, 0]
+# fmer 2 [20, 5.1, 0.5, 1]
+# fmel 4 [1, 0.5, 0, 0]
+# fmer 4 [20, 5.1, 0.5, 1]
+# lfof 52
+# lfod 0.05
+-- # shape 0.3
+
 
 d1 $ silence
 
