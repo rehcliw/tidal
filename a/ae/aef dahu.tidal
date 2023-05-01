@@ -1,0 +1,21 @@
+d1
+$ juxBy 0.5 rev
+$ hurry "0.5"
+-- $ loopAt 64
+-- $ plyWith 3 (|+ note "7 -7")
+$ chunk 4 (hurry "<2 0.5>")
+$ randslice "8 16"
+$ n "[19 [22 3] 25 18]*1.5"
+# s "dahuots"
+# legato 1.5
+
+d2
+-- $ jux rev
+$ chunk 4 (hurry "<2 0.5>")
+-- $ rot "<0 1 1 0 0>"
+$ n "0 3 [2 0]"
+# s "dahukit"
+
+hush
+
+d1 $ s "bd" # pan "<-1 1>"
