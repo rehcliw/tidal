@@ -1,21 +1,26 @@
 d1
-$ juxBy 0.5 rev
-$ hurry "0.5"
--- $ loopAt 64
--- $ plyWith 3 (|+ note "7 -7")
-$ chunk 4 (hurry "<2 0.5>")
-$ randslice "8 16"
+$ rot "<0 1 [1 0] 1 1 0>"
+$ jux (rev . ("<q e>" <~))
+$ repeatCycles 4
+$ slow "{2 8 0.5}%4"
+$ chunk 4 ((hurry "0.25 1") . (|+ n "<0!4 -2>"))
+$ stutWith 3 "1" (|* speed "{-0.5 -1 2}%2")
+$ degradeBy "<0.2 0>"
+$ slice 32 ((run 8) + (run 8) + 2)
 $ n "[19 [22 3] 25 18]*1.5"
-# s "dahuots"
-# legato 1.5
+# s "<dahuots [dahuots <dahuuts:4 dahuuts:1 dahuuts:6>]>"
+# legato "{1.5 0.25 0.125 2}%3"
 
 d2
--- $ jux rev
+$ rot "<0 1 1 0 0>"
+$ juxBy 0.25 ((iter 4) . rev . ("e" <~))
+$ repeatCycles 4
+$ every 3 (plyWith 4 ((|* gain 0.9) . (|* legato 0.9)))
+$ slow "{2 4 0.5}%4"
 $ chunk 4 (hurry "<2 0.5>")
--- $ rot "<0 1 1 0 0>"
-$ n "0 3 [2 0]"
+$ degradeBy "<0 0.2>"
+$ n "0 3 [1 0] 5"
 # s "dahukit"
+# legato 1
 
 hush
-
-d1 $ s "bd" # pan "<-1 1>"
