@@ -1,6 +1,210 @@
--- see util functions
--- samps: house
+-- = Custom Functions Tutorial
+-- - https://www.youtube.com/watch?v=jU5QKgiO2IY
+-- - see: utility/util functions.tidal
 
+
+-- level 1: alias
+-- - good for long function names or frequently misspelled
+let x = rev -- eval this first!
+
+d1 $ every 2 x $ s "arpy*8" # n (run 8)
+
+----
+
+-- level 2: wrap multiple functions
+-- so how would we do this function?
+rev $ (|* speed 1.5)
+
+-- this doesnt work
+let x = rev $ (|* speed 1.5) 
+
+-- you need to specify a pattern (or something else...) to apply the function to w placeholder var
+let x p = rev $ (|* speed 1.5) $ p
+
+d1 $ x $ s "arpy*8" # n (run 8)
+
+----
+
+-- lvl 3: using arguments
+let x speedAmt p = rev $ (|* speed speedAmt) $ p
+
+d1 $ x 0.5 $ s "arpy*8" # n (run 8)
+
+-- can of course use a pattern
+d1 $ x "0.5 1.5 0.25" $ s "arpy*8" # n (run 8)
+
+----
+
+-- lvl 4: longer chaining
+let x speedAmt num p = rev $ 
+                        striate num $
+                        (|* speed speedAmt) $ p
+
+d1 $ x "0.5 1.5 0.25" 3 $ s "arpy*8" # n (run 8)
+
+----
+
+-- digression: the gtfo function
+-- - how do we mute one part of a stack?
+d1 $ stack [
+  s "bd*16?" # gain 0 -- perhaps like this
+  , s "~ cp"
+  , s "hh*8?"
+]
+-- but this doesn't remove events from the stream, just can't hear em
+
+-- so simply we can do this
+let gtfo = (# gain 0)
+    g = gtfo -- can declare multiple funcs by indenting together
+
+d1 $ stack [
+  g $ s "bd*16?"
+  , s "~ cp"
+  , s "hh*8?"
+]
+
+-- but lets try to remove the events
+let gtfo = (const $ s "~") -- const replaces a playing pattern
+    g = gtfo
+
+d1 $ stack [
+  g $ s "bd*16?"
+  , s "~ cp"
+  , s "hh*8?"
+]
+
+-- another way is total degradation
+d1 $ stack [
+  degradeBy 1 $ s "bd*16?"
+  , s "~ cp"
+  , s "hh*8?"
+]
+
+-- see: utility/util functions.tidal -- can load functions all together
+-- see: Tidal/BootTidal.hs -- or load em all at boot!
+
+----
+
+-- rip func example
+-- - creates a "zipping" effect
+-- - a: gain
+-- - b: speed
+let rip a b p = within (0.25, 0.75)
+                (slow 2 . stutWith 8 (b/(-8))
+                (|* gain a)) p
+
+d1 $ every 2 (rip 0.8 0.1) $ s "bd*8? cp(3,8)"
+
+----
+
+-- cascade func example
+-- - repeats and goes up in pitch
+let cascade = stutWith 
+              8 
+              (1/16) 
+              ((|* gain 0.95) . (|* speed 1.1))
+
+d1 $ stack [
+  s "bd*16?"
+  , cascade $ s "~ cp"
+]
+
+-- what if we want to change how function works internally?
+-- evaling this doesnt change pattern while playing, bc nothing is mutable
+-- have to eval the pattern again to hear change
+let cascade = stutWith 
+              8 
+              (1/32) 
+              ((|* gain 0.95) . (|* speed 1.1) . (|* legato 0.8))
+
+d1 $ stack [
+  s "bd*16?"
+  , cascade $ s "~ cp"
+]
+
+-- to eval func and pat all together, in one eval, use do
+-- indentation is important!!
+do
+  let pat = "1(<3 5 7>,16,<0 2 7 5>)"
+      cascade = stutWith 
+              16 
+              (1/32) 
+              ((|* gain 0.95) . (|* speed 1.25) . (|* legato 0.8))
+  d1 $ stack [
+    gain pat # s "bd" # shape 0.5
+    , cascade $ s "~ cp" # cut 1
+    , slow 2 $ every 2 (cascade) $ rev $ gain pat # s "sd:1" # cut 1
+    ] |* gain 1.2
+
+----
+
+-- finding custom functions
+-- on github:  bgold-cosmos/Tidal-extra and kbdnr/Spednar-code-configuration
+
+----
+
+-- brak example. for breakbeats!
+-- breaks are tempo specific. so stretching might be undesirable
+d1 
+$ n "0 2 4 3 4 3 2 1" 
+# s "amencutup" 
+# cps 0.5
+# unit "c" -- stretches each unit to a whole cycle
+# speed 8 -- scales back up
+
+-- so lets function it
+let asdf sampleName = density 8
+                      $ s sampleName -- a folder of sliced beats
+                      # n (irand 224)
+                      # unit "c"
+                      # speed 8
+in
+d1 
+$ stack [id
+  -- $ juxBy "{0.5 -0.5}%3" (rev . (|* speed "-1"))
+  $ stutWith 8 "q" (|* gain 0.9)
+  $ hurry "{0.25 0.5 1}%2"
+  -- $ rev
+  -- $ cascade
+  -- $ repeatCycles 4
+  $ degradeBy 0.9
+  -- $ asdf "{arpy}%3"
+  $ s "jjfx"
+  # note "0 7 12 5"
+  # cps (0.8)
+  -- # cps (range (1/32) (2) $ slow 0.4 saw)
+  |/ n 10
+  # legato 1
+  # shape 0.5
+  , id
+  -- $ gtfo
+  $ juxBy 0.5 (rev . (|* speed "-1"))
+  -- $ degrade
+  -- $ stutWith 3 "q" ((|+ note "7 14")) 
+  -- $ loopAt 16
+  $ chunk 4 (hurry 0.25)
+  $ splice 16 "7*8 5*8"
+  $ s "jjpads:42"
+  # legato 2
+  # crush 4
+]
+
+-- xfadeIn 1 16
+d1
+$ juxBy 0.5 (rev . (|* speed "-1"))
+  -- $ degrade
+  -- $ stutWith 3 "q" ((|+ note "7 14")) 
+  -- $ loopAt 16
+  $ chunk 4 (hurry 0.25)
+  $ splice 16 "7*4 5*4"
+  $ s "jjpads:42"
+  # n "1 42"
+  # legato 3
+  # cut 1
+  -- # crush 4
+
+
+-- samps: house, jj
 let w = rev
     z p = rev $ (|* speed 1.5) $ p
     y speedAmount p = rev $ (|* speed speedAmount) $ p
@@ -13,11 +217,11 @@ let w = rev
 in
 d2
 $ stack [id
-  $ gtfo2
+  -- $ gtfo2
   $ x "1.5 2" "{6 1 2 0 3}%4"
   $ note "0 7 12 5"
   # s "{flbass:1 flbass:3 flbass:9}%4"
-  # crush 5
+  -- # crush 5
   # lpf 4000
   # legato 2
   , id
@@ -26,8 +230,14 @@ $ stack [id
   $ n "<[3 5 8]*2 [5 3]!6>"
   # s "houride"
   # hpf 4000
+  , id 
+  -- $ every 3 ()
+  $ s "houk*4" # gain 1.2 # cps "0.6 0.8 0.4"
+  , id 
+  $ s "hous*2"
 ]
 
+setcps "0.6 0.8"
 
 let asdf sampleName = density 8
                           $ s sampleName

@@ -1,5 +1,9 @@
+-- = custom function utility
+-- - can evaluate multiple funcs in one enter
+
 let gtfo = degradeBy 1
     rip a b p = within (0.25, 0.75)
                 (slow 2 . stutWith 8 (b/(-8))
-                  (|* gain a))
-                p
+                (|* gain a)) p
+
+
