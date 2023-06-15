@@ -58,6 +58,33 @@ $ s "houk!3 [hous:3 houhh!2]*1.5"
 # cut 1
 
 d1
+$ slow "2 1"
+-- $ chunk 6 (rev . (|* speed "-1 1"))
+$ stack [id 
+    $ every 3 rev
+    $ n "0*3? [~ 0] 0"
+    # s "houk"
+    # shape 0.3
+    -- # cut 1
+    , id
+    $ every 3 (|+ n "13")
+    $ jux rev
+    $ ghostWith (1/9) ((|* gain 0.9) . (# begin 0.05))
+    $ s "{houhh houpfx hous houclap}%3"
+    # n "6 0"
+    -- # legato 1
+    -- # cut 1
+    , id
+    $ juxBy 0.5 rev
+    $ hurry "{2 0.5 2 2}%3"
+    $ note (scale "minPent" (stutWith 7 "1%9" (|+ "-6 8 0") "{-9 5 0 14}%3"))
+    # n "5!2 24 20 19"
+    # s "houtonal"
+    # legato "{0.5 2 1 2}%3"
+    -- # cut "1 2"
+]
+
+d1
 $ juxBy 0.5 rev
 -- $ fast "{0.25 0.5}%3"
 -- $ repeatCycles 8
@@ -75,18 +102,18 @@ $ s "[sn ~ bd ~,~ hh]"
 
 
 let cascade  = stutWith 
-              8 
+              16 
               (1/16) 
               ((|* gain 0.95) . (|* speed 1.1))
 in
 d1
-$ jux rev
+-- $ jux rev
 $ cascade
 -- $ plyWith 4 (|* gain "0.9")
 $ n ("9 6 8 5" + 2)
 # s "nimb"
 # legato "{1 0.5 0.2 2}%3"
-# cut 1
+# cut "{1 0}%11"
 
 
 
