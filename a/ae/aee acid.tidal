@@ -2,7 +2,7 @@ d1
 $ n "0"
 # s "supersaw"
 
-d1 $ s "superchip" 
+d3 $ s "superchip" 
   |>| note ("[c f a a f c]"  -- some melodic line 
             + "[-12,0,3,7]"  -- add some harmonics to each note
             - 12             -- shift one octave down (everything)
@@ -11,31 +11,32 @@ d1 $ s "superchip"
  |>| gain "[1@3 0]*12"       -- chop and separate notes a bit
 
 d1 
-$ rot "<1 0 1 0 0>"
-$ hurry "s"
-$ striate 16
+-- $ rot "<1 0 1 0 0>"
+-- $ hurry "s"
 -- $ juxBy "0.5 -0.5" (rev . iter 4)
+-- $ striate 16
 $ n (("0 -7") + "{[0 -7] 0 -14}%4")
 # s "supersaw"
-# acceleratebus 0 (segment 10 $ smooth "0.125 0.25 -0.175 -0.125")
-# voice "0.5 1 2"
-# ratebus 1 (fast 1.2 $ range 0.2 0.8 $ sine)
-# decaybus 2 (fast 1.1 $ range 0.5 1.5 $ sine)
-# resonance "{0.8 0.2}%3"
-# lfo "{9 2 5}%5"
+-- # acceleratebus 0 (segment 10 $ smooth "0.125 0.25 -0.175 -0.125")
+-- # voice "0.5 1 2"
+-- # ratebus 1 (fast 1.2 $ range 0.2 0.8 $ sine)
+-- # decaybus 2 (fast 1.1 $ range 0.5 1.5 $ sine)
+-- # resonance "{0.8 0.2}%3"
+-- # lfo "{9 2 5}%5"
 -- # legato 4
--- # freqbus 0 (fast 10 $ segment 50 $ smooth "200 200 300 300")
+-- # freqbus 0 (fast 10 $ segment 35 $ smooth "200 200 300 300")
 -- # djfbus 1 (fast 9.5 $ range 0.3 0.8 $ sine)
-# shape 0.3
+# shape 0.5
 # elementsstrength "{0.9 0}%5"
 # elementspitch (slow 3 sine)
 # elementsblowlevel 0.6
 # elementsblowtimb (slow 5 sine)
 # elementsflow "{0.3 0.6 0.7}"
+# gain 1.3
 
 d2 
 $ n "0*4" 
 # s "bskick:9"
-# shape 0.3
+# shape 0.5
 
 xfade 1 silence

@@ -62,14 +62,16 @@ $ note "0"
 # hpfbus 0 (fast 3.5 $ range 1500 2500 $ saw)
 -- # hpq 0.2
 -- # legato 4
-# room 0.2
-# sz 0.8
+-- # room 0.2
+-- # sz 0.8
 -- # begin 0.5
 
 d6
-$ fast 2
+-- $ fast 2
+$ jux rev
 $ striateBy 16 0.1
-$ n "5"
+$ note "5 15 25"
+# n "5 2"
 # s "myvoice"
 -- # legato 1
 -- # fshift 3
