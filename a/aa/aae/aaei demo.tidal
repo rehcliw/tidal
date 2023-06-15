@@ -85,17 +85,17 @@ $ stack [id
 ]
 
 d1
-$ juxBy 0.5 rev
+-- $ juxBy 0.5 rev
 -- $ fast "{0.25 0.5}%3"
 -- $ repeatCycles 8
--- $ plyWith 2 (||* speed "<1.1 [0.5 1.1] 1.2>")
+$ plyWith 2 (||* speed "<1.1 [0.5 1.1] 1.2>")
 $ s "[sn ~ bd ~,~ hh]" 
-|+| note "{0 1 2 3}%5"
+-- |+| note "{0 1 2 3}%5"
 |+| note "{[0 2] [2 5 4]/2}%4"
-|- note "2 3 4"
+-- |- note "2 3 4"
 -- ||/ "<-2 2> 3 <4 -4>"
 ||/ note "<[2 6] [1 <3 4 1> 3 5]>/3"
--- # accelerateTake "aVal" [0,0.5,0,0.2,-2,0]
+# accelerateTake "aVal" [0,0.5,0,0.2,-2,0]
 -- # legato 1.2
 -- # cut 1
 # shape 0.3
