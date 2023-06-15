@@ -1,0 +1,48 @@
+-- d1
+-- $ hurry 0.25
+clutchIn 1 4
+$ hurry "<2 1 0.5>"
+-- $ fast 0.25
+$ struct ("t(<7!2 9>,9,<0 1 1 0 0>)")
+$ nTake "nVals" [10,20,0,30,-20]
+# s "superfm"
+# fma [1,0.5,0.25,0,0,0]
+# fmr [1,0.25,0.5]
+# fmel 1 [1, 0, 0, 0]
+# fmer 1 [50, 50, 1, 1]
+# fmel 2 [1, 0.5, 0.1, 0]
+# fmer 2 [1, 1, 1, 1]
+# squiz "{0 8 1 1.5 2 0.5}%16"
+# delay 1
+# delaytimeTake "dtVals" [0.005,0.03,0.002,0.01,0.0005,0.01,0.0001]
+# delayfb "{0.9 0.99 0.7 0.95 0.995}%16"
+# comb "{0 0.4 0.1 0 0.9}%4"
+# bpf (fast 3 $ range 1500 6500 $ sine + (fast 7.1 $ saw))
+# bpq "0 35 10"
+# roombus 0 (fast 2.5 $ range 0 0.2 $ sine + (fast 5.2 $ saw))
+# size (fast 1.5 $ range 0 0.2 $ cosine + (fast 3.2 $ saw))
+# gain 2
+
+d1 silence
+
+clutchIn 2 4
+-- $ fast "0.5"
+$ s "bd(<5 7 3!2>,9,<0 1 1 0 0>)"
+# noteTake "j" [0,10,-10]
+# gain 1.5
+# shape 0.5
+# ring "0 0.5"
+# ringfTake "ringfVals" [1000,100,2500,1500,50,200,500]
+-- # ringdf 0.2
+# comb "{0 0.4 0.1 0 0.2}%4"
+# roombus 0 (fast 2.5 $ range 0 0.2 $ sine + (fast 5.2 $ saw))
+# size (fast 1.5 $ range 0 0.2 $ cosine + (fast 3.2 $ saw))
+-- # cut 1
+
+d3 
+-- $ rev
+$ plyWith 4 ((|* gain 0.9) . (|+ note "7 1") . (|* legato 0.9)) 
+$ s "sd:1*3" # nudge "0.02"
+# comb "{0 0.4 0.1 0 0.2}%5"
+# bpf (fast 8.2 $ range 500 6500 $ sine + (fast 7.1 $ saw))
+# bpq "{0 25 10}%4"

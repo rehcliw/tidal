@@ -1,4 +1,90 @@
 d1
+$ juxBy 0.5 rev
+-- $ plyWith 4 ((|* gain 0.9) . (|* legato 0.9))
+$ selectF (fast 0.7 $ sine) [id, rev, hurry 0.5, every 3 (iter 4)] 
+$ every 3 (
+  (# hcutoffTake "fVal" [1500,2000,500,2500,250,3000,3500]) 
+  . (# hresonanceTake "qVal" [0.2,0,0.25,0.1])
+)
+$ arp "up" 
+$ note "c4'maj'4 a5'maj'8"
+# s "ukk3" 
+# accelerateTake "susan" [0.2,1,-1,2,-2]
+# gainTake "george" [1, 1.1, 0.9]
+-- # panTake "pval" [1,0,0.5,0.5]
+-- # hcutoffTake "fVal" [1500,2000,500,2500,250,3000,3500]
+-- # hresonanceTake "qVal" [0.2,0,0.25,0.1]
+-- |- hpf (slow 2.1 $ range 500 2500 $ sine)
+-- # vowel "u a"
+# nTake "nVal" [0,5,8,12,24]
+# legato "1 1.5"
+
+d2 $ s "ukk:1*4" # shape 0.4 
+
+d2 silence
+
+p "tick" $ "0*8" # s "tick"
+
+d1
+-- $ rot "<1 0 1 1 0>"
+-- $ jux (rev)
+-- $ chunk "-4" (rev . hurry 2)
+$ hurry "{2 1.5 1}%2"
+$ every 4 (|* speed "-0.5")
+-- $ repeatCycles 8
+-- $ hurry "1.5"
+$ squeeze "<[0,2] [1*2,0 2] [1,2] [1 3 0,2]*2 3>*1.5" [
+  (id
+    -- $ jux rev 
+    -- $ degrade
+    $ n "7 9(<3 5>,8) 4" 
+    # s "industrial hougfx"
+    # legato 2
+    -- # cut 2
+  )
+  ,
+  (id
+    $ hurry "0.5"
+    $ n "7 6 13(3,8) 16" 
+    # s "dyspfx dysfx"
+    # legato 2
+    -- # cut 1
+    |+ n 15
+  )
+  ,
+  (id
+    $ loopAt 2
+    -- $ juxBy 0.5 (rev . (|* speed "-0.89") . (# distort 0.5))
+    -- $ degrade
+    $ striateBy 16 (fast 1.4 $ range 0.02 0.4 $ cosine)
+    $ n "{3 25 34 45}%5"
+    # s "nimb"
+    -- # legato 2
+    # speed "[1.5,1.56]"
+    |+ n "{0 -14 15 19 20}%3"
+    # cut ("{1 2 3 0 2}%9")
+    -- # distort 0.5
+    # attack 0.02
+    # rel 0.5
+  )
+  ,
+  (id
+    $ hurry 2
+    $ jux rev
+    -- $ degrade
+    $ n ("{2 4 5 3*2}%3" + "{5 17 11 2}%5")
+    # s "dysvinyl houride houclap"
+    # speed "-1"
+    # legato 1.5
+    # shape 0.3
+    -- # cut 3
+    -- # delay 0.5
+  )
+]
+
+
+
+d1
 -- $ iter 4
 -- $ fast 1.5
 -- $ hurry 0.5
@@ -8,7 +94,7 @@ $ stack [id
   -- $ chunk 4 (hurry 2)
   -- $ stutWith 3 "7%6" (|+ note 14)
   -- $ plyWith 3 ((|* gain 0.9) . (|+ note "-7") . (|* legato 0.9))
-  $ n "11(3,8,<1 0>)"
+  $ n "11(3,8,<0!3 1>)"
   # s "houk"
   -- # legato 0.5
   -- # cut "{1 3 1 2}%3"
@@ -41,7 +127,7 @@ $ stack [id
   $ speed (segment 12 $ fast 1.5 $ range 0.5 2 $ sine)
   -- $ n "2*12"
   # s "houhh:2!4 houhh:9"
-] # room 0.2 # sz 0.9
+] -- # room 0.2 # sz 0.9
 
 hush
 
@@ -109,7 +195,7 @@ $ stack [id
     $ (1.5, jux rev $ n pat # room "0.2 0.1")
     , (1.1, stutWith 2 "0 e" (|+ note "-7 7") $ n ("<6*4 [[6,2] 7 15]*<9 3 6>>" + (rev pat) * 9))
     , (2, juxBy "<-1 1>" palindrome $ n (pat + "4 -7 8 15") # room "0 0.2")
-  ] # sound "{industrial dysfx gfx}%4"
+  ] # sound "{industrial dysfx dysgfx}%4"
   # shape 0.4
   # legato "{1.5 0.5 2}%7"
   , id

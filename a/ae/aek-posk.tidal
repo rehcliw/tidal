@@ -1,0 +1,8 @@
+d1 
+-- $ loopAt 2
+-- $ striateBy 32 (8/16)
+-- $ degradeBy (range 0 0.375 $ slow 2 sine)
+-- $ struct ("t(7,16)")
+-- $ gain (segment 16 $ range 0.9 1.1 $ sine)
+$ s "vscocelloens:1"
+-- # legato 1
