@@ -1,9 +1,10 @@
--- = AAA
+-- = AAAA
 -- == notes
 -- - silly little beat
 -- - weird metallic melody
 -- == load
 -- - none
+setcps 0.7
 
 d1 $ every 4 rev
 $ every 2 (hurry "1.7 [0.4 1.1]")
@@ -30,4 +31,4 @@ $ n "<3 [4 3]> [3 <4 3 3> 4 4]"
 # sound "kick [snare kick]"
 # squiz "2 1.5"
 
-setcps 0.7
+

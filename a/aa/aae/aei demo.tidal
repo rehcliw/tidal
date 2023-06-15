@@ -1,0 +1,105 @@
+d1
+$ jux rev
+$ rot "<1 0 0 1 1>"
+$ chunk 4 (hurry "0.5 2")
+$ stack [ id
+$ plyWith 3 ((|* gain "0.9 0.7") . (|+ note 7))
+$ s "sd*2" 
+# n "{4 9 2 7 0}%4"
+-- # gain 1.1
+, id 
+-- $ stutWith 3 "5%6" ((|* speed "-1") . (|* gain 0.8))
+$ s "houk*3"
+# cut 1
+, id 
+-- $ stutWith 3 "e" (|+ n 7)
+$ n "{9 4 5 1}%3"
+# s "houpfx"
+# cut "{1 0 3}%4"
+]
+
+d1
+$ jux rev
+$ chunk 5 (hurry "<2 0.5>")
+$ stack [id
+$ stutWith 4 "{1%16 1%4 3%8}%2" (|+ note "-7 14")
+$ note "{0 3 5 7}%<3 4>"
+# s "houtonal hous"
+# n "{5 14}%3"
+# legato 1
+, id 
+$ s "houk*4"
+]
+
+d1
+$ jux (iter 4)
+$ stutWith 2 "e" (|+ note 5)
+$ gain (segment 16 $ range 1 1.5 $ fast 2.2 $ sine) 
+# s "{houk hous:3 houtonal:9}%4"
+# legato 1
+# cps "{2 0.2 0.6 1}%3"
+# djf "0.3 0.9"
+
+d1 
+$ chunk 4 (fast "2 0.5")
+$ jux rev
+$ whenmod 3 4 (|* speed "<0.8 1.5>")
+$ stutWith 4 "s" ((|* gain 0.9) . (|+ n "<7 <0 4> 9>") . (|+ note 7))
+$ note ("0 4 9 1" + "9 0")
+# s "hougfx:14" 
+# gain 1.5
+# legato "1"
+# cps 0.6
+
+d2
+$ every 3 (rev . hurry 2 . (|+ n 7))
+$ s "houk!3 [hous:3 houhh!2]*1.5" 
+# gain 1.5
+# cut 1
+
+d1
+$ slow "2 1"
+-- $ chunk 6 (rev . (|* speed "-1 1"))
+$ stack [id 
+    $ every 3 rev
+    $ n "0*3? [~ 0] 0"
+    # s "houk"
+    # shape 0.3
+    -- # cut 1
+    , id
+    $ every 3 (|+ n "13")
+    $ jux rev
+    $ ghostWith (1/9) ((|* gain 0.9) . (# begin 0.05))
+    $ s "{houhh houpfx hous houclap}%3"
+    # n "6 0"
+    -- # legato 1
+    -- # cut 1
+    , id
+    $ juxBy 0.5 rev
+    $ hurry "{2 0.5 2 2}%3"
+    $ note (scale "minPent" (stutWith 7 "1%9" (|+ "-6 8 0") "{-9 5 0 14}%3"))
+    # n "5!2 24 20 19"
+    # s "houtonal"
+    # legato "{0.5 2 1 2}%3"
+    -- # cut "1 2"
+]
+
+scaleList
+
+let cascade  = stutWith 
+              8 
+              (1/16) 
+              ((|* gain 0.95) . (|* speed 1.1))
+in
+d1
+$ jux rev
+$ cascade
+-- $ plyWith 4 (|* gain "0.9")
+$ n ("9 6 8 5" + 2)
+# s "nimb"
+# legato "{1 0.5 0.2 2}%3"
+# cut 1
+
+
+
+setcps 16/120
