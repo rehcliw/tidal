@@ -1,28 +1,33 @@
 d1
--- $ every 2 (|+ n "-2")
+$ every 2 (|+ n "-2")
 -- $ every 1 (ply 2 . rolledBy 0.2)
 -- $ ply 4
--- $ fast 2
-$ every 3 (rev . (# octave 4))
+$ fast 0.5
+-- $ stutWith 8 0.8 (|* gain 0.9)
+$ every 3 (rev . (# octave 3))
 -- $ iter 4
-$ juxBy "0.5 -0.5" (rev . arp "up")
+$ juxBy "<0.5 -0.5!2>" (press . arp "up")
 -- $ arp "<up down>"
-$ note "<f'maj13'o g'maj9'o*2 as'maj9'o c6'maj13'o>*1"
+$ note "<f'maj13'o@2 g'maj9'o*2 as'maj9'o c6'maj13'o>*1.1"
 # s "flbass:2"
--- # distortbus 0 (fast 0.9 $ range 0 0.5 $ saw)
-# crush 3
-# attack 0.5
-# rel 1
-# leslie 0.5
-# lrate 2
-# lsize 2
-# delay 0.9
-# dt 0.5
-# dfb 0.95
-# room 0.2
+-- # distort (fast 0.9 $ range 0 0.5 $ sine)
+# crush "{6 4 8}%2"
+# attack 1
+# rel 4
+# leslie 0.4
+# lrate 1
+# lsize 3
+# bpfbus 0 (fast 2.4 $ range 1200 5500 $ cosine)
+# bpq 1
+# delay 0.95
+# dt 0.75
+# dfb 0.97
+# room 0.3
 # sz 0.9
 -- # cut 1
 -- # nTake "nv" [7,6,9]
+
+d2 silence
 
 d2
 -- $ juxBy 0.5 rev
@@ -30,8 +35,7 @@ d2
 $ slow 8
 -- $ chunk 4 (hurry 0.5 . (# n 9))
 -- $ degradeBy 0.5
-$ striate 32
--- $ slice "8" ("<7 0(3,8) 3>")
+-- $ slice "8" ("<7 0 3>")
 $ s "break:4*8" 
 -- # nudge 0.09
 # crush 4
