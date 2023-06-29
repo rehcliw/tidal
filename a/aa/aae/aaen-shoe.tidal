@@ -30,25 +30,27 @@ $ note "<f'maj13'o@2 g'maj9'o*2 as'maj9'o c6'maj13'o>*1.1"
 d2 silence
 
 d2
--- $ juxBy 0.5 rev
+$ juxBy 0.5 (press . (# lpf 3000))
 -- $ plyWith 4 ((|* gain 0.9) . (|* legato 0.9) . (|* speed 1.1))
-$ slow 8
--- $ chunk 4 (hurry 0.5 . (# n 9))
+$ slow 4
+$ chunk 4 (hurry 0.5 . (# n 9))
+$ iter 4
 -- $ degradeBy 0.5
--- $ slice "8" ("<7 0 3>")
-$ s "break:4*8" 
+-- $ slice "8" ("7 0 3")
+$ chop 16
+$ s "break:4" 
 -- # nudge 0.09
-# crush 4
+-- # crush 4
 # lpf 2500
 # lpq 0.1
 -- # hpf 50
-# speed "0.5"
--- # leslie 0.5
--- # lrate 6
--- # lsize 1
-# delay 0.5
-# dt "0.5"
-# dfb 0.7
+-- # speed "0.5"
+# leslie 0.5
+# lrate 6
+# lsize 1
+-- # delay 0.5
+-- # dt "0.5"
+-- # dfb 0.7
 -- # shape 0.5
 # room 0.2
 # sz 0.9

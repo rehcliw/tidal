@@ -1,7 +1,7 @@
-let sli = ("[40 .. 70]/40" - 5)
+let sli = ("[40 .. 70]/40" - 15)
 in
 d1
-$ slow 8
+$ slow 9
 $ slice sli (id
     $ struct "t*16"
     $ slow (sli/1.9)
@@ -9,8 +9,8 @@ $ slice sli (id
     |+ "[0,1,3,4]"
     )
 $ s "brit" 
-# legato 1
-# speed (segment 16 $ range 0.79 0.81 $ sine)
+-- # legato 1
+# speed (segment 16 $ range 0.71 0.73 $ sine)
 # gain 0.8
 -- # cut 1
 

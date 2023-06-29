@@ -1,3 +1,10 @@
+d1 $ s "bd sd"
+
+d1
+$ n "0*4" 
+# s "midi"
+# midichan 1
+
 d1
 $ juxBy 0.5 rev
 -- $ plyWith 4 ((|* gain 0.9) . (|* legato 0.9))
@@ -24,6 +31,17 @@ d2 $ s "ukk:1*4" # shape 0.4
 d2 silence
 
 p "tick" $ "0*8" # s "tick"
+
+d1
+$ chunk 3 (hurry (2/3))
+$ juxBy "<-0.5 0.5>" ((|+ n 9) . press . (# speed "-1"))
+$ stutWith 2 "q" ((|+ note "5") . (|+ n 3))
+$ n ("0 ~ [5 3]" + "{3 ~ 2 1}%6")
+# s "{cbow flbass}%3" 
+# djfbus 0 (segment 24 $ fast 0.8 $ range 0.1 0.9 $ sine)
+# room 0.2
+# sz 0.8
+-- # legato 1
 
 d1
 -- $ rot "<1 0 1 1 0>"
