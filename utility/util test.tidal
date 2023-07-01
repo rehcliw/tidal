@@ -1,4 +1,4 @@
-d1 $ s "bd sd"
+d1 $ s "bd sd" # gain 1.5
 
 d1
 $ n "0*4" 
