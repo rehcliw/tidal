@@ -3,7 +3,7 @@ setcps 0.7
 d1
 $ every 3 (fast "{1 1%2 4 1%4}%3")
 -- $ repeatCycles 4
-$ degradeBy "{0.5 1 1 0.1 0.1 1 1}%7"
+$ degradeBy "{1 1 1 1 0.1 1 1}%7"
 $ stack [id
   $ hurry "<1%4 1%2 4> [4 1 2]"
   $ fast "{2 1}%3"
