@@ -24,6 +24,7 @@ $ note "<f'maj13'o@2 g'maj9'o*2 as'maj9'o c6'maj13'o>*1.1"
 # dfb 0.97
 # room 0.3
 # sz 0.9
+# gain 1.5
 -- # cut 1
 -- # nTake "nv" [7,6,9]
 

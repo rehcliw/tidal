@@ -2,7 +2,7 @@ setcps 0.7
 
 let pat = "{t ~ [~ t] f [~ f] ~ t f t ~ t}%8"
 in
-d1 
+d2 
 $ stack [id
   $ chunk 4 (hurry 0.5)
   $ iter 4
@@ -24,9 +24,10 @@ $ stack [id
     # cut 33
   ] 
   , id
-  $ someCyclesBy 0.3 (# speed 0.5)
+  $ someCyclesBy 0.3 ((# speed "1 0.5") . (# squiz 2))
   $ s "ukclap:1*2"
-  # cut 33
+  -- # cut 33
+  -- # speed "<1 [1 [1|0.5]] 1>"
   , id
 --   $ jux rev
 --   $ off "e" (|+ note 7)
@@ -36,4 +37,5 @@ $ stack [id
 --   # cut 33
 --   # nTake "sauce" [1,1,11,1,1]
 ]
+# gain 1.5
 -- # legato 1

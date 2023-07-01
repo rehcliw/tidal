@@ -10,29 +10,33 @@ d3 $ s "superchip"
            )
  |>| gain "[1@3 0]*12"       -- chop and separate notes a bit
 
+setcps 0.7
+
 d1 
--- $ rot "<1 0 1 0 0>"
--- $ hurry "s"
--- $ juxBy "0.5 -0.5" (rev . iter 4)
+$ rot "<1 0 1 0 0>"
+$ juxBy "0.5 -0.5" (rev . iter 4)
+$ hurry "2 1 0.5"
 -- $ striate 16
+$ iter 4
+$ degradeBy 0.3
 $ n (("0 -7") + "{[0 -7] 0 -14}%4")
 # s "supersaw"
--- # acceleratebus 0 (segment 10 $ smooth "0.125 0.25 -0.175 -0.125")
--- # voice "0.5 1 2"
--- # ratebus 1 (fast 1.2 $ range 0.2 0.8 $ sine)
--- # decaybus 2 (fast 1.1 $ range 0.5 1.5 $ sine)
--- # resonance "{0.8 0.2}%3"
--- # lfo "{9 2 5}%5"
+-- # accelerate (segment 10 $ smooth "1.125 0.25 -2.175 -0.125")
+# voice "0.5 1 2 4"
+# ratebus 1 (fast 1.2 $ range 0.2 0.8 $ sine)
+# decaybus 2 (fast 1.1 $ range 0.5 1.5 $ sine)
+# resonance "{0.8 0.2}%3"
+# lfo "{9 2 5}%5"
 -- # legato 4
--- # freqbus 0 (fast 10 $ segment 35 $ smooth "200 200 300 300")
+-- # freqbus 0 (fast 0.5 $ segment 15 $ smooth "100 200 300 300")
 -- # djfbus 1 (fast 9.5 $ range 0.3 0.8 $ sine)
 # shape 0.5
 # elementsstrength "{0.9 0}%5"
 # elementspitch (slow 3 sine)
-# elementsblowlevel 0.6
+# elementsblowlevel 0.9
 # elementsblowtimb (slow 5 sine)
-# elementsflow "{0.3 0.6 0.7}"
-# gain 1.3
+# elementsflow "{0.3 0 0.6 0.7}%3"
+# gain 1.4
 
 d2 
 $ n "0*4" 
