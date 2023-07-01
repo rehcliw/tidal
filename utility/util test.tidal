@@ -1,5 +1,15 @@
+--TODO make all these tests useful
+
+-- blank spot for new tests. Move when done
+d1
+$ n "[{0 1 2 3}%3,4(5,12,<1 2 0>),[~!3 6 ~ 6]*2]" # s "gretsch" # gain 1.3
+
+drawLine $ "[{w x}%5,y]"
+
+-- basic test
 d1 $ s "bd sd" # gain 1.5
 
+-- midi test
 d1
 $ n "0*4" 
 # s "midi"

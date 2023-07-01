@@ -1,4 +1,6 @@
-d1
+xfadeIn 1 4
+
+xfadeIn 1 32
 $ every 2 (|+ n "-2")
 -- $ every 1 (ply 2 . rolledBy 0.2)
 -- $ ply 4
@@ -21,18 +23,20 @@ $ note "<f'maj13'o@2 g'maj9'o*2 as'maj9'o c6'maj13'o>*1.1"
 # bpq 1
 # delay 0.95
 # dt 0.75
-# dfb 0.97
+# dfb 0.95
 # room 0.3
 # sz 0.9
 # gain 1.5
 -- # cut 1
 -- # nTake "nv" [7,6,9]
 
+xfadeIn 1 32 silence
+
 d2 silence
 
 d2
 $ juxBy 0.5 (press . (# lpf 3000))
--- $ plyWith 4 ((|* gain 0.9) . (|* legato 0.9) . (|* speed 1.1))
+$ every 6 (plyWith 4 ((|* gain 0.9) . (|* legato 0.9) . (|* speed 1.1)))
 $ slow 4
 $ chunk 4 (hurry 0.5 . (# n 9))
 $ iter 4
@@ -53,6 +57,7 @@ $ s "break:4"
 -- # dt "0.5"
 -- # dfb 0.7
 -- # shape 0.5
-# room 0.2
+# room 0.3
 # sz 0.9
+# gain 1.2
 -- # cut 1

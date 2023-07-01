@@ -1,6 +1,7 @@
 setcps 0.5
 
-d2
+d1
+-- $ degradeBy 0.9
 $ hurry (1 / "{2 1 0.5}%4")
 $ stack [id
     $ chunk 4 (hurry 1.25)
@@ -10,22 +11,22 @@ $ stack [id
     # nTake "nvals" [0,1,1,3,4,4,8,1,1,15,3,3,6] 
     # sTake "svals" ["houpfx","hougfx"]
     # nudge 0.02
-    # gain 1.2
+    # gain 1.4
     , id
     $ rev
     $ echo 8 "{0.1 0.2 0.3}%4" 0.8
-    $ speed "[<-0.56 -0.59 0.58>,<-0.57 -0.6>, ~ 2.1*<1 2>]" 
+    $ speed "[<-0.56 -0.59 0.58>,<-0.57 -0.6>, ~ 2.1*<1 2>, -0.4]" 
     # s "houother:1" # nudge 0.01 
-    # gain 1.2
+    # gain 1.4
 ]
 -- # gain 1.2
 # legato 1
 # coarse 3
 # room 0.1 # sz 0.8
 
-d3
+d2
 $ juxBy 0.5 rev
 $ hurry (1 / "{2 0.5 1}%4")
 $ sometimesBy 0.3 (|+ n 14)
 $ note (scale "e lydian" $ sometimes (arp "{updown down downup}%2") $ "c'min'<4 5> <f c>'maj'5")
-# s "houother" # legato 1 # octave 3 # room 0.1 # sz 0.8
+# s "houother" # legato 1 # octave 3 # room 0.1 # sz 0.8 # gain 1.4
