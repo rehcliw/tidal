@@ -1,0 +1,29 @@
+d1
+-- $ hurry 0.25
+$ sometimesBy "0 0.9 0.1" (
+  juxBy (slow 1.1 $ saw) rev 
+  . degradeBy 0.4
+--   . (# legato 0.1)
+  . (
+    plyWith 8 (
+      (|* gain 0.9) 
+      . hurry "<1 2 0.5>" 
+      . (|* legato 0.9) 
+      . (|* speed "<1.01 1.5>")
+      )
+    )
+  )
+$ stack [id
+    $ struct "t(<13 12>,16,<1 0 2>)"
+    $ s (wchoose [("dyskick",8),("dyssnare",4),("dyshh",9)])
+    # n (wchoose [(8,2),(5,2),(15,12)])
+    , id
+    $ s "dysclap:2*4"
+]
+# gain 1.4
+-- # legato 0.1
+# legato (range 0.1 4 $ slow 2 $ saw)
+
+d2
+$ s "dysclap:2*4" # gain 1.4 
+# legato (range 0 1 $ slow 2 $ saw)
