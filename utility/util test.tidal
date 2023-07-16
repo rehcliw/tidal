@@ -1,9 +1,13 @@
 --TODO make all these tests useful
 
 -- blank spot for new tests. Move when done
+scaleTable
 
 -- basic test
-d1 $ s "bd sd" # gain 1.5
+d1
+$ s "bd sd" # gain 1.5
+
+d1 silence
 
 -- midi test
 d1

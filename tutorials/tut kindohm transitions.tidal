@@ -7,6 +7,7 @@ $ s "techno*8"
 
 -- transitions with slow change to ctrl parameters; immediate change to main pat
 -- shift+enter
+
 :t interpolate
 
 interpolateIn 1 2
