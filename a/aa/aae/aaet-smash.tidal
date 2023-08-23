@@ -1,0 +1,14 @@
+d1
+$ every 2 (|+ n 4)
+$ every 3 (|* speed "-0.5")
+$ jux ((2.1 <~) . rev)
+$ smash 3 [2,3,0.5,14]
+$ n "{43 [34 27] 50 43 45}%4"
+# s "dystonal"
+# ring 0.5
+# ringf 500
+# attack 0.05
+# rel 6
+# legato 2.5
+# speedTake "sVals" [2.8,2.81,0.51]
+# verb 0.3 0.5 0.5 0.5

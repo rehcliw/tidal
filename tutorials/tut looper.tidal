@@ -13,7 +13,7 @@ lname = pS "lname"
 once $ s "looper"
 
 -- After recording you can listen back to the result with
-d1 $ s "loop"
+d1 $ note "[0]" # s "loop" # gain 1.5
 
 -- It is possible to set the length of the recording
 -- (this is equals to the length of the events) i.e
@@ -27,11 +27,11 @@ d1 silence
 
 -- And each buffer is accessible with the n function
 d2
-$ fast 8
-$ n "<0 1 2 3 4 5 6 7>"
+$ n "0 1 2 3 4 5 6 7"
 # s "loop"
 # shape 0.6
 # gain 1.5
+# legato 1
 
 
 d2

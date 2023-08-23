@@ -1,0 +1,32 @@
+linput = pI "linput"
+lname = pS "lname"
+
+d1 $ s "looper" # n "<0 1 2 3 4 5 6 7>"
+
+d1 silence
+
+d2
+$ stack [id
+    -- $ jux rev
+    $ hurry 0.5
+    -- $ chunk 4 (hurry 0.5)
+    -- $ pressBy "<0.25 0.5 0.75>"
+    $ n "0 1 2 3"
+    # s "loop"
+    # legato 1.5
+    # gain 1.5
+    # shape 0.8
+    , id
+    $ juxBy 0.5 rev
+    -- $ loopAt 2
+    $ slow 2
+    $ striateBy 6 (2/6)
+    $ n "4"
+    # s "loop"
+    # legato 2
+    # attack 0.1
+    # rel 4
+    # speed "[0.6,0.601]" -- .81, .709, .601
+    # gain 1
+] # verb 0.6 0.9 0.5 0.9
+    # coarse 2
