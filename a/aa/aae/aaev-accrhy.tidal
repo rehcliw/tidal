@@ -1,9 +1,31 @@
 d1
--- $ fast (range 0.5 2 $ saw) 
+-- $ juxBy (sine) (fast (range 1 2 $ slow 2 $ saw) . (|* gain 0.8) . (|* legato 0.5))
+-- $ iter 4
+-- $ slow 2
 $ stack [id 
-    $ n "9*4"
-    # s "dyskick"
+    -- $ rev
+    -- $ fast 2
+    -- $ hurry 0.5
+    $ echoWith "{3 5 2}%4" (5/16) ((|* legato 0.9) . (|* speed "{-0.95 1.05}%3"))    
+    $ chop 2
+    $ s "gretsch"
+    # n 2
+    # shape 0.6
+    -- # distort 0.5
+    # speed "{1 4 2}%2"
+    # gain 1.4
+    -- # cut 0
+    -- # legato 0.03
+    -- # cut "1"
     , id
-    $ n "3*3"
-    # s "dyssnare"
-]
+    $ (0.15 <~)
+    $ echoWith 16 (3/16) ((|* gain 0.93) . (|* legato 0.9) . (|* speed 1.01))
+    $ n "3"
+    # s "sd"
+    # shape 0.5
+    -- -- # legato 0.02
+    -- , id
+    -- $ juxBy (sine) (fast (range 1 2 $ slow 2 $ sine))
+    -- $ s "hh*4"
+    -- # shape 0.7
+] # cut 1
