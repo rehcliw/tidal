@@ -16,19 +16,19 @@ d1
 $ rot "<1 0 1 0 0>"
 $ juxBy "0.5 -0.5" (rev . iter 4)
 $ hurry "2 1 0.5"
--- $ striate 16
+$ striate 2
 $ iter 4
 $ degradeBy 0.3
 $ n (("0 -7") + "{[0 -7] 0 -14}%4")
 # s "supersaw"
--- # accelerate (segment 10 $ smooth "1.125 0.25 -2.175 -0.125")
+# accelerate (segment 10 $ smooth "1.125 0.25 -2.175 -0.125")
 # voice "0.5 1 2 4"
 # ratebus 1 (fast 1.2 $ range 0.2 0.8 $ sine)
 # decaybus 2 (fast 1.1 $ range 0.5 1.5 $ sine)
 # resonance "{0.8 0.2}%3"
 # lfo "{9 2 5}%5"
 -- # legato 4
--- # freqbus 0 (fast 0.5 $ segment 15 $ smooth "100 200 300 300")
+# freqbus 0 (fast 0.5 $ segment 15 $ smooth "100 200 300 300")
 -- # djfbus 1 (fast 9.5 $ range 0.3 0.8 $ sine)
 # shape 0.5
 # elementsstrength "{0.9 0}%5"

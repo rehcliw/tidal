@@ -32,7 +32,7 @@ let voice = pF "voice"
     pitch1 = pF "pitch1"
     speed = pF "speed"
     pitch2 = pF "pitch2"
-
+in
 d2 $ slow 2
 $ every 2 (0.25 <~)
 $ sew (iter 5 "[t f]*3")
