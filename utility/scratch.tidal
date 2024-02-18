@@ -1,0 +1,6 @@
+d1
+$ n (scale "lydian" "<-7 -12 0>")
+# s "superfm" 
+# att 4
+# hold 3
+# rel 9

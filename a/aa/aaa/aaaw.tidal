@@ -42,7 +42,7 @@
     let pat = "{1 1 0 1 [1 0 1] 0 [1 1 0] 1 0 0 1 0}%5"
     in
     d1
-      $ repeatCycles 4
+      -- $ repeatCycles 4
       $ slow 1
       $ stack [ id
       $ mask pat

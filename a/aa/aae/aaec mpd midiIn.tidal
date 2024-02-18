@@ -5,7 +5,8 @@
 -- == run in sc:
 -- - dirt midi in.scd
 
-d1 $ n "<d6'm9 g6'dom7'ii>" # s "superhoover" # djfbus 1 (cF 0.5 "3")
+d1 
+$ n "<d5'm9!7 g4'm7>" # s "superhoover" # djfbus 1 (cF 0.5 "3")
 
 -- noisy
 d1

@@ -19,6 +19,6 @@ $ freq "[<55!5 61.875>,<206.250 220!4>]"
 # sustain 23
 # rel 25
 # decay 21
--- # combbus 1 (fast 0.7 $ range 0.2 0.9 $ sine)
+# combbus 1 (fast 0.7 $ range 0.2 0.9 $ sine)
 # room 0.2
 # sz 0.9

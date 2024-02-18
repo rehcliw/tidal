@@ -2,7 +2,7 @@ let stereo = pF "stereo"
     muffle = pF "muffle"
 in
 d1
--- $ juxBy 0.5 rev
+$ juxBy 0.5 rev
 $ slow "<4 1 2 2>"
 -- $ rarely ((# smear "0.5") . juxBy 0.5 rev)
 $ note (id
@@ -27,7 +27,7 @@ $ note (id
 -- # tsdelay "2 1 0.5 1.5"
 # room 0.5
 # size 0.5
-# gain 1
+# gain 1.2
 
 d2
 $ slow "4"
