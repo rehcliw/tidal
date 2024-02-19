@@ -68,6 +68,25 @@ let only = (hush >>)
 :}
 
 :{
+let fmamp op = pF ("amp" ++ show op)
+    fmratio op = pF ("ratio" ++ show op)
+    fmdt op = pF ("detune" ++ show op)
+    fmmod opa opb = pF ("mod" ++ show opa ++ show opb)
+    fmegrate op step = pF ("egrate" ++ show op ++ show step)
+    fmeglevel op step = pF ("eglevel" ++ show op ++ show step)
+    fmfb = pF "feedback"
+    lfof = pF "lfofreq"
+    lfod = pF "lfodepth" --amplitude 0 - 1
+    fmparam function = foldr (#) (gain 1) . zipWith function [1..]
+    fma = fmparam fmamp
+    fmr = fmparam fmratio
+    fmd = fmparam fmdt
+    fmer op = fmparam (fmegrate op) -- higher nr = faster
+    fmel op = fmparam (fmeglevel op)
+    fmm opa = fmparam (fmmod opa)
+:}
+
+:{
 let getState = streamGet tidal
     setI = streamSetI tidal
     setF = streamSetF tidal

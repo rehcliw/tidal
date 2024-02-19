@@ -5,8 +5,8 @@ import Sound.Tidal.Chords
 chordList
 
 d1
-  $ qtrigger 1
-  -- $ every 4 (hurry 2)
+  -- $ qtrigger 1
+  $ every 4 (hurry 2)
   $ every 4 (arpeggiate)
   $ jux ((|- n "12") . rev)
   $ struct "t(7,10,<0 4>)"
@@ -31,7 +31,7 @@ $ note "<f'min'7 c2'min'7 <g5'min'6 a2'maj'4> a3'min'7>"
 # pF "clamp" (slow 2 $ range 0.01 3 cosine)
 -- # squiz (fast 3 $ range 0 3 saw)
 
-d2
+d3
 $ striate "<8 4 16 4>"
 -- $ degradeBy 0.3
 $ every 3 (0.25 ~>)
