@@ -21,7 +21,7 @@ $ slice 8 (fast 2 $ irand 8)
 $ n (fast 0.5 $ irand 30)
 -- # cut "{0 1 2 3 5 4 6}%16"
 # note "{0 7 -7 14}%3"
-# s "<gfx pfx>"
+# s "<dysgfx dyspfx>"
 # legato "{2 0.5 1.5!2 1 2.25}%4"
 
 d2 silence

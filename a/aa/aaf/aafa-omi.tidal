@@ -1,0 +1,33 @@
+d1
+$ stack [id
+  $ chunk 4 (hurry "<0.5 2>")
+  $ n (
+    scale "lydian" (
+      echoWith 4 "{e s q}%2" (rev . (|+ "7 <9 4 12>"))
+      $ "{-7 -12 0 -4 -7}%2"
+      |+ 2
+    )
+  )
+] # s "omi"
+# verb 0.2 0.9 0.2 0.1
+# squiz 2
+# shape 0.7
+
+d2
+$ s "bd(5,8)"
+# legato 1
+# shape 0.7
+
+d3
+$ slow 4
+$ n (scale "lydian" (id
+  -- $ echoWith 2 "e" (|+ "7")
+  $ "{[0,4,6] [9,6,-5] [-3,4,8]}%2"))
+# s "supersaw"
+# legato 2.5
+# lfo 500
+# att 6
+# hold 15
+# rel 19
+# gain 0.9
+# verb 0.2 0.9 0.2 0.1

@@ -30,8 +30,7 @@ $ note (scale "mixolydian" $ "{1*2 e gf cf}%7")
 # sustain "{2.5 1.2}%5"
 
 let pat = "{1 0 1 0 1 1 [0 1]*4 0 1}%9"
-
-
+in
 d2 $ degradeBy 0.1
 $ slow 7
 $ every 5 (striate "2 3")

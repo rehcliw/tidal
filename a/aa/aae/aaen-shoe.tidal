@@ -1,7 +1,7 @@
 xfadeIn 1 4
 
--- xfadeIn 1 32
-d1
+xfadeIn 1 32
+-- d1
 $ every 2 (|+ n "-2")
 -- $ every 1 (ply 2 . rolledBy 0.2)
 -- $ ply 4
@@ -33,7 +33,7 @@ $ note "<f'maj13'o@2 g'maj9'o*2 as'maj9'o c6'maj13'o>*1.1"
 
 xfadeIn 1 32 silence
 
-d2 silence
+-- d2 silence
 
 d2
 $ juxBy 0.5 (press . (# lpf 3000))
