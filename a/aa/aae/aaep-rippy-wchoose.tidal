@@ -27,3 +27,5 @@ $ stack [id
 d2
 $ s "dysclap:2*4" # gain 1.4 
 # legato (range 0 1 $ slow 2 $ saw)
+
+setcps 0.5

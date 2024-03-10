@@ -17,7 +17,7 @@ scaleList
 d2
 $ rot "<0 0 1 0 0 2 1>"
 $ stack [id
-  $ fast "{1 0.25 0.5}%4"
+  -- $ fast "{1 0.25 0.5}%4"
   $ jux rev
   $ repeatCycles 4
   -- $ degrade

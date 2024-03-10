@@ -1,5 +1,6 @@
+-- xfadeIn 1 4
 d1
-$ slow 4
+$ slow 16 --8
 $ juxBy "<-0.5 0.5>" (rev . (fast 2) . (rot "<2 4>"))
 $ note (scale "minor" 
   $ echoWith 3 "14%10" (rev . (|+ 9) . (fast 2))
@@ -14,14 +15,18 @@ $ note (scale "minor"
 # verb 1 0.2 0.9 0.8
 
 d2
--- $ slow "<2!4 4>"
+-- $ slow 2
+$ slow "<2!4 4>"
 -- $ sometimes (plyWith 3 (|* gain 0.9))
 -- $ jux rev
+$ fix (sometimes ((# delay 0.3) . (# delayt 0.05) . (# delayfb 0.8))) (n 4)
 $ fix (sometimes (plyWith 5 ((|* gain 0.9) . (|* speed "1.1")))) (n 1)
 $ n "[4(<7 5!2>,10,<1 0>), 1, ~ ~ ~ 5?,0(<7 3>,10,<1!2 2>)]"
 # s "cpu2"
 # shape 0.7
 # gain 1.2
--- # cut 1
+# cut 1
 -- # verb 0.5 0.5 0.5 0.2
 -- # nTake "guh" [0,0,0,0,1]
+
+setcps(0.9)

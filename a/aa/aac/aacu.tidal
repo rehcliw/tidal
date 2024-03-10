@@ -40,5 +40,6 @@ $ stack [id
   # phasr 0.5
 ] # room 0.2 # size 0.9
 
+setcps 0.9
 
 scaleList
