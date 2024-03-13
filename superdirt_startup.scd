@@ -30,6 +30,7 @@ s.reboot { // server options are only updated on reboot
 		// end load mi-ugens.scd synthdefs
 		~dirt.loadSoundFiles; // load samples (path containing a wildcard can be passed in)
 		// for example: ~dirt.loadSoundFiles("/Users/myUserName/Dirt/samples/*");
+		~dirt.loadSoundFiles("/Users/may/Documents/music-tools/Samples/*");
 		~dirt.loadSoundFiles("/Users/may/Documents/music-tools/Samples/*/*");
 
 		// s.sync; // optionally: wait for samples to be read

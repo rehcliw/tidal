@@ -1,0 +1,55 @@
+d1
+-- clutchIn 1 8
+-- $ hurry 0.125
+-- $ jux (rev . (hurry 4))
+-- $ degradeBy 1
+$ stack [id
+  $ slow 2
+  -- $ jux rev
+  $ sometimes (plyWith 3 ((|* gain 0.9) . (|* legato 0.8) . (|* speed 1.1)))
+  $ n "35(<5 4>,<12 6>,<2 0 3>)"
+  |+ note 5
+  # shape 0.5
+  -- # squiz 8
+  , id
+  -- $ slow 2
+  $ n "36(<3 7>,12,<0 1>)"
+  # shape 0.3
+  |- note 5
+  , id
+  $ repeatCycles 8
+  $ hurry "<3 2>" 
+  -- $ hurry 2
+  -- $ hurry 0.25
+  -- $ juxBy 0.5 rev
+  -- $ chunk 4 (hurry 0.5)
+  $ note (scale "mixolydian" $ echoWith "{4 8 1}%2" "{t 7%6 1}%4" ((|+ "{5 -2 3 -4}%3")) $ "<-9 -6 -3>")
+  # n "<50>"
+  -- |+ note "{14 0 -7 7}%3"
+  -- |* speed 2
+  , id
+  -- $ slow 2
+  -- $ iter 4
+  $ struct "<t*3!8>" -- "{[~ t]!2 [t ~]!2}%3"
+  $ n "27"
+  |- note 9
+  # shape 0.3
+  # lpf 300
+  , id
+  -- $ hurry 2
+  $ repeatCycles 8
+  $ juxBy "-1 1" (rev . hurry 2)
+  $ degradeBy 0.2
+  -- $ striateBy 16 0.1
+  $ note (scale "mixolydian" $ echoWith 3 "t" (|+ "<4!3 7>") $ "<-7 -10>")
+  # n "48"
+  -- |- note "<14 21>"
+  , id
+  $ note "-9"
+  # n "22"
+]
+# s "sm64"
+# verb 0.9 0.9 (range 0.1 0.9 $ slow 1.1 $ sine) (range 0.1 0.9 $ sine)
+-- # shape 0.5
+
+setcps 0.7

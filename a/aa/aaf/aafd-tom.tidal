@@ -1,0 +1,20 @@
+-- studel translation
+let pat1 = "0 ~ 2 ~ 5 ~ 1 ~ 7"
+    pat2 = "6 ~ 3 ~ 4 ~ 9 ~ 8"
+in
+d1
+$ stack [id
+  $ note (scale "lydian" 
+    $ echoWith 2 0 (rev . (slow 2) . (|- 7)) 
+    $ pat1 + "-3")
+    # s "vscocelloens"
+    # legato 1
+  , id
+  $ note (scale "lydian" 
+  $ echoWith 2 0 ((fast 0.5) . (|+ 7)) 
+  $ ("<0.11 0.33 0.555 0.777>" ~>)
+  $ pat2 + "<0 7 14>" + "-3")
+  # s "vscovibes:0"
+] 
+# shape 0.5
+# cps 0.6
