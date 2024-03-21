@@ -13,8 +13,9 @@ d3 $ s "superchip"
 setcps 0.7
 
 d1 
-$ rot "<1 0 1 0 0>"
 $ juxBy "0.5 -0.5" (rev . iter 4)
+$ repeatCycles 4
+$ rot "<1 0 1 0 0>"
 $ hurry "2 1 0.5"
 $ striate 2
 $ iter 4
@@ -37,6 +38,7 @@ $ n (("0 -7") + "{[0 -7] 0 -14}%4")
 # elementsblowtimb (slow 5 sine)
 # elementsflow "{0.3 0 0.6 0.7}%3"
 # gain 1.4
+# cps 0.7
 
 d2 
 $ n "0*4" 

@@ -1,0 +1,43 @@
+let pat0 = "{0 1 0 1 0 1 1}%16"
+    pat1 = "{1 1 0 1 0 0 1 1 0 1}%16"
+in 
+d1
+-- $ hurry 0.5
+-- $ slow 2
+$ stack [id
+  -- $ jux rev
+  -- $ mask pat0
+  -- $ (0.01 ~>)
+  -- $ mask pat0
+  $ s "dyshh*4"
+  # lpf 5000
+  , id
+  -- $ mask pat0
+  -- $ mask pat1
+  $ s "dyskick:3*3"
+  # lpf 200
+  # shape "0.5 0.1 0.1"
+  , id
+  -- $ mask pat1
+  $ (0.5 ~>)
+  $ plyWith 2 (|* gain 0.7)
+  $ s "[~ dyssnare:2]*2"
+  # lpf 1900
+  , id
+  $ jux rev
+  -- $ hurry "{0.5 1 0.25}%4"
+  -- $ repeatCycles 8
+  -- $ hurry 0.5
+  $ note (scale "ritusen" 
+        -- $ echoWith 3 0 (|+ 2)
+        $ echoWith 4 "q" (|+ "{0 3 4 -4}%3")
+        $ "{0 <-7 5 1> -4 <3 6> 7}%3"
+        |- 6
+      )
+  # s "supervibe"
+  # orbit 1
+  # legato 0.2
+  # clouds 0.1 0.5 0.05 0.1
+  # cloudsblend 1 0.2 0.33 0.8
+  -- # lpf 1500
+] # verb 0.9 0.6 0.5 0.1

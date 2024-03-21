@@ -1,3 +1,5 @@
+d1 $ s "bd*4"
+
 d1
 -- $ hurry "{2 <1 1%2> 1%4}%13"
 -- $ hurry "1%2 <0.51 0.52> <[2.01 2] 1%3>"
@@ -46,5 +48,4 @@ $ stack [id
   # gain 1.1
   # legato 4
 ] # room (range 0.6 0.8 $ rand) # size (range 0.4 0.6 $ fast 2 $ rand)
-
-setcps 0.6
+# cps 0.6

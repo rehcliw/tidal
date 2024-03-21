@@ -1,7 +1,7 @@
 d1
--- clutchIn 1 8
+-- xfadeIn 1 8
 -- $ hurry 0.125
--- $ jux (rev . (hurry 4))
+-- $ jux (rev . (hurry 0.5))
 -- $ degradeBy 1
 $ stack [id
   $ slow 2
@@ -18,8 +18,8 @@ $ stack [id
   |- note 5
   , id
   $ repeatCycles 8
-  $ hurry "<3 2>" 
-  -- $ hurry 2
+  -- $ hurry "{3 2}%3" 
+  $ hurry 2
   -- $ hurry 0.25
   -- $ juxBy 0.5 rev
   -- $ chunk 4 (hurry 0.5)
@@ -51,5 +51,6 @@ $ stack [id
 # s "sm64"
 # verb 0.9 0.9 (range 0.1 0.9 $ slow 1.1 $ sine) (range 0.1 0.9 $ sine)
 -- # shape 0.5
+# cps 0.7
 
 setcps 0.7

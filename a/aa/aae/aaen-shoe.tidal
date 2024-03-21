@@ -1,6 +1,6 @@
 xfadeIn 1 4
 
-xfadeIn 1 32
+xfadeIn 1 8
 -- d1
 $ every 2 (|+ n "-2")
 -- $ every 1 (ply 2 . rolledBy 0.2)
@@ -35,7 +35,8 @@ xfadeIn 1 32 silence
 
 -- d2 silence
 
-d2
+-- d2
+xfadeIn 2 8
 $ juxBy 0.5 (press . (# lpf 3000))
 $ every 6 (plyWith 4 ((|* gain 0.9) . (|* legato 0.9) . (|* speed 1.1)))
 $ slow 4
