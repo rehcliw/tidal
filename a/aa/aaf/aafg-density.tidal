@@ -1,0 +1,6 @@
+d1 
+$ echoWith 2 "e" ((# s "sn") . slow 4)
+$ echoWith 2 "s" ((# s "bd") . slow 2)
+$ lessDense (0.005)
+$ n "0*8 0*4"
+# s "hh"

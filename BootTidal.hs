@@ -29,8 +29,11 @@ let only = (hush >>)
     resetCycles = streamResetCycles tidal
     setCycle = streamSetCycle tidal
     setcps = asap . cps
+    setbpm bpm = setcps (bpm/60/4)
     getcps = streamGetcps tidal
     getnow = streamGetnow tidal
+    revOn' vs f = foldr (\x -> inside x rev . rev) f vs
+    revOn x = revOn' [x]
     xfade i = transition tidal True (Sound.Tidal.Transition.xfadeIn 4) i
     xfadeIn i t = transition tidal True (Sound.Tidal.Transition.xfadeIn t) i
     histpan i t = transition tidal True (Sound.Tidal.Transition.histpan t) i
@@ -84,6 +87,18 @@ let fmamp op = pF ("amp" ++ show op)
     fmer op = fmparam (fmegrate op) -- higher nr = faster
     fmel op = fmparam (fmeglevel op)
     fmm opa = fmparam (fmmod opa)
+:}
+
+import Data.List(sortOn)
+
+:{
+densityFilter:: Eq a => Double -> [Event a] -> [Event a]
+densityFilter density events = foldl (fi density) events [0..length events -1]
+                      where fi density es n | length es > n = filter (\e -> e == es!!n || abs ((eventPartStart e) - (eventPartStart (es!!n))) >= toRational density ) es
+                                            | otherwise = es
+
+lessDense :: Eq a => Double -> Pattern a -> Pattern a
+lessDense density p = p {query = (densityFilter density). sortOn whole . query p}
 :}
 
 :{
