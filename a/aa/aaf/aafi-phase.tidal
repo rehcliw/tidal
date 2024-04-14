@@ -1,0 +1,37 @@
+do
+  -- resetCycles
+  let pat = "{[t ~ ~ ~] [~ t] [~ t ~ ~] t}%6"
+  d1
+    $ juxBy "0.5" (fast 1.001)
+    $ struct pat
+    $ s "supersnare"
+    # cps 0.58
+  d2
+    $ slow 2
+    $ struct pat
+    $ s "soskick"
+    # nudge "-0.02"
+  d3
+    $ slow 3
+    $ struct pat
+    $ s "superclap"
+    # nTake "clappy" [0,0,0,15]
+  d4
+    -- $ fast 2
+    $ struct "<[[~ t]*3]!5 t*12!3>"
+    $ s "superhat"
+  d5
+    -- $ layer ()
+    -- $ struct pat
+    $ slow 2
+    $ n "[0,-9]/3 [5,3,-4]/3"
+    # s "superhammond"
+    # voice 2
+    # att 4
+    # hold 8
+    # rel 8
+    # lpf 1000
+    # lpq 0.1
+    # vowel "u"
+    # legato 4
+    # gain 0.5
