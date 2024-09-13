@@ -1,16 +1,3 @@
-/*
-This is an example startup file.
-If you want to modify it, best copy it elsewhere to keep the git repository clean.
-
-You can then load it by calling
-"path/to/my/superdirt_startup.scd".load
-from the supercollider startup file
-
-The supercollider startup file is to be found in
-Platform.userAppSupportDir +/+ "startup.scd",
-or via the menu File > Open startup file
-*/
-
 (
 s.reboot { // server options are only updated on reboot
 	// configure the sound server: here you could add hardware specific options
@@ -21,20 +8,33 @@ s.reboot { // server options are only updated on reboot
 	s.options.maxNodes = 1024 * 32; // increase this if you are getting drop outs and the message "too many nodes"
 	s.options.numOutputBusChannels = 2; // set this to your hardware output channel size, if necessary
 	s.options.numInputBusChannels = 2; // set this to your hardware output channel size, if necessary
+	s.options.inDevice_("Aggregate Device"); // for tidal looping
+	s.options.outDevice_("Screen Recording Audio"); // for screen recording
+	// s.options.outDevice_("MacBook Pro Speakers");
 	// boot the server and start SuperDirt
 	s.waitForBoot {
 		~dirt.stop; // stop any old ones, avoid duplicate dirt (if it is nil, this won't do anything)
 		~dirt = SuperDirt(2, s); // two output channels, increase if you want to pan across more channels
+		
+		// Initialize the TidalLooper
+		~looper = TidalLooper(~dirt);
+
+		// You can adjust these parameter even in runtime
+		~looper.rLevel = 1.5; // recording level
+		~looper.pLevel = 1; // prerecording level
+		// ~looper.linput = 0; // Default 0; Set this to your main input port.
+		// ~looper.lname = "loop"; // default "loop"
+
 		// load mi-ugens.scd synthdefs
 		load("Users/may/Library/Application Support/SuperCollider/synthdefs/mi-ugens.scd");
-		
-		// init tidal-looper
-		~looper = TidalLooper(~dirt);
+
+		// load custom synthdefs
+		load("/Users/may/Documents/music-tools/tidal/synths.scd");
 
 		~dirt.loadSoundFiles; // load samples (path containing a wildcard can be passed in)
 		// for example: ~dirt.loadSoundFiles("/Users/myUserName/Dirt/samples/*");
-		~dirt.loadSoundFiles("/Users/may/Documents/music-tools/Samples/*");
-		~dirt.loadSoundFiles("/Users/may/Documents/music-tools/Samples/*/*");
+		~dirt.loadSoundFiles("/Users/may/Documents/music-tools/Samples/load/*");
+		~dirt.loadSoundFiles("/Users/may/Documents/music-tools/Samples/load/*/*");
 
 		// s.sync; // optionally: wait for samples to be read
 		~dirt.start(57120, 0 ! 12); // start listening on port 57120, create two busses each sending audio to channel 0

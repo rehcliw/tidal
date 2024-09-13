@@ -17,7 +17,7 @@ d1 $ note "[0]" # s "loop" # gain 1.5
 
 -- It is possible to set the length of the recording
 -- (this is equals to the length of the events) i.e
-d1 $ slow 0.5 $ s "loop"
+d1 $ slow 0.5 $ s "loop" # gain 1.5
 
 -- Use n to choose a specific buffer,
 -- i.e. n "2" is equal to "write to the second buffer under of the sample bank loop".

@@ -1,0 +1,65 @@
+-- goals: use rain sounds
+-- make ambients
+-- relear clouds
+-- use some erchestral with filters?
+let bpfPat = (range 1050 4500 $ fast 0.8 $ sine * (fast 1.1 $ saw))
+in
+d1
+$ stack [ id
+  $ hurry 0.25
+  $ juxBy 0.5 rev
+  $ stutWith 4 "{0 1 e 0 s}%3" ((|+ note "{7 14 -7}%4") . (|+ bpf "-50"))
+  $ degradeBy 0.3
+  $ striateBy "8 2" (range 0.0001 0.004 $ fast 1.3 $ sine)
+  $ s "rain"
+  -- # legato 1.3
+  # speed 1
+  # att (range 0.01 0.1 $ fast 0.7 $ sine)
+  # rel 1.9
+  # gain 1.4 
+  # cps 0.7
+  # bpf bpfPat
+  # bpq (range 0.5 8 $ fast 1.1 $ sine)
+  , id
+  $ hurry "0.5"
+  $ stutWith 3 "e" ((|* crush 0.5) . (|* speed 2))
+  $ chunk 4 (rev . hurry 2)
+  $ striateBy 8 (range 0.06 0.03 $ fast 0.235 $ saw)
+  $ s "rain"
+  # crush 16
+  # bpfbus 1 (fast 0.2 $ bpfPat)
+  # bpq 0.9
+  # gain (range 0.9 1.05 $ fast 0.8 $ sine)
+  , id
+  $ juxBy (range 0.75 "-0.75" $ sine) rev
+  $ slow "{4 2}%3"
+  -- $ repeatCycles 2
+  $ chunk 4 (hurry 0.5 . rev)
+  $ stutWith 4 "{q t 0}%5" (|+ note "<7 -7 5 14>")
+  $ note "{-5 9 -15 6}%3"
+  # s "vsco7tbnens"
+  # distort 0.3
+  # shape 0.3
+  # bpfbus 2 (range 20 10000 $ fast 0.4 $ bpfPat)
+  # bpqbus 3 (
+    range 0.9 9.4 
+    $ fast 2.2
+    $ saw * (slow 1.1 $ sine)
+  )
+  -- # cut 0
+  # legato "{0.9 1 0.5 1.5 0.75}%16"
+  , id
+  $ chunk 4 (hurry "<0.5 2>")
+  $ hurry 0.5
+  $ juxBy "0.25 -0.25" (rev . (|* speed 2) . (slow 2))
+  $ plyWith "<3 2>" ((|+ n "{7 0 14}%0.5") . (|* legato 0.9) . (|* gain 0.9))
+  -- $ fast (range 0.25 1.5 $ fast 0.7 $ sine + (fast 1.03 $ saw))
+  $ struct "t(<3 5>,8,<0 3 1>)"
+  $ s "cpu2"
+  # nTake "ns" [0,3,1,1,1,2,4]
+  |+ n "<0 4 2>"
+  # gain 1.3
+  # cut "{0 1}%3"
+]
+# clouds (range 0 1 $ fast 1.2 $ sine) 0.9 0.5 0.2
+# cloudsblend "{0 0.5 0.4 0.9}%7" 0.8 0.8 0.8

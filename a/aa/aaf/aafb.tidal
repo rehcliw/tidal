@@ -17,8 +17,8 @@ $ note (scale "minor"
 
 -- jumpIn 2 4
 d2
-$ slow 2
--- $ slow "<2!4 4>"
+-- $ slow 2
+$ slow "<2!4 4>"
 -- $ sometimes (plyWith 3 (|* gain 0.9))
 -- $ jux rev
 $ fix (sometimes ((# delay 0.3) . (# delayt 0.05) . (# delayfb 0.8))) (n 4)

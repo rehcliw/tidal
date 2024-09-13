@@ -89,8 +89,9 @@ let fmamp op = pF ("amp" ++ show op)
     fmm opa = fmparam (fmmod opa)
 :}
 
-import Data.List(sortOn)
 
+-- lessDense function https://club.tidalcycles.org/t/limit-events-based-on-delta-time/3121
+import Data.List(sortOn)
 :{
 densityFilter:: Eq a => Double -> [Event a] -> [Event a]
 densityFilter density events = foldl (fi density) events [0..length events -1]
@@ -99,6 +100,12 @@ densityFilter density events = foldl (fi density) events [0..length events -1]
 
 lessDense :: Eq a => Double -> Pattern a -> Pattern a
 lessDense density p = p {query = (densityFilter density). sortOn whole . query p}
+:}
+
+-- tidal-looper
+:{
+    linput = pI "linput" -- change input bus
+    lname = pS "lname" -- change buffer name
 :}
 
 :{

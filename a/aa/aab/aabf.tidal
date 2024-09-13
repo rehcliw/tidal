@@ -1,3 +1,5 @@
+-- goes with aabd
+
 d2
 $ loopAt "2 0.5 1"
 $ repeatCycles "2"

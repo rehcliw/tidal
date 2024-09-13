@@ -2,7 +2,7 @@ do
   -- resetCycles
   let pat = "{[t ~ ~ ~] [~ t] [~ t ~ ~] t}%6"
   d1
-    $ juxBy "0.5" (fast 1.001)
+    $ juxBy "0.25" (fast 1.001)
     $ struct pat
     $ s "supersnare"
     # cps 0.58

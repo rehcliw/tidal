@@ -2,6 +2,7 @@
 !rec
 load: nimb
 parts incompatible
+it breaks
 -}
 
 --chaotic, noisy
@@ -55,7 +56,7 @@ let tilt = pF "tilt"
 in
 d3
 $ (id
--- $ fast "{2 1%8 1%16}%4"
+$ fast "{2 1%8 1%16}%4"
 $ juxBy (fast 1.1 $ range "-1" 1 $ sine) (rev . (hurry "1%2") . (# smear 1))
 $ sometimes ((|* speed "-1%16"))
 $ striateBy "[8,16]" (fast 0.8 $ range 0.2 0.3 $ sine)
@@ -73,8 +74,8 @@ $ n "7"
 # enhance 0.5
 # lpfbus 1 (fast "1%8" $ range 1000 2500 $ sine)
 # lpqbus 2 (fast "7%8" $ range 0 0.2 $ sine)
-# xsdelaybus 3 (fast "3%8" $ range 0 0.1 $ sine)
-# tsdelaybus 4 (fast "5%8" $ range 0 1.9 $ cosine)
+-- # xsdelaybus 3 (fast "3%8" $ range 0 0.1 $ sine)
+-- # tsdelaybus 4 (fast "5%8" $ range 0 1.9 $ cosine)
 # coarse 2
 # roombus 5 (fast "5%4" $ range 0 0.3 $ sine)
 # sizebus 6 (fast "3%4" $ range 0.1 0.9 $ sine)

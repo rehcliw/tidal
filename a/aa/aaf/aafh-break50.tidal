@@ -13,6 +13,7 @@ do
     # s "jjbreaks"
     # legato 1
     # lpf 5000
+    # cps 0.58
   d2
     $ hurry 0.7
     $ n "[1/2, [~ ~ ~ 4]/2, [~ 16], [~ 22 ~ ~]/4]"

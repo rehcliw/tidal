@@ -1,0 +1,13 @@
+d1 
+$ s "looper" # n "<0 1 2 3 4 5 6 7>"
+
+d2
+$ juxBy (range 0 1 $ sine + (fast 1.1 $ saw)) rev
+$ stutWith 4 "s q" (|+ note "{-7 14}%3")
+$ hurry (range 0.25 4 $ fast 2.8 $ saw)
+$ striate 16
+$ n "0 1 2 3 4 5 6 7"
+# s "loop"
+# shape 0.7
+# gain 1.5
+-- # legato 2

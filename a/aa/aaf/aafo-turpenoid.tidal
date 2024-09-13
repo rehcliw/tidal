@@ -1,0 +1,28 @@
+d2 
+$ s "looper" # n "{0 1 2 3 4 5 6 7}%3"
+
+d2 silence
+
+-- clutchIn 1 8
+d1
+-- $ plyWith 5 ((|* gain 0.9) . (|+ note 7))
+-- $ juxBy (fast 1.1 $ range 0.5 "-0.5" $ sine) (rev . hurry "{0.5 2}%7" . chop 4)
+$ stutWith 1 "{q s e}%5" (
+  (|+ n "{0!5 1 0 2}%5") 
+  . (|+ note "{7 -7 0}%4") 
+  . (|* gain 0.9) 
+  . (|* legato 0.9)
+  )
+-- $ loopAt "{2 1 0.5 4}%3"
+-- $ splice "{2 4 8}%4" ("7 2 1 0" + "{0 1 2 3 4}%7")
+$ every 2 (rev . (|* speed "-0.5"))
+$ n "{0 1 2 3 4 5 6 7}%3"
+# s "loop"
+# shape 0.6
+# gain 1
+-- # cut 0
+# legato 2
+# att 0.02
+# sustain 0.9
+# rel 3
+# clouds 0.5 0.5 0.5 0.5

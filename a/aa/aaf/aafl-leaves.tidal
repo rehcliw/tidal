@@ -1,0 +1,22 @@
+d1
+$ stutWith 4 (range 0.01 0.02 $ fast 1.1 $ sine) (|* speed (range "-2" 2 $ sine))
+$ hurry "{4 2 1}%2"
+$ striate' "<4 32!3 16>" 0.1
+$ every 3 (loopAt "{0.5 1}%3")
+$ s "<lwwizhh:10*4 lwwizbd:5>"
+# gain 1.4
+# pan (range 0 1 $ perlin)
+-- # cut 0
+
+d2
+$ every 4 (|* cps "<0.5 2 1.5>")
+$ hurry "{2 0.5 0.25}%4"
+$ juxBy 0.5 (rev)
+$ plyWith 4 ((|+ n 41) . (|* speed "-1.5"))
+$ s "lwwizsd:9(<3 5>,16,<1 2 0>)"
+# ringf (range 4 1500 $ fast 1.3 $ sine)
+# ringdf 2
+# ring 5
+# legato (range 0.01 2 $ fast 0.2 $ sine)
+-- # cut 0
+# cps (range 0.49 0.51 $ fast 1.1 $ sine)

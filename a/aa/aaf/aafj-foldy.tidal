@@ -1,0 +1,72 @@
+let fstart = pF "fstart"
+    fend = pF "fend"
+    freqfoldhi = pF "freqfoldhi"
+    astart = pF "astart"
+    aend = pF "aend"
+    sigfoldhi = pF "sigfoldhi"
+    rel = pF "rel"
+    atk = pF "atk"
+    mstart = pF "mstart"
+    mend = pF "mend"
+in
+d1
+  $ stack [id
+    $ juxBy (range 0 1 $ sine) (rev . iter 4)
+    $ sometimes (chop 4)
+    -- $ fast 0.4
+    $ hurry "{0.125 <0.5 1> 2}%4"
+    $ echoWith 7 "<s q 1 0>" (|+ n "{9 -5 0 -7 1}%4")
+    $ struct "t(3,8,<1 2 0>)"
+    -- $ n "5/5.9 4/3.5 -9/2.2"
+    $ n "1 -7"
+    # s "foldy"
+    # freqfoldhi "{200 100 900 500 1300}%2"
+    # fend "{50 [500 1000 2500] 200}%2"
+    # astart "{32 2 15 1}%3"
+    # aend "{32 1 32}%2"
+    # sigfoldhi "1"
+    # mstart "0.4 0.01"
+    # mend "<1 0.01>"
+    -- # cps 0.7
+    # cps (range 0.2 4 $ slow 2.1 $ sine)
+    # gain 1
+    -- # cut "1"
+    # rel (range 0.01 0.25 $ fast 0.3 $ sine)
+    # atk "{0.01 0.3 0.02 0.1}%7"
+    # orbit 0
+    , id
+    $ degradeBy 0
+    $ slow 8
+    $ echoWith 5 "e 0.5" (|- n "9 1")
+    $ s "foldy"
+    # freqfoldhi "400"
+    # astart "8"
+    # aend "9"
+    # atk "0.5"
+    # rel 32
+    # mstart 1
+    # gain 0.8
+    # lpfbus 0 (range 200 5000 $ slow 2.3 $ sine)
+    # orbit 1
+  ]
+
+d2 silence
+
+d2
+$ hurry "{0.125 <0.5 1> 2}%4"
+  $ stack [id
+    $ hurry "{2 4 0.5}%4"
+    $ struct "<t(5,8,<1 2 0>) t*8>"
+    $ n "{3 14}%3"
+    # s "dyshh"
+    # distort "{2 0}%5"
+    # gain 1.2
+    , id
+    $ sometimes (plyWith 4 (|* speed 1.5))
+    $ struct "t(3,8,<1 0>)"
+    $ n "{72 70 61}%4"
+    # s "dyskick"
+    # pan (range 0 1 $ fast 1.1 $ saw)
+  ] # shape 0.4 
+  -- # clouds 0.5 0.5 0.5 0.5 
+  # cut "{1 0 2 3}%5"

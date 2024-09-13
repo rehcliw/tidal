@@ -1,16 +1,16 @@
 let blast n = slice n (run n)
 in
 d1
-$ degradeBy 0.9
+-- $ degradeBy 0.1
 $ stack [id 
-    -- $ degradeBy 0.2
     $ hurry 0.5
     $ loopAt 4
-    -- $ juxBy 0.75 rev   
+    $ juxBy 0.15 rev   
+    $ degradeBy 0.9
     -- $ euclid 9 16
-    -- $ euclid "<5 [3 7] 7>" "<16 8>"
+    $ euclid "<5 [3 7] 7>" "<16 8>"
     $ stutWith 3 "0" (id
-        -- . (# distort 0.5) 
+        . (# distort 0.5) 
         . (|* speed "0.9") 
         . (|* legato 0.9) 
         . (# delay 0.9)
@@ -39,6 +39,6 @@ $ stack [id
     # rel "{4 0.5 2 18 14}%7"
 ]
 # s "kitchen"
--- # legato 1.5
+# legato 1.5
 # gain 1.2
-# verb "{0.9 0!2 0.5}%5" "{0.9 0 0.5}%4" "0 0.9" "{1 0.5 0}%7"
+-- # verb "{0.9 0!2 0.5}%5" "{0.9 0 0.5}%4" "0 0.9" "{1 0.5 0}%7"
