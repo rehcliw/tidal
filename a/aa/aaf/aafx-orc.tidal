@@ -1,0 +1,87 @@
+let pat = "{d4'maj [~ e'maj] <f'maj'4 a'maj>  c'maj'3 a'maj'4}%4"
+
+d1
+$ juxBy 0.5 rev
+$ hurry "{2 1 0.5}%4"
+-- $ every 2 (# cps (0.3 * "{[2 1] 0.5 1.5}%4" * (range 0.9 1.1 $ slow 1.1 $ sine)))
+$ n (
+  scale "minor" (id
+    . echoWith 5 "{t e x s}%5" (id
+      . arp "{up updown down downup}%3" 
+      . (|+ "{-7 <5 -5 7>}%3")
+    ) 
+    $ pat - 7
+  )
+)
+# s "supersaw"
+-- # velocity "{0.8 0.5 0.7}%5"
+-- # sustain "{6 2 4 1}%6"
+-- # shape 0.5
+-- # att "0.05 0.1"
+-- # rel 3
+-- # orbit 2
+# cps 0.2
+# decaybus 0 (range 0.2 1 $ slow 2.3 $ sine)
+# voicebus 1 (range 0.1 1.9 $ slow 2.5 $ sine)
+# bpfbus 2 (range 5900 900 $ fast 0.002 $ sine)
+# bpqbus 3 (range 0.5 3 $ fast 1.3 $ sine)
+# semitone "{0.1 -12 12 7}%3"
+# resonance "0 0.7 0.2"
+# lfo 1.9
+# rate 1
+# shape 0.7
+# delay 0.9
+# delayfb 0.9
+# delayt 0.1
+# legato 2
+-- # cut 1
+
+d2
+$ slow 4
+$ note (
+    scale "minor" (
+      arp "{up down down}%5" 
+      $ pat - 14
+      )
+  )
+# s "flbass"
+# n "{0!4 2 6 1}%5"
+# distort 1.9
+-- # lpf 2500
+# shape 0.9
+-- # lpfbus 0 (range 1000 1800 $ fast 0.1 $ sine * (fast 0.23 $ saw))
+-- # lpqbus 1 (range 0 0.1 $ slow 1.3 $ sine)
+-- # orbit 2
+# cut 2
+
+d3
+$ hurry "{0.25 1 0.5 2}%5"
+$ juxBy (range "-0.9" 0.9 $ slow 1.1 $ sine) (rev . hurry "0.5")
+$ chunk 4 ((hurry 2) . (# s "{vscoothdrum vscodarbuka}%4"))
+-- $ degradeBy 0.2
+$ stutWith "{6}%4" "t" (id
+  . (|+ n "{9 0 4}%3") 
+  -- . hurry "2 0.5 1"
+  . (|* gain 0.9)
+  . (|* speed "{1!5 2}%5")
+  . (|* legato 0.9)
+)
+$ n "[0 1 2 3, 5*8]"
+# s "vscoothdrum vscosnare"
+# shape 0.9
+# gainTake "g" [0.5, 1, 1, 1, 1.2]
+-- # orbit 2
+# crush 8
+# squiz 2
+-- # ring 0.9
+-- # ringfbus 0 (range 500 3900 $ fast 0.1 $ sine * (fast 0.23 $ saw))
+-- # ringdf (range 0 2 $ slow 3.3 $ sine)
+-- # clouds 0.8 0.4 0.4 0.1
+-- # cloudsblend 0.9 0.8 0.9 0.9
+-- # cloudsfreeze "{0 1}%0.3"
+-- # cut 0
+# delay 0.5
+# delayfb 0.8
+# delayt 0.1
+
+scaleList
