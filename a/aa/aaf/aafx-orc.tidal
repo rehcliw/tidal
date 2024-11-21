@@ -1,5 +1,5 @@
 let pat = "{d4'maj [~ e'maj] <f'maj'4 a'maj>  c'maj'3 a'maj'4}%4"
-
+in
 d1
 $ juxBy 0.5 rev
 $ hurry "{2 1 0.5}%4"
