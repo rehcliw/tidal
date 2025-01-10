@@ -1,0 +1,47 @@
+d1
+$ hurry "{0.5 0.25 0.125 1 0.5}%4"
+-- $ juxBy 0.25 rev
+$ degradeBy "0.9 0.5 0.2 0"
+$ stack [id
+  $ juxBy "-0.25 0.25" (rev . fast 2 . (|* speed 2.1))
+  $ hurry "{1 0.5 2 0.25}%5"
+  $ stutWith 4 "s" ((|* gain 0.8) . (|* speed "{-2 1.1 0.9}%5"))
+  $ repeatCycles 4
+  $ rot "<0 1 2>"
+  $ fix (plyWith 4 ((|* speed 1.5) . (|* legato 0.9) . (|* gain 0.9))) (speed 2)
+  $ chunk 4 (hurry 0.5 . (|+ n 5))
+  $ iter 4
+  $ n "{50*2 23 [78? 14] 69 84 3}%4"
+  |+ n "<5!5 15 0 21>"
+  # s "qmsdrum"
+  # shape 0.8
+  # squiz "{8 0 2 1}%7"
+  # speed "{2 0.5 1 0.25}%5"
+  # cut "{0 1 2 3 4 5}%3"
+  , id
+  $ fastcat [id
+    $ juxBy 0.5 (rev . (|* speed "-0.5 2"))
+    $ stutWith 4 "3%16 1%16" (|+ note "<-14 0 7>")
+    $ striate "<4 2 1 8>"
+    $ struct "t(<5!7 3>,8,<1 0 3 2>)"
+    $ s "qmssynth"
+    # nTake "n" [19,15,90]
+    -- # noteTake "no" [12]
+    # legato "2 1 0.5"
+    # shape 0.5
+    # speed "{0.8 0.4 0.2}%4"
+    , id
+    $ n "[0,14]"
+    # s "qmspad"
+    # note "[-14,[-7 14]]"
+    # legato 2
+  ]
+    # bpfbus 0 ("100 -500 250" + (range 100 6500 $ fast 2.2 $ sine * (fast 0.3 $ saw)))
+    # bpqbus 1 (range 0.5 8 $ sine)
+    # cut "1 0"
+]
+# cps 0.7
+-- # cps "{0.5 1 0.5 0.25}%5"
+# clouds "0.1 0 0.9 0.7" 0.8 0.2 "0 0.9"
+# cloudsblend "0.9 0.5 0.9 0.5" 0.5 "{0.75 0.4 0 0.8}%5" 0.5
+# cloudsfreeze "0 1 0 1"

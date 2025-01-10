@@ -1,0 +1,51 @@
+-- remixing edencio's 'shutdown' stems
+let splicebits = "{32 8 64 16 4}%4"
+
+
+d1
+$ stack [id
+  $ hurry "0.5"
+  $ juxBy ("0.75 -0.75") (rev)
+  -- $ repeatCycles 4
+  $ plyWith 4 ((|* gain 0.9) . (|* legato 0.9) . (|* crush 0.55))
+  -- $ degradeBy 0.3
+  $ splice splicebits (stutWith 3 "e" (|+ "<2 0>") $ slow "{8 4 16}%4" $ (run splicebits))
+  $ s "shutdown:1"
+  # legato "{2 1 0.5}%2"
+  -- # cut "0 1"
+  # cps 0.3
+  # crush 16
+  # gain 1.1
+  -- # gain 0
+  , id
+  $ hurry 0.5
+  -- $ plyWith 4 ((|* gain 0.9) . (|* legato 0.9) . (|* crush 0.75))
+  $ iter 4
+  $ stutWith 2 "{e q 5%8}%4" ((hurry "{0.5!4 1}%4" . (chunk 4 (# speed "<-1 -2>"))))
+  $ degradeBy 1
+  -- $ repeatCycles 4
+  $ chop 16
+  $ splice "32" ("{15 18 17 14 23}%4" + "<0 5 7>")
+  $ s "shutdown:0"
+  -- # legato 1
+  # shape 0.7
+  # distort "{0.3 0.2 0}%5"
+  # lpfbus 0 (range 1500 4500 $ fast 2.8 $ saw)
+  # lpq 0.2
+  # gain 1
+  , id
+  $ juxBy 0.75 rev
+  $ degradeBy 1
+  $ splice 128 ("100*<32 64>" + "{1 2 -14 5 -6}%4")
+  $ gain (segment 32 $ range 0 1 $ fast 1.8 $ saw + (fast 1.5 $ saw))
+  # s "shutdown:0"
+  # legato 1
+  -- # gain 0
+]
+# verb 0.5 0.4 0.5 0.4
+    
+-- interpolateIn 2 8
+d2
+
+
+d3
