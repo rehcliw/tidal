@@ -8,7 +8,8 @@ s.reboot { // server options are only updated on reboot
 	s.options.maxNodes = 1024 * 32; // increase this if you are getting drop outs and the message "too many nodes"
 	s.options.numOutputBusChannels = 2; // set this to your hardware output channel size, if necessary
 	s.options.numInputBusChannels = 2; // set this to your hardware output channel size, if necessary
-	s.options.inDevice_("Aggregate Device"); // for tidal looping
+	s.options.inDevice_("USB Audio CODEC "); // for tidal looping
+	// s.options.inDevice_("Aggregate Device"); // for tidal looping
 	s.options.outDevice_("Screen Recording Audio"); // for screen recording
 	// s.options.outDevice_("MacBook Pro Speakers");
 	// boot the server and start SuperDirt
