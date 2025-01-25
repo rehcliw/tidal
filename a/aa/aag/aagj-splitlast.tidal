@@ -1,0 +1,57 @@
+d1
+$ juxBy (range "-0.5" 0.5 $ slow 11.1 $ perlin) 
+  (rev . rot "<1 0>" . (# engine "5"))
+$ stutWith 4 "{11%8!3 7%16}%9" (
+  (|* freq "{1.5 0.5}%3") 
+  . (|* harm 0.5)
+  )
+$ repeatCycles 8
+-- $ degradeBy 0.8
+$ freq (id
+  $ "{[200 100] [~ 250@3] [~ 500@3] <125 500> 500}%4"
+  )
+# s "plaits" 
+# engine "0 7 3"
+# timbre (range 0 1 $ slow 15.7 $ perlin)
+# harm 1
+# morph (range 0 1 $ slow 9.3 $ perlin)
+# level "{0.4 1 0.2 0.4}%3"
+# lpg 0.2 0.9
+# ringsfreq (quantise (1/150) $ range 1500 500 $ slow 13.3 $ perlin)
+# ringsstruct (range 0.2 0.9 $ slow 16 $ perlin)
+# ringsbright (range 0.2 0.7 $ slow 15.4 $ perlin)
+# ringsdamp (range 0.2 0.9 $ slow 14.4 $ perlin)
+# ringspos (range 0 0.9 $ slow 17.4 $ perlin)
+# ringsmodel "[1]"
+# ringspoly "[1]"
+# ringsinternal "0"
+# cps 0.55
+# gain "{0!4 1}%4"
+# delay 0.5
+# delayt (1/4)
+# delayfb 0.9
+# lock 1
+
+d2
+$ gain "1.4 1.2!3"
+# s "808bd"
+# n 2
+# shape 0.4
+# nudge 0.9
+
+d3
+$ every 12 (# n 1)
+$ gain "{1 1 0 1 0.5}%16"
+# s "808oh"
+# lpf 4500
+
+d4
+$ every 5 (ply "1 4" . (# delayfb 0.9))
+$ s "[~ 808sd:1]*2"
+# gain 1
+# lpf 3500
+# delay 0.5
+# delayt (1/4)
+# delayfb 0.4
+# lock 1
+# nudge 0.91
