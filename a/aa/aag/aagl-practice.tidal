@@ -1,0 +1,46 @@
+d1
+-- $ juxBy (range 0.5 "-0.5" $ sine) (rev . hurry 0.25)
+-- $ every 3 (stutWith 4 "7%12" (|+ note "7"))
+-- $ degrade
+-- $ iter 4
+$ chunk 4 (hurry 2)
+$ fast "{1 0.5 4}%4"
+$ repeatCycles 4
+$ striateBy ("8") 0.01
+$ note "[0*2|0|8*1]"
+# n "{0}%7"
+-- # att 0.5
+-- # rel 2
+# s "qmsdrum"
+-- # legato 1.4
+-- # speed "-1"
+# shape 0.9
+# crushbus 0 (range 2 16 $ fast 1.4 $ sine)
+# distortbus 1 (range 0 1 $ fast 1.1 $ sine)
+# lpfbus 2 (range 50 9500 $ fast 1.3 $ sine)
+# lpq 0.4
+-- # bpqbus 3 (range 1 16 $ fast 0.23 $ sine)
+-- # cps 0.4
+
+d2
+$ jux rev
+-- $ hurry "0.25 0.1"
+-- $ repeatCycles 8
+-- $ degradeBy 0.7
+$ stack [id
+  $ hurry "{0.25 0.5 1}%4"
+  $ stutWith 3 "0 1%32 5%32" ((|* speed 1.5) . (|+ n "<0 4>"))
+  $ n (stitch "{t t f t t f t}%16" "51" "88")
+  # legato 1
+  # speed "0.5 2 1"
+  , id
+  $ iter 4
+  $ every 3 rev
+  $ stutWith 3 "s" ((|* gain 0.9) . (|* speed "{2 1 4}%4") . (|* legato 0.9))
+  $ n "{1 0 0 2 0}%4"
+  # crush "16 4"
+]
+# cut "0 1"
+# s "qmsdrum"
+# shape 0.5
+# cps (range 0.4 0.4 $ saw)
