@@ -1,43 +1,49 @@
 d1
--- $ hurry 2
--- $ hurry "0.5"
--- $ stutWith 5 
---   (range 0.01 1 $ slow 3.1 $ sine) 
---   ((|* speed "1.01") . (|* lpf 0.8))
-$ s "loop" 
-# n "0"
-# legato 1
-# gain 0.9
--- # lpfbus 0 (range "500" 7500 $ fast 0.85 $ sine)
--- # lpq 0.2
--- # distort 0.5
--- # att 0.02
--- # hold 10
--- # rel 15
--- # delay 0.7
--- # delayt (1/2)
--- # delayfb 0.7
--- # lock 1
--- # crush 6
--- # squiz 2
+$ hurry 0.125
+$ hurry "{1.05 0.95 1}%4"
+$ iter 4
+$ stutWith 5 
+  (range 0.01 1 $ slow 3.1 $ sine) 
+  ((|* speed "-0.7") . (|* bpf 0.8))
+-- $ fast 2
+$ juxBy (range "-0.5" 0.5 $ slow 1.9 $ sine) (rev . hurry 0.5)
+$ degradeBy 0.8
+$ n "{0 0 1 2 3 3 2}%3"
+# s "loop" 
+# legato 2
+-- # cut 0
+# gain 1
+# speedTake "s" [-1,-0.25,-0.5,0.125,4]
+# distort "{1 0.1 0.5}%5"
+# bpfbus 0 (range "500" 1500 $ fast "{1.85 0.85}%5" $ saw)
+# bpq "{4 2!4 0 6}%5"
+# att (rangex 0.01 0.4 $ slow 1.4 $ sine)
+# hold 15
+# rel 19
+# delayTake "d" [0,0.8,0.5,1]
+# delayt "{24%33!5 2%33 1%33 15%33}%15"
+# delayfb "{0.9!4 0.5 0.9}%5"
+# lock 1
+# crush "{16!6 2 5}%4"
+# squiz "{0!4 2 4 8 16}%5"
 
 d2
 $ juxBy 0.5 rev
-$ slow 2
+$ slow 4
 -- $ hurry 0.99
--- $ every 3 (ply 2)
-$ stutWith 3 "q" (|+ note "-6")
+$ every 3 (ply 4)
+$ stutWith 3 "t" (|+ note "<-6 12>")
 $ n "2 1 0 3"
 # s "bsguitar"
-# gain 1.2
-# legato 2
-# speed 1
+# gain 1
+# legato 0.4
+# speed 0.5
 # squiz (range 0.5 4 $ slow 5.4 $ sine)
 
 
 d3
-$ s "looper"
-# n "0"
+$ n "<0 1 2 3>"
+# s "looper"
 
 
 
