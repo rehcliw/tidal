@@ -1,14 +1,21 @@
 d1 
 $ s "looper" # n "{0 1 2 3 4 5 6 7}%3"
 
-d1
-$ juxBy 0.5 rev
+d2
+-- $ hurry 0.5
+-- $ juxBy "0.5 -0.5" (rev . hurry "<0.5 2>")
 -- $ plyWith "{4 5 2}%1" ((|* legato 0.99) . (|* speed "0.8") . (|* gain 0.9))
--- $ chunk 4 (hurry 1 . chop "{4 2 8 1}%3")
-$ n "{0 1 2 3 4 5 6 7}%6"
+-- $ chunk 4 (hurry 0.25 . chop "{4 2 8 1}%3")
+-- $ stutWith 5 "5%32 2" (|+ note "-14 14 0")
+$ n "{0 1 2 3 4 5 6 7}%8"
 # s "loop"
-# shape 0.9
-# gain 1.4
+# legato (range 0.5 1.5 $ fast 1.5 $ saw)
+# shape 0.7
+-- # bpf "{2599 0 500 1500 3500}%6"
+-- # bpq "{12 0 1 4 2}%4"
+-- # att 0.2
+-- # hold 10
+-- # rel 25
 -- # cut 0
 -- # legato 1.4
-# verb 0.9 0.6 0.13 0.9
+-- # verb 0.9 0.6 0.13 0.9

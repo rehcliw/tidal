@@ -45,7 +45,7 @@ $ randcat [id
 # shape 0.5
 
 d2
-$ repeatCycles 8
+-- $ repeatCycles 8
 $ juxBy 0.2 rev
 $ fix (chunk 4 ((hurry 0.5) . (# crushbus 1 (range 6 16 $ slow 2.3 $ sine))) . striateBy "{64 2 32}%4" 0.1) (sound "loop")
 $ slow 16
