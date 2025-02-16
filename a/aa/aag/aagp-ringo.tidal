@@ -1,0 +1,40 @@
+let modamp = pF "modamp"
+    modfreq = pF "modfreq"
+in
+d1
+-- $ striateBy 16 0.1
+-- $ slice 64 ("23")
+$ slow 8
+$ n "[-19,-19.5]"
+# s "supervibe"
+-- # att 0.03
+-- # hold 16
+-- # rel 16
+# legato 16
+# decay 8
+# velocity 4
+# modamp 8
+# modfreq (range 1 16 $ slow 1.2 $ sine)
+# detune 2
+# shape 0.8
+# bpf 1500
+# bpq 16
+# ringbus 0 1
+# ringfbus 1 (id
+  $ fastcat [id
+    $ segment 512
+    $ smooth
+    "{10 100 1000}%4" + (range 1 20 $ fast 3.03 $ sine)
+    , id
+    (segment 512 $ rangex 10 4250 $ fast 0.7 $ (fast 0.13 $ sine) * saw)
+  ]
+)
+# ringdfbus 2 1
+
+d2
+-- $ jux rev
+-- $ degrade
+$ fast (range 0.5 1 $ fast 0.5 $ sine)
+$ n "-19*16"
+# s "supervibe"
+|+ n (segment 16 $ range "-5" 15 $ sine + (fast 0.75 $ saw))
