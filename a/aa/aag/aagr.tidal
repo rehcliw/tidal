@@ -1,0 +1,49 @@
+let pat = "{t t t f t t <f t f> t t}%16"
+in
+d1
+$ hurry 0.25
+$ degradeBy 0.7
+$ stack [id
+  $ mask pat
+  $ s "lwwizhh*16"
+  # gainTake "g" [1,1,1,1,1,1.1]
+  # speedTake "hs" [1,-1,1,1,1,1,1,1]
+  , id
+  $ jux rev
+  $ every 1 (stutWith 4 "e" ((|* gain 0.9) . (|* speed 1.8)))
+  $ mask (inv pat)
+  $ s "lwwizsd:9*16"
+  # gainTake "g" [1,1,1,1,1,1.1]
+  # speedTake "ss" [1,-1,1,1,1,1,1,1]
+  , id
+  $ slow 0.5
+  $ mask pat
+  $ s "dyskick:6(<3 5>,8,<1 0 1 2 0>)"
+  # speedTake "ks" [9,4,14,1]
+  # nudge "0.1"
+  # crush "{2 4 9}%5"
+  # distort (range 0.4 0.9 $ slow 2.1 $ sine)
+] 
+|* gain 0.8
+# shape 0.5
+# cps 0.3
+-- # cps "{0.6!4 0.3 0.15}%4"
+# cut "{1 2 0}%15"
+
+d2
+$ hurry 0.5
+$ juxBy (range "-0.5" 0.5 $ fast 2.3 $ perlin) (rev . hurry "{0.5!4 1 0.5 2}%5")
+$ degradeBy 0.7
+$ hurry "{0.5 1}%3"
+$ n "-19*32"
+# s "plaits"
+# engine "{3 4 3}%5"
+# harm (range 0 1 $ fast 10.1 $ perlin)
+# timbre (range 0 1 $ fast 10.2 $ perlin)
+# morph (range 0 1 $ perlin)
+# level (range 0.8 1 $ fast 12.1 $ perlin)
+# lpg "0.7 0.9" "{0.9 0.5}%5"
+# mode "{1 0}%7"
+# clouds 0 0.5 0.8 0.8
+# cloudsblend 0.5 0.25 0.1 0.9
+# cloudsfreeze "{0 1}%9"
