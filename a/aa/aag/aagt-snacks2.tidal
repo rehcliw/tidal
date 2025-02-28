@@ -1,0 +1,87 @@
+d3
+
+
+
+d2
+
+
+d1
+$ hurry "<[<0.25> 1]!7 2>"
+$ stack [id
+  $ degradeBy 0
+  $ hurry "{2 1 1}%4"
+  $ repeatCycles 4
+  $ juxBy 0.75 (rev)
+  $ fast 2
+  $ iter 4
+  $ struct "{t t t f t f}%16"
+  $ slice "32" "{3 17}%5"
+  $ s "snacks"
+  # legato "{0.5!15 <1 2>}%12"
+  # shape 0.8
+  # crush "{4 2 6 1}%5"
+  # hpf 1000
+  , id
+  $ degradeBy 0
+  $ stutWith 2 0 (|* speed 1.03)
+  $ slice 16 "<10!7 12 5>"
+  $ s "snacks" 
+  # legato 1.5
+  # gain 1.4
+  # speed "-0.5"
+  # lpfbus 0 (segment 512 $ range 1000 2000 $ slow 3.4 $ sine)
+  # lpq 0.4
+  , id
+  $ degradeBy 0
+  $ slow 4
+  $ stutWith 4 "1" (|* speed 2)
+  $ slice 32 "15"
+  $ s "snacks"
+  # att 0.1
+  # rel 2
+  # shape 0.9
+  # gain 1.5
+  # distort 0.9
+  # legato 2
+  # speed 2
+  # bpqbus 1 (segment 512 $ range 1000 3000 $ slow 3.4 $ sine)
+  # bpq 4
+  , id
+  $ degradeBy 1
+  -- $ slow 0.5
+  $ juxBy (range "-0.25" 0.25 $ slow 1.55 $ sine) ((fast "2") . (|+ n "-12 12"))
+  -- $ degradeBy 0.5
+  -- $ hurry "{0.25 0.5}%5"
+  -- $ striate 4
+  $ n (scale "major" $ stutWith 4 "5%12" (|+ "<[3 -7]!5 6 -9>") $ "{-19 11 4 0 8}%4")
+  # s "superzow"
+  # legato 0.5
+  # gain "{1.4 0.8 1}%5"
+  # decay (range 0.1 0.9 $ slow 4.56 $ sine)
+  # slide 1
+  # detune 1.9
+  -- # distort 0.9
+  # lpf (range 500 3000 $ slow 7.6 $ sine)
+  # lpq 0.4
+  -- # cut 1
+  |+ n 7
+  , id 
+  $ degradeBy 0
+  -- $ striate 16
+  $ juxBy (range 0.75 "-0.75" $ slow 2.3 $ sine) (rev . (|* speed "-0.5 2") . slow 2)
+  $ fast 0.25
+  -- $ chunk 4 (fast 0.5)
+  $ slice 16 (stutWith 2 "1%32" (|+ "{1 2 3}%4") $ "{2 4 1 6 9 13 11}%16")
+  $ s "snacks"
+  # legato (range 0.5 2 $ fast 0.7 $ sine)
+  # shape 0.7
+  # att "{0.02}%5"
+  # rel ("0.2 0.3" + "<0 0.3>")
+  # delay 0.7
+  # delaytime (range "0.05 0.1" 0.4 $ fast 0.74 $ sine)
+  # delayfb 0.8
+] 
+# clouds 0 0.7 0.2 0.9
+# cloudsblend 0.8 0.3 0.8 0.8
+# cloudsfreeze "0 1"
+# cps (76/60/4)

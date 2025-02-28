@@ -1,8 +1,8 @@
 let pat = "{t t t f t t <f t f> t t}%16"
 in
 d1
-$ hurry 0.25
-$ degradeBy 0.7
+-- $ hurry 0.25
+-- $ degradeBy 0.7
 $ stack [id
   $ mask pat
   $ s "lwwizhh*16"
@@ -31,7 +31,7 @@ $ stack [id
 # cut "{1 2 0}%15"
 
 d2
-$ hurry 0.5
+-- $ hurry 0.5
 $ juxBy (range "-0.5" 0.5 $ fast 2.3 $ perlin) (rev . hurry "{0.5!4 1 0.5 2}%5")
 $ degradeBy 0.7
 $ hurry "{0.5 1}%3"

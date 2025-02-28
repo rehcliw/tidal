@@ -10,7 +10,7 @@ $ repeatCycles 8
 $ freq (id
   $ "{[200 100] [~ 250@3] [~ 500@3] <125 500> 500}%4"
   )
-# s "plaits" 
+# s "plaits"
 # engine "0 7 3"
 # timbre (range 0 1 $ slow 15.7 $ perlin)
 # harm 1

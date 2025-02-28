@@ -1,7 +1,7 @@
 d1
 $ slow "4"
 $ stack [id
-  $ slow 2
+  $ hurry 0.5
   $ juxBy "{0.5 0 -0.5 0.25 -0.25}%4" (
     rev 
     . (hurry "{2 1.5 1}%4") 
