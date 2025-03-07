@@ -1,0 +1,27 @@
+d1
+-- $ repeatCycles 4
+$ stutWith 3 "0" (|+ n "4.75 14.75 -6.25")
+$ slow 8
+$ n "-14 -19"
+# s "drone"
+# legato 1.1
+# panbus 0 (segment 512 $ range "-1" 1 $ fast 0.9 $ perlin)
+# delay 0.9
+# delaytbus 1 "{0.01 0.02 0.03}%1"
+# delayfbbus 2 "{0.8 0.7 0.95}%1.1"
+# crushbus 3 "{2 8 4 16}%0.7"
+# bpfbus 4 (segment 512 $ rangex 250 8500 $ fast "3" $ isaw)
+# bpqbus 5 "{0 4 2 8}%1.2"
+
+
+let speed = pF "speed"
+in
+d2
+$ slow 8
+$ hurry "{0.25 0.5 0.125 2}%5"
+-- $ repeatCycles 8
+$ iter 4
+$ stutWith 2 "{7%16 e h}%4" (|- n "5.75 15.75")
+$ n "{0.25 6.5 1.75 -0.25 -14.75}%8"
+# s "dronec"
+# cps 0.5

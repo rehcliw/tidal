@@ -1,29 +1,43 @@
 d1
-$ slow 4
--- $ struct "t*4"
-$ juxBy (range "-0.5" 0.5 $ sine) (ply 2 . (|+ note "<0 -12 12>") . slow 2.1)
+-- $ hurry "0.25 4 1"
+$ juxBy (range "-0.25" 0.25 $ slow 1.1 $ sine) (ply "<2 1>" . (|+ note "<0 -12 12>") . slow 1.01)
+$ struct "t*4"
+$ every 8 (
+  (# lpfbus 0 (segment 512 $ range 1000 9500 $ slow "{100 40}%5" $ sine))
+  .
+  (# lpq 0.2)
+  )
+$ repeatCycles 8
+$ sometimes (# crush 4)
 $ note (id
   $ scale "phrygian"
-  $ arpeggiate
+  $ sometimes arpeggiate
   $ stutWith 4 "<e [s q] 5%8 0>" ((|+ "<5 [12 7] 1 0>"))
   "[9 2] 5 0 [<-5 0> -10]"
   - "{7 14 -5 0 -7}%1.1"
   )
-# s "superpiano"
-# legato 0.1
-# cps (rangex 0.04 0.4 $ slow 0.4 $ sine)
-# velocity (range 0.6 1 $ slow 0.8 $ sine)
-# sustain 4
-# detune 0.2
--- # bpfbus 0 (range 5 1500 $ slow 4.1 $ sine)
--- # bpq 0.9
+# s "supersaw"
+# legato 2
+# cps (rangex 0.04 0.4 $ slow 0.4 $ (sine * (slow 6 $ perlin)))
+-- # velocity (range 0.6 1 $ slow 0.8 $ sine)
+-- # sustain 4
+-- # voice 0.9
+# voice "{0.8 0.5 0.4 0.9 0.1}%5"
+# decay "0.1 0.5 0.9"
+# accelerate (range 0.1 (-0.1) $ slow 2.3 $ sine)
+# lfo "4 0.5"
+# rate "9 0.2"
+# resonance (fast 1.3 $ smooth $ "0.4 [0 0.1] 0.3 0.3")
+# semitone "{0.25 0.5 12 7}%5"
+-- # detune 0.2
 # att "{0 0.1 0.2 0.04}%3"
 # hold 3
-# rel 5
-# verb 0.9 0.9 0.1 0
+# rel 9
+# verb 0.9 0.9 0.01 0.01
 # verbgain 0.9 
-# verbfreeze "{1 0 0}%0.7"
-# verbdiff 0.1
+# verbfreeze "{1 1 0}%0.7"
+# verbdiff 0.02
+|- note "{12 -12 -24 0}%7"
 
 import Sound.Tidal.Chords
 

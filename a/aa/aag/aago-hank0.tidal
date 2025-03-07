@@ -1,37 +1,38 @@
 d1
 $ juxBy 0.5 rev
--- $ hurry "{0.4 1.3 1 0.6}%5"
-$ slice 16 ("{5 9 2 10 13}%4" + "{1 5}%3")
+$ hurry "{0.4 1.3 1 0.6}%5"
+$ slice 16 ("{5 9 2 10 13}%4" + "{2 5}%3")
 $ slow 32
--- $ every 4 (striateBy 128 0.2)
+$ every 4 (striateBy 128 0.2)
 $ s "hank"
--- # rings "[100,25]" (range 0 0.9 $ slow 5.6 $ sine) 0.8 0.9 0.5
--- # ringsmodel 1
--- # ringspoly 1
--- # distort (range 0.1 0.9 $ fast 0.4 $ sine)
--- # att 0.06
--- # rel 10
--- # lpfbus 1 (range 100 9500 $ fast 2.3 $ sine)
--- # lpq 0.6
+# rings "[100,25,75]" (range 0 0.9 $ slow 5.6 $ sine) 0.8 0.9 0.6
+# ringsmodel 1
+# ringspoly 1
+# distort (range 0.1 0.9 $ fast 0.4 $ sine)
+# att 0.06
+# rel 10
+# lpfbus 1 (range 100 9500 $ fast 2.3 $ sine)
+# lpq 0.6
 -- # hpf (range 100 3500 $ perlin)
 -- # hpq 0.3
--- # ampbus 0 (range 0.3 0.8 $ fast 9.6 $ saw)
+# ampbus 0 (range 0.3 0.8 $ fast "{3.6 0.4 5.6 0.1}%5" $ saw)
 # delay 0.9
-# delayt "{0.1 0.4 0.2 0.5}%5"
-# delayfb 0.95
-# legato (range 0.1 2 $ slow 1.2 $ sine)
+# delayt "{1%8 3%8 1%16 1%2}%5"
+# delayfb 0.9
+# lock 1
+# legato (range 0.5 2 $ slow 0.3 $ sine)
 # cps 0.5
--- # cps (rangex 0.1 10 $ fast 3.4 $ sine)
+-- # cps (rangex 0.1 10 $ fast 1.4 $ sine * (fast 1.2 $ sine))
 
 d2
 $ s "inr*8"
 # shape 0.7
--- # comb 0.4
+# comb 0.4
 # accelerate "{-3 3}%3"
 # nudge 0.1
 -- # legato 1.9
 -- # mu 2
--- # warpsalgo 3
--- # warpstimb 0.9
--- # warpsosc 1
--- # warpsfreq 0.9
+# warpsalgo 3
+# warpstimb 0.9
+# warpsosc 1
+# warpsfreq 0.9
