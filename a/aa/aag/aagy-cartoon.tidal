@@ -1,0 +1,29 @@
+
+  
+let pat = juxBy (range 0.5 "-0.5" $ sine) (rev . hurry "0.5 2")
+          $ sometimesBy 0.2 (plyWith 4 (|* gain 0.9))
+          $ chunk 4 (hurry 2)
+          $ iter 8
+          $ sometimes (|+ n 8)
+          $ stutWith 3 "e" (|* speed "-0.6 2")
+          $ n "{1 0 6 18 3}%3"
+          # s "cartoon"
+          # legato (rangex 0.01 2 $ slow 1.4 $ saw)
+          # speed 0.5
+          # cut "{1 0}%5"
+          # cps 0.6
+
+d1
+-- $ hurry 0.5
+$ pat
+# crush 4
+
+d2
+$ hurry "0.5 2 0.25"
+$ sometimesBy 0.15 (striateBy 32 0.01)
+$ pat
+# accelerate "{1 -2 4}%3"
+# legato 2
+# distort 0.5
+# lpfbus 0 (rangex 50 5000 $ fast "{5 0.5}%1.2" $ saw)
+# lpq "{0.3 0.1 0.2}%4"
