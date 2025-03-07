@@ -1,7 +1,7 @@
-
-  
-let pat = juxBy (range 0.5 "-0.5" $ sine) (rev . hurry "0.5 2")
-          $ sometimesBy 0.2 (plyWith 4 (|* gain 0.9))
+let pat = id
+          $ hurry 0.125
+          $ juxBy (range 0.5 "-0.5" $ sine) (rev . hurry "0.5 2")
+          $ sometimesBy 0.2 (plyWith 4 ((|* gain 0.9) . (|* speed 1.5))
           $ chunk 4 (hurry 2)
           $ iter 8
           $ sometimes (|+ n 8)
@@ -9,21 +9,37 @@ let pat = juxBy (range 0.5 "-0.5" $ sine) (rev . hurry "0.5 2")
           $ n "{1 0 6 18 3}%3"
           # s "cartoon"
           # legato (rangex 0.01 2 $ slow 1.4 $ saw)
-          # speed 0.5
-          # cut "{1 0}%5"
-          # cps 0.6
-
+          # speed "{2 0.5 1}%7"
+          -- # cut "{1 0 2}%5"
+          # cps (rangex 0.125 1 $ slow 2.4 $ saw)
+in
 d1
 -- $ hurry 0.5
 $ pat
 # crush 4
 
 d2
-$ hurry "0.5 2 0.25"
-$ sometimesBy 0.15 (striateBy 32 0.01)
+-- $ juxBy (range 0.5 "-0.5" $ sine) (rev . hurry "0.5 2")$ hurry "0.5 2 0.25"
+$ sometimesBy 0.15 (striate 4)
 $ pat
-# accelerate "{1 -2 4}%3"
+# accelerate "{1 -2 4 0}%3"
 # legato 2
-# distort 0.5
-# lpfbus 0 (rangex 50 5000 $ fast "{5 0.5}%1.2" $ saw)
-# lpq "{0.3 0.1 0.2}%4"
+-- # distort 0.5
+# combbus 0 (range 0 0.9 $ slow 3 $ sine)
+-- # lpfbus 0 (rangex 50 9000 $ fast "{5 0.5}%1.2" $ saw)
+-- # lpq "{0.3 0.1 0.2}%4"
+
+let tick = "{t t t t f t t f}%15"
+
+d3
+$ mask tick
+$ n "17*16"
+# s "cartoon"
+# legato "{0.25!7 0.8}%7"
+# shape 0.5
+
+d4
+$ mask (inv tick)
+$ n "16*16"
+# legato 0.5
+# s "cartoon"
