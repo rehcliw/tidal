@@ -1,0 +1,146 @@
+d1
+-- $ fast 2
+-- $ jux (rev . hurry 2)
+-- $ hurry "2 0.5"
+-- $ every 2 rev
+-- $ plyWith "{2 4 3 1}%3" (|* speed "<0.5 -2 2>")
+$ s "bd sd"
+# distort 0.6
+# crush "3 8"
+# gain 1
+# legato "{1 0.5}%5"
+# lpfbus 0 (segment 512 $ range 250 7000 $ fast 3.4 $ saw)
+# lpq 0.2
+# delay 0.7
+# delayt "{0.1 0.01}%3"
+# delayfb 0.9
+# verb 0.5 0.5 0.12 0.2
+# verbdiff 0.1
+
+d1
+$ slow 4
+$ stutWith 2 0.05 (|* speed "{1.05 0.98 0.9}%5")
+$ degrade
+$ striate 32
+-- $ stutWith 2 0 (|+ n 7)
+$ n "{2 [2 4] 0 1}%2.1"
+# s "{vscotuba vscoothdrum vscocelloens vscodarbuka}%3"
+# legato 1.3
+-- # speed 0.5
+# speed "{0.5 0.52 1.05 0.25}%5"
+# shape 0.7
+-- # att 0.4
+-- # rel 26
+# gain 1.2
+# bpfbus 0 (segment 512 $ range 200 4500 $ slow 2.4 $ sine)
+# bpqbus 1 (range 0.1 3 $ slow 1.3 $ perlin)
+# distort 0.1
+# crush 6
+-- # rings 1800 0 0.9 0.9 0
+-- # ringsmodel 0
+# clouds (slow 3.1 $ range 0.5 0.8 $ sine) (range 0.5 0.9 $ slow 3.2 $ sine) (range 0.2 0.8 $ slow 3.3 $ sine) 0.4
+# cloudsblend 0.9 (range 0.2 0.9 $ slow 1.3 $ sine) 0.5 0.9
+# cloudsfreeze 0
+# delay
+
+d2
+$ slow 2
+-- $ stutWith 2 0 (|+ n 7)
+$ n "f c a e"
+-- $ freq ("{500 1000 750 250}%2" * 2)
+# s "superfm"
+# legato 8.3
+# att 2
+# hold 7
+# rel 32
+# fmel 1 [1, 0.5, 0.5, 0]
+# fmer 1 [0.001, 0.1, 1, 0.0081]
+# fmel 2 [1, 0.5, 0.5, 0]
+# fmer 2 [0.1, 10, 1, 1]
+# fmel 3 [1, 0.5, 0.5, 0]
+# fmer 3 [0.001, 1, 0.1, 0.0011]
+# fmel 4 [1, 0.5, 0.5, 0]
+# fmer 4 [0.0032, 0.2, 0.14, 0.004]
+# fmr [1, "1%2", "1%3", "1%4", "1%5"]
+# fma [1, 0.75, 0.5, 0.25, 0.125]
+# fmm 1 [0.5, 0.7, "{0.5 0 1}%4", 0.75, 0]
+# fmm 2 [0.25, 0, 1, 0.3, 1]
+# fmm 3 [1, 0.2, 1, 1, 0]
+# fmm 4 ["0.5 1", 1, 0, 0.8, 1]
+# fmm 5 [0, 0.5, 0.9, 1, 0.1]
+# fmfb 1
+# lfof 0.02
+# lfod 0.03
+# crush 16
+# distort 0.04
+# lpfbus 0 (segment 512 $ range 500 7500 $ slow 4.2 $ sine)
+# lpq 0.1
+-- # phasr 0.3
+-- # phasdp 0.1
+# verb 0.8 0.9 0.3 0.85
+# verbfreeze "{0 1}%1.2"
+# verbdiff 0.07
+# gain 1.11
+|- n "-24"
+
+once $ s "hh*4" # gain 1.2
+
+d1
+$ jux rev
+$ slow 2
+$ stutWith 2 "e" (|+ n "<7 -7>")
+$ n "[0,<14 -14 14>]"
+# s "superhammond"
+# legato 4.2
+# gain 1.4
+# att 2.3
+# rel 6
+# voice 0
+-- # bpfbus 0 (segment 512 $ range 500 7500 $ slow 5.4 $ sine)
+-- # bpq 2
+-- # distort 0.2
+-- |* n "1"
+
+d1
+-- $ jux (rev . hurry "0.5 2")
+-- $ sometimes (plyWith 8 ((|* speed 1.5) . (|* gain 0.9) . (|* legato 0.9)))
+-- $ degradeBy 0.4
+-- $ stutWith 2 "q" ((|* speed "{-1 -2 0.5}%3") . (|+ n "<0 3 5>"))
+$ n ("7 2 1 8" + 5)
+# s "cartoon"
+# gain 1.3
+# distort "{0 0.5 0.3}%5"
+# legato 1
+# speed "{2 1 0.5 1}%3"
+-- # accelerate "-1"
+-- # delay 0.9
+-- # delayt "{0.03 0.1 0.01}%5"
+-- # delayfb 0.9
+
+d1
+-- $ plyWith 4 ((|* gain 0.9) . (|* legato 0.9))
+$ jux (rev . (|* speed "-1"))
+-- $ degradeBy 0.2
+-- $ striate 16
+$ stutWith 2 "e" (|* speed 1.05)
+$ n "0 1 2"
+# s "birds"
+-- # speed "0.5 -2"
+# legato 1
+# gain 1.2
+# bpfbus 0 (segment 512 $ range 150 7500 $ fast 2.4 $ sine)
+# bpq 1
+# accelerate "-1"
+
+d1
+$ jux (rev . hurry "2")
+$ stutWith 8 "s" ((|* gain 0.9) . (|* speed 1.8))
+$ degradeBy 0.2
+-- $ hurry "0.25"
+$ n ("4 9 1 0" + "{0 7 5 0 1}%4")
+# s "dysfx"
+# legato 0.3
+# gain 1.1
+# distortbus 0 (segment 512 $ range 0 0.7 $ fast 2.4 $ saw)
+# crush 4
+-- # cps (range 0.5 1 $ slow 2.1 $ sine)

@@ -1,0 +1,41 @@
+{-
+eval in SC:
+(
+var busses = ~dirt.orbits.collect { |x| x.dryBus };
+
+SynthDef(\readorb, { |out, amp = 1, n = 0| // number
+	var bus,  sound;
+
+	bus = Select.kr(n, busses);
+	sound = InFeedback.ar(bus, ~dirt.numChannels);
+	//sound = CombL.ar(sound, 0.2, 0.03, 1);
+
+	Out.ar(out,
+		sound * (amp * 2.5)
+	)
+}).add;
+)
+-}
+
+-- the combL effect is awesome, can eval while playing
+
+-- compare these first three
+
+d1 $ sound "can bd hh*5 bd" # up "{1 2 3 4}/4"
+
+d2 $ sound "readorb:0" # orbit "1"
+  # delay "1" # delaytime "0.15" # delayfeedback "0.5"
+  # bandf "{90 200 1450 9000}/3" # bandq "10"
+
+d3
+$ s "<readorb:0 readorb:1>" 
+# crush 4
+
+-- to having them all in same pattern
+
+d1
+$ sound "can bd hh*5 bd" 
+# up "{1 2 3 4}/4"
+# delay "1" # delaytime "0.15" # delayfeedback "0.5"
+# bandf "{90 200 1450 9000}/3" # bandq "10"
+# distort 0.5
