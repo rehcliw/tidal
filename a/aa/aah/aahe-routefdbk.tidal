@@ -1,0 +1,31 @@
+d1
+$ fix (# speed 0.5) (s "dyskick") 
+$ chunk 4 (hurry 2)
+$ s "[dyshh:10*3,readorb:2,<dyskick:13 dyskick:15>]"
+# legato 1
+# squizbus 4 "{4 8 1}%7"
+# gain 1.1
+# cps "<0.8!7 0.4>"
+
+d2
+$ every 3 (
+  (# bpfbus 3 (segment 512 $ range 50 5500 $ fast 4.6 $ isaw)) 
+  . (# bpq 4))
+$ s "{readorb:0 readorb:2}%3"
+# legato 1
+# delay "<{0 1}%9 1!4>"
+# delayt "{1%16 1%8 1%64}%2"
+# delayfb 0.9
+# lock 1
+
+d3
+$ s "{readorb:1 readorb:2 readorb:3}%4"
+# legato "1.2"
+# distortbus 0 (segment 512 $ range 0 0.8 $ fast "{2.3 4.6 1.15}%4" $ saw)
+# fshift "<-2500 -500 0!5>"
+# fshiftphase 0.1
+
+d4
+$ n "{0 3 1 2}%5"
+# s "readorb"
+# fshiftbus 1 (segment 512 $ rangex 5 1500 $ fast 9.2 $ saw)
