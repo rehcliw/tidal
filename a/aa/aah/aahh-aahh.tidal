@@ -1,0 +1,20 @@
+xfadeIn 3 8
+$ n "{1 0 3 4}%5"
+# s "readorb"
+# delaybus 1 (segment 512 $ range 0.8 1 $ fast 2.23 $ saw)
+# delayt "{0.6 0.3 0.1}%4"
+# delayfbbus 0 (segment 512 $ range 0.5 0.95 $ fast 1.23 $ saw)
+
+xfadeIn 4 8
+-- $ jux rev
+-- $ stutWith 2 "1" ((# fshift "-1700") . (# gain 0.8))
+$ n "{0 2 1 4 0 2}%5.5"
+# s "readorb"
+# combbus 2 (segment 512 $ range 0 0.6 $ fast 3.32 $ saw)
+# coarsebus 3 (segment 512 $ range 4 8 $ fast 1.51 $ sine)
+
+d5
+$ n "{[2 3 [0 1]] 4}%3"
+# s "readorb"
+# squizbus 4 (segment 512 $ range 0 8 $ fast 4.12 $ saw)
+# fshiftbus 5 "{-50 150 2500 0 -1500}%7.5"

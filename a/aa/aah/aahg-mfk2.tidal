@@ -1,0 +1,82 @@
+d1
+$ slow 2.4
+$ juxBy (range "-0.5" 0.5 $ sine) (rev . hurry 0.5)
+$ every 3 (# fshiftbus 2 (segment 512 $ range "-1500" 200 $ fast 1.3 $ saw))
+$ s "{inr!3 readorb:3}%3"
+# legato 1.1
+# coarse 4
+-- # speed 2
+-- # accelerate "-0.5 2"
+
+
+d2
+$ chunk 4 (hurry 0.25)
+$ stutWith 3 "e" (|* freq "1.01 0.51")
+$ freq "{[1100 50] <150 300> 250}%5"
+# s "supergong"
+# legato 1
+# voice "0.9 1 0.2"
+# decay "{2 0.15 1 1.5}%5"
+# cps (range 0.2 2 $ saw)
+# coarse 4
+
+d2 silence
+
+d2
+$ n "{0 4 2 3 6}%7"
+# s "readorb"
+# legato 1.1
+# elementsstrength 0.3
+# elementspitch 1
+# elementscontour 0.9
+# elementsbowlevel 0.8
+# elementsbowtimb 0.9
+# elementsblowlevel 0.9
+# elementsblowtimb 0.9
+# elementsflow 0.3
+# elementsstrikelevel 1
+# elementsstriketimb 0.2
+# elementsmallet 0.9
+# elementsgeom "0.9 0.2"
+# elementsbright 0.2
+# elementsdamp 0.2
+# elementspos 0.1
+# elementsspace 0.8
+# cps (range 0.2 2 $ fast "1.3 9" $ saw)
+
+d3
+$ n "{6 0 4 1 3}%6"
+# s "readorb"
+# legato 1.1
+# delay 1
+# delaytbus 1 "{0.03 0.15 0.2}%2"
+# delayfb 0.9
+
+d4
+$ striate 8
+$ n "{0 4 6 1 2}%4"
+# s "readorb"
+# legato 1.1
+# crushbus 0 (segment 512 $ range 3 16 $ fast 2.6 $ saw)
+
+d5
+$ n "{3 0 1 2 6}%9"
+# s "readorb"
+# roombus 3 (segment 512 $ range 0 1 $ fast 5.2 $ saw)
+# szbus 4 (segment 512 $ range 0 1 $ fast 5.3 $ saw)
+
+d6
+$ fast 8
+$ s "olooper"
+# n "<0 1 2 3 4 5 6 7 8>"
+
+d7
+-- $ ply 8
+$ striateBy 16 0.1
+$ slow 4
+$ n (run 8)
+# s "loop"
+# legato 1.1
+# coarse 4
+
+once $ s "freeLoops"

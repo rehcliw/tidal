@@ -10,6 +10,7 @@ let fstart = pF "fstart"
     mend = pF "mend"
 in
 d1
+$ hurry "0.125"
   $ stack [id
     $ juxBy (range 0 1 $ sine) (rev . iter 4)
     $ sometimes (chop 4)
@@ -53,6 +54,7 @@ d1
 d2 silence
 
 d2
+$ hurry 0.5
 $ hurry "{0.125 <0.5 1> 2}%4"
   $ stack [id
     $ hurry "{2 4 0.5}%4"
@@ -65,7 +67,7 @@ $ hurry "{0.125 <0.5 1> 2}%4"
     , id
     $ sometimes (plyWith 4 (|* speed 1.5))
     $ struct "t(3,8,<1 0>)"
-    $ n "{72 70 61}%4"
+    $ n ("{72 70 61}%4" - 19)
     # s "dyskick"
     # pan (range 0 1 $ fast 1.1 $ saw)
   ] # shape 0.4 

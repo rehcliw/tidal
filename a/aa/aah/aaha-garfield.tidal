@@ -1,5 +1,5 @@
 d1
-$ degradeBy 0.9
+-- $ degradeBy 0.9
 $ jux (rev . hurry 0.5)
 -- $ plyWith 8 (|* gain 0.9)
 -- $ repeatCycles 8

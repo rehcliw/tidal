@@ -6,26 +6,26 @@ $ stutWith 2 0 (|* speed 1.5)
 $ s "inr"
 # gain 4
 # legato 2
--- # speed 1.5
--- # accelerate "{0.2 0.8}%5"
--- # bpfbus 0 (range 500 9500 $ fast 4.3 $ sine)
--- # bpq "{1 4 0.5 0}%5"
+# speed 1.5
+# accelerate "{0.2 0.8}%5"
+# bpfbus 0 (range 500 9500 $ fast 4.3 $ sine)
+# bpq "{1 4 0.5 0}%5"
 
 d1
 $ fast 4.5
 $ n (run 8)
-# s "looper"
+# s "olooper"
 
 d2
--- $ jux rev 
--- $ hurry ("{[2 1] 1 0.5 2}%5")
+$ jux rev 
+$ hurry ("{[2 1] 1 0.5 2}%5")
 -- $ hurry 16
--- $ stutWith 2 "1%16" (|* speed (range 0.9 1.1 $ slow 2.3 $ sine))
+$ stutWith 2 "1%16" (|* speed (range 0.9 1.1 $ slow 2.3 $ sine))
 $ n (run 8)
 # s "loop"
 # gain 4
 -- # shape 0.5
--- # distort 0.5
+# distort 0.5
 # legato 1
 # cps 0.3
 -- # cps (range 3 0.1 $ sine)
