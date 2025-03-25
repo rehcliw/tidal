@@ -1,0 +1,117 @@
+{- score for THE MAGIC CANVAS
+- with unnamed cinephile jam group
+
+- SC dependencies:
+-- orbit routing
+-- midi in
+
+- sections:
+-- 0:00 INTRO
+-- 0:56 canvas, eye, fadein, human
+-- 1:55 black bars appear
+-- 2:48 bird
+-- 3:14 lightning build up
+-- 3:50 lightning climax
+-- 4:00 birdfall
+-- 4:18 birdcry
+-- 5:16 warm colors
+-- 5:57 waves, sailboat (chaotic)
+-- 6:56 air, darkening (slowing down)
+-- 7:54 human, fadeout, eye (similar to beginning)
+-- 9:39 END
+-}
+
+
+-- countdown for recording
+once $ s "numbers:0" # gain 1.5 # legato 1
+
+
+d1
+$ juxBy (range 0.5 "-0.5" $ perlin) (rev . hurry "{0.5 0.25}%7")
+-- $ degradeBy 0.2
+$ fix (|* gain 0.8) (s "nimb")
+-- $ struct "t(<7 9>,16)"
+$ n (segment 16 $ range 0 100 $ "^3")
+# speed (rangex 0.125 4 $ "^12")
+|* speed "{-0.5 1!5}%3.2"
+# cps (range 0.1 5 $ "^13")
+-- # s "{gtsp!4 sm64 gtsk jjfx nimb}%5.3"
+-- # s "{gtsp jjfx}%5"
+-- # s "jjvocals"
+# s "numbers"
+-- # s "{ukvox ukshake uks numbers}%8"
+# legato 1
+# accelerate "{0 -0.5 -0.9 0.1}%3"
+# djfbus 5 (range 0 1 $ "^9")
+# coarsebus 8 (range 6 1 $ "^9")
+# gain 1.5
+
+once $ "hh"
+
+d1
+$ juxBy "0.5 -0.5" (rev . hurry 0.5)
+$ degrade
+$ n (scale "major" $ stutWith 3 "{q}%3" (|+ "7 -4") "{0 3 -13 9}%2")
+# s "superpiano"
+# gain 1.2
+# cps "0.5"
+-- # djf 0.4
+# delay 0.7
+# delayt "{1%6 1%3 1%12}%4"
+# delayfb "{0.9}%1.1"
+# lock 1
+# legato 0.5
+# voice 0.5
+
+d2
+$ n "{0}%4"
+# s "readorb"
+# legato 0.5
+-- # delaybus 3 (segment 512 $ range 0.25 1 $ fast 1.32 $ isaw)
+# delay 1
+# delaytbus 0 (rangex 0.005 0.3 $ "^14")
+# delayfb 0.9
+-- # lock "{1 0}%1.2"
+# lock 1
+
+d3
+$ n "{1 0}%3.1"
+# s "readorb"
+# legato 1.1
+# shape 0.1
+# distortbus 2 (segment 512 $ range 0 1 $ "^15")
+# ringbus 1 (segment 512 $ range 0 1 $ "^16")
+# ringfbus 7 (segment 512 $ range 50 3500 $ "^17")
+# ringdf 0.2
+
+d4
+$ n "{2 5 0 3}%3"
+# crushbus 4 (range 16 2 $ "^18")
+
+d5
+$ s "looper"
+# n "<0 1 2 3>"
+
+d5 silence
+
+once $ s "freeLoops"
+
+d6
+-- $ chunk 4 (hurry 0.5)
+-- $ struct "{t t f t t t}%2.4"
+-- $ striate 8
+$ hurry 0.5
+$ n "<0 1 2 3>"
+# s "loop"
+-- # coarse 2
+# legato 1.1
+# speed (range 0.125 4 $ "^18")
+# gain 1.2
+-- |* speed "{1 -0.5 2 -1}%3.2"
+-- # att 0.1
+-- # hold 1
+-- # rel 8
+# lpfbus 6 (segment 512 $ range 50 9000 $ "^19")
+# lpq 0.1
+
+d6 silence

@@ -1,0 +1,55 @@
+d1
+$ hurry "{0.25 2}%5"
+$ juxBy "{-0.5 0.5}%5" (rev . (|* speed "0.5"))
+$ repeatCycles 3
+$ sometimesBy 0.7 (# fshiftbus 1 (range "-50" "{-300 4 -70}%3.4" $ "^9" * (range 0.7 2 $ saw)))
+$ sometimesBy 0.3 (# s "nimb")
+$ s "inr*8"
+# n ("{0 4 8 2}%7" + "{2 3 -8 0 12 1}%2.3")
+# legato "{1.1 0.8 2 1.5}%5"
+# att 0.1
+# rel 8
+# ampbus 0 (range 0 0.9 $ "^3" * (segment 5 $ range 0.2 1 $ fast 8.4 $ saw))
+# cps ((segment 3 $ smooth $ "{0.2 1 2}%5") * (range 0.1 1.2 $ "^13"))
+# shape 0.6
+# speed (range 0.5 2 $ "^15")
+# gain 1.2
+# accelerate "{0.1 30 -0.1}%8"
+# distort 0.5
+
+d2
+$ n "{0 4 3}%5.2"
+# s "readorb"
+# legato "0.2 1.1"
+# delay (range 0 1 $ saw)
+# delaytbus 3 ((rangex 0.01 0.4 $ "^12") * "{0.1 1 2}%5")
+# delayfb 0.95
+# lock "{1 0}%7.6"
+# verb "{0.8 0.2}%9" (range 0 0.9 $ "^14") 0.3 (range 0 0.9 $ "^15")
+-- # sz ("{0.8 0.2}%5" * (range 0.5 1.3 $ saw))
+
+d3
+$ n "{0 1 2 3 4}%3"
+# s "olooper"
+
+d3 $ silence
+
+once $ s "freeLoops"
+
+d4
+$ juxBy "0.4 -0.4" (rev . (|* speed "-2 0.5") . fast 2)
+$ degradeBy (range 0 1 $ "^16")
+$ plyWith "{4 8}%5" ((|* gain 0.9) . (|* speed "{1.1 2 0.9}%2"))
+$ slow 2
+$ n (run 5)
+# s "loop"
+# legato "{0.2 0.1 0.5}%5"
+# coarse "1 4 2"
+
+d5
+$ fast 6.7
+$ n "{1 0 3}%5"
+# s "readorb"
+# bpfbus 5 (range 50 1500 $ fast 6.7 $ isaw)
+# bpq 1.5
+# crushbus 2 ((range 14 3 $ fast 2.3 $ "^17") + "{0 2}%6.5")

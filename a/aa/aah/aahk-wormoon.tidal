@@ -1,0 +1,10 @@
+d1
+$ juxBy "0.5 -0.5" (rev . (hurry 2))
+$ slice 64 (id
+  $ stutWith 2 "s" (|+ "<15 23>")
+  $ struct "t(<5 3>,8,<0 1 2>)"
+  $ "{42 30 56 4}%5"
+)
+$ s "wormoon"
+# legato 1
+# cut "{0 1 2}%8"
