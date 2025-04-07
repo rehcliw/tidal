@@ -1,0 +1,26 @@
+once $ s "numbers:2" # gain 1.1
+
+once $ s "hh*4" # gain 1.1
+
+d1
+$ slow 0.5
+-- $ degrade
+$ stutWith 4 "e" (|+ n 7)
+$ rot "<0 2>"
+$ n ("[0 2] 2 -7" - 3)
+# s "superstatic"
+# voice 1
+# accelerate 0.1
+# resonance 0.5
+# slide 0.7
+# att 0.8
+# hold 2
+# rel 9
+# vowel "a o"
+# coarse 8
+# distort 0.7
+# clouds (range 0 0.7 $ fast 0.22 $ sine) 0.8 0.4 0.5
+# cloudsblend 0.8 0.4 0.5 0.8
+-- # cloudsfreeze "{0 1}%6.6"
+# cloudsfreeze 0
+# gain 1.1

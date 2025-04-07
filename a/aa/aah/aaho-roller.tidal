@@ -1,0 +1,51 @@
+d1
+$ hurry "{2 0.5}%5.66"
+$ juxBy "{0.25 -0.25}%5.5" (rev . hurry "{0.5 2}%3" . (|* speed "{0.5 -0.51}%6.6"))
+$ loopAt 12
+$ every 7 (iter 4)
+$ struct "t(<11 5 13 8 9>,16,<0 3 1 2>)"
+$ striateBy "{16 32}%5.2" "{0.1 0.1 0.2}%5"
+$ s "rollergirl"
+# speed "{0.25 2 0.5}%7"
+# accelerate "[[{0.02 0.01 0.1 0}%9],[-0.023 -0.5 2 0]]"
+# legato 1
+# gain 1.2
+-- # cps 0.1
+# cps (rangex 0.12 1.2 $ fast 5 $ saw * (fast 2 $ saw))
+
+d2
+$ n "{0 3 2}%5"
+# s "readorb"
+# legato "{0.1 1 1.1}%5"
+# delay "{1 0}%2.4"
+# delayt (every 2 (segment 4) $ smooth $ "{0.1 0.06 0.2 0.02}%7")
+# delayfb 0.9
+# verb "{0.9 0}%3.4" 0.4 "0.2 0.9" 0.9
+# lock "{1 0}%7.1"
+
+d3
+$ every 3 ((# hpf (range 150 3500 $ fast 8.4 $ saw))
+. (# hpq 0.2))
+$ every 4 ((# lpf (range 150 3500 $ fast 8.21 $ saw))
+ . (# lpq 0.2))
+$ n "{1 0 3}%6.5"
+# s "readorb"
+# legato 1.1
+# coarse 4
+
+
+d4
+$ hurry 0.5
+$ juxBy "{0.2 0.5 -0.2 -0.5}%5.8" (rev . hurry "{0.5 1.5}%5")
+-- $ repeatCycles 8
+$ mask "{1 0 1 1 0 1 1 1 1 0 1}%5"
+$ plyWith 4 ((|+ n "<6 0>") . (|* speed "{2 1}%4.4") . (|* gain 0.9))
+$ struct "t(<9 13 10>,16)"
+$ n "5"
+# legato "{0.5 0.25 1.1 1}%6.1"
+# sTake "s" ["gtsh","ukk","gtss"]
+# accelerate "-0.05 0.07"
+# gain 1.3
+# cut 1
+# distort 0.5
+# speed 0.25

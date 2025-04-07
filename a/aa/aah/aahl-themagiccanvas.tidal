@@ -2,7 +2,7 @@
 - with unnamed cinephile jam group
 
 - SC dependencies:
--- orbit routing
+-- orbit routing? no
 -- midi in
 
 - sections:
@@ -22,9 +22,360 @@
 -}
 
 
--- countdown for recording
-once $ s "numbers:0" # gain 1.5 # legato 1
+-- marker for recording
+once 
+$ s "numbers:0*2" 
+# gain 1.5 
 
+-- countdown for recording
+once
+$ s "hh*4"
+# gain 1.5
+
+-- 0:00 INTRO
+d1
+$ slice 8 (run 8)
+$ n "{13 12}%3"
+# s "presl"
+# ampbus 0 (segment 512 $ range 0 3.5 $ "^3")
+# cps (range 0.5 1 $ "^9")
+# speed (range 0.245 0.255 $ perlin)
+# lpfbus 1 (range 50 10000 $ "^12")
+# lpq 0.1
+# coarse 5
+# legato 1.2
+# gain 1
+
+-- 0:56 canvas, eye, fadein, human
+d1
+$ slice 8 (run 8)
+$ n "{13 12}%3"
+# s "presl"
+# ampbus 0 (segment 512 $ range 0 3.5 $ "^3")
+# lpfbus 1 (range 50 10000 $ "^12")
+# lpq 0.1
+# speed (range 0.245 0.255 $ perlin)
+# legato 1.2
+# accelerate "0.05"
+# cps (range 0.3 1 $ "^14")
+
+d2
+$ plyWith 4 ((|* gain 0.9) . (|* speed 1.1))
+$ n "8(<11 7>,16)"
+# speed (range 7.95 18.05 $ fast 1.1 $ perlin)
+# s "ukother"
+# legato 1
+# ampbus 2 (segment 512 $ range 0 3.5 $ "^9")
+# bpfbus 3 (segment 512 $ rangex 1500 9500 $ fast 5.5 $ saw)
+# bpq 3
+# delay (range 0.3 1 $ fast 1.2 $ perlin) 
+# delayt 0.1
+# delayfb 0.95
+
+-- 1:55 black bars appear
+d1
+$ slice 8 (run 8)
+$ n "{13 12 23}%4"
+# s "presl"
+# ampbus 0 (segment 512 $ range 0 3.5 $ "^3")
+# lpfbus 1 (range 50 10000 $ "^12")
+# lpq 0.1
+# speed (range 0.245 0.255 $ perlin)
+# legato 1.2
+# accelerate "-0.05"
+# distortbus 4 (range 0 0.3 $ fast 0.1 $ sine)
+# cps (range 0.3 1 $ "^14")
+
+d2
+$ plyWith 4 ((|* gain 0.9) . (|* speed 1.1))
+$ n "8(<11 7>,16)"
+# speed (range 7.95 18.05 $ fast 1.1 $ perlin)
+# s "ukother"
+# legato 1
+# ampbus 2 (segment 512 $ range 0 3.5 $ "^9")
+# bpfbus 3 (segment 512 $ rangex 1500 9500 $ fast 5.5 $ saw)
+# bpq 3
+# delay (range 0.3 1 $ fast 1.2 $ perlin) 
+# delayt 0.1
+# delayfb 0.95
+
+-- 2:48 bird
+d1
+$ slice 8 (run 8)
+$ n "{13 12 23}%4"
+# s "presl"
+# ampbus 0 (segment 512 $ range 0 3.5 $ "^3")
+# lpfbus 1 (range 50 10000 $ "^12")
+# lpq 0.1
+# speed (range 0.245 0.255 $ perlin)
+# legato 1.2
+# accelerate "-0.05"
+# distortbus 4 (range 0 0.3 $ fast 0.1 $ sine)
+# cps (range 0.3 1 $ "^14")
+
+d2
+$ plyWith 4 ((|* gain 0.9) . (|* speed 1.1))
+$ n "8(<11 7>,16)"
+# speed (range 7.95 18.05 $ fast 1.1 $ perlin)
+# s "ukother"
+# legato 1
+# ampbus 2 (segment 512 $ range 0 3.5 $ "^9")
+# bpfbus 3 (segment 512 $ rangex 1500 9500 $ fast 5.5 $ saw)
+# bpq 3
+# delay (range 0.3 1 $ fast 1.2 $ perlin) 
+# delayt (range 0.01 0.3 $ "^13")
+# delayfb 0.95
+|+ n "0 5"
+
+-- 3:14 lightning build up
+d1
+$ juxBy 0.5 rev
+$ slice 8 (run 8)
+$ n "{13 12 19}%4"
+# s "presl"
+# ampbus 0 (segment 512 $ range 0 3.5 $ "^3")
+# lpfbus 1 (range 50 10000 $ "^12")
+# lpq 0.1
+# speed (range 0.245 0.255 $ perlin)
+# legato 1.2
+# accelerate "-0.05"
+# distortbus 4 (range 0 0.5 $ fast 0.1 $ sine)
+# cps (range 0.3 1 $ "^14")
+
+d2
+$ plyWith 8 ((|* gain 0.9) . (|* speed 1.3))
+$ n "8(<11 7>,16)"
+# speed (range 7.95 18.05 $ fast 1.1 $ perlin)
+# s "ukother"
+# legato 1
+# ampbus 2 (segment 512 $ range 0 3.5 $ "^9")
+# bpfbus 3 (segment 512 $ rangex 1500 9500 $ fast 5.5 $ isaw)
+# bpq 4
+# delay (range 0.3 1 $ fast 1.2 $ perlin) 
+# delayt (range 0.01 0.3 $ "^13")
+# delayfb 0.95
+|+ n "{0 5 1}%4"
+
+-- 3:50 lightning climax
+d1
+$ juxBy 0.5 rev
+$ slice 8 (run 8)
+$ n "{13 12 19 9}%3"
+# s "presl"
+# ampbus 0 (segment 512 $ range 0 3.5 $ "^3")
+# lpfbus 1 (range 50 10000 $ "^12")
+# lpq 0.3
+# speed (range 0.245 0.255 $ perlin)
+# legato 1.2
+# accelerate "-2 0.5"
+# distortbus 4 (range 0 0.9 $ fast 0.1 $ sine)
+# crush (range 7 3 $ fast 3.2 $ saw)
+# cps (range 0.3 1 $ "^14")
+
+d2
+$ plyWith 8 ((|* gain 0.9) . (|* speed 1.3))
+$ n "8(<11 7>,16)"
+# speed (range 7.95 18.05 $ fast 1.1 $ perlin)
+# s "ukother"
+# legato 1
+# ampbus 2 (segment 512 $ range 0 3.5 $ "^9")
+# bpfbus 3 (segment 512 $ rangex 1500 9500 $ fast 5.5 $ isaw)
+# bpq 4
+# delay (range 0.3 1 $ fast 1.2 $ perlin) 
+# delayt (range 0.01 0.3 $ "^13")
+# delayfb 0.95
+|+ n "{0 5 1}%4"
+
+-- 4:00 birdfall
+d1 $ silence
+
+d2
+$ slow 8
+$ plyWith 4 ((|* gain 0.9) . (|* speed 0.8))
+$ n "8(<11 7>,16)"
+# speed (range 3.95 4.05 $ fast 1.1 $ perlin)
+# s "ukother"
+# legato 1
+# ampbus 2 (segment 512 $ range 0 3.5 $ "^9")
+# bpfbus 3 (segment 512 $ rangex 1500 9500 $ fast 5.5 $ isaw)
+# bpq 3
+# coarse (range 2 12 $ "^15")
+# delay (range 0.3 1 $ fast 1.2 $ perlin) 
+# delayt (range 0.01 0.5 $ "^13")
+# delayfb 0.95
+|+ n "{0 5 1}%4"
+# cps (range 0.3 1 $ "^14")
+
+-- 4:18 birdcry QUIET
+d1
+$ slice 4 "1"
+$ n "13"
+# s "presl"
+# ampbus 0 (segment 512 $ range 0 3.5 $ "^3")
+# lpfbus 1 (range 50 10000 $ "^12")
+# lpq 0.3
+# speed (range 0.125 0.145 $ perlin)
+# legato 1.3
+# accelerate "-2"
+# distortbus 4 (range 0 0.9 $ fast 0.1 $ sine)
+# crush (range 5 3 $ fast 3.2 $ saw)
+# cps (range 0.3 1 $ "^14")
+
+d2
+$ slow 8
+$ plyWith 4 ((|* gain 0.9) . (|* speed 0.8))
+$ n "8(<11 7>,16)"
+# speed (range 3.95 4.05 $ fast 1.1 $ perlin)
+# s "ukother"
+# legato 1
+# ampbus 2 (segment 512 $ range 0 3.5 $ "^9")
+# bpfbus 3 (segment 512 $ rangex 1500 9500 $ fast 5.5 $ isaw)
+# bpq 3
+# coarse (range 2 12 $ "^15")
+# delay (range 0.3 1 $ fast 1.2 $ perlin) 
+# delayt (range 0.01 0.5 $ "^13")
+# delayfb 0.95
+|+ n "{0 5 1}%4"
+
+-- 5:16 warm colors
+d1
+$ striateBy 32 0.2
+$ n "14"
+# s "presl"
+# ampbus 0 (segment 512 $ range 0 3.5 $ "^3")
+# coarse 6
+# lpfbus 1 (range 50 10000 $ "^12")
+# lpq 0.3
+# speed (range 0.525 0.145 $ perlin)
+-- # legato 1.3
+# accelerate "0.2"
+-- # distortbus 4 (range 0 0.9 $ fast 0.1 $ sine)
+-- # crush (range 5 3 $ fast 3.2 $ saw)
+# cps (range 0.3 1 $ "^14")
+
+d2
+$ degrade
+$ slow 2
+$ plyWith 4 ((|* gain 0.9) . (|* speed 0.8))
+$ n "8(4,8)"
+# speed (range 9.95 1.05 $ fast 1.1 $ perlin)
+# s "ukother"
+# legato 1.2
+# ampbus 2 (segment 512 $ range 0 3.5 $ "^9")
+# bpfbus 3 (segment 512 $ rangex 1500 4500 $ fast 5.5 $ saw)
+# bpq 2
+# coarsebus 4 (range 1 12 $ "^15")
+# delay (range 0.2 1 $ fast 1.2 $ sine) 
+# delayt (range 0.01 0.3 $ "^13")
+# delayfb 0.9
+|+ n "{0 5 1}%4"
+
+-- 5:57 waves, sailboat (chaotic)
+d1
+$ slow 4
+$ n "{14 2}%3"
+# s "jjpads"
+# ampbus 0 (segment 512 $ range 0 3.5 $ "^3")
+# coarse 5
+# lpfbus 1 (range 50 10000 $ "^12")
+# lpq 0.3
+# speed (range 0.525 1.45 $ fast 1.3 $ saw)
+# att 0.1
+# rel 8
+# legato 1.9
+# accelerate "1 -0.5"
+-- # distortbus 4 (range 0 0.9 $ fast 0.1 $ sine)
+-- # crush (range 5 3 $ fast 3.2 $ saw)
+# cps (range 0.2 1.3 $ "^14")
+
+d2
+$ degradeBy 0.4
+$ fast 4
+-- $ plyWith 4 ((|* gain 0.9) . (|* speed 0.8))
+$ n "{8 11}%5"
+# speed (range 9.95 1.05 $ fast 1.1 $ perlin)
+# s "ukother"
+# legato 0.7
+# ampbus 2 (segment 512 $ range 0 3.5 $ "^9")
+# bpfbus 3 (segment 512 $ rangex 1500 4500 $ fast 5.5 $ saw)
+# bpq 2
+# delay (range 0.2 1 $ fast 1.2 $ sine) 
+# delayt (rangex 0.01 0.3 $ "^13")
+# delayfb 0.9
+# lock 1
+|+ n "{0 5 1}%4"
+
+-- 6:56 air, darkening (slowing down)
+d2 silence
+
+d1
+-- $ rev
+-- $ striate "12"
+$ n "10"
+# s "jjpads"
+# ampbus 0 (segment 512 $ range 0 3.5 $ "^3")
+# coarse 5
+# lpfbus 1 (range 50 10000 $ "^12")
+# lpq 0.1
+# speed (range 0.525 0.45 $ fast 1.3 $ saw)
+# att 0.1
+# rel 8
+# legato 1.8
+# accelerate "-0.05 -0.1"
+# comb 0.4
+-- # distortbus 4 (range 0 0.1 $ fast 0.1 $ sine)
+-- # crush (range 16 12 $ fast 3.2 $ saw)
+# verb 0.4 0.4 0.8 0.9
+# cps (range 0.2 1.3 $ "^14")
+
+-- d2
+-- $ degradeBy 0.2
+-- -- $ slow 2
+-- $ n "8*6"
+-- # speed (range 9.95 9.05 $ fast 1.1 $ perlin)
+-- # s "ukother"
+-- # legato 1
+-- # ampbus 2 (segment 512 $ range 0 3.5 $ "^9")
+-- # bpfbus 3 (segment 512 $ rangex 1500 9500 $ fast 5.5 $ saw)
+-- # bpq 3
+-- # accelerate "{-1 0}%5"
+-- # delay (range 0.2 1 $ fast 1.2 $ sine) 
+-- # delayt (rangex 0.01 0.3 $ "^13")
+-- # delayfb 0.9
+-- # lock 0
+-- |+ n "{0 5 1}%4"
+
+-- 7:54 human, fadeout, eye (similar to beginning)
+d1 $ silence
+
+d2
+$ stutWith 2 "e" ((|* speed 2.01) . rev)
+$ degradeBy 0.7
+-- $ slow 2
+$ n "8*6"
+# speed (range 0.95 0.55 $ fast 10.1 $ perlin)
+# s "ukother"
+# legato 1
+# ampbus 2 (segment 512 $ range 0 3.5 $ "^9")
+# bpfbus 3 (segment 512 $ rangex 1500 9500 $ fast 5.5 $ saw)
+# bpq 2
+# att 0.1
+# rel 8
+# accelerate "{-0.13 -0.3}%5"
+# delaybus 5 (range 0.2 1 $ fast 1.2 $ sine) 
+# delayt (rangex 0.01 0.6 $ "^13")
+# delayfb 0.9
+# coarsebus 4 (range 1 16 $ slow 6.2 $ "^15")
+# lock 0
+# cps (range 0.2 1.3 $ "^14")
+
+-- 9:39 END
+
+
+
+
+
+-- v0
 
 d1
 $ juxBy (range 0.5 "-0.5" $ perlin) (rev . hurry "{0.5 0.25}%7")
@@ -35,10 +386,10 @@ $ n (segment 16 $ range 0 100 $ "^3")
 # speed (rangex 0.125 4 $ "^12")
 |* speed "{-0.5 1!5}%3.2"
 # cps (range 0.1 5 $ "^13")
--- # s "{gtsp!4 sm64 gtsk jjfx nimb}%5.3"
+# s "{gtsp!4 sm64 gtsk jjfx nimb}%5.3"
 -- # s "{gtsp jjfx}%5"
 -- # s "jjvocals"
-# s "numbers"
+-- # s "numbers"
 -- # s "{ukvox ukshake uks numbers}%8"
 # legato 1
 # accelerate "{0 -0.5 -0.9 0.1}%3"

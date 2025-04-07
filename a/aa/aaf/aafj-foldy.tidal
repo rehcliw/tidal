@@ -10,7 +10,7 @@ let fstart = pF "fstart"
     mend = pF "mend"
 in
 d1
-$ hurry "0.125"
+-- $ hurry "0.125"
   $ stack [id
     $ juxBy (range 0 1 $ sine) (rev . iter 4)
     $ sometimes (chop 4)
@@ -28,8 +28,8 @@ $ hurry "0.125"
     # sigfoldhi "1"
     # mstart "0.4 0.01"
     # mend "<1 0.01>"
-    -- # cps 0.7
-    # cps (range 0.2 4 $ slow 2.1 $ sine)
+    # cps 0.7
+    -- # cps (range 0.2 4 $ slow 2.1 $ sine)
     # gain 1
     -- # cut "1"
     # rel (range 0.01 0.25 $ fast 0.3 $ sine)
