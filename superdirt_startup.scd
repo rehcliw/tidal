@@ -14,6 +14,7 @@ s.reboot { // server options are only updated on reboot
 	// s.options.outDevice_("Screen Recording Audio"); // for screen recording
 	// s.options.outDevice_("MacBook Pro Speakers");
 	s.options.outDevice_("WH-1000XM4");
+	// s.options.outDevice_("External Headphones");
 	// boot the server and start SuperDirt
 	s.waitForBoot {
 		~dirt.stop; // stop any old ones, avoid duplicate dirt (if it is nil, this won't do anything)

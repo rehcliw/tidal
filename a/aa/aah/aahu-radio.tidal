@@ -1,34 +1,41 @@
 -- set outDevice (external headphones?) in superdirt_startup, so not screenrecording audio
+-- indevice should be aggregate as normal
 -- global output to screenrecording audio (to route chrome thru blackhole)
--- play with websdr or brandy
-
+-- play with websdr or brandy or w/e
 
 d1
-$ juxBy (range "-0.5" 0.5 $ perlin) (rev . hurry 0.5)
--- $ rot "<2 0 1>"
--- $ iter 4
+$ hurry "{0.125 0.75 2}%4"
+$ iter 5
+$ juxBy (range "-0.5" 0.5 $ perlin) (rev . hurry "0.5")
+$ plyWith "{4 2}%5" (|* speed 1.1)
+$ rot "<2 0 1>"
 $ s "inr"
 -- $ s "inr(<5 3 7>,<8 16>,<0 1 2 3 4>)"
-# shape 0.8
+# shape 0.7
 # legato 1.1
-# ampbus 0 (range 0 1.5 $ fast 1.1 $ perlin)
+# ampbus 0 (range 0.2 1.5 $ fast 1.1 $ perlin)
 # coarse 4
-# accelerate "{-0.05 0.05 0}%7"
-# lpfbus 1 (segment 8 $ range 500 9050 $ fast 2.34 $ perlin)
-# lpq 0.4
+# accelerate "{-1 0.05 0.5 0.1}%7"
+# lpfbus 1 (segment 16 $ range 50 9050 $ fast 2.34 $ perlin)
+# lpq "{0.3 0.1}%5"
+# cps ("{0.35 0.175 7}%5.2" * 2)
 
-d2g
+d2
 $ n "{0 2}%3.12"
 # s "readorb"
 # legato 1.1
 # delay 1
-# delayt 0.3
--- # delayt "{0.3 0.1 0.015 0.2}%7.7"
+-- # delayt 0.3
+# delayt "{0.3 0.05 0.1 0.017 0.2}%7.7"
 # delayfb 0.95
+# lock "{1 0}%4.5"
+# verb "0.8 0" 0.9 0.4 0.8
+# verbdiff "{0.9 0.01}%5.22"
 
 d3
 $ n "{1 0}%5.2"
 # s "readorb"
 # legato 1.1
-# fshift "-100 1000"
-# distortbus 2 (segment 32 $ range 0 0.8 $ fast 1.23 $ perlin)
+# crush 4
+# fshift "-50 100"
+# distortbus 2 (segment 32 $ range 0 0.7 $ fast 1.23 $ perlin)
