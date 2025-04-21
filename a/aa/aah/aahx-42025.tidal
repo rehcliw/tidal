@@ -1,0 +1,84 @@
+d6
+$ n "<0 1 2 3 4 5 6 7>"
+# s "olooper"
+-- # lname "loop4"
+
+once $ s "freeLoops"
+
+d2
+$ slow 3
+-- $ rarely (# crush 5)
+$ juxBy (range "-0.75" 0.75 $ fast 1.2 $ sine) (rev . (|* speed "{-0.5 2 -0.25}%7") . fast 0.5)
+$ n "{0 1 2 3 4 5 6 7}%3"
+# s "{loop}%5.3"
+# crush "{2 4}%5"
+# legato "{1.5 0.8}%4.4"
+# att "{0.2 0.1 0.05}%4.4"
+# rel 3.4
+-- # coarse "{4 1}%5.5"
+-- # speed "{0.5 1}%3.5"
+# accelerate 1
+# bpfbus 0 (every 3 (segment 16) $ range 500 7500 $ fast "<0.5!7 1>" $ saw)
+# bpqbus 2 (segment 512 $ smooth $ "1 3 0.5")
+-- # cps (range 0.45 0.55 $ perlin)
+-- # gain 0
+
+d3 silence
+
+d3
+$ slow 5
+$ n "{0 3 4 1}%2.37"
+# s "readorb"
+# delay "1 0"
+# delayt "{0.5 0.05 0.01 0.3}%7"
+-- # delayt ("{0.5 0.05 0.01 0.3}%3" * "<1 0.5 2>")
+-- # delayt 0.5
+-- # delayfbbus 3 (segment 512 $ range 0.95 0.5 $ fast 0.35 $ saw)
+# delayfbbus 3 (segment 512 $ range 0.95 0.95 $ fast 3.35 $ saw)
+# lock "{0 1}%7"
+# verb 0.8 0.8 0.7 0.9
+# verbdiff 0.005
+-- # gain 0
+
+d4
+$ slow 4
+$ every 3 (# fshiftbus 4 (segment 512 $ fast "{9 0.1 19}%3" $ range "-500" 50 $ saw * (fast 3.1 $ sine)))
+$ n "{1 4 2 0}%6.5"
+# s "readorb"
+# combbus 1 (segment 512 $ range 0 0.8 $ fast 7.76 $ sine)
+# distortbus 5 (segment 9 $ range 0 0.5 $ fast 0.5 $ saw)
+-- # gain 0
+
+d5
+$ juxBy "-0.5 0.5" (rev . hurry "{0.5 2 1}%4")
+$ repeatCycles 8
+$ striateBy "{64 32 128}%5" "0.01 0.1"
+$ s "kitchen"
+# legato 1.5
+# shape 0.5
+# speed "{1 -1 0.5 2}%7"
+# legato 0.5
+# coarse 4
+
+d5 silence
+
+----
+
+d1
+-- $ every 2 (# cps (range 0.25 2 $ fast 1.5 $ sine))
+-- $ every 1 (degradeBy 0.6 . hurry 0.5)
+$ hurry "<0.5 2>"
+-- $ juxBy (range "-0.5" 0.5 $ perlin) rev
+-- $ chunk 5 (hurry "<2 0.5>" . rev)
+-- $ iter 4
+-- $ struct "t(<7 13>,16,<2 0 3>)"
+-- $ stutWith 7 "e 17%16 t" ((|* n 6.5) . (|* speed "{1.4 0.7}%5"))
+-- $ mask "{0 1 1 1 1 0 1}%8"
+$ n ("[0 0 0 0,3 3 3]" + "{5 0 15 19}1.35")
+# sTake "st" ["ukana","ukana","ukana","ukana","ukana"]
+# cut "{0 1}%5"
+# shape 0.6
+# gain 1
+# coarse "{4 6 7 3}%17"
+# cps (60/60/4)
+-- # legato "{1 2 0.5}%5"

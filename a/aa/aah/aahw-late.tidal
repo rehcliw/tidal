@@ -1,0 +1,45 @@
+d1
+$ s "looper"
+# n "<0 1 2 3 4 5 6 7>"
+# cps "{0.25 0.5 0.125 1}%5"
+-- # lname "{glurb loop}%5"
+# lname "glurb"
+
+once $ s "freeLoops"
+
+d1 $ silence
+
+d2
+-- $ hurry 1
+$ juxBy "{0.5 -0.5}%5" (rev . hurry "{0.5 2}%3")
+-- $ hurry "{2 0.25 0.5}%4"
+-- $ degradeBy 0.1
+-- $ stutWith 4 "e" ((|* speed "-0.9 2") . (|- crush "{0 2}%5.5") . (# accelerate 1))
+-- $ every 2 (struct "t(<11 7 5>,16,<0 1 2 3>)")
+$ n (run 8)
+-- # s "{loop glurb}%6.5"
+# s "glurb"
+# legato 2
+-- # legato "{1 0.8 1.2}%5"
+# shape 0.3
+# gain 1
+-- # speed "2 0.5"
+-- # crush 16
+-- # cut "{1 0!4}%7"
+
+d3
+$ n "{1 3}%6.7"
+# s "readorb"
+-- # distortbus 0 (segment 512 $ range 0 0.6 $ fast 3.4 $ saw)
+-- # leslie 1
+-- # lrate 5.5
+-- # lsize 5
+# verb 0.5 0.5 0.5 0.5
+
+d4
+$ n "{2 1}%5.2"
+# s "readorb"
+-- # delay 1
+-- # delayt "{0.05 0.2}%2.3"
+-- # delayfb 0.95
+-- # coarsebus 3 (range 2 8 $ fast 6.6 $ saw)
