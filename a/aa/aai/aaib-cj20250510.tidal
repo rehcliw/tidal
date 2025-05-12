@@ -1,0 +1,117 @@
+d1
+$ s "inr"
+# gain 1
+
+d1
+$ hurry "{2 0.5 0.25 1}%3"
+$ degrade
+$ chunk 3 (striate 16 . hurry 2 . rev)
+$ stutWith 3 "s" ((|* speed "1.5 0.75") . (|* legato 0.9)) 
+$ struct "t(<5 3>,8,<0!2 1 0 2>)"
+$ n (run 8)
+# s "{gtsh!2 gtss}%8"
+# legato (range 0.25 0.77 $ fast 0.88 $ sine)
+# speed "0.25 0.75"
+# gain 0.8
+-- # coarse 1
+-- # phasr 3
+-- # phasdp 10
+
+d2
+$ s "olooper"
+# n "<0 1 2 3 4 5 6 7>"
+# lname "loop2"
+
+d3
+$ slow 4
+-- $ jux (rev . hurry 0.5)
+-- $ degradeBy 0.6
+$ mask "{1 0}%5"
+-- $ sometimes (plyWith 2 (|* speed "0.5 2"))
+$ n "{[1 4]/3 2 7, 1 0 3 5 6}"
+# s "loop2"
+# legato ("{1 0.8 1.2}%4" * 0.4)
+# att 0.2
+# rel 1
+# gain 0.5
+# delay "{0.5 0.1 0.3}%7"
+# delayt "0.2 0.1"
+# delayfb 0.9
+# speed "-2"
+# lock 1
+# phasr 100
+# phasdp 5
+
+d4
+$ degrade
+$ mask "1 0"
+$ struct "t*8"
+$ hurry "{2 0.5 0.25}%5"
+$ sometimes (|* speed "-1")
+$ n (run 8)
+# s "loop2"
+# legato 0.7
+# gain 0.6
+# speed "{2 0.5 4}%5"
+
+d1
+$ slow 4
+-- $ often (striateBy "{16 32 8 64}%5" 0.07)
+-- $ sometimes (# distortbus 0 (range 0 0.6 $ fast 1.4 $ saw))
+$ degradeBy 0.9
+-- $ stutWith 4 "q e s" (|+ n "{1 3 4 5}%7")
+$ s "{vscotuba vscoflute vsco7tbnens}%5"
+# n "<0!2>"
+# legato 1.2
+# speed "{0.5 0.51 0.49}%3"
+# cut "{1 0 2}%4"
+# att 0.1
+# rel 3
+# gain 1
+# coarse 6
+# delay 0.9
+# delayt "0.125"
+# delayfb 0.9
+# lock 1
+
+let pat = "{1 0 0 1 1 [0 1] 1 0 1 0 1 1 0 [1 0]*2}%16"
+in
+d1
+$ jux rev
+$ stack [id
+  $ mask pat
+  $ often (plyWith 4 ((|* gain 0.9) . (|* legato 0.9) . (|* speed 1.1)))
+  $ n ("{4 0 1 2 7}*16" + "<5 0 9>")
+  # s "{ukhh ukvox}%5"
+  # cps "0.3"
+  # legato "{1 1.2}%4"
+  -- # speed "{1 0.5 2}%4"
+  # vowel "a"
+  , id
+  $ mask (inv pat)
+  $ n "{4 0 1}*8"
+  # s "{ukk ukwood ukshake}%2"
+  # legato 1
+  # speed "1"
+  # vowel "a"
+] # cut 1
+# gain 0.5
+
+
+d1
+$ jux (rev . hurry "{2 0.5 0.25}%5")
+$ repeatCycles 8
+$ sometimes (plyWith 4 (|* gain "0.9") . (|* speed 1.1))
+$ stutWith 4 "5%16" ((|+ note "{1 -1 3}%5") . (|* n "3 5"))
+$ sometimes (|* speed "{0.25 4 -1 2 -0.5}%5")
+$ n ("{0 5 9 1 45}%4" + 4)
+# s "nimb"
+# gain 0.2
+# legato 0.5
+# att 0.2
+# rel 2
+# cut "{1 0}%5"
+# delay 0.7
+# delayt (1/32)
+# delayfb 0.9
+# lock 1

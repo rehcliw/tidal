@@ -65,15 +65,15 @@ d5 silence
 ----
 
 d1
--- $ every 2 (# cps (range 0.25 2 $ fast 1.5 $ sine))
--- $ every 1 (degradeBy 0.6 . hurry 0.5)
+$ every 2 (# cps (range 0.25 2 $ fast 1.5 $ sine))
+$ every 1 (degradeBy 0.6 . hurry 0.5)
 $ hurry "<0.5 2>"
--- $ juxBy (range "-0.5" 0.5 $ perlin) rev
--- $ chunk 5 (hurry "<2 0.5>" . rev)
--- $ iter 4
--- $ struct "t(<7 13>,16,<2 0 3>)"
--- $ stutWith 7 "e 17%16 t" ((|* n 6.5) . (|* speed "{1.4 0.7}%5"))
--- $ mask "{0 1 1 1 1 0 1}%8"
+$ juxBy (range "-0.5" 0.5 $ perlin) rev
+$ chunk 5 (hurry "<2 0.5>" . rev)
+$ iter 4
+$ struct "t(<7 13>,16,<2 0 3>)"
+$ stutWith 7 "e 17%16 t" ((|* n 6.5) . (|* speed "{1.4 0.7}%5"))
+$ mask "{0 1 1 1 1 0 1}%8"
 $ n ("[0 0 0 0,3 3 3]" + "{5 0 15 19}1.35")
 # sTake "st" ["ukana","ukana","ukana","ukana","ukana"]
 # cut "{0 1}%5"
@@ -81,4 +81,4 @@ $ n ("[0 0 0 0,3 3 3]" + "{5 0 15 19}1.35")
 # gain 1
 # coarse "{4 6 7 3}%17"
 # cps (60/60/4)
--- # legato "{1 2 0.5}%5"
+# legato "{1 2 0.5}%5"
