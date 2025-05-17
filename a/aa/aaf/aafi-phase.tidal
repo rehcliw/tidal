@@ -10,6 +10,7 @@ do
     $ slow 2
     $ struct pat
     $ s "soskick"
+    # shape 0.3
     # nudge "-0.02"
   d3
     $ slow 3

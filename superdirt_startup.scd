@@ -36,6 +36,9 @@ s.reboot { // server options are only updated on reboot
 
 		// load custom synthdefs
 		load("/Users/may/Documents/music-tools/tidal/synths.scd");
+	  
+		// lazy loading
+		~dirt.doNotReadYet = true;
 
 		~dirt.loadSoundFiles; // load samples (path containing a wildcard can be passed in)
 		// for example: ~dirt.loadSoundFiles("/Users/myUserName/Dirt/samples/*");

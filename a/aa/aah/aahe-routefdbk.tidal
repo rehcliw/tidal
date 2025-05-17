@@ -6,7 +6,7 @@ $ s "[dyshh:10*3,readorb:2,<dyskick:13 dyskick:15>]"
 # legato 1
 # squizbus 4 "{4 8 1}%7"
 # gain 1.1
-# cps "<0.8!7 0.4>"
+-- # cps "<0.8!7 0.4>"
 
 d2
 $ every 3 (

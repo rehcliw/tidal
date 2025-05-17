@@ -1,17 +1,17 @@
 d1
--- $ juxBy "{0.5 -0.25 0!3 -0.5 0.25 1 -1}%7" (rev . hurry "0.5 2")
--- $ sometimesBy 0.4 (plyWith 3 (|* speed 1.1))
--- $ repeatCycles 8
+$ juxBy "{0.5 -0.25 0!3 -0.5 0.25 1 -1}%7" (rev . hurry "0.5 2")
+$ sometimesBy 0.4 (plyWith 3 (|* speed 1.1))
+$ repeatCycles 8
 -- $ degrade
--- $ stutWith 3 "e s" ((|+ n "4") . (# s "gtss") . (|* speed "{0.25 -1 2}%5") . (|* accelerate "{0 1 2 0.2}%5"))
+$ stutWith 3 "e s" ((|+ n "4") . (# s "gtss") . (|* speed "{0.25 -1 2}%5") . (|* accelerate "{0 1 2 0.2}%5"))
 $ n "1(<5 3>,8)"
 # s "{gtsk gtsh gtsfx}%6"
 -- # cps (range 0.5 0.25 $ fast "{2.3!6 1.2 0.7}%5" $ square)
 # cps 0.2
--- # accelerate "{0 -2 0.3 -0.5}%5.2"
+# accelerate "{0 -2 0.3 -0.5}%5.2"
 # cut "{1 0 2}%8"
--- # speed ("{0.5 -3 1!5}%5" * "{0.25 1 2 0.5}%7")
--- |+ n "{19 12!6 7 4 9 0}%7"
+# speed ("{0.5 -3 1!5}%5" * "{0.25 1 2 0.5}%7")
+|+ n "{19 12!6 7 4 9 0}%7"
 -- |/ cps "{2 0.5 4 1}%11"
 
 d2

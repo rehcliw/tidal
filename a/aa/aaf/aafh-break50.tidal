@@ -5,7 +5,7 @@ do
     -- $ degradeBy 1
     $ hurry 0.7
     $ every 8 (plyWith "4 1!7" ((|* gain 0.9) . (|* legato 0.9) . (|* speed "2")))
-    -- $ revOn' [4,"<2 4 1>","<0.5 8>",16]
+    $ every 4 (sometimesBy 0.2 ((revOn' [4,"<2 4 1>","<0.5 8>",16]) . (ply "{2 4 2}%4") . (|* speed "{2 0.5}%3")))
     -- $ slow 8
     $ loopAt 4
     $ splice "{16 [16,32] 16}%16" "0..31"

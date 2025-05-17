@@ -5,7 +5,7 @@ once $ s "[hh*4 ~]"
 d1
 $ juxBy (range "-0.5" 0.5 $ fast 1.1 $ perlin) (rev . hurry "{2 0.5}%3")
 $ sometimes (|* speed "-1")
-$ degradeBy 0.9
+-- $ degradeBy 0.9
 $ struct "t*8"
 $ n (range 0 100 $ "^9")
 -- # s "{ukmodchop ukk3 ukcz}%5"
