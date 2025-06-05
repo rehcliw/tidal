@@ -1,0 +1,52 @@
+d1
+$ chunk 4 (hurry 2)
+$ chop 8
+$ n "{4 8 1 0}%3"
+# sTake "s" ["ksabl","ksab"]
+# legato "{1 1.5 0.5}%7"
+-- # cut 1
+# speed "{0.5 2 1 -0.2}%8"
+# accelerate "{-1 1 0}%5"
+# cps (range 0.03 0.06 $ saw)
+
+d2
+-- $ s "{readorb:0 readorb:2}%4"
+$ s "{readorb:3 readorb:4 readorb:0 readorb:2}%5"
+# legato 0.5
+# delaybus 0 1
+# delayt ("{1%16 1%32 1%8}%5" / "4 2")
+# delayfb 0.9
+# lock 1
+
+d3
+$ s "readorb:1*0.95"
+# legato 1.1
+# lpfbus 1 (rangex 50 9000 $ fast 7.5 $ sine)
+# lpq 0.5
+# coarse 2
+# distortbus 0 (range 0 0.5 $ saw)
+
+d6 $ slow 1.4 $ s "olooper" $ n "<0 1 2 3 4 5 6 7 8>"
+
+d6 silence
+
+d4
+$ juxBy (range 0.25 "-0.25" $ perlin) rev
+$ s "{loop loop:1 loop:2 loop:3 loop:4}%8"
+-- $ s "loop:2"
+# legato 1.3
+# speed "{-0.1 0.1 0.2}%4"
+# gain 1.5
+# shape 0.5
+# accelerate "-0.8 1.2"
+# coarse 2
+# cps 0.1
+
+d5
+$ splice 8 "{0 1 2 3}%4"
+$ loopAt "{4 2}%3"
+$ s "ksbrk:7"
+# legato 1
+# shape 0.5
+# speed "-1"
+# gain 1.1

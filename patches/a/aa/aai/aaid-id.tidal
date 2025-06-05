@@ -2,12 +2,14 @@ do
   let pat = "{t*2 0 t t [~ t] t 0}%4"
   d1
     $ stack [id
-    $ repeatCycles 4
-    $ chunk 4 ((# legato 0.5) . (# delay 1) . (# delayt "0.03 0.02") . (# delayfb 0.8))
+    -- $ repeatCycles 4
+    $ sometimes ((# legato 0.5) . (# delay 1) . (# delayt "0.03 0.02") . (# delayfb 0.8))
     $ struct pat
     $ s "ukk:40"
     # speed 0.7
-    # orbit 1
+    # shape 0.9
+    # gain 1.1
+    # orbit 2
     , id
     -- $ chunk 4 (ply 2)
     -- $ fast 2
@@ -20,10 +22,11 @@ do
     -- # speed (range 0.5 1.5 $ slow 3 sine)
     # gain 0.9
     , id
-    $ juxBy 0.5 rev
+    $ juxBy 0.75 rev
     $ chunk 4 (hurry 0.5)
     $ repeatCycles 4
-    $ degradeBy 0.2
+    -- $ degradeBy 0.2
+    $ slow 2
     $ stutWith 8 "{e s q}%4" ((|* gain 0.9) . (|* legato 0.9) . (|* speed "{1 -1.5}%5"))
     $ s "uks:19*2"
     # nudge 0.9
@@ -33,25 +36,31 @@ do
     $ s "<[~ ukclap:16]!5 ukclap:16*4>"
     # nudge 0.9
     # crush 2
+    # shape 0.5
     ]
     # shape 0.5
+    # cps 0.35
   d2
-    -- $ hurry 0.5
-    $ juxBy 0.25 rev
-    $ degradeBy "{1 0 0 0}%5"
-    $ sometimesBy 0.05 ((# legato 0.5) . (# delay 1) . (# delayt "1%16 1%32") . (# delayfb 0.8) . (# lock 1))
-    $ chunk 4 (hurry 0.25 . (|* speed "-1"))
+    $ hurry 0.125
+    $ juxBy 0.25 (rev . hurry 1)
+    $ degradeBy "{1 0 0}%4"
     -- $ repeatCycles 4
+    $ sometimesBy 0.125 ((# legato 0.25) . (# delay 1) . (# delayt "1%16 1%32") . (# delayfb 0.9) . (# lock 1))
+    $ chunk 4 (hurry "2" . (# accelerate "{-0.5 0 4}%5"))
     $ stutWith 4 "7%16" ((|+ note "{5 -5}%5") . (|+ n "{0 11 <12 0!2>}%5"))
+    -- $ stutWith 4 "7%16" ((|+ note "{5 -5}%5") . (|+ n 11))
     $ n "69 18 10 45"
+    -- $ n "18*4"
     # s "ukmodchop"
     # cut 1
-    # shape 0.5
-    -- # legato 0.5
+    # shape 0.8
+    # legato 2
     # att 0.05
-    # rel 1
+    # rel 5
   d3
-    $ s "{readorb:1 readorb:0}%5"
+    $ s "{readorb:1,readorb:0}%5"
     # legato 1.1
-    # rings "40" 0 0.6 (range 0.3 0.9 $ slow 3.4 sine) (range 0 0.3 $ slow 0.6 sine)
+    # rings "40" 0 0.6 (range 0.3 0.9 $ slow 0.4 sine) (range 0 0.3 $ slow 0.6 sine)
     # ringsmodel 0
+    # shape 0.9
+ 

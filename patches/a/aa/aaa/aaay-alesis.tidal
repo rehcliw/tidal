@@ -1,0 +1,65 @@
+do
+  let fmType = 10
+      driveLvl = 63
+      fmAmt = 9
+      osc1waveform = 11
+      osc1waveshape = 12
+      ringModLvl = 32 -- 0 100
+      driveType = 62 -- 0 6
+  d1
+    $ stack [id
+    $ n (scale "spanish" $ stutWith "3 4" ("5%16 3%8 1%8 5%8") (|+ "{7 -7 14 12 -12}%7") $ "a4 e6 g6 d5"),
+    nrpnn ringModLvl # nrpnv "<50>",
+    nrpnn osc1waveform # nrpnv "<1 2 0>",
+    nrpnn osc1waveshape # nrpnv "{75 -10 10}%2",
+    nrpnn fmAmt # nrpnv "{200 100 50 25 75}%5",
+    nrpnn fmType # nrpnv "{1 0 2}%4",
+    nrpnn driveType # nrpnv "{1 2 4}%2",
+    nrpnn driveLvl # nrpnv "{1 2 0}%5"
+    -- ccn voiceP # ccv "100"
+    -- ccn cutoff # ccv "50",
+    -- ccn attack # ccv "2",
+    -- ccn sus # ccv "20",
+    -- ccn lfoRate # ccv "0"
+    -- ccn 44 # ccv (range 10 120 sine)
+    ] # s "midi"
+
+    scaleList
+
+    setcps (135/60/4)
+
+d2
+$ s "<inr*2 inr*5 inr*3>"
+# accelerate "{0 -3 -0.1 0.5 2 0}%5"
+# gain 1.3
+# shape 0.8
+
+once $ s "freeLoops"
+
+d3
+$ hurry 0.25
+$ iter 3
+$ chunk 4 ((# accelerate "-1 2") . hurry 2)
+$ striate "{8 1 16}%2"
+$ s "<loop*2 loop!3>"
+# legato 1
+# speed 1
+
+d4
+$ n "{1 2 4}%7"
+# s "readorb"
+# delay "{0 1}%7"
+# delayt "{0.3 0.01 0.05}%5"
+# delayfb 0.9
+# coarsebus 0 (segment 512 $ range 0 4 $ saw)
+
+d5
+$ s "{readorb:3 readorb:2 readorb:1}%4"
+# fshift "{-50 150 0 -100 100}%3"
+# bpfbus 1 (segment 512 $ range 9500 200 $ fast 7.3 $ saw)
+# bpq "3 6"
+
+d6 $ s "olooper"
+# cps (range 0.3 1.6 $ fast 3 $ saw)
+
+d6 silence

@@ -7,10 +7,11 @@ s.reboot { // server options are only updated on reboot
 	s.options.numWireBufs = 2048; // increase this if you get "exceeded number of interconnect buffers" messages
 	s.options.maxNodes = 1024 * 32; // increase this if you are getting drop outs and the message "too many nodes"
 	s.options.numOutputBusChannels = 2; // set this to your hardware output channel size, if necessary
-	s.options.numInputBusChannels = 2; // set this to your hardware output channel size, if necessary
-	s.options.inDevice_("USB Audio CODEC "); // for tidal looping w external input (xenyx)
+	// s.options.numInputBusChannels = 2; // set this to your hardware output channel size, if necessary
+	s.options.numInputBusChannels = 18;
+	// s.options.inDevice_("USB Audio CODEC "); // for tidal looping w external input (xenyx)
 	// s.options.inDevice_("Volt 2"); // for tidal looping w volt 2
-	// s.options.inDevice_("MiniFuse 2 Start");
+	s.options.inDevice_("MiniFuse 2 Start");
 	// s.options.inDevice_("Aggregate Device"); // for tidal looping self t
 	s.options.outDevice_("Screen Recording Audio"); // for screen recording
 	// s.options.outDevice_("MacBook Pro Speakers");

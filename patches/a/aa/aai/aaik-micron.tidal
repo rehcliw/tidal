@@ -1,0 +1,71 @@
+d1
+$ stack [id
+  $ midibend (segment 512 $ range 0 16383 $ fast "{0.5 4 2 5}%4" $ saw)
+  , id
+  $ struct "t*2 t*4"
+  $ note "{0 4 9 -5}%5"
+  -- # nudge "<0 0.9>"
+  # legatoTake "leg" [0.05,1,0.1,0.5,1,0.5]
+  # gain "{0.5 1 1.4}%5"
+  , id
+  $ nrpnn 11 
+  # nrpnv "{1 2 0 3}%3"
+  , id
+  $ nrpnn 9 
+  # nrpnv "{200 100 50 25 75 0 250}%5"
+] # s "midi" 
+
+d5
+$ slow 4
+$ s "in"
+
+once $ s "olooper"
+
+once $ s "freeLoops"
+
+d2 
+$ "loop"
+# legato 1
+-- # speed "{0.5 2 1}%5"
+# gain 1.2
+# shape 0.5
+# cps 1
+# speed 0.1
+-- # squiz 4
+-- # accelerate 1
+
+d3
+$ palindrome
+$ chunk 4 (hurry "0.5 2")
+$ sometimes (|* speed "4 2 -0.5")
+$ stutWith 3 "1%8" (|* speed "{1.1 0.9}%5")
+$ s "[dyskick:17*2 dyssnare:10,<dyshh:3*8 dyshh:4*16>]"
+# gain 1.6
+# shape 0.9
+# nudge 0.35
+# crush "{2 4}%5"
+# legato "0.8 1.2"
+# cps ("{0.6 1.2 2.4 0.3}%4" * "{2 1}%4")
+-- # cps 0.6
+# cut "{1 0}%7"
+
+d4
+$ n "1 2 4 5"
+# s "readorb"
+# bpfbus 0 (segment 512 $ range 50 9000 $ fast 12.4 $ saw)
+# bpq 5
+
+d5
+$ slow 4
+$ s "in"
+
+d6
+$ s "{readorb:3 readorb:4 readorb:1 readorb:2}%3"
+# delay 1
+# delayt "{0.005 0.01 0.03 0.6 0.1}%4"
+# delayfb 0.9
+# clouds 0 0.2 0.3 0.9
+# cloudsblend "{0.7 0.2 0.5}%7" "0.3 0 0.6" "{0.5 0.7 0.2}%5" 0.9
+# cloudsfreeze "1 0"
+
+all $ degradeBy 0.9
