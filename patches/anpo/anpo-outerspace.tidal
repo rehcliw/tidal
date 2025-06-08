@@ -1,0 +1,96 @@
+once $ s "numbers:6" # accelerate "-1" # squiz 1
+
+d1 $ slow 4 $ stutWith 2 "e" ((# speed "{2 0.5}%5") . (|* gain 0.9)) $ striateBy 32 0.005 $ s "rollergirl" # legato 1 # gain 0.8 # coarse 6 # delay 1 # delayt 0.2 # delayfb 0.9 # room 0.9 # sz 0.9
+
+d1
+-- $ jux rev
+-- $ stutWith 4 "5%32" (|+ note 7)
+$ fast 4
+$ struct "t(<5 3>,8,<1 0 3>)"
+$ note "{0 9 4 7}%5"
+# s "imp"
+-- # speed "{0.6 1 0.8 0.9}%5"
+-- # cut 1
+-- # crush 2
+# att 0.4
+# rel 4
+# delay 1
+# delayt "0.04"
+# delayfb 0.9
+
+-- v1 250606
+d1
+$ hurry "0.25"
+$ striate' "{64 32 8}%5" (rangex 0.0001 0.01 $ "^2")
+-- $ s "pulsar"
+-- $ s "pulsar readorb:1"
+-- $ ply "{2 1 4}%16"
+$ s "pulsar <readorb:1 readorb:4 readorb:3>"
+-- $ s "pulsar*32"
+# gain 0.8
+# ampbus 0 (range 0 1.2 $ "^1")
+-- # accelerate 0
+# accelerateTake "at" [0,1,-2]
+# cps "{0.25 0.5 0.175}%4"
+-- # cps 0.25
+-- # cut "1 0"
+# shape 0.5
+-- # speed 0.125
+-- # vowel "a"
+-- # coarse 1
+-- # grain "{0 0.1 0.75 0.62}%32" "{0.001 0.0001 0.0003 0.0002}%9"
+
+d2
+$ s "{readorb:0 readorb:4}%1.1"
+# legato 1.1
+# combbus 1 ((segment 512 $ range 0 0.5 $ "^3") * (segment 512 $ range 0.5 1.5 $ fast 12.3 $ saw))
+# distortbus 4 ((segment 512 $ range 0 0.9 $ "^3"))
+# crush 2
+# gain 0.6
+# att 0.05
+# rel 2
+
+d3
+$ slow 4
+$ s "olooper"
+# n "<0 1 2 3>"
+
+d3 silence
+
+once $ s "olooper"
+
+once $ s "freeLoops"
+
+
+d4
+-- $ hurry 0.5
+-- $ jux rev
+-- $ rarely (# accelerate "1")
+-- $ sometimes (jux rev . ply "{8 4}%5")
+-- $ sometimesBy 0.12 (striate 32)
+-- $ splice 8 (run 8)
+-- $ n "{0 .. 3}%4"
+$ n "0"
+# s "loop"
+-- # gain 1.1
+# gain 1.1
+# shape 0.5
+# coarse "2 0"
+# crush "4"
+# speed "{0.75!3 -1}%5"
+# legato (range 0 1 $ "^4")
+# lpfbus 5 (segment 512 $ range 500 3900 $ fast 2.79 $ saw)
+# lpq 0.2
+
+d5 
+$ s "{readorb:1 readorb:3}%3"
+# legato 1.1
+# bpfbus 2 (range 50 9000 $ "^5")
+# bpq 2
+# delaybus 3 (range 0 1 $ "^6")
+# delayt 0.5
+-- # delayt (0.087 * "<1 0.1 10>" * 2)
+# delayfb 0.85
+-- # lock 1
+
+all $ (# djf 0.5)

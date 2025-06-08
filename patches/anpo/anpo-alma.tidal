@@ -1,0 +1,48 @@
+-- beats:
+-- 0:00 - 
+
+once $ s "numbers:4" 
+
+d1
+$ striateBy 64 (rangex 0.0001 0.02 $ "^2")
+$ s "ice"
+# legato 1.2
+# gain 0.51
+# ampbus 0 (range 0 1.5 $ "^1")
+# shape 0.7
+# cut 0
+# speed ((range 0.2 2 $ "^3") * "{1 -1 -0.5}%5")
+
+d2
+-- $ hurry 0.5
+$ slow 2
+$ freq "20"
+# s "pmsin"
+# gain 0.7
+# att 0.3
+# rel 3
+# distort 0.1
+# speed 0.5
+# delay 1
+# delayt 0.6
+# delayfb 0.9
+
+d3
+$ s "readorb:1 readorb:0"
+# lpfbus 1 (range 150 5000 $ "^4")
+# lpq "{0.2 0 0.3 0.1}%5"
+
+
+once 
+-- $ hurry 0.5
+-- $ striate 32
+$ s "dysgfx:19" 
+# speed 0.3
+# gain 0.6
+# accelerate "-0.1"
+# crushbus 1 (range 2 8 $ fast 2 $ perlin)
+# delay 1
+# delayt 0.3
+# delayfb 0.87
+
+all $ (# djf 0.5)

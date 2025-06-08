@@ -1,0 +1,60 @@
+d1
+-- $ slow 2
+-- $ iter 4
+-- $ hurry 0.5
+$ sometimes (juxBy (range "-0.5" 0.5 $ perlin) (rev . (|* speed "{-2 4 1}%5")))
+$ rarely (ply "4")
+$ stutWith 6 "5%12" ((|* gain 0.9) . (|* speed (range 0.5 2 $ fast 1.5 $ saw)))
+$ s "ksabl*6"
+# legato 1
+# grain (range 0 1 $ fast 1 $ sine) "{0.01 0.005}%7"
+# speed "{2 4 -1}%5"
+# ampbus 0 (segment 512 $ range 0.2 0.6 $ fast 9 $ saw)
+# cut "{0 1 2}%7"
+# gain 1.4
+# accelerate "{-1 0 1}%5"
+# cps (range 0.6 0.6 $ saw)
+
+d2
+-- $ hurry 0.5
+$ sometimesBy 0.3 (striate "{2 4 8}%5" . ply "<4 2>")
+$ rarely (slice 16 (run 16))
+$ loopAt "4"
+$ splice 8 "0 1 2 3"
+$ s "ksbrk:5"
+# legato 1
+# shape 0.5
+# gain 1.2
+# speed "<-1 1>"
+
+once $ s "olooper"
+
+d3
+$ chunk 4 (hurry 2)
+$ striateBy 16 0.1
+$ s "loop"
+# coarsebus 3 (segment 512 $ range 0 4 $ slow 4.2 $ saw)
+# gain 1.6
+# shape 0.8
+# legato 1
+# speed ((range 0.5 2 $ fast 1.5 $ saw) * "-1 1")
+# accelerate "{0 1 -1}%5"
+
+d4
+$ s "{readorb:2 readorb:4 readorb:1 readorb:5}%7"
+# fshiftbus 2 (segment 512 $ range "-600" 600 $ fast 2.4 $ saw)
+# combbus 1 (segment 512 $ range 0 0.5 $ slow 1.3 $ sine)
+
+d5
+$ s "{readorb:3 readorb:0 readorb:2 readorb:1}%5"
+# delay "0 1"
+# delayt ("0.0087" * "{89 1 1.02 0.96 10}%5")
+# delayfb 0.9
+-- # lock 1
+
+d6
+$ s "{readorb:3 readorb:0 readorb:4}%6"
+# verb 0.8 0.5 0.5 0.9
+# verbdiff 0.2
+
+all $ ((# att 0.3) . (# rel 4) . (# djf (range 0.4 0.8 $ fast 0.15 $ saw)))
