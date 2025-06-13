@@ -13,7 +13,7 @@ $ s "ice"
 # cut 0
 # speed ((range 0.2 2 $ "^3") * "{1 -1 -0.5}%5")
 
-d2
+d3
 -- $ hurry 0.5
 $ slow 2
 $ freq "20"
@@ -33,14 +33,14 @@ $ s "readorb:1 readorb:0"
 # lpq "{0.2 0 0.3 0.1}%5"
 
 
-once 
+d4 
 -- $ hurry 0.5
--- $ striate 32
+$ striate 32
 $ s "dysgfx:19" 
-# speed 0.3
-# gain 0.6
+# speed (range 0.1 0.5 $ fast 2.1 $ perlin)
+# gain 0.7
 # accelerate "-0.1"
-# crushbus 1 (range 2 8 $ fast 2 $ perlin)
+# crushbus 1 (range 2 4 $ fast 2 $ perlin)
 # delay 1
 # delayt 0.3
 # delayfb 0.87
