@@ -1,4 +1,4 @@
--- once $ s "numbers:2" # gain 1.1
+once $ s "numbers:3" # gain 1.1
 
 -- once $ s "hh*4" # gain 1.1
 
@@ -14,52 +14,97 @@ resonance: is the filter resonance
 -}
 
 d1
-$ hurry 0.1
+$ hurry 0.5
 -- $ degrade
 $ rot "<0 2 1>"
 $ stutWith 4 "e" (|+ n 4)
 $ n ("[0 2] 2 -7" - "3 13 -2")
 # s "superstatic"
-# voice 1
-# accelerate "2.9 -2.9"
-# pitch1 "1 0 0.5"
+# voice 4
+# accelerate "{0 1.9 -0.9}%5"
+# pitch1 "{1 0 0.5}%4"
 # resonance 0.9
-# slide 0.7
-# att 0.1
+# slide 0.9
+# att 0.4
 # hold 2
 # rel 9
-# vowel "{~ a o e}%2.1"
+-- # vowel "{~ a i o e}%2.1"
+# distort 0.9
 # coarse 8
-# distort 0.7
-# lpfbus 0 (segment 16 $ range 50 15000 $ fast 3.2 $ sine)
-# lpq 0.1
-# gain 1.1
+# lpfbus 0 (segment 16 $ range 500 1500 $ fast 0.07 $ sine)
+# lpq 0.6
+# gain 1.2
 
-once $ s "olooper" # n 1
+once $ s "olooper" # n 0
 
 once $ s "freeLoops"
 
+all (# djf 0.25)
+
+d1 silence
+
 d2
-$ hurry 0.2
-$ sometimes (chop "{2 64 32 256}%1.2" . (|- begin 0.005) . (|+ end 0.005))
-$ hurry "{2 0.25 4 0.5}%5"
-$ s "{loop loop:1}%0.9"
+-- $ hurry 0.2
+-- $ sometimes (chop "{2 64 32 256}%1.2" . (|- begin 0.005) . (|+ end 0.005))
+-- $ hurry "{2 0.25 0.5 0.5}%5"
+$ hurry 0.9
+$ s "{loop loop:1}%2"
 -- $ s "loop"
+# coarse 8
+# att 0.1
+# rel 6
 # legato 1.1
-# gain 1.3
-# shape 0.5
-# 
+# speed 0.5
+# gain 1
+# shape 0.8
+# cps 0.2
 
 d3
 -- $ sometimes (# crush 2)
-$ s "[readorb:1 readorb:0 readorb:3]*2"
+-- $ s "{readorb:1 readorb:0 readorb:3 readorb:4}%5"
+$ s "readorb:0 readorb:1 readorb:5"
 # legato 1.1
-# clouds (range 0 1 $ fast 0.22 $ sine) 0.2 0.7 0.7
-# cloudsblend "0.8" 0.8 0.7 0.8
--- # cloudsfreeze "{0 1}%6.6"
-# cloudsfreeze 0
+# clouds (range 0 1 $ fast 0.22 $ sine) 0.3 0.7 0.8
+# cloudsblend "0.8" 0.8 0.5 0.9
+# cloudsfreeze "{0 1}%6.6"
+-- # cloudsfreeze 0
 
 d4
 $ s "{readorb:0 readorb:1 readorb:2}%3.1"
 # legato 1.1
 # fshift "50 0 -500"
+
+d5
+-- $ hurry 0.25
+$ juxBy (range 0.5 "-0.5" $ perlin) (rev . hurry 2)
+$ loopAt ("{1%4 4 1}%5")
+-- $ slow 3
+$ plyWith 16 ((|* gain 0.97) . (|* speed 1.1) . (|* legato 0.9))
+$ splice 64 "37 38 30 20"
+-- $ splice 64 "34"
+-- $ striateBy 64 (rangex 0.01 0.1 $ fast 1.5 $ saw)
+$ s "mower"
+# legato 1.1
+-- # cps (range "4 2" 0.25 $ slow 1.5 $ saw)
+-- # cps 0.5
+# speed (range 0.5 1 $ fast 1.5 $ saw)
+# vowel "o"
+# accelerate 1
+# gain 1
+# distort 0.8
+# crush 2
+
+d6 
+$ s "readorb:4 inr"
+-- # att 0.3
+-- # rel 3
+# legato 1.1
+# accelerate 2
+# fshift "-500"
+# delaybus 3 1
+# delayt (range 0.025 0.035 $ fast 2.3 $ saw)
+# delayfb 0.9
+# lock 1
+# gain 1.4
+
+once $ s "808(5,8)"

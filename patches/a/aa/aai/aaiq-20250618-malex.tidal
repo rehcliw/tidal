@@ -1,0 +1,71 @@
+d1
+-- $ loopAt 4
+$ degradeBy 0.9
+$ jux (rev . hurry 0.5)
+$ sometimes (plyWith 4 ((|* gain 0.9) . (|* speed "-1")))
+$ slice 16 (run 16)
+$ s "ksbrk:2"
+-- # legato 0.5
+# cps (120/4/60)
+# gain 1.1
+# distort 0.1
+# lpfbus 0 (segment 512 $ range 100 9500 $ fast 0.5 $ saw)
+# delay 0.8
+# delayt 0.125
+# delayfb 0.9
+# lock 1
+
+d2
+$ slow 2
+$ n "[-14,-21,-28,-7]"
+# s "superhammond"
+# legato 1.8
+# voice 8
+# gain 0.9
+# att 0.45
+# rel 6
+# lpfbus 0 (segment 512 $ range 550 7000 $ slow 4 $ sine)
+# lpq 0.4
+# coarse 7
+# distort 0.4
+
+d3
+$ s "{readorb:1 readorb:0}%5"
+# clouds 0 0.2 0.6 0.6
+# cloudsblend 0.8 0.2 0.8 0.3
+
+d4
+-- $ degradeBy 0.5
+-- $ chunk 4 (hurry "{2 0.5}%7")
+-- $ striateBy 16 (range 0.01 0.07 $ slow 3.5 $ sine)
+$ hurry 0.25
+$ n "{0 -12 0 12 0}%4"
+# legato 0.1
+# s "superhoover"
+-- # legato 1.5
+-- # speed 0.5
+# accelerate "{10 0 -2 0}%5"
+# delay 1
+# delayt "0.9 0.6"
+# delayfb 0.9
+
+d1
+-- $ loopAt 4
+$ jux rev
+$ repeatCycles 4
+$ chunk 4 (rev . hurry 0.5)
+$ stack [id
+$ s "gtsclp*4"
+# legato 0.5
+, id
+$ s "gtsk:4*3"
+, id
+$ s "gtsh:9*5"
+]
+# nudge 0.1
+-- # speedTake "s" [1,-1,0.5]
+-- # nTake "n" [0,5]
+-- # accelerate "-0.4 0.4"
+-- # vowel "e"
+-- # bpf (segment 16 $ range 100 4500 $ sine)
+-- # bpq 2

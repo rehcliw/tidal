@@ -2,30 +2,39 @@ let width = pF "width"
     sustain = pF "sustain"
 in
 d2
--- $ jux (rev . hurry "0.9 1.1")
+-- $ jux (rev . (|* delayt 0.5) . slow 2)
 -- $ hurry 0.5
-$ stutWith 3 "q" (|+ freq "{14 7 100}%3")
+-- $ stutWith 8 "e" ((|+ freq "{14 7 100}%3") . (|* gain 0.9))
 $ delayt ("{0.01 0.02 0.001 0.003 0.005}%6" * "{0.5 2 1 0.5 1}%3")
-# s "dirac gabor"
+-- # s "dirac gabor"
+# s "dirac"
 # delay 1
-# delayfb 0.95
+# delayfb 0.9
 -- # lock 1
-# gain 1.5
+# gain 1
 # shape 0.5
-# distort 0.9
-# legato (range 0.1 2 $ slow 4 $ sine)
--- # room 0.9
--- # sz 0.9
+-- # distort 0.1
+# legato (range 0.1 2 $ slow 1.5 $ sine)
+-- # verb 0.9 0.6 0.6 0.9
 -- # cps "{0.5 1 0.25}%9"
 -- # cut 1
 # width 1.9
 # sustain 2
 
-once $ s "looper"
+once $ s "olooper"
 
-d3 $ s "loop" 
+d3 
+$ striate 64
+$ s "loop" 
 # gain 1.9
 # shape 0.8
-# speed "1" 
-# coarse 0 
+# speed "-1" 
+# coarse 4
 -- # accelerate "{-0.5 0.2}%5"
+
+d4
+$ s "readorb:1 readorb:0"
+# legato 1.1
+# delay 1
+# delayfb 0.9
+# delayt 0.9
