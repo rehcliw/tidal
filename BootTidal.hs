@@ -102,6 +102,11 @@ lessDense :: Eq a => Double -> Pattern a -> Pattern a
 lessDense density p = p {query = (densityFilter density). sortOn whole . query p}
 :}
 
+-- other custom funcs
+:{
+    let dtfl wet delt delfb lck = ((# delay wet) . (# delaytime delt) . (# delayfeedback delfb) . (# lock lck))
+:}
+
 -- tidal-looper
 :{
     linput = pI "linput" -- change input bus
