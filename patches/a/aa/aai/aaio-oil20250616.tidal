@@ -35,6 +35,8 @@ $ stack [id
 |* gain 0.7
 # cps "0.2 0.1"
 
+d1 silence
+
 d2
 $ s "{readorb:0 readorb:2}%3"
 # legato 1.1

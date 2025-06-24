@@ -1,0 +1,26 @@
+d1
+$ juxBy 0.5 rev
+$ hurry "2 0.5"
+$ echoWith 3 "{e}%3" (rev . hurry "{0.5}%3" . (|+ cut "{2 1}%5"))
+$ s "{gtsk gtsk gtss gtsh gtsh}%4" 
+# hpfbus 1 (smooth $ slow 4 $ hp)
+# lpfbus 0 (smooth $ slow 2 $ lp)
+# nTake "nt" [10,21,30,17]
+# legatoTake "lt" [0.25,1,2]
+# distortTake "dt" [0,1]
+# cut "{1 0}%7"
+
+d2
+$ n "{1 0 2}%5.5"
+# legato 1.1
+# s "readorb"
+# hpf hp
+# lpf (lp / 2)
+# fshift "-50 500"
+
+d3
+$ n "{1 0}%3"
+# s "readorb"
+# delaybus 2 1 # delayt (every 3 rev $ "0.013 0.007" * "{0.5 1 2 1.5}%6.5" ) # delayfb 0.8
+# clouds 0 0.5 0.5 0.9
+# cloudsblend 0.7 0.2 0.7 0.7
