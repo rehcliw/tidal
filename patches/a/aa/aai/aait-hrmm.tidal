@@ -1,37 +1,40 @@
 d1
 -- $ fast 0.5
-$ degrade
+-- $ degrade
 $ stack [id
-  -- $ dtfl 0.5 (palindrome $ fast "{0.5 2}%3" $ "1%64 1%32 1%4 1%8") 0.9 "{0 1}%3"
+  $ dtfl 0.5 (palindrome $ fast "{0.5 2}%3" $ "1%64 1%32 1%4 1%8") 0.9 "{0 1}%3"
   $ s "[gtsk:9 ~] dyskick:1 [dyskick:14 ~ dyssnare] dysgfx:15"
-  -- # legato "{0.5 1 0.01 1%7 0.1 1!3}%4"
-  -- # distort 0.9
-  -- # crush 4
-  -- # lpfbus 0 (range 500 9000 $ rand)
-  -- # lpq ("9 1 14" / 20)
-  -- # accelerate "{1 0 -1}%5"
-  # speed 0.25
-  # att 0.3
-  # rel 8
+  # legato "{0.5 1 0.01 1%7 0.1 1!3}%4"
+  # distort 0.9
+  # crush 4
+  # lpfbus 0 (range 500 9000 $ rand)
+  # lpq ("9 1 14" / 20)
+  # accelerate "{1 0 -1}%5"
+  -- # speed 0.25
+  -- # att 0.3
+  -- # rel 8
   , id
+  $ degradeBy 1
   $ s "gtsh*16"
   -- # orbit 1
   # gain 1.2
 ]
-# cps (range "0.25 0.5" 0.125 $ fast 0.25 $ saw)
+# cps (range "0.25 0.9" 0.125 $ fast 0.25 $ saw)
 
 once $ s "olooper"
 
+once $ s "freeLoops"
+
 d2
 $ hurry 0.125
--- $ jux rev
--- $ within (0.25, 0.75) (echoWith 4 "e" ((|* gain 0.9) . (|* legato 0.9) . (|* speed 1.1)))
--- $ chunk 4 (hurry "0.5 2")
--- $ splice 8 (run 8)
+$ jux rev
+$ within (0.25, 0.75) (echoWith 4 "e" ((|* gain 0.9) . (|* legato 0.9) . (|* speed 1.1)))
+$ chunk 4 (hurry "0.5 2")
+$ splice 8 (run 8)
 $ s "loop"
-# gain 1.9
+# gain 1.1
 # legato 1.1
--- # coarse "{0 4}%5"
+# coarse "{0 4}%5"
 -- # speed "-1"
 -- # accelerate "{2 0.1 0 -1}%5"
 
@@ -40,11 +43,11 @@ $ n "{0 1 3}%4"
 # s "readorb"
 # legato 1.1
 # clouds 0 0.7 0.7 0.7
-# cloudsblend 0.8 0.4 0.7 0.8
+# cloudsblend 0.8 0.4 0.4 0.8
 
 d4
 $ n "{2 0}%3.5"
 # s "readorb"
 # legato 1.1
-# bpfbus 1 (range 500 9000 $ slow 1.5 $ sine)
-# bpq 8
+# bpfbus 1 (range 500 900 $ slow 1.5 $ sine)
+# bpq 2

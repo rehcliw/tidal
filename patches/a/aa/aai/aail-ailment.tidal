@@ -1,9 +1,9 @@
 d1
 -- $ slow 2
--- $ iter 4
--- $ hurry 0.5
-$ sometimes (juxBy (range "-0.5" 0.5 $ perlin) (rev . (|* speed "{-2 4 1}%5")))
-$ rarely (ply "4")
+$ iter 4
+-- $ sometimes (hurry 0.5)
+-- $ sometimes (juxBy (range "-0.5" 0.5 $ perlin) (hurry 2 . rev . (|* speed "{-2 4 1}%5")))
+$ rarely (ply "8")
 $ stutWith 6 "5%12" ((|* gain 0.9) . (|* speed (range 0.5 2 $ fast 1.5 $ saw)))
 $ s "ksabl*6"
 # legato 1

@@ -2,7 +2,7 @@ let hp = "{9500 400 1000 6500 200}%3"
     lp = "{200 100 300 500 50}%4"
 
 d1
-$ hurry 0.5
+-- $ hurry 0.5
 $ juxBy 0.5 rev
 $ every 3 (# lpfbus 0 (smooth $ slow 2 $ lp))
 $ whenmod 2 5 (# hpfbus 1 (smooth $ slow 4 $ hp))
@@ -22,7 +22,7 @@ $ n "{1 0 2}%5.5"
 # s "readorb"
 # hpf hp
 # lpf (lp / 2)
-# fshift "-50 500"
+# fshift "-500 500"
 
 d3
 $ n "{1 0}%3"

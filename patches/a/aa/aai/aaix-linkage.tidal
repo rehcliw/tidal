@@ -1,0 +1,56 @@
+d1
+$ n (scale "mixolydian" $ stutWith 4 "{e 0 s}%4" (|+ "<-5 -25> -11") $ "{<0 -12> 1 -5}%5")
+# s "midi"
+# cps (segment 16 $ range 0.25 2 $ fast 4 $ saw)
+
+d2
+$ hurry "{2 0.5 0.1}%4"
+$ s "inr*0.1"
+# accelerate "-0.2"
+
+d3
+$ s "olooper"
+# n "<0 1 2 3 4 5 6 7>"
+
+once $ s "freeLoops"
+
+d4
+$ hurry "{1 1.5 2}%6"
+$ juxBy (range "-0.5" 0.5 $ perlin) (rev . hurry 1.5)
+$ sometimes (plyWith 4 (|* gain 0.9) . (|* legato 0.9) . (|* speed 1.1))
+-- $ mask "{1 0 1 1 0}%9"
+$ n (run 8)
+# s "loop"
+# legato 1.2
+-- # att 0.1
+-- # rel 4
+-- # coarse 8
+# accelerate "0.05 -0.1"
+-- # speed "-0.3 2"
+# ampbus 3 (range 0 1 $ fast 4.5 $ saw)
+
+d5
+$ n "{1 3 5}%4.5"
+# s "readorb"
+# legato 1
+# djfbus 4 (range 0.3 0.7 $ fast 9.1 $ sine)
+# comb 0.5
+# delay 1
+# delayfb 0.95
+# delayt ("0.1 0.3" * (range 0.9 1.1 $ perlin))
+
+d6
+$ n "{4 1 3 7}%2.3"
+# legato 1.1
+# s "readorb"
+-- # crush 16
+# bpfbus 0 (range 50 9500 $ slow 0.14 $ saw)
+# bpq 8
+
+d7
+$ n "{4 1 3 5}%5.5"
+# s "readorb"
+# distort 0.5
+# clouds (range 0 1 $ slow 3.4 $ saw) 0.5 0.9 0.9
+# cloudsblend 0.9 0.2 0.4 0.9
+# cloudsfreeze "0 1"

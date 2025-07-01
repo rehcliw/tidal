@@ -9,10 +9,10 @@ s.reboot { // server options are only updated on reboot
 	s.options.numOutputBusChannels = 2; // set this to your hardware output channel size, if necessary
 	// s.options.numInputBusChannels = 2; // set this to your hardware output channel size, if necessary
 	s.options.numInputBusChannels = 18;
-	// s.options.inDevice_("USB Audio CODEC "); // for tidal looping w external input (xenyx)
+	s.options.inDevice_("USB Audio CODEC "); // for tidal looping w external input (xenyx)
 	// s.options.inDevice_("Volt 2"); // for tidal looping w volt 2
 	// s.options.inDevice_("MiniFuse 2 Start");
-	s.options.inDevice_("Aggregate Device"); // for tidal looping self t
+	// s.options.inDevice_("Aggregate Device"); // for tidal looping self t
 	s.options.outDevice_("Screen Recording Audio"); // for screen recording
 	// s.options.outDevice_("MacBook Pro Speakers");
 	// s.options.outDevice_("WH-1000XM4");
@@ -27,8 +27,8 @@ s.reboot { // server options are only updated on reboot
 		~looper = TidalLooper(~dirt);
 
 		// You can adjust these parameter even in runtime
-		~looper.rLevel = 1.5; // recording level
-		~looper.pLevel = 1; // prerecording level
+		~looper.rLevel = 2; // recording level
+		~looper.pLevel = 1.2; // prerecording level
 		// ~looper.linput = 0; // Default 0; Set this to your main input port.
 		// ~looper.lname = "loop"; // default "loop"
 

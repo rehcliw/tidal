@@ -16,9 +16,9 @@ $ n "20 7 10 0"
 # mstart "{0.5 2 4}%5"
 # cut "{1 0}%7"
 # shape 0.5
-# cps "{0.02 0.04}%4"
+# cps "{0.2 0.04}%4"
 
-once $ s "olooper" # n "1"
+once $ s "olooper" # n "0"
 
 once $ s "freeLoops"
 

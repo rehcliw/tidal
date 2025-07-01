@@ -11,7 +11,7 @@ do
     # gain 1.1
     # orbit 2
     , id
-    -- $ chunk 4 (ply 2)
+    $ chunk 4 (ply 2)
     -- $ fast 2
     -- $ struct pat
     $ repeatCycles 4
@@ -38,14 +38,14 @@ do
     # crush 2
     # shape 0.5
     ]
-    # shape 0.5
+    # shape 0.7
     # cps 0.35
   d2
     $ hurry 0.125
     $ juxBy 0.25 (rev . hurry 1)
     $ degradeBy "{1 0 0}%4"
     -- $ repeatCycles 4
-    $ sometimesBy 0.125 ((# legato 0.25) . (# delay 1) . (# delayt "1%16 1%32") . (# delayfb 0.9) . (# lock 1))
+    $ sometimesBy 0.25 ((# legato 0.25) . (# delay 1) . (# delayt "1%16 1%32") . (# delayfb 0.9) . (# lock 1))
     $ chunk 4 (hurry "2" . (# accelerate "{-0.5 0 4}%5"))
     $ stutWith 4 "7%16" ((|+ note "{5 -5}%5") . (|+ n "{0 11 <12 0!2>}%5"))
     -- $ stutWith 4 "7%16" ((|+ note "{5 -5}%5") . (|+ n 11))

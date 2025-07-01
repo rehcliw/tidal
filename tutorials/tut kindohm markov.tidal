@@ -1,0 +1,77 @@
+-- markov chains & masking
+-- https://www.youtube.com/watch?v=2Qj1EOEyQyk
+
+-- lets use these samples
+d1 $ s "ul:3 peri:3 peri:2"
+
+-- a markov chain: 
+-- you a list of states, and there's a for each state, there's a probability of what state it will transform into
+
+-- we'll set sample being played w a markov chain
+-- first param is length (16 steps here)
+-- second param is beginning state index
+-- third param is a list of states
+-- each state needs a probability that it will move to a different state
+-- so here, first state has 50% chance it will stay in first state, 50% chance it will transition to second state
+-- evaluating this line will show a generated pattern, basically random flipping coin
+markovPat 16 0 [ [0.5, 0.5] , [0.5, 0.5] ]
+
+-- if we change to 0 prob of changing to state 2, then we should get all 0s
+markovPat 16 0 [ [1, 0] , [0.5, 0.5] ]
+
+-- this flips back n forth
+markovPat 16 0 [ [0, 1] , [1, 0] ]
+
+-- when we eval in context of a running tidal pattern, different markov pat every cycle
+d1 $ s (markovPat 16 0 [ [0.5, 0.5] , [0.5, 0.5] ])
+-- this doesn't do anything bc we need to map pat of 0s and 1s to our samples
+
+-- so use fmap
+-- fmap expects a list, where the recieved numbers will be mapped to the values at the indices
+-- we need !! bc that means 'select this index'
+d1 
+  $ s ( fmap (["ul:3", "peri:3"]!!) 
+  $ markovPat 16 0 [ [0.5, 0.5] , [0.5, 0.5] ])
+
+-- to add more samples, need to add another state, and probabilities to move to that state
+d1 
+  $ s ( fmap (["ul:3", "peri:3", "peri:2"]!!) 
+  $ markovPat 16 0 [ 
+    [0.5, 0.5, 0.5] , 
+    [0.5, 0.5, 0.5] ,
+    [0.5, 0.5, 0.5]
+    ] )
+
+-- can do rests... throws errors but works
+d1 
+  $ s ( fmap (["ul:3", "peri:3", "~"]!!) 
+  $ markovPat 16 0 [ 
+    [0.5, 0.5, 0.5] , 
+    [0.5, 0.5, 0.5] ,
+    [0.5, 0.5, 0.5]
+    ] )
+
+-- rn it's just random, same as choose function
+-- but markov is powerful!
+-- let's say we want a low chance of two bass drums in a row, or likely it'll move up hihat, etcetc
+-- (values don't have to add up to 1! markovPat normalizes)
+-- so now random but more repetetive, often getting bd, hihat, rest
+d1 
+  $ s ( fmap (["ul:3", "peri:3", "~"]!!) 
+  $ markovPat 16 0 [ 
+      [0.1, 0.9, 0.1] , 
+      [0.1, 0.1, 0.9] ,
+      [0.5, 0.05, 0.5]
+    ] )
+
+-- rn kinda firehose of notes, so let's use mask
+d1 
+  $ mask "1 0"
+  $ s ( fmap (["ul:3", "peri:3", "peri:2"]!!) 
+  $ markovPat 16 0 [ 
+      [0.1, 0.9, 0.1] , 
+      [0.1, 0.1, 0.9] ,
+      [0.5, 0.05, 0.5]
+    ] )
+
+-- kinda tedious to add states, so nice to work with just a few elements
