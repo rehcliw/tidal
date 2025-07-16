@@ -1,5 +1,5 @@
 d1
-$ hurry 0.001
+-- $ hurry 0.001
 $ jux rev
 $ ply "{2 <1 4>}%5"
 $ sometimes (striate' "16 34 2 16" "{0.001 0.002 0.001}%5")

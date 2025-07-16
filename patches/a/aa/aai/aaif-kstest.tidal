@@ -1,7 +1,8 @@
 resetCycles
 
-xfadeIn 1 4
--- $ hurry 0.8
+-- xfadeIn 1 4
+d1
+-- $ hurry 0.5
 $ loopAt "{16 8 16}%8"
 $ slice 32 (plyWith "{4 2}%4" (|+ "{4 8 1 0}%8") "{2 4 0 2 3}%32")
 $ s "ksbrk:3"

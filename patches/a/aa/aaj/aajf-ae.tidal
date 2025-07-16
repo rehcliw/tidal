@@ -1,0 +1,69 @@
+d1
+$ hurry 0.5
+$ juxBy (range "-1" 1 $ perlin) (rev . (|* speed "<[-1 0.5] 1>"))
+-- $ repeatCycles 4
+-- $ rarely (linger 0.125)
+$ sometimes (plyWith 4 ((|* gain 0.9) . (|* speed 1.3)))
+$ loopAt "{3 1.5 6}%5"
+$ fastspread ($) [hurry 2, hurry 0.5, rev, ((# lpf 500) . (# lpq 0.4))]
+$ splice 16 (run 16)
+$ s "aeother:0"
+# legato 1
+# shape 0.5
+# cps 0.6
+-- # distort 0.5
+-- # coarse 3
+
+d2
+$ stutWith 3 "7%32" (id
+  . (|+ n "{10 5 12 4}%7") 
+  . (hurry "{2 0.5 0.25}%4")
+  )
+$ degrade
+$ s "aestldif(<11 7>,16,<0 1 4>)"
+-- # cut 1
+# speedTake "s" [1,-1,2,4,0.5]
+# accelerate "{0 1 -0.1}%5"
+# legato 1
+
+-- xfadeIn 3 8
+-- interpolateIn 3 8
+d3
+$ jux (rev . hurry 0.5)
+$ sometimes (
+  (# bpfbus 0 (segment 32 $ rangex 500 9500 $ slow 0.525 $ saw))
+  . (# bpq 8))
+$ chunk 4 (hurry 0.5)
+$ striate 16
+$ s "<aesh aesh:1>"
+
+-- xfadeIn 4 8
+d4
+$ n "{[0,1,2] 4}%4"
+# s "readorb"
+# legato 1.1
+# delay 1
+# delayt "{0.03 0.01 0.3}%5"
+# delayfb 0.9
+
+d5
+$ s "{readorb:3 readorb:5}%1.2"
+# distortbus 1 (range 0 0.5 $ slow 1.2 $ saw)
+# legato 1.1
+# clouds 0 0.4 0.3 0.8
+# cloudsblend 0.7 0.3 0.6 0.8
+# cloudsfreeze "0 1"
+
+once $ s "olooper"
+
+d6
+$ chunk 4 (hurry 2)
+$ slice 8 (run 8)
+$ s "loop"
+# coarse 4
+# distort 0.4
+# speed "{-0.5 1}%3"
+# legato 1
+# accelerate "{-1 0!4}%3"
+# gain 1.3
+# shape 0.5

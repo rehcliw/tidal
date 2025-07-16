@@ -3,7 +3,7 @@ d1
 -- $ juxBy (range 0.5 "-0.5" $ sine) (rev . (|+ n "{12 24}%5"))
 -- $ striate "{8 4 16 1}%5"
 $ n (id
-  -- $ sometimes (arp "up") 
+  $ sometimes (arp "up") 
   $ scale "mixolydian" $ stack [id
   $ "{6 11 -5 0 -7 14 0 12}%8"
   , id

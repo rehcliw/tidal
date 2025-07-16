@@ -1,0 +1,49 @@
+d1
+$ every 3 (linger "0.1 0.01 0.5")
+$ s "[{inr nimb:1}%5,nimb:19*16]"
+# speed "{2 0.5 1}%4"
+# accelerate "{-2 0}%7"
+# coarse 5
+# cps "{1 0.5 0.1}%5"
+-- # cut 1
+
+once $ s "olooper" # linput 0
+
+once $ s "freeLoops"
+
+d2
+-- $ linger 0.01
+$ hurry 0.25
+$ jux rev
+$ fastspread ($) [striate' 16 0.01, splice 16 ("{0 1 2 3 4 5}%16" + "<0 7 9>")]
+$ slow 2
+$ s "loop mirror:0 anim"
+-- $ jux (rev . hurry 0.5)
+-- $ every 2 (slice "16 8 4" (run 16))
+-- $ s "loop"
+# legato 1
+-- # speed "{0.5 2 1}%5"
+# speed "-0.5"
+-- # att 0.1
+-- # rel 4
+-- # accelerate "{-0.1 1 -1}%5"
+# gain 1.3
+# shape 0.7
+
+d1
+$ s "in"
+# coarse 2
+
+d3
+$ n "[0,1,3]"
+# s "readorb"
+# lpfbus 0 (range 50 1500 $ slow 6.5 $ sine)
+# lpq 0.4
+# distort 0.8
+
+d4
+$ n "{2 0 1}%5"
+# legato 1
+# s "readorb"
+# clouds (range 0 1 $ sine) 0.4 0.3 0.6
+# cloudsblend 0.8 0.2 0.6 0.7

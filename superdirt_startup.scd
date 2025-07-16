@@ -9,10 +9,10 @@ s.reboot { // server options are only updated on reboot
 	s.options.numOutputBusChannels = 2; // set this to your hardware output channel size, if necessary
 	// s.options.numInputBusChannels = 2; // set this to your hardware output channel size, if necessary
 	s.options.numInputBusChannels = 18;
-	s.options.inDevice_("USB Audio CODEC "); // for tidal looping w external input (xenyx)
+	// s.options.inDevice_("USB Audio CODEC "); // for tidal looping w external input (xenyx)
 	// s.options.inDevice_("Volt 2"); // for tidal looping w volt 2
 	// s.options.inDevice_("MiniFuse 2 Start");
-	// s.options.inDevice_("Aggregate Device"); // for tidal looping self t
+	s.options.inDevice_("Aggregate Device"); // for tidal looping self t
 	s.options.outDevice_("Screen Recording Audio"); // for screen recording
 	// s.options.outDevice_("MacBook Pro Speakers");
 	// s.options.outDevice_("WH-1000XM4");
@@ -63,6 +63,61 @@ s.reboot { // server options are only updated on reboot
 		// you can keep this separate and make it easier to switch between setups
 		// by using "path/to/my/file.scd".load and if necessary commenting out different load statements
 		// ...
+
+		// vocoder effect
+		(
+		~dirt.addModule('vocoder', { |dirtEvent|
+				dirtEvent.sendSynth("vocoder" ++ ~dirt.numChannels,
+					[
+						vocoder:~vocoder,
+						out: ~out,
+						chord:~chord
+					]
+				)
+			}, { ~vocoder.notNil});
+
+		SynthDef("vocoder" ++ ~dirt.numChannels, {
+			|out, vocoder=1|
+			var car, vcar ,mod, sig;
+			mod = In.ar(out,~dirt.numChannels);
+			vcar = Saw.ar((60+\chord.kr(0)).midicps);
+			car = SelectX.ar((ZeroCrossing.ar(mod).cpsmidi.lag(0.05) > 5000.cpsmidi).lag(0.05), [vcar, PinkNoise.ar]) ;
+			sig = Vocoder.ar(car,mod,96);
+			sig = SelectX.ar(vocoder, [mod*0.15, sig]);
+			ReplaceOut.ar(out, sig);
+		}, [\ir]).add;
+
+
+
+		~dirt.addModule('pvocoder', { |dirtEvent|
+				dirtEvent.sendSynth("pvocoder" ++ ~dirt.numChannels,
+					[
+						pvocoder:~pvocoder,
+						out: ~out,
+						chord:~chord
+					]
+				)
+			}, { ~pvocoder.notNil });
+
+		SynthDef("pvocoder" ++ ~dirt.numChannels, {
+			|out, pvocoder=1|
+			var car, vcar ,mod, sig,chain, chain2, size=512;
+			mod = In.ar(out);
+			vcar = Saw.ar((60+\chord.kr(0)).midicps);
+			car = SelectX.ar((ZeroCrossing.ar(mod).cpsmidi.lag(0.05) > 15000.cpsmidi).lag(0.05), [vcar, PinkNoise.ar]) ;
+			chain = FFT(LocalBuf(size),mod);
+			chain2 = FFT(LocalBuf(size),car);
+			chain = chain.pvcalc2(chain2, size,
+			{
+				arg mag, phs, mag2, phs2;
+				[mag,phs2];
+			});
+			sig = IFFT(chain)!2;
+			sig = SelectX.ar(pvocoder, [mod*0.15, sig]);
+			ReplaceOut.ar(out, sig);
+			}, [\ir]).add;
+		);
+
 
 		// define global effects for mutable instruments effects
 		~dirt.orbits.do { |x|

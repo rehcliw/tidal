@@ -1,4 +1,4 @@
-d1 
+d5 
   $ every 4 (bite 4 "{0 [3 1] 0 2/2 1}%4")
   -- $ rarely (|+ n 7)
   $ chunk 4 (jux rev . ply 2 . hurry 0.5)
