@@ -1,7 +1,7 @@
 xfadeIn 1 4
 
-xfadeIn 1 8
--- d1
+-- xfadeIn 1 8
+d1
 $ every 2 (|+ n "-2")
 -- $ every 1 (ply 2 . rolledBy 0.2)
 -- $ ply 4

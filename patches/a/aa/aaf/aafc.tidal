@@ -12,21 +12,21 @@ $ stack [id
   # shape 0.5
   -- # squiz 8
   , id
-  -- $ slow 2
+  $ slow 2
   $ n "36(<3 7>,12,<0 1>)"
   # shape 0.3
   |- note 5
   , id
   $ repeatCycles 8
   -- $ hurry "{3 2}%3" 
-  $ hurry 2
+  -- $ hurry 2
   -- $ hurry 0.25
   -- $ juxBy 0.5 rev
   -- $ chunk 4 (hurry 0.5)
   $ note (scale "mixolydian" $ echoWith "{4 8 1}%2" "{t 7%6 1}%4" ((|+ "{5 -2 3 -4}%3")) $ "<-9 -6 -3>")
   # n "<50>"
-  -- |+ note "{14 0 -7 7}%3"
-  -- |* speed 2
+  |+ note "{14 0 -7 7}%3"
+  |* speed 2
   , id
   -- $ slow 2
   -- $ iter 4
@@ -37,7 +37,7 @@ $ stack [id
   # lpf 300
   , id
   -- $ hurry 2
-  $ repeatCycles 8
+  -- $ repeatCycles 8
   $ juxBy "-1 1" (rev . hurry 2)
   $ degradeBy 0.2
   -- $ striateBy 16 0.1

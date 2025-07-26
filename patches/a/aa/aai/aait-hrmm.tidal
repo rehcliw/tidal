@@ -49,5 +49,5 @@ d4
 $ n "{2 0}%3.5"
 # s "readorb"
 # legato 1.1
-# bpfbus 1 (range 500 900 $ slow 1.5 $ sine)
+# bpfbus 1 (range 500 1900 $ slow 1.5 $ sine)
 # bpq 2

@@ -1,24 +1,26 @@
 d1 
-    $ juxBy (range "-0.25" 0.25 $ slow 1.2 $ sine) (rev . hurry 2) 
-    $ spreadf [linger (range 0.01 0.4 $ perlin), bite 8 "<1 7 [3*4]>", euclid 3 8]
-    $ sometimes (bounceWith 8 "0.3" (0.66) (|* speed "{1.1 0.95}%5"))
+    -- $ juxBy (range "-0.5" 0.5 $ slow 1.2 $ sine) (rev . hurry 0.5) 
+    -- $ spreadf [linger (range 0.01 0.4 $ perlin), bite 8 "<1 7 [3*4]>", euclid 3 8]
+    $ sometimes (bounceWith 8 "0.9" (0.66) (|* speed "{1.5 0.95}%5"))
     -- $ s "gtss" #cut 1 
-    -- $ hurry 0.5
+    $ hurry 0.5
+    -- $ degrade
     $ stack [
         splice 32 "14" 
         $ s "mac" 
         # cut 1 
-        # accelerate "-1"
+        # accelerate "{-1 0}%3"
         , press 
         $ splice 32 ("<11 19>" + "0 -6") 
         $ s "mac" 
-        #cut 2 
+        # cut 2 
         # speed "{-0.1 2}%5"
         , s "~ ~ ~ gtsh gtsk" 
-        # legato 0.5 
-        # cut 0 
+        # legato 0.5
+        # cut 0
         # nTake "nt" [4,1,9,14,11] 
         |+ n "<0 7>" 
         # accelerate "-0.3" 
         # speed 0.5
-] # shape 0.2
+] # shape 0.6
+# cps 0.6

@@ -1,14 +1,14 @@
 d1
--- $ jux rev
+$ jux rev
 $ every 2 (sometimes (plyWith "4 2" (|* gain 0.9) . (|* speed 1.1)))
 $ rarely (# nTake "n" [0,5,9,17,8])
 $ s "dysgfx*16"
--- # cps (range 0.15 0.6 $ saw)
-# cps 0.6
+# cps (range 0.15 0.6 $ saw)
+-- # cps 0.6
 -- # cut "0 1 2"
 -- # n "0"
 -- # nTake "n" [0,5,9,17,8]
--- # speedTake "s" [0.1,-1,-2,0.5]
+# speedTake "s" [0.1,-1,-2,0.5]
 # legato 1
 |+ n "{0 14 27 11}%5"
 # shape 0.5
