@@ -1,17 +1,30 @@
-once $ s "looper"
+d1 
+$ s "inr"
+# accelerateTake "at" [-0.1,0,0,0.1]
+# legato 1.2
+-- # gain 0.8
+# speed "1.01"
+# ampbus 0 (range 0 1.2 $ "^1")
+# lpfbus 1 (range 50 9500 $ "^2")
+# lpqbus 2 (range 0 0.4 $ "^3")
+# coarse 1
+-- # comb 0.5
+-- # shape 0.3
+
+once $ s "olooper"
 
 once $ s "freeLoops"
 
-d2 $ s "olooper" # n "<0 1 2 3 4 5 6 7>"
+d2
+$ s "loop/2"
+-- # gain 1.3
+# coarse 2
+# shape 0.3
+# legato 1.8
+# speed "-0.3"
+# ampbus 3 (segment 512 $ range 0 1.2 $ "^4")
+# bpfbus 4 (segment 512 $ range 50 9500 $ "^5")
+# bpqbus 5 (segment 512 $ range 0 4 $ perlin)
+-- # accelerate "1.1"
 
-d1
--- $ hurry 0.25
-$ splice 8 "2 0"
-$ slow 8
-$ n (run 8)
-# s "loop"
-# legato 1.2
-# speed "{-0.25 1}%5"
--- # accelerate "-0.1"
-# gain 1.5
-# cps 0.6
+all ((# djfbus 6 "0.5"))
