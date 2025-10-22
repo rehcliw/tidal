@@ -6,7 +6,7 @@ $ juxBy "{0.5 -0.5}%5" (rev . hurry 0.5 . (|- n "<0!5 4 2 -7>"))
 $ hurry "{0.25 0.5 2}%3"
 -- $ hurry "{0.5!4 2 1 1 4}%7"
 $ stutWith 8 "q" ((|* gain 0.9) . (|* legato 0.9) . (|* speed "1.4"))
--- $ degradeBy 0.8
+$ degradeBy 0.8
 $ chunk 4 (hurry "4 0.5")
 $ struct "t(<3 5>,8)"
 $ n ("{10 11 27 1}%5" + "<1 -5 3 5>")
@@ -21,11 +21,11 @@ $ n ("{10 11 27 1}%5" + "<1 -5 3 5>")
 # cloudsfreeze "{0 1}%3"
 # att 0.2
 # rel 15
-# gain 1.2
+# gain 1
 
 d2
 $ slow 2
-$ stutWith 2 "e" (|*)
+-- $ stutWith 2 "e" (|*)
 $ n "0 1 2 3 4 5 6 7"
 # s "{looper loop!2}%9"
 
@@ -52,10 +52,10 @@ $ s "jjbreaks"
 
 d3
 -- $ stutWith "8" "q" ((|* legato 0.9) . (|* gain 0.9))
-$ jux (rev . hurry "2")
+$ jux (rev . hurry "0.5")
 $ repeatCycles 2
 -- $ degradeBy 0.9
-$ hurry "2"
+-- $ hurry "2"
 $ n "0(<3 5>,8,<0 1 2>)"
 # s "{vscotimpani vscodarbuka vscostuff}%4"
 # legato 1
@@ -66,9 +66,9 @@ $ n "0(<3 5>,8,<0 1 2>)"
 # bpfbus 0 (range 100 7500 $ slow 4.5 $ sine)
 # bpq 8
 # distort (range 0.3 0.5 $ slow 2.3 $ sine)
-# delay 0.9
-# delayt "{0.1 0.05 0.2}%4"
-# delayfb 0.96
+-- # delay 0.9
+-- # delayt "{0.1 0.05 0.2}%4"
+-- # delayfb 0.96
 
 d1
 -- $ degradeBy 0.8

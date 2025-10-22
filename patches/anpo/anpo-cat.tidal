@@ -1,34 +1,50 @@
 d1
-$ (juxBy 0.5 (rev . hurry 2))
+$ (juxBy (range "-0.5" 0.5 $ perlin) (rev . hurry 2))
 $ hurry "{0.5 4 2}%5"
 -- $ hurry 0.5
 $ fast (0.85 / "<2 1>")
 $ stutWith 2 "0" (|* speed "0.95 1.05")
-$ speed "{<1 0.9 1> <0.99 1 -1>}%2.3"
+-- $ s "ukvox:1"
+$ speed "{<1 0.5 0.95 1 0.55> <0.99 1 -1>}%2.3"
 # s "{ukvox:1 ukvox:0 ukvox:5}%5"
 # legato 1.3
 -- # cut "1 0"
 # accelerate "{-0.01 -0.02 -0.1 0.01}%3.3"
-# gain 1
+# att 0.1
+# rel 1
+# delay (range 0 1 $ perlin)
+# delayt "0.1 0.02 0.3"
+# delayfb 0.9
+-- # lock 1
+# lpf 2000
+# lpq 0.3
+-- # distort 0.1
+-- watch output levels
+# gain 0.9
 
-once $ s "numbers:1"
+once $ s "numbers:0"
 
+-- xfadeIn 1 4 
 d1
--- $ slow 2
+$ slow 2
 $ (juxBy 0.5 (rev . hurry 0.5))
-$ stutWith 2 "0" (|* speed "0.51 1.05")
-$ degrade
+-- $ hurry 0.5
+$ stutWith 6 "e" (|* speed "0.95 1.05")
+$ degradeBy 0.7
 $ n (segment 8 $ irand 515) 
 -- $ n "16*8"
 # s "meow"
--- # legato 1.3
+# legato 1.9
 # speedTake "a" [-1,1,-0.5,0.5,2]
 |* speed 2
-# att 0.05
+# lpf 1900
+# lpq 0.3
+# att 0.1
 # rel 4
 -- # cut "0 1"
--- # distortTake "d" [0.3,0,0.5,0]
--- # crushbus 0 (range 16 2 $ "^1")
+# distortTake "d" [0.3,0,0.5,0]
+# crushbus 4 (range 16 2 $ perlin)
+# accelerate "-0.3"
 # gain 1.1
 # cps 0.6
 
@@ -40,29 +56,34 @@ once $ s "freeLoops"
 
 d2
 -- $ sometimes (striateBy 64 0.001)
--- $ hurry 0.25
+$ hurry 0.5
 $ s "loop"
-# gain 1.2
-# shape 0.2
-# speed "{0.1 -0.2 0.1 0.8}%5"
-# coarse 4
-# squiz "{1 8 0.2 0}%5"
-# vowel "{o a}%7"
+# shape 0.5
+# speed "{2.1 -0.2 0.1 0.8}%5"
+# coarse 8
+# distort 0.3
+-- # squiz "{1 8 0.2 0}%5"
+-- # vowel "{o a}%7"
 # legato 1.2
-# accelerate "-0.5"
--- # fshift "-50"
+# accelerate "-0.6"
+# att 0.1
+# rel 4
+# djf 0.4
+# fshift "50"
+# panbus 2 (segment 16 $ range "-1" 1 $ sine)
+# gain 1.1
 
 d2 silence
 
 d3
 -- $ striate 8
--- $ s "{readorb:1 readorb:0}%0.9"
-$ s "readorb"
+$ s "{readorb:1 readorb:0}%0.9"
+-- $ s "readorb"
 # legato 1.2
 # bpfbus 1 (range 5 9000 $ fast 3.35 $ saw)
-# bpq 8
+# bpq 4
 # delaybus 0 (range 0.5 1 $ slow 1.3 $ sine)
--- # delayt (0.3 * "{2 0.125 0.5 0.25}%5")
-# delayt 0.3
+# delayt (0.3 * "{2 0.125 0.5 0.25}%5")
+-- # delayt 0.3
 # delayfb 0.85
 -- # lock 1

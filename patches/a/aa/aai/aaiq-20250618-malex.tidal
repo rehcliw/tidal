@@ -63,7 +63,7 @@ $ s "gtsk:4*3"
 $ s "gtsh:9*5"
 ]
 # nudge 0.1
--- # speedTake "s" [1,-1,0.5]
+# speedTake "s" [1,-1,0.5]
 -- # nTake "n" [0,5]
 -- # accelerate "-0.4 0.4"
 -- # vowel "e"

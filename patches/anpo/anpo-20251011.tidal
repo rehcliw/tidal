@@ -1,0 +1,12 @@
+once $ s "numbers:2"
+
+once
+-- $ slice 16 "0"
+$ stutWith 8 "e" (|* speed "-1.1 -0.4") 
+$ s "img:5" # legato 1 
+# speed "-4"
+# accelerate "-0.1"
+# lpf 1500
+# lpq 0.3
+# att 0.1
+# rel 8

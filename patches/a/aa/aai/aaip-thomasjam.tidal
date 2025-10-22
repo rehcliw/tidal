@@ -1,13 +1,13 @@
 d1
 -- $ jux (hurry 2 . rev)
--- $ rev
--- $ stutWith 2 "s" (|+ note 7)
+$ rev
+$ stutWith 2 "s" (|+ note 7)
 -- $ hurry "{1 0.5}%3"
-$ striateBy 64 0.04
+-- $ striateBy 64 0.04
 -- $ juxBy (range "-0.5" 0.5 $ perlin) (rev . fast "{0.5 2}%5")
 -- $ repeatCycles 4
 -- $ almostAlways ((# delay 1) . (# delayt "1%32") . (# delayfb 0.95) . (# lock 1))
-$ hurry "0.25"
+-- $ hurry "0.25"
 $ stack [id
   $ degradeBy 1
   $ n "4(<3 5>,8,<0 1 2>)"
@@ -34,15 +34,15 @@ $ stack [id
   # accelerate "-0.1"
 ]
 -- # legato "{0.5 1}%5"
-# lpfbus 0 (range 500 1000 $ slow 4.5 $ sine * (fast 0.3 $ sine))
-# lpq 0.1
-# coarse 5
-# ring 0.2
-# ringfbus 2 (rangex 20 100 $ slow 3.3 $ sine)
-# ringdf 0.5
-# distortbus 1 (smooth $ "{0.5 0.3 0.1 0.1 0.6}%7")
-# crush  "{4 2 8}%7"
-# verb 0.8 0.3 0.2 0.8
-# verbdiff 0.01
+-- # lpfbus 0 (range 500 1000 $ slow 4.5 $ sine * (fast 0.3 $ sine))
+-- # lpq 0.1
+-- # coarse 5
+-- # ring 0.2
+-- # ringfbus 2 (rangex 20 100 $ slow 3.3 $ sine)
+-- # ringdf 0.5
+-- # distortbus 1 (smooth $ "{0.5 0.3 0.1 0.1 0.6}%7")
+-- # crush  "{4 2 8}%7"
+-- # verb 0.8 0.3 0.2 0.8
+-- # verbdiff 0.01
 # cps 0.6
-# gain 0.4
+# gain 0.7

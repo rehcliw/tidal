@@ -1,25 +1,25 @@
--- let
--- pat = "{1 0 1 1 0 [1 0 1 1] 0 1 [0 1 1 0]}%6"
--- rest = "{1 1 1 [0 1] [0 1 0] 1 0 1}%16"
--- in
+let
+pat = "{1 0 1 1 0 [1 0 1 1] 0 1 [0 1 1 0]}%6"
+rest = "{1 1 1 [0 1] [0 1 0] 1 0 1}%16"
+in
 d1
 $ slow 8
 -- $ rarely (# ratio1 2)
 -- $ juxBy 0.5 rev
 -- $ mask pat
 -- $ every 2 ("<0.25 0.75>" <~)
--- $ off "0.2 0.4" ((|+ note "<14 7>") . rev . fast 8 . (# ratio2 0.5) . (# ratio3 0.5))
+$ off "0.2 0.4" ((|+ note "<14 7>") . rev . fast 8 . (# ratio2 0.5) . (# ratio3 0.5))
 $ note (id
   $ scale "locrian"
-  -- $ stutWith 4 "<0!2 e 0 e>*0.8" (|+ "[4,{~ -7}%3]")
-  $ stutWith 2 "<0!2 e 0 e>*0.8" (|+ "[4,{~ 7}%3]")
+  $ stutWith 4 "<0!2 e 0 e>*0.8" (|+ "[4,{~ -7}%3]")
+  -- $ stutWith 2 "<0!2 e 0 e>*0.8" (|+ "[4,{~ 7}%3]")
   $ cat ["c3 bf4 af3 gs4", "ef4"]
   )
   # gain 1.2
   # octave (iter 4 "5 4 3 4")
   # s "superfm"
-  -- # lfof "2 3 4 5 6 7 8"
-  -- # lfod "0.2 0.3 0.4 0.5 0.6 0.7 0.8"
+  # lfof "2 3 4 5 6 7 8"
+  # lfod "0.2 0.3 0.4 0.5 0.6 0.7 0.8"
   -- # gain 1
   # fmfb (fast 0.3 $ range 0 0.8 $ sine)
   # fma [1,0,0,1,1,0]

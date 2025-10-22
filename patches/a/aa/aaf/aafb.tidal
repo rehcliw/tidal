@@ -1,4 +1,4 @@
--- xfadeIn 1 4
+-- xfadeIn 1 16
 d1
 $ slow 4
 $ juxBy "<-0.5 0.5>" (rev . (fast 2) . (rot "<2 4>"))

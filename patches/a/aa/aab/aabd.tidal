@@ -17,8 +17,8 @@ $ n "16 19"
 
 --save 2
 d1
--- $ loopAt "2 4"
--- $ repeatCycles 2
+$ loopAt "2 4"
+$ repeatCycles 2
 $ stack [ id
 $ rev
 $ plyWith "<5 6 3>" ((|* gain 0.95) . (|+ note "7 -7") . (|+ n "<2 1 -2 -3>"))

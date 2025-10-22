@@ -1,0 +1,46 @@
+d2
+$ jux (rev . hurry 0.5)
+$ every 6 (
+  (# lpfbus 0 "<200 400> 2400 1500 700")
+  . (# lpq 0.3)
+)
+$ s "in dyssnare:1 dyskick:0 in dyshh:2*4"
+# legato "{0.5 1}%6.7"
+# fshift "{-50 50 500}%5"
+-- # accelerate "{-0.1 0 -0.2 0.1}%5"
+-- # vowel "a"
+# ring "{1 0.9 0}%5"
+# ringf 50
+# ringdf 3
+# comb "{0 0.1 0.5}%7.3"
+# crush "{8 4 16}%5"
+# coarse 2
+# shape 0.4
+-- |* bpf (segment 16 $ range 0.5 2 $ slow 3.1 $ saw)
+# gain "{1.4 0}%5"
+# cps (smooth $ "0.25 0.5")
+-- # cut 1
+# delay "{1!5 0}%3"
+# delayt "{1%8 1%64 1%3}%4"
+# delayfb 0.9
+# lock 1
+
+d1 $ s "looper" 
+# recordSource "out"
+# orbit 1
+
+once $ s "freeLoops"
+
+d1
+$ slice 8 (run 8)
+$ s "loop" 
+# speed "-0.5" 
+# shape 0.3
+# gain 1
+# legato 1
+
+d3
+$ n "{0 1}%5"
+# s "readorb"
+# legato 1.1
+# verb 1 0.2 0.4 0.3

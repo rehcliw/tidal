@@ -7,23 +7,23 @@ $ juxBy (range "-0.5" 0.5 $ fast 1.1 $ perlin) (rev . hurry "{2 0.5}%3")
 $ sometimes (|* speed "-1")
 -- $ degradeBy 0.9
 $ struct "t*8"
-$ n (range 0 100 $ "^9")
+$ n (range 0 100 $ "^1")
 -- # s "{ukmodchop ukk3 ukcz}%5"
 -- # s "{ukmodchop uktrill ukvox}%3.9"
 -- # s "uksk"
 # s "{gtsfx gtsp dysfx}%5.5"
 -- # gain 0.9
-# ampbus 0 (segment 16 $ range 0 0.5 $ "^3")
-# cps (range 0.05 2 $ "^12")
+# ampbus 0 (segment 16 $ range 0 0.5 $ "^2")
+# cps (range 0.05 2 $ "^3")
 -- # cps (130/60/4)
 # delay 1
 -- # delayt "{0.2 0.02 0.1}%5"
 # delayt "{1%16 1%32 1%128 1%8 1%64}%3"
-# delayfb (range 0 0.95 $ "^13")
+# delayfb (range 0 0.95 $ "^4")
 # lock 1
 -- # lock 0
-# fshiftbus 3 (range "-1550" 1550 $ "^14")
-# legato (range 0.1 1 $ "^15")
+# fshiftbus 3 (range "-1550" 1550 $ "^5")
+# legato (range 0.1 1 $ "^6")
 # cut "{0 1}%5.4"
 # combbus 1 (segment 250 $ range 0 0.5 $ fast 2.5 $ saw)
 # att 0.1

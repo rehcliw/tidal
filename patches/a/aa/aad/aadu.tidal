@@ -96,3 +96,5 @@ $ stack [id
   # legato 0.1
   # gain 1
 ] # room 0.2 # sz 0.7
+
+setcps 0.65

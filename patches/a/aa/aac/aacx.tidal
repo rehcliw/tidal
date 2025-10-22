@@ -7,7 +7,7 @@ $ freq ("<200 150 300 250>" - 125)
 # legato 2
 # voice 4
 # accelerate "-4"
-# detune "-15" -- dont make freq go sub0
+# detune "-3" -- dont make freq go sub0
 # rate 9
 -- # lpf 5000
 -- # lpq 0.1

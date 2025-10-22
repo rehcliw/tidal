@@ -1,3 +1,4 @@
+-- xfadeIn 1 8
 d1
 -- xfadeIn 1 8
 -- $ hurry 0.125
@@ -17,10 +18,10 @@ $ stack [id
   # shape 0.3
   |- note 5
   , id
-  $ repeatCycles 8
+  -- $ repeatCycles 8
   -- $ hurry "{3 2}%3" 
   -- $ hurry 2
-  -- $ hurry 0.25
+  $ hurry 0.25
   -- $ juxBy 0.5 rev
   -- $ chunk 4 (hurry 0.5)
   $ note (scale "mixolydian" $ echoWith "{4 8 1}%2" "{t 7%6 1}%4" ((|+ "{5 -2 3 -4}%3")) $ "<-9 -6 -3>")
@@ -36,14 +37,14 @@ $ stack [id
   # shape 0.3
   # lpf 300
   , id
-  -- $ hurry 2
+  $ hurry 2
   -- $ repeatCycles 8
   $ juxBy "-1 1" (rev . hurry 2)
   $ degradeBy 0.2
   -- $ striateBy 16 0.1
   $ note (scale "mixolydian" $ echoWith 3 "t" (|+ "<4!3 7>") $ "<-7 -10>")
   # n "48"
-  -- |- note "<14 21>"
+  |- note "<14 21>"
   , id
   $ note "-9"
   # n "22"

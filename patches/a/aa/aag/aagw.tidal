@@ -1,6 +1,8 @@
+resetCycles
+
 d1
 -- $ linger (1/16)
-$ bite "11*16"
+-- $ bite 16 "11*16"
 $ stack [id
   $ fast "{0.5 1 1}%4"
   $ fix (# crush 3) (n "30")

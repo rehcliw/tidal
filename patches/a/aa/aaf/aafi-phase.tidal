@@ -1,5 +1,5 @@
 do
-  -- resetCycles
+  resetCycles
   let pat = "{[t ~ ~ ~] [~ t] [~ t ~ ~] t}%6"
   d1
     $ juxBy "0.25" (fast 1.001)

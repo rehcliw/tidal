@@ -42,8 +42,8 @@
     let pat = "{1 1 0 1 [1 0 1] 0 [1 1 0] 1 0 0 1 0}%5"
     in
     d1
-      -- $ repeatCycles 4
-      $ slow 1
+      $ repeatCycles 4
+      $ slow 4
       $ stack [ id
       $ mask pat
       $ juxBy 0.5 palindrome
@@ -63,7 +63,7 @@
       # lfo "8 4 16"
       # accelerate "[0.01 -0.25]*5"
       # octave "<4 6 5>"
-      ]
+      ] # cps 0.6
 
 
     resetCycles

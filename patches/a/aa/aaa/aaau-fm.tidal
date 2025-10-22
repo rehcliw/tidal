@@ -3,7 +3,7 @@ let
   rest = "{1 1 1 [0 1] [0 1 0] 1 0 1}%16"
 in
 d1
-$ repeatCycles 4
+-- $ repeatCycles 4
 $ fast "{1%16 1%4 1%8}%4"
 $ rarely (# fmratio 1 2)
 -- $ juxBy 0.5 rev
@@ -39,7 +39,7 @@ $ note "b4*2 a7s"
 # cut "{1 0 1}%5"
 # room (fast 3.1 $ range 0 0.2 saw)
 # sz 0.1
--- # cps "0.9 0.8 2"
+# cps "0.9 0.8 2"
 
 
 

@@ -1,0 +1,191 @@
+-- aaiy malex ---
+
+d1
+-- $ loopAt 4
+$ degradeBy 0.9
+$ jux (rev . hurry 0.5)
+$ sometimes (plyWith 4 ((|* gain 0.9) . (|* speed "-1")))
+$ slice 16 (run 16)
+$ s "ksbrk:2"
+-- # legato 0.5
+# cps (120/4/60)
+# gain 1.1
+# distort 0.1
+# lpfbus 0 (segment 512 $ range 100 9500 $ fast 0.5 $ saw)
+# delay 0.8
+# delayt 0.125
+# delayfb 0.9
+# lock 1
+
+-- xfade 2
+d2
+$ slow 2
+$ n "[-14,-21,-28,-7]"
+# s "superhammond"
+# legato 1.8
+# voice 8
+# gain 0.9
+# att 0.45
+# rel 6
+# lpfbus 0 (segment 512 $ range 550 7000 $ slow 4 $ sine)
+# lpq 0.4
+# coarse 7
+# distort 0.4
+
+d3
+$ s "{readorb:1 readorb:0}%5"
+# clouds 0 0.2 0.6 0.6
+# cloudsblend 0.8 0.2 0.8 0.3
+
+d4
+$ degradeBy 0.5
+$ chunk 4 (hurry "{2 0.5}%7")
+-- $ striateBy 16 (range 0.01 0.07 $ slow 3.5 $ sine)
+-- $ hurry 0.25
+$ n "{0 -12 0 12 0}%4"
+# legato 0.1
+# s "superhoover"
+-- # legato 1.5
+-- # speed 0.5
+# accelerate "{10 0 -2 0}%5"
+# delay 1
+# delayt "0.9 0.6"
+# delayfb 0.9
+
+d1
+-- $ loopAt 4
+$ jux rev
+$ repeatCycles 4
+$ chunk 4 (rev . hurry 0.5)
+$ stack [id
+$ s "gtsclp*4"
+# legato 0.5
+, id
+$ s "gtsk:4*3"
+, id
+$ s "gtsh:9*5"
+]
+# nudge 0.1
+# speedTake "s" [1,-1,0.5]
+-- # nTake "n" [0,5]
+# accelerate "-0.4 0.4"
+-- # vowel "e"
+-- # bpf (segment 16 $ range 100 4500 $ sine)
+-- # bpq 2
+
+-----------------------
+
+---- aafz sorms ---
+
+d1
+-- $ sometimes (plyWith 2 (|* speed 2))
+$ echoWith 4 0 ((|* speed 1.5) . (|* pan 0.4))
+$ struct "t*8"
+-- $ slice 32 "7"
+$ slice 32 "{18 7 19 2 3}%5"
+$ s "rollergirl"
+# gain 1.2
+-- # speed "[0.9,{1.1 1 1.2}%4]"
+-- # speed "[0.9,1.1]"
+# speed "<0.5!8 0.75!8 1!8>"
+# legato 2
+# panbus 0 (segment 16 $ range "-1" 1 $ slow 0.9 $ sine)
+# cps 0.6
+
+xfade 2
+-- d2
+-- $ hurry "[1,{1.5 1.4 1 1.3 1.1}%35,8]"
+$ stutWith 2 0 (hurry 8 . (|* gain 0.8))
+-- $ jux rev
+-- $ stutWith 8 "e" ((|* gain 0.9) . (|* legato 0.9))
+-- $ rarely (plyWith 2 (|* speed 0.5))
+$ slice 32 "18*3"
+$ s "rollergirl"
+# gain 1.4
+# shape 0.4
+# legato 0.9
+# nudge 0.3
+-- # accelerate "0.3 0.1 0"
+-- # coarse 1
+-- # distort 0.1
+
+once $ s "olooper"
+
+once $ s "freeLoops"
+
+d1
+$ s "loop"
+# shape 0.5
+# gain 1.4
+# speed "-0.5"
+# legato 1.5
+# coarse 4
+
+d2
+-- $ hurry 0.25
+$ slice 32 "30 29"
+$ s "rollergirl"
+# legato 1
+# coarse 8
+# distort 0.6
+-- # fshift "-50"
+# shape 0.8
+# lpf 1100
+# lpq 0.3
+# gain 1.4
+# speed "[1.01,0.99]"
+
+
+----------------------
+
+-- crosley jam --
+
+d1
+$ juxBy (range "-0.5" 0.5 $ perlin) rev
+$ sometimesBy 0.2 ((# lpfbus 0 (range 50 9500 $ slow 5.7 $ saw)) . (# lpq "0.3 0.2 0"))
+$ sometimes (stutWith 3 "e s" ((|* gain 0.9) . (|* legato 0.9) . (|* speed 1.9)))
+$ striate (stutWith 2 "e" (|+ "<0 1>") $ "{16 17 18 9 32}%5" + "<5 0 2 [3 5] [6 7 9]>")
+$ s "crosley"
+# legato 1
+# n "[0,1]"
+# speed "{1.1 1 0.9 0.5}%9"
+# cut "0 0 0 2 0 1"
+-- # room "{0.8 0}%1"
+-- # sz 0.9
+# verb "{0.8 0}%1" "0.9 0.1" 0.9 0.2
+# distort "{0.9 0}%5"
+# coarse "{4 0}%7"
+
+d2
+$ hurry "0.25 0.3 0.17"
+$ chunk 4 (hurry 0.3)
+$ slice 8 "{0 1 2 3 4 5 6 7}%5"
+-- $ s "{crosley nimbl}%3.3"
+$ s "crosley"
+# squiz 8
+# crush "{3 5 16}%2"
+# legato 1.5
+# gain 1.4
+# shape 0.8
+# distort 0.5
+|* speed "-1 1"
+# accelerate "-0.1"
+# att 0.7
+# rel 8
+# verb 1 "0.9 0.1" 0.9 0.2
+
+-- try to catch the "wail" of the nimb
+once $ s "olooper"
+
+once $ s "freeLoops"
+
+d3
+$ juxBy 0.5 rev
+$ echoWith 3 "e" (|* speed "{1 -2 -1 0.5}%5")
+$ s "loop"
+# gain 1.8
+# speed "-0.5"
+# legato 1.2
+
+----------------------------------
+

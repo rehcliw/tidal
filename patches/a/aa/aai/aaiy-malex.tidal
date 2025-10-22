@@ -3,7 +3,7 @@ $ stack [id
   -- $ hurry 0.5
   -- $ striateBy "{32 16}%2" 0.00001
   -- $ splice 8 (sometimes (ply 4) $ run 4)
-  $ sometimes 
+  -- $ sometimes 
   $ s "~ gtss:7"
   # legato 1
   -- # speed "<0.25 0.125>"

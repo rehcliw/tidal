@@ -1,0 +1,40 @@
+once $ s "numbers:3"
+
+once $ s "nimb:30"
+
+d1
+-- $ hurry 0.5
+$ jux rev
+$ hurry "{0.1 2 1 0.3}%5"
+$ n "39 38 23"
+# s "nimb"
+# coarse 4
+# lpfbus 0 (range 50 9500 $ slow 2.67 $ saw)
+# lpq 0.4
+# distort 0.4
+# delay 1
+# delaytimebus 1 "{0.3 0.1 0.02}%4"
+# delayfb 0.9
+# shape 0.4
+# gain 1.1
+-- # speedTake "s" [1,2,-1]
+# speed "[-1,1.1]"
+# verb 1 0.9 0.3 0.2
+
+d1
+$ jux rev
+$ s "houk"
+# begin (range 0 0.7 $ perlin)
+# legato 1.2
+# speed "{-0.8 0.3 1.2}%5"
+# coarse 4
+# freezebus 1 "0 1"
+# accelerate (range "-0.4" 0.1 $ slow 1.2 $ saw)
+# lpfbus 0 (range 300 2500 $ slow 1.1 $ perlin)
+# lpq 0.3
+# gain 1
+# att 0.1
+# rel 8
+# delay 1
+# delayt 0.3
+# delayfb 0.6

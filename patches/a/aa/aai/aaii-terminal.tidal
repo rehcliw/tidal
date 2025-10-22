@@ -4,8 +4,8 @@ let atk = pF "atk"
     mstart = pF "mstart"
 in
 d1
-$ juxBy 0.25 (rev . fast 0.5)
--- $ fast 2
+-- $ juxBy 0.25 (rev . fast 0.5)
+$ fast 2
 $ struct "t(5,8)"
 $ n "20 7 10 0"
 # s "foldy"
@@ -18,7 +18,7 @@ $ n "20 7 10 0"
 # shape 0.5
 # cps "{0.2 0.04}%4"
 
-once $ s "olooper" # n "0"
+once $ s "olooper" # n "1"
 
 once $ s "freeLoops"
 

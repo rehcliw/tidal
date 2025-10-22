@@ -8,6 +8,6 @@ $ s "foley:55 <popkick:4 rash:7 print:4 popkick:6> [snare:57 foley:6] <rash:14 p
 # legato 1.2
 # decay 0.7
 # gain 1.2
--- # cps "{0.4 0.8 0.5}%5"
+# cps "{0.4 0.8 0.5}%5"
 
 d2 $ s (iter 5 "<print:4*4 rash:c print:27*4>") # gain 1.4

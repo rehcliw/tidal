@@ -1,4 +1,5 @@
-d1
+-- d1
+xfadeIn 1 16
 $ slow "<8 6>"
 -- $ every 2 ((arp "{pinkyupdown down}%3"))
 $ note (stutWith 12 "1%12" (|+ (7 - "0 12")) ("c4" |+ "<-5>" |+ "['maj7|'min]"))

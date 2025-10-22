@@ -7,12 +7,14 @@ s.reboot { // server options are only updated on reboot
 	s.options.numWireBufs = 2048; // increase this if you get "exceeded number of interconnect buffers" messages
 	s.options.maxNodes = 1024 * 32; // increase this if you are getting drop outs and the message "too many nodes"
 	s.options.numOutputBusChannels = 2; // set this to your hardware output channel size, if necessary
-	// s.options.numInputBusChannels = 2; // set this to your hardware output channel size, if necessary
-	s.options.numInputBusChannels = 18;
-	s.options.inDevice_("USB Audio CODEC "); // for tidal looping w external input (xenyx)
+	// s.options.numOutputBusChannels = 32; // for routing the orbits to different stereo out buses
+	s.options.numInputBusChannels = 2; // set this to your hardware output channel size, if necessary
+	// s.options.numInputBusChannels = 18;
+	// s.options.inDevice_("USB Audio CODEC "); // for tidal looping w external input (xenyx)
 	// s.options.inDevice_("Volt 2"); // for tidal looping w volt 2
 	// s.options.inDevice_("MiniFuse 2 Start");
-	// s.options.inDevice_("Aggregate Device"); // for tidal looping self t
+	s.options.inDevice_("Aggregate Device"); // for tidal looping self t
+  // s.options.inDevice_("MacBook Pro Microphone");
 	s.options.outDevice_("Screen Recording Audio"); // for screen recording
 	// s.options.outDevice_("MacBook Pro Speakers");
 	// s.options.outDevice_("WH-1000XM4");
@@ -48,6 +50,8 @@ s.reboot { // server options are only updated on reboot
 
 		// s.sync; // optionally: wait for samples to be read
 		~dirt.start(57120, 0 ! 12); // start listening on port 57120, create two busses each sending audio to channel 0
+		// ~dirt.start(57120, [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30]); // for separate orbit recording
+		s.meter;
 		SuperDirt.default = ~dirt; // make this instance available in sclang (optional)
 
 		// optional, needed for convenient access from sclang:

@@ -8,7 +8,7 @@ d1
   $ s "mirror:1 mirror laundry anim"
   # speed 0.5
   # legato 1.3
-  # delay 1
+  # delay 1 
   # delayt 0.3
   # delayfb 0.7
   # cps (range 0.2 0.6 $ saw)

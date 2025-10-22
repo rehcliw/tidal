@@ -4,6 +4,7 @@ $ slow "2 [1 2] <4 0.75 4>"
 $ iter 6
 $ stutWith "<3 4>" "<1%6 5%12 7%12>" ((|+ n "<3 -5 7 -3>") . (# legato 0.2))
 $ n (scale "majPent" "1'maj [3 6] 5")
+-- $ n (scale "superLocrian" "1'maj [3 6] 5")
 # octave "<4 3 5>"
 # s "superfm"
 # fma [1,0,"<1 0>","<0 1 0>",0.25,"<0!2 1 0!2>"]
@@ -37,6 +38,7 @@ d2
 $ jux rev
 $ arp "down up pinkyup"
 $ n (scale "superLocrian" "<b'maj [c'maj a'min]> <[a'maj d'min] d'min>")
+-- $ n (scale "majPent" "<b'maj [c'maj a'min]> <[a'maj d'min] d'min>")
 # s "supervibe"
 # octave "<3 4>"
 # shape 0.4
@@ -50,3 +52,33 @@ $ n (scale "superLocrian" "<b'maj [c'maj a'min]> <[a'maj d'min] d'min>")
 # gain 0.85
 
 scaleList
+
+-- edit oct 2025?
+d3
+$ sometimes (chop 15)
+$ fast (1/"2 [1 2] <4 0.75 4>")
+$ iter 6
+$ stutWith "<3 4>" "<1%6 5%12 7%12>" ((|+ note "<3 -5 7 -3>") . (# legato 0.5))
+$ s "gtsh:29*12"
+# legato "[0.5 0.25 1 0.6]*1.5"
+# shape 0.5
+
+d4
+-- $ sometimes (ply 2)
+-- $ fast (1/"2 [1 2] <4 0.75 4>")
+$ s "gtsk:2(<3 5 3>,12,<0 2>)"
+# shape 0.5
+# gain 1.2
+# cut 1
+# speed 0.9
+
+d5
+$ every 4 (hurry (1/"2 [1 2] <4 0.75 4>"))
+$ s "gtsclp:3*3"
+# shape 0.5
+# gain 1.4
+# nudge 0.02
+-- # cut 1
+# distort 0.1
+
+resetCycles

@@ -1,0 +1,64 @@
+d1
+$ slow 4
+$ hurry 0.25
+$ sometimes ((# lpf (range 50 9500 $ fast 3.13 $ saw)) . (# lpq 0.4))
+-- $ juxBy (range "0.5" "-0.5" $ perlin) (rev . hurry "0.9 1 0.5")
+-- $ striate' ("{2 8 17 31}%5" + "<1 2 4 5>") 0.14
+$ splice 8 3
+-- $ s "{bottl sink kitchen chicken}%3"
+$ s "voice keurig print voice:1"
+-- $ s "voice:1 print presl:6"
+-- $ s "voice:1 houtonal:4 chicken"
+-- $ s "chicken"
+# legato 1.5
+# gain 1.1
+# shape 0.6
+-- # fshift "-500"
+-- # vowel "i a"
+# att 0.7
+# rel 8
+# coarse 3
+# verb 1 0.9 "<0.1>" "0.9"
+-- # verbfreeze 1
+-- # speedTake "s" [1,-0.5,2,0.5]
+# speed "{1 -0.5 2 0.5}%7"
+# accelerate "{0!3 0.1 -0.2}%5"
+
+d2
+$ hurry 0.25
+$ echoWith 4 "s e" (|+ n "{0 7 2 9 4}%3")
+$ n "4 0 3 1"
+-- # s "hous hougfx"
+# s "hougfx"
+# legato 1.5
+-- # cut "1 0"
+# shape 0.2
+# speed "{1 -1 2 0.5}%3"
+-- # speed 0.25
+
+d3
+$ stack [ id
+  $ juxBy (range "-1" 1 $ sine) (rev . slow 2 . (|* speed "-0.5"))
+  $ n "1(5,8,<0!5 2>)"
+  # s "houk"
+  , id
+  $ repeatCycles 4
+  $ s "houhh:2*16?"
+]
+# shape 0.5
+
+d4
+$ n "{0 1 2}%4"
+# legato 1.1
+# s "readorb"
+# delay "1 0"
+# delayt "{0.01 0.03}%4"
+# delayfb 0.9
+# lock 1
+
+d5
+$ n "3"
+# s "readorb"
+# vowel "o a"
+# bpfbus 0 (range 50 9500 $ slow 4.4 $ sine)
+# bpq 3

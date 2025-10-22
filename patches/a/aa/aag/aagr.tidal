@@ -24,7 +24,7 @@ $ stack [id
   # crush "{2 4 9}%5"
   # distort (range 0.4 0.9 $ slow 2.1 $ sine)
 ] 
-|* gain 0.8
+|* gain 1.1
 # shape 0.5
 -- # cps 0.3
 # cps "{0.6!4 0.3 0.15}%4"

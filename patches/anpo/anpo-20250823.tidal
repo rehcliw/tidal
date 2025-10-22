@@ -1,0 +1,174 @@
+d1
+-- $ hurry 0.25
+-- $ striate "32"
+-- $ n "{1 9 4}%3"
+-- # s "{bnpad bnvoxphr}%5"
+$ s "jjvocals:29"
+# legato 1
+# gain 1
+-- # speed "{1 -0.5 0.25}%5"
+-- # crush 4
+-- # distort 0.3
+-- # att 0.1
+-- # rel 4
+
+d2
+-- $ striate 16
+$ hurry "0.1 0.4"
+$ n "{0 5 9, 1 13}%4"
+# s "bnsfx"
+# legato 1
+# gain 1
+# speed "{0.5 -2}%3"
+# att 0.1
+# rel 4
+
+d3
+$ s "{readorb:0 readorb:1 readorb:3}%4"
+# legato 1.1
+# delay 1
+# delayt "0.1 0.4"
+# delayfb 0.7
+# att 0.1
+# rel 4
+
+d4
+$ s "readorb:2 readorb:0"
+# fshift "-50 -500"
+# lpfbus 0 (range 500 7500 $ slow 3.4 $ sine)
+# lpq 0.2
+-- # squiz 4
+
+once $ s "bnimp:1"
+
+d1
+$ hurry "0.2"
+$ striate 8
+$ s "roof bnmelos:3"
+# legato 1.4
+# crush 4
+# distort 0.6
+# shape 0.7
+# coarse 8
+-- # speed "-0.5"
+
+d1
+-- $ striate 8
+$ hurry 0.7
+$ s "sink"
+# legato 1
+# speed "0.29"
+# gain 1.1
+
+d2
+-- $ bite 16 (run 2)
+$ hurry 0.25
+$ jux (rev . hurry 0.5)
+-- $ plyWith 6 ((|* gain 0.9) . (|* legato 0.9) . (|* accelerate 1.1))
+$ splice 16 (run 16)
+$ n ("{0 4 9 1}%5" + "<0 3>")
+# s "bngfx"
+# legato 1.5
+-- # speedTake "st" [1,0.9,0.5]
+-- # accelerate 0.1
+# att 0.05
+# rel 4
+# crush 4
+
+d3
+$ n "{0 1 2}%4"
+# s "readorb"
+# coarse 4
+# distort 0.3
+# lpfbus 0 (range 50 1500 $ slow 2 $ saw)
+# lpq 0.1
+# clouds 0 0.2 0.7 0.3
+# cloudsblend 1 0.3 0.5 0.2
+
+once $ s "olooper"
+
+d4
+$ s "loop"
+# speed 0.5
+# gain 1.5
+# legato 1.5
+# coarse 8
+
+-- sick af!!--------------------
+d1
+-- $ hurry 0.25
+$ jux rev
+$ s "jjvocals"
+# legato "0.4 1"
+# nTake "nt" [4,9,7,19,93,2,25]
+-- # speedTake "st" [1,0.5,2,-1]
+-- |* speed 0.5
+# coarse 8
+# crush 8
+-- # distort 0.6
+-- # shape 0.5
+
+d2
+$ s "readorb"
+# lpfbus 0 (range 50 9500 $ saw)
+# lpqbus 1 (range 0 0.3 $ fast 1.5 $ saw)
+# delay 1
+# delayt "0.6"
+# delayfb 0.8
+-- # fshift "-50"
+------------------------------
+
+d1
+$ slow 2
+$ stutWith 5 "e s 0.01" (|* speed "{0.97 1.03 0.52}")
+$ s "vscovlnens:1*0.8"
+# legato 1.4
+# speed "-0.1 2.3"
+-- |* speed 4
+# shape 0.3
+# gain 1.2
+# distort 0.8
+# crushbus 2 (range 4 16 $ slow 0.7 $ saw)
+
+d2
+-- $ stutWith 5 "e s 0.01" (|* speed "{0.97 1.03 0.52}")
+-- $ splice 32 3
+-- $ hurry 0.25
+$ s "hank"
+# gain 1.3
+# legato 1
+-- # distort 0.5
+-- # crush 4
+-- # shape 0.5
+-- # speed "-0.5"
+-- # coarse 5
+-- # delay 1
+-- # delayt "0.6"
+-- # delayfb 0.8
+-- # att 0.1
+-- # rel 4
+
+d3
+$ s "readorb:1 readorb:0"
+# lpfbus 0 (range 50 4500 $ slow 3.4 $ saw)
+# lpqbus 1 (range 0 0.3 $ fast 0.3 $ saw)
+# delay 1
+# delayt "0.6"
+# delayfb 0.8
+# room 0.3
+# sz 0.9
+
+d1
+$ slice 16 "<7 3 13 0>"
+$ s "hank"
+# legato 1.3
+-- # shape 0.3
+-- # delay 1
+-- # delayt 0.3
+-- # delayfb 0.9
+-- # coarse 4
+-- # speed "[1,0.98]"
+-- |* speed "{-1 1 0.5}%5"
+-- # room 0.4
+-- # sz 0.9
+-- # accelerate "-0.1 0.4 0"

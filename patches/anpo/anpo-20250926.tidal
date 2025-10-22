@@ -1,0 +1,97 @@
+d1
+$ jux rev
+$ hurry 0.5
+$ stutWith 4 "1%32" (|* gain 0.9)
+$ stutWith 2 0 (|* speed 0.98)
+$ stutWith 3 "q" (|+ n 2)
+-- $ n "{0 9 5}%4"
+$ n "8*8"
+# s "img"
+# att 0.4
+# rel 8
+# distort 0.5
+# coarse 4
+# legato 1.1
+# cps 0.6
+# speed (range 0.5 0.3 $ slow 1.25 $ sine)
+-- |* speed "0.25 0.5"
+
+d2 
+$ n "0 1 2 3 4 5 6 7"
+# s "olooper"
+# recordSource "out"
+# orbit "{0!4 2 3 4}%4"
+
+d3
+$ n "{5 7 1 2 4 3 6 0}%5"
+# s "loop"
+# legato 1.1
+# n 0
+# speed 0.5
+# coarse 4
+# vowel "a"
+# bpf (smooth $ "1500 9500 2500")
+# bpq 4
+
+d4
+$ n "{0 2 4}%5"
+# s "readorb"
+# crush 8
+# clouds 0 0.3 0.6 0.6
+# cloudsblend 0.8 0.6 0.8 0.6
+
+d5 
+$ hurry 0.5
+-- $ jux rev
+$ degrade
+$ striate 32
+-- $ jux rev
+-- $ stutWith 4 "{q e s}%5" (|* speed "-1.9")
+-- $ loopAt 1
+-- $ n "<9*4 15*3 21>"
+$ stutWith 2 0 (|* speed 0.98)
+$ n "9 99"
+# s "nimb"
+# att 0.3
+# rel 2
+# legato 1.5
+# vowel "o"
+-- # accelerate 1
+-- # speed "{1 -0.5}%7"
+-- # cut "{0 1}%5"
+# crush 4
+-- # delay "{1 0}%4.3"
+# speed 0.8
+# delay 1
+# delayt (range 0.6 0.06 $ perlin)
+# delayfb 0.9
+# lpfbus 0 (range 500 2800 $ perlin)
+# lpq 0.3
+# verb 0.8 0.6 0.3 0.3
+
+------------------
+
+d1
+-- $ slice 8 (run 8)
+-- $ loopAt 3
+-- $ slice 8 "{0}%8"
+-- $ stutWith 2 0 (|* speed "-1")
+$ s "jjriffarphit:32"
+# legato 1.1
+-- # lpfbus 0 (segment 32 $ rangex 500 7500 $ slow 2 $ sine)
+-- # lpq 0.1
+# gain 0.8
+# speed 0.5
+# cps 0.3
+
+d2
+-- $ jux rev
+-- $ stutWith 4 "e" (|* speed "-1.72")
+$ n "19"
+# s "jjfx"
+|* speed 0.125
+-- # coarse 6
+# delay 1
+# delayt 0.25
+# lock 1
+# gain 0

@@ -5,7 +5,7 @@ $ slow "2 .5"
 $ juxBy (range "-0.5" 0.5 $ sine) (rev . (|+ n 7) . (# nudge (range 0 0.5 $ slow 4 $ sine)))
 $ n "{0 1 2, 9 -5}%7" 
 # s "supergong" 
--- # roomTake "t" [0, 0.2] # sz 0.1
+# roomTake "t" [0, 0.2] # sz 0.1
 # voice 2
 # accelerate "-9 1"
 # decay 0.5
@@ -30,4 +30,4 @@ $ stack [id
   -- # lpf 2000
   # legato 1
   -- # gain 0
-] -- # cps (range 0.5 0.8 $ saw)
+] # cps (range 0.5 0.8 $ saw)

@@ -38,8 +38,9 @@ $ whenmod "<2 4 5>" "<1 3>" (# combbus 1 (fast 1.5 $ range 0 0.5 $ sine + (fast 
   # cut "<1 0>"
   # lpf 3000
 ]
-# room (fast 1.1 $ range 0 0.3 $ sine)
-# size (fast 1.2 $ range 0 0.2 $ sine)
+# cps 0.5
+-- # room (fast 1.1 $ range 0 0.3 $ sine)
+-- # size (fast 1.2 $ range 0 0.2 $ sine)
 
 -- midi for vis
 d1
