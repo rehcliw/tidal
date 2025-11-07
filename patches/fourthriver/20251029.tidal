@@ -1,0 +1,35 @@
+do
+  resetCycles
+  d1
+    -- $ striateBy 32 0.05
+    -- $ degradeBy 0.9
+    $ s "bnvoxphr:7*64"
+    # begin (range 0 0.9 $ fast 0.15 $ sine)
+    # legato 1.2
+    # speed "{-1 0.5 2 1}%5"
+    # delaybus 0 "1 0"
+    # delayt "{1%8 1%32}%3"
+    # delayfb 0.8
+    # lock 1
+    # cps (140/60/4)
+
+  d2
+    $ stutWith 3 "e" ((|+ n 4) . (# speed 1))
+    $ s "[~ bns:2]*2"
+    # speed "{-0.5 0.5 1}%4"
+
+  d3
+    $ chunk 4 (hurry 2)
+    $ sometimes (ply 2)
+    $ n ("10 5 19 23" + "<0 1>")
+    # s "{bnp bnk}%3"
+  
+  d4
+    $ rev
+    $ rarely (plyWith 8 (|* gain 0.9))
+    $ s "bnclp:0*4"
+    -- # panbus 0 (segment 16 $ range "-1" 1 $ sine)
+  -- d5
+    -- $ s "bnimp:5"
+
+  

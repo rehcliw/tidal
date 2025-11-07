@@ -1,4 +1,235 @@
 d1
+$ s "houk:6(4,8)"
+# legato 1
+
+d2
+$ juxBy 0.4 (rev . hurry 0.5)
+$ iter 4
+$ sometimes (ply 2)
+$ stutWith 4 "{7%4 1%8 3%16}%5" ((|+ note "<12 -7>") . (|+ n "<0!4 2 7>"))
+$ s "<houpfx*4>"
+# cut 1
+
+d2
+-- $ jux rev
+$ stutWith 3 (range 0 0.1 $ perlin) (|* speed "{1.05 1.01 0.9}%5.5")
+$ s "bottl voice chicken"
+# shape 0.4
+# gain 1.3
+# begin (range 0 0.95 $ perlin)
+# legato 1.3
+# speed (range 0.25 2 $ slow 1.23 $ sine)
+|* speed "<-1 1>"
+
+d1
+$ fast "{0.1 1.1 0.9 1 0.7}%6"
+-- $ juxBy 0.5 rev
+$ echoWith 4 "e" (|* speed "0.5 2")
+$ loopAt "2 4 0.5 1"
+$ sometimes ((|* legato 0.9) . ply "<4 2>")
+$ chop "8 4 16"
+$ loopAt 0.5
+$ n "{0 1 2 3 4 5 6 7 8 9}%3"
+# s "img"
+# legato 1.2
+# gain 1.1
+# distort 0.1
+-- # speedTake "st" [0.5,1,2]
+-- # cut 1
+
+-- clouds p s d t
+-- cloudblend w s f r
+d3
+$ n "{1 0 3}%5"
+# legato 1.1
+# s "readorb"
+-- # verb 1 0.99 0.02 0.01
+# clouds (range 0 1 $ slow 1.12 $ sine) 0.9 0.8 (range 0 1 $ slow 4.24 $ sine)
+# cloudsblend 1 0.9 0.6 0.2
+
+d4
+$ n "{2 0 4}%5"
+# s "readorb"
+# legato 1.1
+# bpfbus 0 (range 50 9500 $ slow 3.4 $ saw)
+# bpq 4
+
+d5
+$ n "0 1 3"
+# legato 1.1
+# s "readorb"
+# delay 1
+# delayt "{0.3 0.03 0.01}%5"
+# delayfb 0.8
+
+once $ s "olooper" 
+# recordSource "out"
+# orbit "3"
+
+d6
+$ s "loop"
+# gain 1.4
+# speed "-4"
+
+d4
+-- $ loopAt 1
+$ sometimesBy 0.3 (ply 2)
+$ chunk 4 (hurry 2)
+$ n ("0 4 2 9 13" + "{0 3}%5")
+# s "bnp bnk"
+# legato 1
+
+d3
+$ rev
+$ rarely (plyWith 4 (|* gain 0.9))
+$ s "bnh:7(7,10)"
+# gainTake "g" [1,1.1,0.9]
+# speedTake "s" [1,1,1,1,2,-1]
+
+
+
+d2
+$ s "in"
+# legato 0.9
+# fshiftbus 0 "{-500 500 0}%4"
+-- # accelerate "{1 0.5 -1 2}%5"
+-- # speed "0.5 0.1 2"
+# gain 1.2
+# delay 1
+# delayt ("{0.01 0.03 0.02}%5" * "<10 0.5 1>")
+# delayfb 0.9
+# clouds 0 0.2 0.4 0.6
+# cloudsblend 0.9 0.2 0.3 0.7
+
+once $ s "olooper" # recordSource "out" # orbit "1"
+
+d1
+$ s "loop"
+# speed "-0.5"
+# gain 1.5
+# legato 1
+
+d1
+-- $ jux rev
+-- $ palindrome
+-- $ sometimes (plyWith 8 (|* gain 0.9))
+-- $ s "[super808(3,8),super808]"
+$ s "<super808(2,5,<0 1 2>) super808>"
+# n "{1 0 -9 4}%5.5"
+# rate 1
+# voice 0
+# gain 1.1
+# shape 0.3
+-- # speedTake "s" [0.1,-1,0.5,-0.25,1,2]
+# cps (140/60/4)
+
+once $ s "looper" # recordSource "out" # orbit 0
+
+d2
+$ s "loop" # gain 2
+
+d3
+-- $ every 4 (stutWith 4 "e" (|* speed 1.1))
+-- $ chunk 4 (hurry "2 0.5")
+$ s "uks:10(4,10,2)"
+# speed "1"
+# gain 1.4
+
+d4
+$ s "bnk:30(2,8,<0 1>)"
+
+d1
+-- $ striate 16
+-- $ hurry "0.5 1 1.1 0.9 0.7"
+$ s "jjvocals:5"
+-- # speed "[1,0.5]"
+# legato 1
+
+
+d6
+-- $ striate 16
+-- $ jux (rev . hurry 0.5)
+-- $ echoWith 4 "e" ((|+ n "<7 0>") . (|+ note 7))
+$ degradeBy 0.5
+$ n "{12 <5 2> 0 2 9 32}%5"
+# s "ukmodchop"
+# legato 1
+# gain 1.2
+# shape 0.6
+# speedTake "s" [-1,1,0.5]
+
+d1
+$ juxBy 0.5 (rev . (|+ note "7 -7"))
+$ hurry "0.5 2"
+$ sometimes (plyWith 4 ((|* gain 0.9) . (|* note 1.5)))
+$ every 3 (struct "t(<5 7 9>,16,<0 1>)")
+$ chunk 4 (hurry "<0.5 2>")
+$ note (scale "mixolydian" $ "{0 5 15 19 -4}%5" + "<0 4 1>")
+-- # legato "0.1"
+# s "supervibe"
+# cut "{0 1}%5.4"
+# accelerate "0 1 -1"
+# lpfbus 0 (range 50 3500 $ fast 3.1 $ saw)
+# lpq 0.2
+# gain 0.7
+# cps (120/60/4)
+
+d1
+$ n "-19 ~"
+# shape 0.3
+# s "superpwm"
+
+d1
+$ hurry "0.9 1.1"
+$ s "voice*8"
+# begin (range 0 0.9 $ perlin)
+# legato 1
+# gain 1.1
+# accelerate 0.04
+
+d2
+$ hurry 0.25
+-- $ jux rev
+-- $ chunk 4 (hurry "0.5 2")
+-- $ degrade
+-- $ sometimes (plyWith 8 (|* gain 0.9))
+-- $ stutWith "<7 2 7 4>" "{s 5%16}%5" (|+ note 7)
+-- $ s "dyssnare(<3 5>,8,<0 1 2>)"
+$ s "cartoon(<3 5>,8,<0 1 2>)"
+# nTake "d" [0,19,3,34,54,43]
+-- # nudge 0.3
+-- # accelerate "{0 1 -0.2 2}%5"
+-- # bpfbus 0 (range 50 9500 $ fast 3.4 $ saw)
+-- # bpq 4
+# legato 0.2
+# cps (140/60/4)
+
+d3
+$ n "{0 1 3}%5"
+# s "readorb"
+# delay "{0 0.8 0.5}%4"
+# delayt "{0.1 0.3 0.03}%6.5"
+# delayfb 0.9
+# verb 1 0.3 0.5 0.9
+
+once $ s "olooper"
+
+once $ s "freeLoops"
+
+d4
+$ s "loop"
+# gain 1.4
+# coarse 8
+# distort 0.9
+# speed "[-0.2,-0.21]"
+# lpfbus 0 (range 50 9500 $ fast 3.4 $ sine)
+# lpq 0.3
+
+all $ degradeBy 0
+
+
+
+d1
 -- $ stutWith 3 "s" (|+ n "<-7 7 0 -3>")
 $ n ("0 12 -14 2" + "<4 [-6 15 -9 0] 0>")
 # s "midi"
@@ -193,6 +424,8 @@ $ n "{0 1 4 3 5 7}%4.1"
 # cloudsblend 0.8 0.9 0.5 0.7
 # cloudsfreeze 1
 
+resetCycles
+
 d4
 $ hurry 0.5
 $ jux (rev . hurry 0.5)
@@ -205,22 +438,22 @@ $ n "4(7,16)"
 # accelerate "0 1 0 -1"
 |* speed "{1!4 -1 2}%5"
 |* speed "{0.5 1 2}%6"
-# gain (range 0.9 1.1 $ perlin)
+# gain (range 0.9 1.2 $ perlin)
 # shape 0.6
 # legato 1
 
 d5
 -- $ fast 2
-$ chunk 4 (hurry 2)
+-- $ chunk 4 (hurry 2)
 -- $ bite 8 "1*3 2*4 7*3"
-$ every 3 (rev)
+-- $ every 3 (rev)
 -- $ ply 2
 $ n "7(<4 5>,16,<1 0 2>)"
--- # s "{bnk bns}%5"
-# s "bnk"
+# s "{bnk bns}%5"
+-- # s "bnk"
 # shape 0.4
 -- # speed "{0.3 -0.3}%5"
-# accelerate "2 -1 0"
+-- # accelerate "2 -1 0"
 # distort "{0.6 0 0.3}%5"
 # crush 2
 # cut 1
@@ -682,6 +915,63 @@ $ s "dyshh*16"
 # nTake "nt" [4,1,15]
 # speedTake "s" [1,1,2,0.5]
 
-d9
-$ n "0 2 1 9 3"
-# s "nimb"
+do
+  -- resetCycles
+  d1
+    -- $ juxBy (range 0 1 $ slow 3.4 $ sine) (rev . hurry "<2 0.5>")
+    -- $ iter 4
+    $ every 4 (stutWith 3 "<3%8 e 5%8>" (|+ note "{19 -7 7}%4"))
+    $ degrade
+    $ chunk 4 (hurry 0.5)
+    $ n ("{0 2 1 9 3}%4" + "<0 3 7>")
+    -- $ n "{3 0 9 2}%8"
+    # s "{gtsk gtss gtsh}%5"
+    -- # cps (range 0.5 0.8 $ sine)
+    # cps (180/60/4)
+    # gain 1
+    # delay (range 1 0 $ fast 1.2 $ saw)
+    # delayt "{1%3 1%64 1%8}%4"
+    # delayfb 0.8
+  d2
+    $ jux (rev . hurry 0.5)
+    $ s "[~ cartoon]*2"
+    # gain 1
+    # nTake "nt" [13,13,2]
+    # speedTake "st" [1,-1,1,2,0.5]
+  d3
+    -- $ palindrome
+    $ n "0 ~ [7 3] [19 13 4 11]"
+    # s "gtsp"
+    # cut 1
+    # speedTake "s" [1,2,0.5]
+
+do  
+  d1
+    $ s "houk:11*4"
+  d2
+    $ s "<~ [~ [~ houclap:19] ~ ~]>"
+  d3
+    $ fix ((# delay 1) . (# delayt "1%8") . (# delayfb 0.5) . (# lock 1)) (legato 0.1)
+    $ echoWith 2 0 (|* speed "<1.02 1.04 0.9>")
+    $ n "10"
+    # s "houcut"
+    # legato "<1 0.1>"
+    |* speed "-1"
+
+
+d1
+$ every 4 (palindrome)
+$ stutWith 3 "<7%4 1%5 3%5>" (|+ note "<1>")
+-- $ fast "{0.5 2 1 0.25}%5"
+$ note "c3 a3 f4 a3 g3"
+# s "midi"
+
+d2
+$ note "c4 g4 "
+# s "midi"
+# midichan 1
+
+d2
+$ ccn "2*9"
+# ccv "{64 0 50 128 100 20}%5"
+# s "midi"

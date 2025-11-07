@@ -110,6 +110,20 @@ lessDense density p = p {query = (densityFilter density). sortOn whole . query p
         _bounceWith :: (Num n, Ord n) => n -> Time -> Rational -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
         _bounceWith count time loss f p | count <= 1 = p
                             | otherwise = overlay (f (time `rotR` _bounceWith (count-1) (time*loss) loss f p)) p
+        setbpm bpm = setcps (bpm/60/4)
+        striateAt  str at f = slow   at $ striate (fast at $ str) f
+        chopAt     str at f = slow   at $ chop    (fast at $ str) f
+        sloopAt    str at f = loopAt at $ striate (fast at $ str) f
+        striateAt' str at f = striateAt (str |* at) (fmap toRational at) f
+        chopAt'    str at f = chopAt    (str |* at) (fmap toRational at) f
+        sloopAt'   str at f = sloopAt   (str |* at) (fmap toRational at) f
+        strat  = striateAt
+        chat   = chopAt
+        slat   = sloopAt
+        strat' = striateAt'
+        chat'  = chopAt'
+        slat'  = sloopAt'
+        runmod r m o = ((run r) |% m |+ o)
 :}
 
 -- tidal-looper

@@ -1,10 +1,10 @@
 d1 
-    -- $ juxBy (range "-0.5" 0.5 $ slow 1.2 $ sine) (rev . hurry 0.5) 
-    -- $ spreadf [linger (range 0.01 0.4 $ perlin), bite 8 "<1 7 [3*4]>", euclid 3 8]
+    $ juxBy (range "-0.5" 0.5 $ slow 1.2 $ sine) (rev . hurry 0.5) 
+    $ spreadf [linger (range 0.01 0.4 $ perlin), bite 8 "<1 7 [3*4]>", euclid 3 8]
     $ sometimes (bounceWith 8 "0.9" (0.66) (|* speed "{1.5 0.95}%5"))
     -- $ s "gtss" #cut 1 
     $ hurry 0.5
-    -- $ degrade
+    $ degrade
     $ stack [
         splice 32 "14" 
         $ s "mac" 

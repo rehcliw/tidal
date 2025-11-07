@@ -16,7 +16,7 @@ $ n (3 + scale "phrygian" ("{0 10 3 7}%5" + "{-7 -3 -10}%2"))
 -- # legato 0.5
 -- # midichan 1
 
-once $ n "5" $ s "midi"
+once $ n "5" # s "midi"
 
 d1
 $ juxBy 0.5 rev

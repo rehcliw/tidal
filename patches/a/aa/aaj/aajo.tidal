@@ -1,0 +1,57 @@
+setbpm 90
+
+do
+  -- resetCycles
+  d1 
+    -- $ hurry "0.5"
+    $ juxBy "-0.5 0.5" (hurry 0.5 . rev . (|* ringf "{2 0.5 1}%5"))
+    $ iter 4
+    $ sometimes (slow "<2 4 1 2>" . plyWith "<4 2 3>" ((|* gain 0.9) . (|* speed "{1.1!5 -1.1 0.9}%5") . (|* legato 0.9)))
+    -- $ fix (# fshift "{500 0 -500}%6") (crush 2)
+    $ contrast (hurry 2) ((# ring 0.6) . (# ringf "{300 150 900}%4") . (# ringdf "-100")) (vowel "o")
+    $ (echoWith 2 "e" ((sometimes (# vowel "{a o}%5")) . (bite 16 $ (struct "t*8" $ "{0 14 8 2 7}%5"))))
+    $ chat' "{16 8 4}%8" "{2 1 4}%5"
+    $ n "{1 6}%<2!4 1>"
+    # "bndloop" 
+    -- # begin "1%2"
+    -- # end "3%4"
+    # cut "{1 2}%5"
+    -- # legato 1
+    -- # accelerate "-2"
+    -- # lpf 4000
+    -- # lpq 0.1
+    # clouds "0 0.5" 0.1 0.7 "{0.1 0.9 0.5}%6.4"
+    # cloudsblend "<0!2 1 0.5 0.1>" 1 0.4 0.9
+
+d2
+-- $ fast 2
+-- $ iter 4
+$ jux rev
+$ sometimes (slow "<2 4 1 2>" . plyWith 4 ((|* gain 0.9) . (|* speed 1.1)))
+$ "[~ ukclap:19]*4"
+
+d3
+$ slow 4
+$ n "0 1 2 3"
+# "rlooper" 
+# recordSource "out" 
+# orbit 0
+
+once $ s "freeLoops"
+
+d4
+-- $ strat' "64 16" 2
+-- $ slice 16 "4 2 0 2"
+-- $ hurry 0.5
+$ jux rev
+$ echoWith 2 "e" (fast 0.5)
+$ "1(<3 5 7>,8,<1 0 0 0 2>)"
+# n "{0 1 2 3}%5"
+# "loop"
+# gain 1.2
+# shape 0.2
+# coarse 4
+# legato 1
+# speed 1
+-- # hpf 4000
+-- # hpq 0.1

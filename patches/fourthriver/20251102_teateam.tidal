@@ -1,0 +1,124 @@
+do
+  -- hush
+  -- resetCycles
+  -- drumz
+  d1
+    $ almostNever (# accelerate "-2")
+    $ n "{~ <2!2 ~> <2 1> ~ <2!3 2*2>}%8"
+    # s "ttk" 
+    # cps (150/60/4)
+    # gain 1.2
+    # distort 0.1
+    # shape 0.3
+
+resetCycles
+
+  d2
+    $ chunk 4 (hurry "0.5")
+    $ n "{~ 4 ~ ~ 4}%16"
+    # s "tts"
+    # speed 0.9
+    # nudge 0.2
+    # gain 1.2
+  
+  d2 silence
+
+  d3
+    -- $ sometimes (ply 2)
+    $ n "{5 ~ <5 ~ ~> 5}%16"
+    # s "tth"
+
+  d4
+    -- $ every 13 (degradeBy 1)
+    $ echoWith 2 "e" (slow 3 . (|+ n 5))
+    $ n "{~ [~ 3*3] ~ ~ ~}%4"
+    # s "ttp"
+
+  d5
+    -- $ every 12 (degradeBy 1)
+    $ s "super808/2"
+    # rate "{0.2 1 0.4 1}%5"
+    # voicebus 0 (range 0 1.3 $ slow 3.4 $ sine)
+    # shape 0.4
+    # gain 1.1
+
+  d6
+    -- $ every 11 (degradeBy 1)
+    $ n "<~!3 [~ ~ ~ 0]>"
+    # s "ttv"
+
+  d7
+    -- $ every 10 (degradeBy 1)
+    $ every 8 (rev . stutWith 8 "1%32" ((|* gain 0.9) . (|* legato 0.9) . (|* speed "{0.9 -1.1}%2")))
+    $ sometimes (plyWith 4 (|* gain 0.9))
+    $ n "[~ 4]*2"
+    # s "ttc"
+    # legato 1
+    # gain 1.1
+    # speed 2
+
+  --------------------------
+  d8
+    -- $ every 9 (degradeBy 1)
+    $ hurry 0.5
+    $ rarely (echoWith 2 "0" (hurry 2 . bite 16 "1*8"))
+    $ fast "<2!6 1!2>"
+    $ struct "t(<5!4 3>,8,<2!7 0>)"
+    $ n "0"
+    # s "ttbos"
+    # legato 0.9
+    # cut 1
+    # gain 1
+    # shape 0.3
+    # speedTake "s" [1,2,1,4,1,1.5]
+    |* speed 2
+    # delay "<0!11 1!2>"
+    # delayt "1%16"
+    # delayfb 0.7
+    # lock 1
+    # lpfbus 1 "{2500 1500 5500 4500}%5"
+    # lpq 0.4
+
+do
+  -- resetCycles
+  d9
+    -- $ degradeBy "<0!4 1!2>"
+    $ hurry 0.5
+    $ echoWith 3 0 (|* speed "1.02")
+    $ s "ttpad"
+    # legato 1.1
+
+  d10
+    $ every 12 (# s "freeLoops")
+    $ n "0 1 2 3"
+    # s "olooper"
+    # orbit "{0 1 2 3 4 5 6 7 8}%11"
+
+  d10 silence
+
+  d11
+    -- $ hurry 0.5
+    $ juxBy "1 -1" (rev . hurry "<1 2>")
+    $ n "{2 3 ~ 1 0}%4"
+    # s "loop"
+    # speed "{<-1 1> 0.5}%3"
+    # gain "{1.2 0}%7.5"
+    # legato 1
+    -- # hpf 1500
+    -- # coarse "{2 0 4}%7"
+    # crush "{3 2}%3"
+    -- # shape 0.1
+
+d11 silence
+
+d12
+  $ jux (rev . hurry 0.5)
+  $ echoWith 4 "s" (|* speed 2)
+  $ s "ttbos:2(5,8,<0 2>)"
+  # legato "{0.1 0.6}%5"
+  # gain 1.2
+  -- # delay 1
+  -- # delayt "1%16"
+  -- # lock 1
+
+once $ s "freeLoops"

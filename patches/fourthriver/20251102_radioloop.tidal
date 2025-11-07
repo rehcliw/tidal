@@ -1,0 +1,50 @@
+do
+  -- resetCycles
+  d1
+    $ repeatCycles 4
+    $ rarely (echoWith 3 "5%8" (rev . (|+ n 3)))
+    $ every 2 (sometimesBy 0.3 (hurry 0.5 . rev . plyWith 8 (|* gain 0.9) . (|* legato 0.9) . (|* speed 1.5)))
+    $ juxBy "<0.5 -0.5 0>" (rev . hurry 0.5)
+    $ chunk 4 (hurry 0.5)
+    $ fast 2
+    $ sometimes (ply 2)
+    $ splice 8 ("1 _ ~ 5 <7 6> 2" + "<0!3 1>")
+    $ loopAt "{2 1 0.5}%4"
+    $ n "{0 1 4 3 7 8 5 6 2}%4"
+    # legatoTake "lt" [0.2,0.4,0.2,1]
+    # s "websdr"
+    -- # cut 1
+    # gain 1.1
+    # shape 0.8
+    # cps 0.2
+    
+  d2
+    $ slow 2
+    $ slice 16 (stutWith 3 "7%8" (|+ "<4 1>") "~ 0 4 5")
+    $ s "websdr:0"
+    # legato 1
+    # gain 1.2
+    # shape 0.5
+    # speed "[1,1.03]"
+    |* speed (range 0.99 1.01 $ fast 1.1 $ perlin)
+    # accelerate (range "-0.1" 0.1 $ fast 2.1 $ perlin)
+    # panbus 0 (range "-1" 1 $ perlin)
+
+  d3
+    $ hurry 0.5
+    $ splice 16 "{1 ~ ~ 7 ~ ~ <1 4> ~}%8"
+    $ s "websdr:3"
+    # legato 0.9
+    # shape 0.5
+    # gain 1.2
+    # lpf "2500"
+    # lpq 0.3
+    # speed "[0.8,0.81,0.79]"
+    |* speed "{1 1.1 1}%5"
+  
+  d4
+    $ n "{0 1 2}%4"
+    # legato 1.1
+    # s "readorb"
+    # clouds 0 0.2 0.2 0.3
+    # cloudsblend 0.9 0.7 0.5 0.9

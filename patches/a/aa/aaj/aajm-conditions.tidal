@@ -1,0 +1,69 @@
+d1
+$ juxBy "0.5 -0.5" (rev . hurry 0.5)
+$ fix ((# att 0) . (# bpfbus 0 (smooth $ "{700 7000 20 10000}%8")) . (# bpq 4)) (delayt 0.05)
+$ chunk 4 (palindrome . hurry 2)
+$ iter 3
+$ fix ((# crush "<4 2 8>") . (plyWith 4 (|* speed 1.5))) (delayt "0.2")
+$ fix ((# delayt "{0.2 0.9 0.05}%4") . (# delay 1) . (# delayfb 0.9) . hurry 0.5) (speed "<1 0.5>")
+$ "1 1 1 1 1"
+-- # "{crosley bottl roof print keurig}%4"
+# "<cdam crosley:1 mirror:1>"
+-- # legato 2
+# begin (range 0 1 $ fast 0.92 $ sine)
+# speed "{-0.5 2 1.5 1}%5.5"
+# att 0.3
+# sus 1
+# rel 2
+# gain 1.1
+# shape 0.2
+# accelerate "{-1 0 0 0}%3"
+
+once
+$ s "olooper"
+# recordSource "out"
+# orbit 0
+# n 0
+
+once $ s "freeLoops"
+
+d2
+-- $ hurry 0.25
+$ fix (# distort 0.4) (speed 2)
+$ stutWith 3 "1%5" (chunk 4 (hurry 0.5) . striate 4 . (|* speed "{-0.5 2 1}%5"))
+$ chunk 8 (|* gain 0)
+$ s "loop"
+# gain 1.4
+# coarse 2
+# shape 0.3
+
+d3
+$ s "voice:1*4"
+# legato 1.5
+# begin (range 0 1 $ perlin)
+# gain 1.2
+# shape 0.6
+|* speed "[1.1,1.12,1.13]"
+
+d4
+$ chunk 3 ((# delayt 0.25) . (# delay 1) . (# lock 1) . (# delayfb 0.9))
+$ chunk 4 (# distort 0.2)
+$ n "[1 3 2 0]/1.2"
+# s "loop"
+# gain 1.4
+# speedTake "st" [1,1.01,0.99]
+|* speed "<-2 0.5>"
+# legato 1.2
+
+d5
+$ n "{0 1 2 3 5}%6"
+# s "readorb"
+# legato 1.1
+# verb 0.9 0.9 0.01 0.01
+# bpfbus 1 (range 50 9500 $ slow 3.4 $ sine)
+# bpq 4
+
+d6
+$ n "{4 0}%5"
+# "readorb"
+# legato 1.1
+# fshift "-150"
