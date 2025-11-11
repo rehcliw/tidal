@@ -1,8 +1,8 @@
 do
-  resetCycles
+  -- resetCycles
   d1
     -- $ striateBy 32 0.05
-    -- $ degradeBy 0.9
+    $ degradeBy 0.9
     $ s "bnvoxphr:7*64"
     # begin (range 0 0.9 $ fast 0.15 $ sine)
     # legato 1.2
@@ -13,23 +13,44 @@ do
     # lock 1
     # cps (140/60/4)
 
+  d1 silence
+
   d2
     $ stutWith 3 "e" ((|+ n 4) . (# speed 1))
     $ s "[~ bns:2]*2"
     # speed "{-0.5 0.5 1}%4"
+    # accelerate "-1 -2 1 0"
 
   d3
     $ chunk 4 (hurry 2)
     $ sometimes (ply 2)
     $ n ("10 5 19 23" + "<0 1>")
     # s "{bnp bnk}%3"
+    -- # ampbus 1 (range 0 1 $ sine)
   
   d4
     $ rev
     $ rarely (plyWith 8 (|* gain 0.9))
     $ s "bnclp:0*4"
-    -- # panbus 0 (segment 16 $ range "-1" 1 $ sine)
-  -- d5
-    -- $ s "bnimp:5"
+    # panbus 0 (segment 16 $ range "-1" 1 $ sine)
+
+  d5
+    $ s "bnimp:5"
+    # legato 1
+
+do
+  let slices = "{32!4 16}%5"
+  d6
+    $ sometimes (jux (rev . hurry 0.5))
+    $ splice slices (runmod slices "{2!4 4 8}%4" "{0 8 4}%4")
+    $ loopAt "8"
+    $ n "19"
+    # "ttdl"
+    # speed "{-1 1!4}%7"
+    # legato 0.5
+    # ringTake "r" [2,0,0,2,2]
+    # ringf 900
+
+  d5 $ silence
 
   

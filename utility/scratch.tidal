@@ -1,4 +1,62 @@
 d1
+$ jux (rev . hurry 0.5)
+$ slow 2
+-- $ dtfl 1 "1%2 1%4" 0.8 1
+-- $ "inr(5,8)"
+$ "inr"
+# legato 0.5
+# speed "{1 2 0.5}%8"
+# gain 1.9
+# shape 0.8
+-- # accelerate "-1"
+
+once $ s "olooper"
+
+once $ s "freeLoops"
+
+d2
+-- $ hurry "0.5 1 2"
+-- $ mask "{1 0 0 1 1}%16"
+-- $ slice 8 "2*16"
+$ s "loop"
+# gain 1.1
+# shape 0.1
+-- # speed "0.25 0.5"
+
+d3
+-- $ hurry 2
+-- $ iter 4
+-- $ repeatCycles 4
+$ juxBy "0.5 -0.5" (rev . hurry "{0.5 2 1}%5")
+-- $ rarely (bite 16 "8*16")
+-- $ degrade
+-- $ hurry 0.5
+$ sometimesBy 0.3 ((# bpfbus 0 "{9300 200 1500}%5") . (# lpq 8))
+$ stutWith 8 "s" ((|* gain 0.9) . (|* legato 0.9) . (|* speed "0.98"))
+$ "{1 1 ~ 1 ~ 1*2 ~ 1 ~ ~}%8"
+# n ("{9 3 12}%4" + "0 19")
+-- # "{ttp bnp lwwizperc dyspfx}%5.5"
+# "{bnp}%5"
+# speed "{2 0.5 1 1 0.75}%9"
+# accelerate "{0.1 -0.2 0}%5"
+# cps (140/60/4)
+# legato 1.5
+# gain 1.1
+
+d4
+$ mask "{1 1 0 1 1 0 0 1}%16"
+$ sometimes (ply 2)
+$ s "bnh:3*8"
+
+
+
+
+
+
+
+
+
+d1
 $ s "houk:6(4,8)"
 # legato 1
 

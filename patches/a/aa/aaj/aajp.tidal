@@ -1,6 +1,7 @@
 setbpm 84
 
 d1
+-- $ hurry "0.5 1"
 $ (|* speed "<[1 -2 1 1] 1!7>")
 $ every 2 (echoWith 2 "<q e!6>" (|* speed "2"))
 $ slat' "{32 16}%3" "{2 1 1}%4"
@@ -10,6 +11,4 @@ $ "1"
 |* speed "1"
 -- # gain "1 0 1"
 
-do
-  let runmod r m o = ((run r) |% m |+ o)
-  d2 $ juxBy 0.5 (rev . (# cut 2) . hurry 0.5) $ slice 32 (slow "1" $ runmod 32 "{3 2 7}%5" "13 3 0 3") $ "ttml:4" # cut 1 # gain 1.1
+  d2 $ juxBy 0.5 (rev . (# cut 2) . hurry 2) $ slice 32 (slow "2" $ runmod 32 "{4 3}%5" "13 3 0 3") $ "ttml:4" # cut 1 # gain 1.1

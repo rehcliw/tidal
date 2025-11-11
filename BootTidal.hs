@@ -123,7 +123,10 @@ lessDense density p = p {query = (densityFilter density). sortOn whole . query p
         strat' = striateAt'
         chat'  = chopAt'
         slat'  = sloopAt'
-        runmod r m o = ((run r) |% m |+ o)
+        runmod   r m o     = ((run r) |% m |+ o)
+        runmod'  r m mul o = ((run r) |% m |* mul |+ o)
+        slicemod r m o     = slice r (runmod r m o)
+        bitemod  r m o     = bite r (runmod r m o)
 :}
 
 -- tidal-looper

@@ -1,0 +1,11 @@
+d1
+-- $ slow "{1 2 1}%4"
+-- $ palindrome
+-- $ (bite 8 "1*32")
+$ note (scale "major" (runmod 32 "4" "0"))
+-- $ n (scale "major" (stutWith "3" "s" (|+ "3") $ "{0 4 9 1 12 -7}%4"))
+# "midi"
+# legato "0.1 0.06"
+# cps (140/60/4)
+
+scaleList

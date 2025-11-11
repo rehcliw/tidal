@@ -1,0 +1,20 @@
+do
+  let in1 = pF "in1"
+      in2 = pF "in2"
+      in3 = pF "in3"
+      out1 = pF "out1"
+      out2 = pF "out2"
+  d1
+    $ iter 4
+    $ jux rev
+    -- $ sometimes (ply "<6 3>")
+    $ s "{breathe_in breathe_out}%3"
+    # legato 1.8
+    # in1 "{0.1 0.9}%5"
+    # in2 "0.8"
+    # in3 "3.95"
+    # out1 "{0.1 0.8 0.4}%4.4"
+    # out2 "0.9 0.1 0.34"
+    # vowel "{o a e i u}%6"
+    # gain 1.23
+    -- # fshift "{-500 500 -1300 0}%5.9"

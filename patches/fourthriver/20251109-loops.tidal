@@ -1,0 +1,27 @@
+do
+  setbpm 100
+  setCycle 750
+  d1
+    $ jux (rev . slow "{2 1}%4")
+    $ echoWith 3 "{t 1%6}%5" ((|* harm 0.9) . (|* timbre 2))
+    $ repeatCycles 16
+    $ fix (# legato 2) (note "-19")
+    -- $ iter 4
+    $ sometimes (bite 16 (struct "t*8" $ "<4 2 8 0 12>"))
+    -- $ bite 16 "{0 4 2 1 0 6 7 9 11 15}%5"
+    -- $ arp "{up pinkyup down thumbdown}%3"
+    $ arp "up"
+    -- $ note "<g'maj'7 g'maj'4>"
+    $ note "{g'maj'8 g'maj'4}%1"
+    # "plaits"
+    # engine 1
+    |- note "{12 0 24}%2"
+    # harm "{0 0.1 0.9}%7"
+    # timbre "{0.1 0.2 0}%2.5"
+    # morph "0 1"
+    # mode 0
+    # level "{0.2 1}%9"
+    # lpg "{0.2 1}%3" "1 0.2"
+    # cut "{1 0!4}%7"
+
+  getnow

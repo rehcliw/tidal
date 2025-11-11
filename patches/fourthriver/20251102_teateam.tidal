@@ -60,7 +60,7 @@ resetCycles
   --------------------------
   d8
     -- $ every 9 (degradeBy 1)
-    $ hurry 0.5
+    -- $ hurry 0.5
     $ rarely (echoWith 2 "0" (hurry 2 . bite 16 "1*8"))
     $ fast "<2!6 1!2>"
     $ struct "t(<5!4 3>,8,<2!7 0>)"

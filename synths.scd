@@ -60,4 +60,17 @@ SynthDef(\foldy, {
 	Out.ar(out, sig)
 }).add;
 
+SynthDef(\breathe_in, {
+		| out = 0, gate = 1, in1=0.11, in2=0.63, in3=0.18, amdb= -10 |
+		var menv = EnvGen.kr(Env.new([0,1,1,0],[in1, in2, in3], curve:'lin'),
+			                 gate,
+			                 doneAction:Done.freeSelf);
+		var noise = WhiteNoise.ar(amdb.dbamp);
+		var f1 = BPF.ar(in:noise, freq:5790, rq:0.1, mul:-29.dbamp);
+		var f2 = BPF.ar(in:noise, freq:3400, rq:0.2, mul:-16.dbamp);
+		var f3 = BPF.ar(in:noise, freq:1990, rq:0.1, mul:-23.dbamp);
+		var f4 = BPF.ar(in:noise, freq:1250, rq:0.1, mul:-26.dbamp);
+		Out.ar(out, menv*(f1+f2+f3+f4)!2);
+	}).add;
+
 )
