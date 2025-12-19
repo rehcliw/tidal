@@ -16,7 +16,7 @@ $ stack [id
   # rate 1
   |* gain 0.9
 ]
-# cps "0.3"
+-- # cps "0.3"
 # gain 1.5
 
 d2

@@ -3,7 +3,7 @@ do
     -- $ iter 4
     -- $ juxBy 0.5 (rev)
     -- $ degradeBy 1
-    $ hurry 0.7
+    -- $ hurry 0.7
     $ every 8 (plyWith "4 1!7" ((|* gain 0.9) . (|* legato 0.9) . (|* speed "2")))
     $ every 4 (sometimesBy 0.2 ((revOn' [4,"<2 4 1>","<0.5 8>",16]) . (ply "{2 4 2}%4") . (|* speed "{2 0.5}%3")))
     -- $ slow 8
@@ -13,14 +13,14 @@ do
     # s "jjbreaks"
     # legato 1
     # lpf 5000
-    # cps 0.58
+    -- # cps 0.58
   d2
-    $ hurry 0.7
+    -- $ hurry 0.7
     $ n "[1/2, [~ ~ ~ 4]/2, [~ 16], [~ 22 ~ ~]/4]"
     # s "presp"
     # legato 0.5
   d3
-    $ fast 0.7
+    -- $ fast 0.7
     $ note (scale "minPent"
       $ echoWith 4 "3%8" (|+ 3)
       $ "0" + "<0!7 7>"

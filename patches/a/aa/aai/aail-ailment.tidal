@@ -1,6 +1,6 @@
 d1
 -- $ slow 2
-$ iter 4
+-- $ iter 4
 $ sometimes (hurry 0.5)
 -- $ sometimes (juxBy (range "-0.5" 0.5 $ perlin) (hurry 2 . rev . (|* speed "{-2 4 1}%5")))
 -- $ rarely (ply "8")

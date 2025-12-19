@@ -1,42 +1,133 @@
+once $ "acv:10" # shape 0.5 # gain 1.3
+
+once $ "jjvocals:13" # shape 0.4
+
+once $ "ksbrk:6" # shape 0.3
+
+setbpm 140
+
 d1
-$ jux (rev . hurry 0.5)
-$ slow 2
+-- $ juxBy (range "-1" 1 $ perlin) (rev . hurry "<0.5 2>")
+-- $ slow 2
+-- $ jux rev
+-- $ degrade
+-- $ echoWith 3 "3%16" (|+ note 7)
+-- $ n (runmod "{8 16 8}%4" "{1 3}%5" "{0 2 13 1 21}%8")
+-- $ striate 16
+-- $ sometimes (plyWith 4 (|* gain 0.9) . (|* legato 0.9))
+-- $ n "<[0 1!3] [0 39 0 41]>"
+-- $ n "[0 1!3]"
+$ s "houclap houhh!3"
+-- # "houother"
+-- # "houclap houother"
+# legato 1
+# shape 0.5
+-- # speed "{0.5 1}%3"
+# accelerate "{-1 2 0}%5"
+-- # delay' "1" "2%3" 0.9
+-- # lock 1
+# coarse 2
+-- # nudge 0.3
+-- # crush "2 16"
+
+all $ (~>) "0"
+
+d2
+-- $ iter 8
+-- $ rarely (plyWith 4 (|* speed 2))
+-- $ degrade
+$ "houride:0 [~ houride:1] ~ houride:1" 
+# legato 1 
+# shape 0.5 
+# gain "1 0.9!3"
+# speed "{1 2 1 1}%5"
+# coarse 2
+
+d13
+-- $ sometimes (ply 2)
+$ n "11 [11 ~ ~ <~ 11>] 11 11"
+# "houk" 
+# shape 0.5
+
+d1
+$ s "bnbass808:3"
+|+ note 2
+
+d1
+$ chop 8
+$ "ttdl:8 ttdl:4"
+# legato 1
+-- # begin "{0 0.5 0.75}%5"
+# timescale "{0.5 3 2}%5"
+# timescalewin "{10 0.01 0.02}%7"
+# cut "1 0"
+# shape 0.5
+# gain 1.2
+
+d1
+-- $ strat' 32 2
+$ echoWith 3 "e" (rev . hurry "1 2" . (|+ n 7))
+-- $ sometimes (plyWith 3 (|* speed 2))
+-- $ n (runmod 16 "6 3 12" "<4 3!>")
+$ n (runmod "<3 [1 3]!3 6>" "3" "3")
+# "aesh"
+# legato 0.9
+# shape 0.5
+# cut "{1 0 2}%7"
+# panbus 0 ("{-1 1}%5" * (range 0.25 0.75 $ slow 3.4 $ sine))
+-- # delay' "{0.5!5 0}%5" "<0.03 [0.01 0.015] 0.02>" 0.9
+# gain 1.3
+
+d2
+$ "dyskick"
+
+
+
+
+
+d1
+-- $ jux (rev . hurry 0.5)
+-- $ slow 2
 -- $ dtfl 1 "1%2 1%4" 0.8 1
 -- $ "inr(5,8)"
 $ "inr"
 # legato 0.5
 # speed "{1 2 0.5}%8"
-# gain 1.9
-# shape 0.8
--- # accelerate "-1"
+# gain 1
+-- # shape 0.8
+# accelerate "-1"
 
-once $ s "olooper"
+once $ slow 2 $ s "olooper" 
+# n 0
 
 once $ s "freeLoops"
 
 d2
--- $ hurry "0.5 1 2"
+-- $ jux (rev . hurry 0.5)
+$ hurry "{0.5 1 2}%4"
 -- $ mask "{1 0 0 1 1}%16"
--- $ slice 8 "2*16"
-$ s "loop"
+-- $ sometimes (plyWith 2 (|* speed 2))
+$ splice 8 (runmod 8 3 0)
+$ n "<0!2 1>"
+# "loop"
 # gain 1.1
 # shape 0.1
--- # speed "0.25 0.5"
+# speed "-1 0.25 0.5"
 
 d3
 -- $ hurry 2
 -- $ iter 4
 -- $ repeatCycles 4
 $ juxBy "0.5 -0.5" (rev . hurry "{0.5 2 1}%5")
--- $ rarely (bite 16 "8*16")
+$ rarely (bite 16 "8*32")
 -- $ degrade
 -- $ hurry 0.5
 $ sometimesBy 0.3 ((# bpfbus 0 "{9300 200 1500}%5") . (# lpq 8))
 $ stutWith 8 "s" ((|* gain 0.9) . (|* legato 0.9) . (|* speed "0.98"))
 $ "{1 1 ~ 1 ~ 1*2 ~ 1 ~ ~}%8"
 # n ("{9 3 12}%4" + "0 19")
--- # "{ttp bnp lwwizperc dyspfx}%5.5"
-# "{bnp}%5"
+# "{ttp bnp lwwizperc dyspfx}%5.5"
+-- # "{bnp}%5"
 # speed "{2 0.5 1 1 0.75}%9"
 # accelerate "{0.1 -0.2 0}%5"
 # cps (140/60/4)

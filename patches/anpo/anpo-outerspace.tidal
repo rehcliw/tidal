@@ -2,7 +2,7 @@
 
 d1 $ slow 4 $ stutWith 2 "e" ((# speed "{2 0.5}%5") . (|* gain 0.9)) $ striateBy 32 0.005 $ s "rollergirl" # legato 1 # gain 0.3 # coarse 6 # delay 1 # delayt 0.2 # delayfb 0.9 # room 0.9 # sz 0.9
 
-d1
+d2
 $ hurry 0.25
 $ degradeBy 0.38
 $ jux rev
@@ -49,6 +49,7 @@ $ s "nupgl"
 # speed 0.9
 # vowel "o"
 # coarse 2
+# gain 1.9
 -- # grain "{0 0.1 0.75 0.62}%32" "{0.001 0.0001 0.0003 0 .0002}%9"
 
 d2

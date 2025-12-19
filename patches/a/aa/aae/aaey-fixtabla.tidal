@@ -1,4 +1,4 @@
-d1 
+d2
 -- $ struct "t*9"
 $ fix (id
   . juxBy 0.25 (rev . (|* speed "-1"))
@@ -20,8 +20,9 @@ $ n "{0 11 32 3 4 15 20}%9"
 -- # nTake "n" [0,1,2,3,4,5,9,30,31]
 -- # legato 1
 # gain 1.3
+# shape 0.5
 # verb 0.5 0.5 0.5 0.5
-# cps 0.7
+-- # cps 0.7
 
 setcps (90/60/4)
 

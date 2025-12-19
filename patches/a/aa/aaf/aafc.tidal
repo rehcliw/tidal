@@ -52,6 +52,6 @@ $ stack [id
 # s "sm64"
 # verb 0.9 0.9 (range 0.1 0.9 $ slow 1.1 $ sine) (range 0.1 0.9 $ sine)
 -- # shape 0.5
-# cps 0.7
+-- # cps 0.7
 
 setcps 0.7

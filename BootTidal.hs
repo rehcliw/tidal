@@ -104,8 +104,7 @@ lessDense density p = p {query = (densityFilter density). sortOn whole . query p
 
 -- other custom funcs
 :{
-    let dtfl wet delt delfb lck = ((# delay wet) . (# delaytime delt) . (# delayfeedback delfb) . (# lock lck))
-        bounceWith :: Pattern Int -> Pattern Time -> Pattern Rational -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
+    let bounceWith :: Pattern Int -> Pattern Time -> Pattern Rational -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
         bounceWith n t l f p = innerJoin $ (\a b l -> _bounceWith a b l f p) <$> n Sound.Tidal.Context.<* t Sound.Tidal.Context.<* l
         _bounceWith :: (Num n, Ord n) => n -> Time -> Rational -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
         _bounceWith count time loss f p | count <= 1 = p
@@ -127,6 +126,7 @@ lessDense density p = p {query = (densityFilter density). sortOn whole . query p
         runmod'  r m mul o = ((run r) |% m |* mul |+ o)
         slicemod r m o     = slice r (runmod r m o)
         bitemod  r m o     = bite r (runmod r m o)
+        delay' a t fb = delay a # delayt t # delayfb fb
 :}
 
 -- tidal-looper

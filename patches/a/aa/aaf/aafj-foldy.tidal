@@ -15,7 +15,7 @@ d1
     $ juxBy (range 0 1 $ sine) (rev . iter 4)
     $ sometimes (chop 4)
     -- $ fast 0.4
-    $ hurry "{0.125 <0.5 1> 2}%4"
+    -- $ hurry "{0.125 <0.5 1> 2}%4"
     $ echoWith 7 "<s q 1 0>" (|+ n "{9 -5 0 -7 1}%4")
     $ struct "t(3,8,<1 2 0>)"
     $ n "5/5.9 4/3.5 -9/2.2"
@@ -28,7 +28,8 @@ d1
     # sigfoldhi "1"
     # mstart "0.4 0.01"
     # mend "<1 0.01>"
-    # cps 0.7
+    -- # cps 0.7
+    -- # cps (140/)
     -- # cps (range 0.2 4 $ slow 2.1 $ sine)
     # gain 1
     -- # cut "1"
@@ -49,7 +50,7 @@ d1
     # gain 0.8
     # lpfbus 0 (range 200 5000 $ slow 2.3 $ sine)
     # orbit 1
-  ]
+  ] # shape 0.5 # gain 1.1
 
 d2 silence
 

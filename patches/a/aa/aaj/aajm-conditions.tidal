@@ -6,7 +6,7 @@ $ iter 3
 $ fix ((# crush "<4 2 8>") . (plyWith 4 (|* speed 1.5))) (delayt "0.2")
 $ fix ((# delayt "{0.2 0.9 0.05}%4") . (# delay 1) . (# delayfb 0.9) . hurry 0.5) (speed "<1 0.5>")
 $ "1 1 1 1 1"
--- # "{crosley bottl roof print keurig}%4"
+# "{crosley bottl roof print keurig}%4"
 # "<cdam crosley:1 mirror:1>"
 -- # legato 2
 # begin (range 0 1 $ fast 0.92 $ sine)

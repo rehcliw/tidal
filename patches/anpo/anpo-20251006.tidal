@@ -1,0 +1,80 @@
+d1
+$ "inr/3"
+-- # vowel "{o a ~}%5"
+-- # speed 0.5
+-- # accelerate 1
+# delaybus 1 1
+# delayt 0.6
+# delayfb 0.9
+# lpfbus 0 (range 500 1500 $ slow 1.3 $ sine)
+# lpq 0.1
+
+-- neighbors
+d1
+$ n (runmod 16 "{4 1 7}%2" "<0 2>")
+# "ttp"
+# att 0.3
+# rel 1
+# delay "1 0"
+# delayt "{0.1 0.05 0.2}%4"
+# delayfb 0.9
+# speed "{-1 0.1 -0.5}%5"
+# accelerate "-0.3"
+-- # distort 0.2
+-- # coarse 3
+# shape 0.2
+
+-- svankmayer
+d1
+$ degradeBy 0.9
+$ slat' ("{16 8 2 32}%5" + "{1 3 0 5 2 8}%3") "{8 4 2 1}%5"
+$ "{keurig kitchen}%3.5"
+# legato 0.9
+# speed 0.9
+-- # accelerate "-1"
+# gain 1
+# shape 0.3
+# verb 1 0.9 0.8 0.1
+# crush 2
+
+d2
+$ n 0
+# "readorb"
+# bpfbus 0 (smooth $ "{5500 50 1500}%2")
+# bpq 8
+
+d1
+$ hurry "{0.4 0.1 0.01}%5"
+$ palindrome
+$ chunk 4 (hurry 0.5)
+$ plyWith 4 ((|* gain 0.9) . (|* speed 0.8))
+$ slice 30 (runmod 30 "4 2 9" "<0 1>")
+$ "nimbl:0"
+# att 0.1
+# rel 4
+# legato 0.9
+# coarse 2
+# shape 0.5
+# speed "-0.25"
+
+d1
+-- $ degradeBy 0.4
+-- $ hurry 0.5
+$ "inr"
+# speed "[0.5,0.51]"
+-- # legato "{0.3 1}%3"
+# legato 1.2
+# lpfbus 0 (range 200 800 $ slow 2.3 $ sine)
+# lpq 0.3
+# att 0.1
+# rel 4
+-- # accelerate "-1"
+# delay 0.8
+-- # delayt "{0.7 1.9 0.01}%4"
+# delayt "1%2"
+# delayfb 0.9
+# lock 1
+# coarse 8
+# crush 4
+-- # cps (range 0.3 0.9 $ slow 4.1 $ sine)
+# verb "1" 0.9 0.9 0.1

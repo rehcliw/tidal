@@ -9,8 +9,8 @@ $ freq ("<200 150 300 250>" - 125)
 # accelerate "-4"
 # detune "-3" -- dont make freq go sub0
 # rate 9
--- # lpf 5000
--- # lpq 0.1
+# lpf 5000
+# lpq 0.1
 # real 2.8
 # room 0.3
 # size 0.9

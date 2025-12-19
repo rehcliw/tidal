@@ -9,8 +9,8 @@ $ iter 5
 $ juxBy (range "-0.5" 0.5 $ perlin) (rev . hurry "0.5")
 $ plyWith "{4 2}%5" (|* speed 1.1)
 $ rot "<2 0 1>"
-$ s "inr"
--- $ s "inr(<5 3 7>,<8 16>,<0 1 2 3 4>)"
+-- $ s "inr"
+$ s "inr(<5 3 7>,<8 16>,<0 1 2 3 4>)"
 # shape 0.7
 # legato 1.1
 # ampbus 0 (range 0.2 1.5 $ fast 1.1 $ perlin)

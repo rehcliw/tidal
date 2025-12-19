@@ -1,0 +1,37 @@
+d1
+-- $ jux rev
+$ hurry 0.5
+$ sometimes (ply 2)
+$ s "inr*3"
+-- # accelerate "{1 0 -1}%5"
+# speed "{0.2 0.1 0.3}%6.7"
+# lpfbus 0 (range 300 6500 $ slow 3.4 $ sine)
+# lpq 0.4
+# delay 1
+# delayt (0.5)
+# delayfb 0.9
+# fshift "-50"
+
+once $ s "olooper" # recordSource "out" # orbit 0
+
+once $ s "freeLoops"
+
+d2
+-- $ iter 4
+$ chunk 4 (hurry 2)
+$ sometimes (bite 8 "4*16")
+-- $ degrade
+$ hurry "0.5"
+$ echoWith 4 "e" (hurry 2)
+$ hurry 0.9
+$ s "loop"
+# legato 0.8
+# accelerate "-2.7"
+# lpf "1000 500"
+# delay 1
+# delayt (0.6)
+# delayfb 0.9
+-- # speed 0.25
+-- # coarse 4
+-- # lpf 500
+-- # crush 2

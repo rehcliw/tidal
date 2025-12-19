@@ -1,0 +1,11 @@
+d2
+$ chunk 4 (hurry 0.5 . rev)
+-- $ qtrigger
+$ slow 4
+$ juxBy (range "-1" 1 $ sine * (slow 1.1 $ saw)) (rev . hurry "{0.5 1 2}%5")
+$ sometimes (# accelerate (range "-2" 2 $ slow 3.4 $ sine))
+$ slice "256 5" (slow "<100 1>" $ runmod 256 "{30 85 <5 12> 100}%3" (slow 1.1 $ (run 16) |* "4 2 10"))
+$ "ttdl"
+# nTake "n" [30,10,25]
+# legato 2
+# cps (range 0.4 0.8 $ slow 5.2 $ sine)

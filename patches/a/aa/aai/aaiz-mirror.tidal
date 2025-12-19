@@ -11,7 +11,7 @@ d1
   # delay 1 
   # delayt 0.3
   # delayfb 0.7
-  # cps (range 0.2 0.6 $ saw)
+  -- # cps (range 0.2 0.6 $ saw)
 
 d2
 $ n "0 2 3"

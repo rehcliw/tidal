@@ -20,7 +20,8 @@ $ note "[0*2|0|8*1]"
 # lpfbus 2 (range 50 9500 $ fast 1.3 $ sine)
 # lpq 0.4
 # bpqbus 3 (range 1 16 $ fast 0.23 $ sine)
-# cps 0.4
+-- # cps 0.4
+# gain 1.8
 
 d2
 $ juxBy "{0.5 -0.5}%5" (rev . hurry "{0.5 2}%3")
@@ -45,14 +46,14 @@ $ stack [id
 # cut "{0 1}%7"
 # s "qmsdrum"
 # shape 0.5
-# cps (range 0.4 0.2 $ fast "{2.5 1.5 1}%7" $ square)
+-- # cps (range 0.4 0.2 $ fast "{2.5 1.5 1}%7" $ square)
 
 d1
 -- $ stutWith 3 "s" (# squiz 4)
 $ s "in"
 # gain 0.5
--- # bpfbus 0 (range 1500 4500 $ fast 0.9 $ saw)
--- # bpq 8
+# bpfbus 0 (range 1500 4500 $ fast 0.9 $ saw)
+# bpq 8
 -- # accelerate 2
 
 d2

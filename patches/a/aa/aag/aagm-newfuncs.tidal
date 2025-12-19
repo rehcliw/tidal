@@ -35,7 +35,7 @@ $ randcat [id
     )
   ]
 ] # s "supervibe"
-# cps (rangex 0.02 2 $ slow 1.2 $ sine)
+-- # cps (rangex 0.02 2 $ slow 1.2 $ sine)
 # decaybus 0 (range 2 8 $ fast 1.3 $ sine)
 # velocity "2 0.5 1"
 # accelerate "-0.04"

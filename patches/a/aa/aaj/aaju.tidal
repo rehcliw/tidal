@@ -1,0 +1,59 @@
+setbpm 90
+
+d1
+-- $ hurry 0.25 -- start here
+$ juxBy 0.5 (rev . (# cut 2))
+-- $ slow 4
+-- $ chunk 4 (hurry 0.5)
+-- $ repeatCycles 4
+-- $ sometimes (plyWith 4 ((|* gain "<0.9 1>") . (|* legato 0.9) . (|* speed 1.5)))
+$ hurry "{1 0.5 2 1 1}%4"
+$ splice 16 (runmod 16 "{2 3 5 4}%3" "{0 2 11}%2")
+$ "ttdl"
+# n "{4 5}%3.5"
+-- # legato 1.5
+# cut 1
+# shape 0.3
+|* speed 0.25
+-- # gain 1.9
+
+d2
+$ slow 4
+$ hurry "{0.25 0.5 1 1}%5"
+$ juxBy 0.5 (rev . hurry 0.5)
+$ echoWith 8 "1%5" (|* gain 0.9)
+$ slow 2
+$ slice 16 (runmod 16 "{2 3 5 4}%3" "{0 2 11}%2")
+$ n "7 18"
+-- $ n 7
+# "bnmelloop"
+# legato 1
+# speed "{-2 [0.5,0.52] 1}%5.5"
+
+d3
+-- $ sometimes (ply 2)
+$ hurry 0.25
+$ bite 16 "0 1 2 3"
+$ striateBy 32 (range 0.01 0.1 $ perlin)
+$ n "2(3,8,<0 2>)"
+# "bnbassos"
+-- # att 0.2
+-- # rel 4
+-- # legato 0.9
+-- nice w striate!
+# accelerate "-0.5" 
+# shape 0.9
+
+d4
+$ n "{0 1 2 5 4}%2"
+# "readorb"
+# delay 1
+# delayt (range 0.01 0.04 $ perlin)
+# delayfb 0.9
+
+d6
+$ n "3"
+# "readorb"
+# fshift "-50"
+# clouds (range 0 1 $ slow 2.2 $ perlin) 0.2 0.9 0.2
+# cloudsblend 0.9 0.5 0.4 0.7

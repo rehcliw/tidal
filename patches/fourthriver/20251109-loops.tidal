@@ -1,18 +1,18 @@
 do
-  setbpm 100
-  setCycle 750
+  setbpm 70
+  -- setCycle 750
   d1
+    -- $ repeatCycles 16
     $ jux (rev . slow "{2 1}%4")
     $ echoWith 3 "{t 1%6}%5" ((|* harm 0.9) . (|* timbre 2))
-    $ repeatCycles 16
     $ fix (# legato 2) (note "-19")
     -- $ iter 4
-    $ sometimes (bite 16 (struct "t*8" $ "<4 2 8 0 12>"))
+    -- $ sometimes (bite 16 (struct "t*8" $ "<4 2 8 0 12>"))
     -- $ bite 16 "{0 4 2 1 0 6 7 9 11 15}%5"
     -- $ arp "{up pinkyup down thumbdown}%3"
     $ arp "up"
     -- $ note "<g'maj'7 g'maj'4>"
-    $ note "{g'maj'8 g'maj'4}%1"
+    $ note "{g'min'8 g'min'4}%2"
     # "plaits"
     # engine 1
     |- note "{12 0 24}%2"
@@ -25,3 +25,28 @@ do
     # cut "{1 0!4}%7"
 
   getnow
+
+do
+  setbpm 140
+  -- setCycle 205
+  d1
+    -- $ sometimes (bite 16 "0*16")
+    -- $ degrade
+    -- $ hurry 0.5
+    $ juxBy "{-0.5 0.5}%4" (rev . hurry 0.5)
+    $ fix (ply 4) (n 3)
+    -- $ chunk 4 (hurry 2)
+    $ n (slow "2" $ runmod 32 "7 3 2 4" "{4 2 9}%2")
+    # "pss795drums"
+    # cut "1 0"
+    # accelerate "{-1 0 1}%5"
+    -- # coarse 4
+    -- # distort 0.7
+    -- # crush 3
+    -- # delay 1
+    -- # delayt "1%32"
+    -- # delayfb 0.95
+    -- # lock 1
+    -- # cut 1
+    # gain 1.5
+    # shape 0.5

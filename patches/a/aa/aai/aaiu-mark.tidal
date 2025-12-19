@@ -13,12 +13,14 @@ d5
     ] )
   # legato 1.1
   # accelerateTake "a" [0,0,0,1]
-  # cps (0.6)
+  -- # cps (0.6)
+  # gain 1.3
 
 d2
 $ s "[presp:24,dyshh:7*8]"
 # legato "{1 0.1 0.5}%5"
 # speedTake "s" [1,1,1,1,-0.5]
+# gain 1.3
 
 d3
 $ s "{readorb:1 readorb:0 readorb:3}%5"

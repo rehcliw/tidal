@@ -7,7 +7,7 @@ d1
 $ stack [id
   -- $ jux rev
   -- $ mask pat0
-  -- $ (0.01 ~>)
+  -- $ (0.01 ~>)¡
   -- $ mask pat0
   $ s "dyshh*4"
   # lpf 5000

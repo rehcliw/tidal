@@ -1,5 +1,6 @@
 do
   -- resetCycles
+  setbpm 140
   d1
     $ repeatCycles 4
     $ rarely (echoWith 3 "5%8" (rev . (|+ n 3)))
@@ -14,9 +15,9 @@ do
     # legatoTake "lt" [0.2,0.4,0.2,1]
     # s "websdr"
     -- # cut 1
-    # gain 1.1
+    # gain 1.2
     # shape 0.8
-    # cps 0.2
+    # cps (140/60/4)
     
   d2
     $ slow 2
@@ -32,7 +33,7 @@ do
 
   d3
     $ hurry 0.5
-    $ splice 16 "{1 ~ ~ 7 ~ ~ <1 4> ~}%8"
+    $ slice 16 "{1 ~ ~ 7 ~ ~ <1 4> ~}%8"
     $ s "websdr:3"
     # legato 0.9
     # shape 0.5

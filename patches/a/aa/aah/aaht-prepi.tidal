@@ -24,7 +24,7 @@ d1
 -- $ struct "[t f t]*4 t t t*3"
 -- $ rarely (# crush 3) 
 $ stack [id
-  -- $ sometimes ((# bpfbus 0 (segment 512 $ range "{9000 15000 50}%5" "{90 9000 10000 3000}%3" $ fast "{5 2 15 21}%3" $ saw)) . (# bpq "{6 2 0}%2.2"))
+  $ sometimes ((# bpfbus 0 (segment 512 $ range "{9000 15000 50}%5" "{90 9000 10000 3000}%3" $ fast "{5 2 15 21}%3" $ saw)) . (# bpq "{6 2 0}%2.2"))
   $ struct "t*8"
   $ s "inr"
   -- # accelerate "{2 0 -0.5 -2 4}%4"

@@ -1,0 +1,300 @@
+-- test
+d1 $ "[bnk:6*3,bns*2]"
+
+-----------------
+-- anpo oct 3
+-- for jamming w nimb
+
+d1
+$ jux (rev . hurry "0.5 2")
+-- $ repeatCycles 4
+-- $ degradeBy 0.8
+$ speed (runmod 4 2 1)
+# "1"
+# "inr"
+-- |* speed 0.2
+# speed "4 0.5"
+# att 0.1
+# rel 3
+# coarse 4
+# delaybus 0 (range 0.6 1 $ perlin)
+# delayt 0.01
+# delayfb 0.8
+# lock 1
+# accelerate "{-1 1 0}%4"
+# bpfbus 1 (range 500 9500 $ fast 5.6 $ sine)
+# bpq 3
+# cps (range 0.2 0.9 $ fast 1.1 $ saw)
+-- # cps 0.6
+# gain 1.6
+# shape 0.5
+
+d2
+$ hurry 0.25
+$ jux (rev . (# cut 2) . hurry 2)
+$ n (fast "{2 0.5}%3" $ runmod 30 "1 5" "<1 14>")
+# "{nimb dysgfx}%7"
+# gain 1.6
+# shape 0.7
+# cut 1
+# speed "{0.5 1 2 4}%9"
+# accelerate "-2"
+
+
+---------------
+---- aajm - noisy foley shit
+d1
+$ juxBy "0.5 -0.5" (rev . hurry 0.5)
+$ fix ((# att 0) . (# bpfbus 0 (smooth $ "{700 7000 20 10000}%8")) . (# bpq 4)) (delayt 0.05)
+$ chunk 4 (palindrome . hurry 2)
+-- $ iter 3
+$ fix ((# crush "<4 2 8>") . (plyWith 4 (|* speed 1.5))) (delayt "0.2")
+$ fix ((# delayt "{0.2 0.9 0.05}%4") . (# delay 1) . (# delayfb 0.9) . hurry 0.5) (speed "<1 0.5>")
+$ "1 1 1 1 1"
+# "{crosley bottl roof print keurig}%4"
+-- # "<cdam crosley:1 mirror:1>"
+# legato 2
+# begin (range 0 1 $ fast 0.92 $ sine)
+# speed "{-0.5 2 1.5 1}%5.5"
+# att 0.3
+# sus 1
+# rel 2
+# gain 1.6
+# shape 0.6
+# accelerate "{-1 0 0 0}%3"
+
+once
+$ s "rlooper"
+# recordSource "out"
+# orbit 0
+# n 1
+
+once $ s "freeLoops"
+
+d2
+-- clutchIn 2 4
+-- $ hurry 0.25
+$ fix (# distort 0.4) (speed 0.5)
+$ stutWith 3 "1%5" (chunk 4 (hurry 0.5) . striate 4 . (|* speed "{-0.5 2 1}%5"))
+$ chunk 8 (|* gain 0)
+$ s "loop"
+# gain 1.4
+# coarse 2
+# shape 0.3
+
+d3
+$ s "voice:1*4"
+# legato 1.5
+# begin (range 0 1 $ perlin)
+# gain 1.5
+# shape 0.7
+|* speed "[0.8,1.12,1.13]"
+
+d4
+$ chunk 3 ((# delayt 0.25) . (# delay 1) . (# lock 1) . (# delayfb 0.9))
+$ chunk 4 (# distort 0.2)
+$ n "[1 3 2 0]/1.2"
+# s "loop"
+# gain 1.4
+# speedTake "st" [1,1.01,0.99]
+|* speed "<-2 0.5>"
+# legato 1.2
+
+d5
+$ n "{0 1 2 3 5}%6"
+# s "readorb"
+# legato 1.1
+# verb 0.9 0.9 0.01 0.01
+# bpfbus 1 (range 50 9500 $ slow 3.4 $ sine)
+# bpq 4
+
+d6
+$ n "{4 0}%5"
+# "readorb"
+# legato 1.1
+# fshift "-150"
+
+
+
+
+--------------------------------
+-- aafk - kinda airy
+d1
+$ juxBy 0.5 rev
+$ hurry "{0.5 2 0.25 4}%6"
+$ every 2 (# freq (fast 0.2 $ quantise 0.05 $ rangex 20 6000 $ perlin))
+-- $ repeatCycles 8
+$ striateBy "32" (fast 0.9 $ range 0.01 0.1 $ sine)
+$ n "{39 <5*2 4> 2}%1.3"
+# s "presp"
+# att (fast 1.5 $ range 0 0.01 $ sine)
+# rel 1
+# accelerate "2"
+# gain 1.3
+# shape 0.5
+# clouds (slow 2.6 $ range 0 0.5 $ sine) 0.9 (range 0.6 0.8 $ sine) 0.1
+# cloudsblend 0.9 0.2 0.7 0.3
+# cps (range 0.3 0.7 $ sine)
+
+
+
+--------------------
+-- foldy
+let fstart = pF "fstart"
+    fend = pF "fend"
+    freqfoldhi = pF "freqfoldhi"
+    astart = pF "astart"
+    aend = pF "aend"
+    sigfoldhi = pF "sigfoldhi"
+    rel = pF "rel"
+    atk = pF "atk"
+    mstart = pF "mstart"
+    mend = pF "mend"
+in
+d1
+-- $ hurry "0.125"
+  $ stack [id
+    $ juxBy (range 0 1 $ sine) (rev . iter 4)
+    $ sometimes (chop 4)
+    -- $ fast 0.4
+    $ hurry "{0.125 <0.5 1> 2}%4"
+    $ echoWith 7 "<s q 1 0>" (|+ n "{9 -5 0 -7 1}%4")
+    $ struct "t(3,8,<1 2 0>)"
+    $ n "5/5.9 4/3.5 -9/2.2"
+    -- $ n "1 -7"
+    # s "foldy"
+    # freqfoldhi "{200 100 900 500 1300}%2"
+    # fend "{50 [500 1000 2500] 200}%2"
+    # astart "{32 2 15 1}%3"
+    # aend "{32 1 32}%2"
+    # sigfoldhi "1"
+    # mstart "0.4 0.01"
+    # mend "<1 0.01>"
+    -- # cps 0.7
+    # cps (range 0.2 4 $ slow 2.1 $ sine)
+    # gain 1
+    -- # cut "1"
+    # rel (range 0.01 0.25 $ fast 0.3 $ sine)
+    # atk "{0.01 0.3 0.02 0.1}%7"
+    # orbit 0
+    , id
+    $ degradeBy 0
+    $ slow 8
+    $ echoWith 5 "e 0.5" (|- n "9 1")
+    $ s "foldy"
+    # freqfoldhi "400"
+    # astart "8"
+    # aend "9"
+    # atk "0.5"
+    # rel 32
+    # mstart 1
+    # gain 0.8
+    # lpfbus 0 (range 200 5000 $ slow 2.3 $ sine)
+    # orbit 1
+  ] |* gain 1.2
+
+d2 silence
+
+d2
+$ hurry 0.5
+$ hurry "{0.125 <0.5 1> 2}%4"
+  $ stack [id
+    $ hurry "{2 4 0.5}%4"
+    $ struct "<t(5,8,<1 2 0>) t*8>"
+    $ n "{3 14}%3"
+    # s "dyshh"
+    # distort "{2 0}%5"
+    # accelerate "{0 0.3 0.1 0!6 -0.1}%7"
+    # gain 1.2
+    , id
+    $ sometimes (plyWith 4 (|* speed 1.5))
+    $ struct "t(3,8,<1 0>)"
+    $ n ("{72 70 61}%4" - 19)
+    # s "dyskick"
+    # pan (range 0 1 $ fast 1.1 $ saw)
+  ] # shape 0.4 
+  # clouds 0.2 0.5 0.4 0.6 
+  # cloudsblend 0.5 0.2 0.7 0.6
+  # cut "{1 0 2 3}%5"
+  |* gain 1.2
+
+
+
+------------------------------
+-- aajp - cute! 
+setbpm 84
+
+d3
+  $ hurry "2 1"
+  -- $ jux (rev . hurry "0.5 2")
+  $ (|* speed "<[1 -2 1 1] 1!7>")
+  $ every 2 (echoWith 2 "<q e!6>" (|* speed "2"))
+  $ slat' "{32 16}%3" "{2 4 1}%4"
+  $ "1"
+  # "ttdl"
+  # legato 1
+  |* speed "1"
+  -- # gain 1.5
+  # gain 1.1
+  -- # shape 0.2
+  -- # gain "1 0 1"
+
+xfadeIn 2 $ silence
+
+d2
+-- xfadeIn 2 4
+  -- $ hurry 0.5
+  $ juxBy "0.5 -0.5" (rev . (# cut 2) . hurry 2) 
+  -- $ degrade
+  $ slice 32 (slow "2" $ runmod 32 "{7 2 3 1}%5" "13 0 3 5") 
+  $ "ttml:4" 
+  # cut 1 
+  # gain 1.1
+  # shape 0.3
+
+
+
+--------------------------------------
+-- aafd tom - minimalist thing
+
+
+let pat1 = "0 ~ 2 ~ 5 ~ 1 ~ 7"
+    pat2 = "6 ~ 3 ~ 4 ~ 9 ~ 8"
+in
+-- xfadeIn 1 8
+-- jumpIn 1 2
+d3
+-- $ hurry 0.5
+$ stack [id
+  -- $ repeatCycles 3
+  $ rarely (|* speed "-1")
+  -- $ hurry 2
+  -- $ iter 3
+  $ note (scale "lydian" 
+    $ echoWith 2 "11%9" (rev . (slow 2) . (|- 14)) 
+    $ pat1 + "-3"
+  )
+  # s "vscocelloens"
+  # gain (range 1 1.3 $ slow 4 $ sine)
+  -- # legato 1
+  , id
+  -- $ repeatCycles 6
+  $ jux rev
+  -- $ degrade
+  $ slow 4
+  $ rarely (|* speed "-1")
+  $ note (scale "lydian" 
+    $ echoWith 2 "1%3" ((every 2 $ rev) . (fast 2) . (|+ 14)) 
+    $ ("<0.11 0.33 0.555 0.777>" ~>)
+    $ pat2 + "<0 7 14>" + "-3"
+  )
+  # s "vscovibes"
+] 
+|* gain 1.4
+# crush "{4 3 16}%5"
+# coarse 8
+# distort 0.3
+# shape 0.5
+# verb 0.9 0.9 0.2 0.9
+# cps 0.3
+

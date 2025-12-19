@@ -1,0 +1,54 @@
+d1
+$ "inr*3"
+# lpf 300
+-- # accelerate 1
+# vowel "o"
+
+d1
+-- $ bite 16 "0*32"
+-- $ hurry 0.25
+$ jux rev
+$ n (slow "4 2" $ runmod 32 "{5 2 3}%7" "{15 2 0 7}%3")
+# "gwffr gwfg"
+-- # legato 0.5
+# att "{0 0.1}%7"
+# rel 4
+# gain 0.8
+# speed "{-0.5 0.25 1}%5.5"
+# delay "1 0"
+# delayt "{0.03 0.3}%5"
+# delayfb 0.9
+# vowel "o"
+# roombus 0 (range 0 0.9 $ slow 3.4 $ sine)
+# sz 0.4
+
+d1
+-- $ sometimes (bite 16 "4*16")
+$ jux rev
+$ echoWith 4 "e" (|* speed 2)
+$ hurry 0.25
+$ chunk 4 (hurry 2)
+$ degradeBy 0.8
+$ rarely ((# delay 1) . (# delayt 0.04) . (# delayfb 0.9))
+$ slicemod 16 "16" "<1 2>" "{0 6}%5"
+# "kitchen"
+-- # speed "{0.5 4}%3"
+-- # gain "{0.6 0 0}%5"
+# gain 0.6
+-- # accelerate "-2 2 0"
+# legato 0.7
+
+d1
+$ jux (rev . hurry 2)
+$ n (slow "133%3" $ runmod 133 "{1 3 4}%2" "{40 75 90}%5")
+# "gwffr"
+-- # att 0.05
+# rel 4
+# delay 1
+# delayt 0.5
+# delayfb 0.85
+# speed "{0.5 1 2}%7"
+# lpf 500
+# lpq 0.1
+# vowel "o"
+# gain 0.8

@@ -29,8 +29,8 @@ s.reboot { // server options are only updated on reboot
 		~looper = TidalLooper(~dirt);
 
 		// You can adjust these parameter even in runtime
-		~looper.rLevel = 2; // recording level
-		~looper.pLevel = 1.2; // prerecording level
+		~looper.rLevel = 7; // recording level
+		~looper.pLevel = 5; // prerecording level
 		// ~looper.linput = 0; // Default 0; Set this to your main input port.
 		// ~looper.lname = "loop"; // default "loop"
 

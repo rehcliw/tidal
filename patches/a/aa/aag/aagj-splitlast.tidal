@@ -42,6 +42,7 @@ $ gain "1.4 1.2!3"
 # s "808bd"
 # n 2
 # shape 0.8
+# gain 1.2
 # speed (range 1 1.1 $ fast 0.75 $ saw)
 # nudge 0.9
 # legato (range 2 0.5 $ slow 2.4 $ sine)

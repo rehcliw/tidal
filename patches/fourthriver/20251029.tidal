@@ -2,7 +2,7 @@ do
   -- resetCycles
   d1
     -- $ striateBy 32 0.05
-    $ degradeBy 0.9
+    -- $ degradeBy 0.9
     $ s "bnvoxphr:7*64"
     # begin (range 0 0.9 $ fast 0.15 $ sine)
     # legato 1.2
@@ -19,7 +19,7 @@ do
     $ stutWith 3 "e" ((|+ n 4) . (# speed 1))
     $ s "[~ bns:2]*2"
     # speed "{-0.5 0.5 1}%4"
-    # accelerate "-1 -2 1 0"
+    # accelerate "{-1 -2 1 0}%3"
 
   d3
     $ chunk 4 (hurry 2)

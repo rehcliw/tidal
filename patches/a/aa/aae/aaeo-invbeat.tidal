@@ -50,4 +50,4 @@ $ stack [id
 ]
 |* gain 1.5
 -- # legato 1
-# cps 0.65
+-- # cps 0.65
