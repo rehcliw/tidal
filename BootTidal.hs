@@ -36,6 +36,7 @@ let only = (hush >>)
     revOn x = revOn' [x]
     xfade i = transition tidal True (Sound.Tidal.Transition.xfadeIn 4) i
     xfadeIn i t = transition tidal True (Sound.Tidal.Transition.xfadeIn t) i
+    xf a b = xfadeIn a b
     histpan i t = transition tidal True (Sound.Tidal.Transition.histpan t) i
     wait i t = transition tidal True (Sound.Tidal.Transition.wait t) i
     waitT i f t = transition tidal True (Sound.Tidal.Transition.waitT f t) i

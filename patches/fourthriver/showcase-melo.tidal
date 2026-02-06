@@ -1,0 +1,130 @@
+do
+  -- setbpm 140
+  -- resetCycles
+  let muffle = pF "muffle"
+  d1
+  -- xfadeIn 1 8
+  -- $ (~>) 0.3
+    $ sometimesBy 0.3 (bite 16 "0*16")
+    -- $ repeatCycles 4
+    -- $ fast "2 1 0.5"
+    -- $ slow 4
+    $ juxBy "0.5 -0.5" ((~>) "1%4" . rev . fast "1" . (|+ note 12))
+    $ hurry "{2 1 0.25 0.5 1}%4"
+    -- $ sometimes (rev)
+    $ palindrome
+    $ iter 8
+    $ plyWith "4" (
+      (|* gain 0.9) 
+      . (|* legato 0.9)
+      . (|+ timbre "0.1") 
+      . (|+ harm 0.01) 
+      -- . (|* note 0.99)
+      )
+    $ slow 2
+    -- $ echoWith 8 "s" ((|* gain 0.9) . (|* legato 0.9))
+    $ note (id 
+      (|+) 0
+      $ scale "major" 
+      $ echoWith 4 "7%8" (|+ 2) 
+      $ "{0 <1 9> 3 [-2 19]/3 7*4? -7 0}%4"
+      -- $ "<0 12 7 2 9>"
+    )
+    |+ note "2"
+    -- |- note 12
+    # "{superpiano!3 supervibe superfork}%3"
+    -- # "superpiano plaits"
+    -- # "superpiano"
+    # muffle "3 2"
+    # detune 0.6
+    # decay 0.9
+    # velocity 0.7
+    # sustain 1.3
+    -- # accelerate "-2"
+    # engine 2
+    # harm 0
+    # timbre 0.2
+    # morph 0.5
+    -- # legato 1.2
+    # cps (140/60/4)
+    -- # nudge "-0.1"
+    # shape 0.3
+    # gain "{1.2 1 0.8}%4"
+    # lock 1
+    # delay' 0.9 "1%8" 0.9
+    -- # bpfbus 0 (range 50 9500 $ sine)
+    -- # bpq 4
+    # crush 4
+    # coarse 2
+    |* gain 0.9
+
+-- might be outta tune
+-- d1
+--   -- $ sometimes (bite 16 "0*16")
+--   $ n (fast "{1!5 2}%5" $ runmod 8 "3 2 1" "<0!3 4>")
+--   # "ksab"
+--   # legato 0.6
+--   # shape 0.3
+--   # accelerate "{0!3 -2}%2"
+--   # speed "[1,1.03]"
+
+
+-- tuned?
+d3
+  $ qt
+  -- $ hurry "<1 2 1> "
+  -- $ hurry 0.5
+  -- $ bite 16 "<1 2>*8"
+  -- $ (~>) 0.3
+  $ fix (|- note 5) (n 4)
+  $ fix (|- note 5) (n 5)
+  $ fix (|- note 5) (n 6)
+  $ fix (|- note 5) (n 7)
+  -- $ n (fast "{1!5 2}%5" $ runmod "<8 16>" "3 2 1" "<0!3 4>")
+  $ n (fast "{1!5 2}%5" $ runmod "<8>" "3 2 1" "<0!3 4>")
+  |+ note "-1"
+  # "ksab"
+  -- # n "<[0 3 2 1]!3 4>"
+  # legato 0.6
+  -- # legato 0.9
+  # shape 0.5
+  # gain 1.2
+  # accelerate "{0!3 -2}%2"
+  # speed "[1,1.03]"
+
+d8
+  -- $ every 9 (degradeBy 1)
+  -- $ hurry 2
+  $ rarely (echoWith 2 "0" (hurry 2 . bite 16 "1*8"))
+  $ fast "<2!6 1!2>"
+  $ struct "t(<5!4 3>,8,<2!7 0>)"
+  $ n "0"
+  # s "ttbos"
+  # legato 0.9
+  # cut 1
+  # gain 1.5
+  # shape 0.5
+  # speedTake "s" [1,2,1,4,1,1]
+  |* speed 2
+  |+ note 1
+  # delay "<0!11 1!2>"
+  # delayt "1%16"
+  # delayfb 0.7
+  # lock 1
+  # lpfbus 1 "{2500 1500 5500 4500}%5"
+  # lpq 0.4
+  -- # nudge 0.3
+
+d9
+  -- $ degradeBy "<0!4 1!2>"
+  $ hurry 0.5
+  $ echoWith 4 0 (|* speed "1.01")
+  $ s "ttpad"
+  # n 6
+  # legato 4
+  # att 0.4
+  # rel 12
+  # shape 0.4
+  # gain 1.1
+
+d9 silence

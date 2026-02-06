@@ -32,7 +32,7 @@ $ n "7 18"
 
 d3
 -- $ sometimes (ply 2)
-$ hurry 0.25
+$ hurry 0.5
 $ bite 16 "0 1 2 3"
 $ striateBy 32 (range 0.01 0.1 $ perlin)
 $ n "2(3,8,<0 2>)"

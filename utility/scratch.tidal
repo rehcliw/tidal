@@ -1,40 +1,184 @@
-once $ "acv:10" # shape 0.5 # gain 1.3
+d1
+$ juxBy (range 0.5 "-0.5" $ perlin) (rev . hurry "{0.5 2}%3")
+-- $ repeatCycles 4
+-- $ iter 4
+$ hurry "{1.4 0.7 0.35}%4"
+-- $ hurry "{0.25 2 4 0.5}%7"
+$ "inr"
+-- # speed "[1.25,0.75]"
+-- # fshiftbus 0 ("{[50 100] <-500 -50> <500 1500> -1500}%16")
+-- # fshift "[-50,50]"
+# legato 4
+# lpf "{2500 1500 3500 500}%3"
+# lpq 0.2
+-- # bpfbus 0 (range 50 4500 $ perlin)
+-- # bpqbus 1 (rangex 0.1 3 $ fast 1.1 $ perlin)
+-- # ring 0.9
+-- # ringf 1000
+-- # ringfbus 2 (segment 512 $ range 3500 300 $ slow "0.13 9" $ sine)
+-- # ringdf 300
+-- # combbus 3 (segment 16 $ smooth $ "0.9 0 0.2")
+-- # squiz "{1 0 2 4}%5"
+-- # speed "0.9 1.1"
+-- # accelerate "{0.3 -0.4 0}%7"
+-- # att "{0.01 0.05 0.1}%5"
+# att 4
+# rel 16
+-- # rel "{1.1 0.9 0.5}%5.5"
+# distort 0.3
+# coarse 4 
+-- # delay' "{1 0 0.5}%5" ("{0.01 0.03 0.02}%4" * "{1 4 1.1 0.9}%3") "0.8 0.5 0.9"
+-- # verb 1 0.1 0.8 0.9
+# shape 0.54
 
-once $ "jjvocals:13" # shape 0.4
+once $ "rlooper"
 
-once $ "ksbrk:6" # shape 0.3
+d2
+-- $ slow 2
+$ juxBy (smooth $ "{0.5 -0.5}%5") (rev . hurry 0.5)
+$ iter 4
+$ slice 16 (runmod "3 16 32 8" "3 5" "<0 [8 5] 0 [2 9 4 7]>")
+$ "loop"
+# speed "2 0.5"
+# gain 0.7
+# accelerate "1 0 -1"
+-- # coarse 4
+# crush "{16 2}%5"
 
-setbpm 140
+d3
+$ n "{0 1 3}%4"
+# "readorb"
+# legato 1.1
+# clouds "{0 1 0.5}%5" 0.1 0.2 "0.2 0.4 0.8"
+# cloudsblend 0.8 0.1 0.5 0.8
+# cloudsfreeze "{0 1}%1.1"
+
+d4
+$ n "{2 0 1}%7"
+# "readorb"
+# legato 1.1
+# fshift "-2000 1000"
+# ring 0.9
+# ringfbus 2 (segment 512 $ range 9500 300 $ slow "0.13 0.34" $ perlin)
+# ringdf 0.9
+# delay' 1 "1%32" 0.9
+# lock 1
+
+d2
+-- $ every 2 (bitemod "<10 16!2>" "3 5" "{0 5 4}%4")
+$ juxBy (range 0.5 "-0.5" $ perlin) (rev . hurry 0.5)
+-- $ iter 4
+$ stack [id
+  $ ply "1 2"
+  -- $ degradeBy 1
+  $ "1*4"
+  -- # nTake "n" [5,20,10,20]
+  # sTake "s" ["gwfk","gtsk","gwfhp"]
+  # delay' "1 0" "1%8" 0.5
+  # lock 1
+  # speed 1.1
+  # legato 1
+  , id
+  $ "1*6"
+  -- # nTake "n4" [20,8,21,30]
+  # sTake "s4" ["websdr","gwfhp","gtsp"]
+  # delay' "{0 1 0 0}%5" "1%8" 0.2
+  # legato 1
+]
+-- # cut "{1 0}%5"
+
+
+d2
 
 d1
--- $ juxBy (range "-1" 1 $ perlin) (rev . hurry "<0.5 2>")
--- $ slow 2
+$ jux (rev . hurry 2)
+$ note (scale "mixolydian" $ echoWith 3 "s e" (|+ "2 7 -4") $ "7 2 -5 9 19" |+ 18)
+# "{inr dyskick [inr,dyssnare:2]}%4"
+# legato 1
+# lpfbus 0 "{500 1590 3000 100}%4"
+# lpqbus 1 (smooth $ "{0.1 0 0.6 0.9}%5")
+-- # att 0.01
+-- # rel 0.1
+-- # hold 0.1
+-- # cut 1
+-- # accelerate "-2"
+-- # speed "1.2"
+
+
+
+
+
+-- change notes per octave on each cycle
+d1 $ pitch "0 10 8 1" # octave "<12 31 8>" # x 0
+
+
+
+
+
+
+--- trying to do 'ribbon'
+:set -package containers
+
+import qualified Data.Map.Strict as Map
+import qualified Control.Concurrent.MVar as MV
+
+grab :: Show a => a -> IO ControlPattern
+grab ident = do now <- floor <$> getnow
+                putStrLn $ "Grabbing pattern " ++ show ident ++ " at cycle " ++ show now
+                pats <- MV.readMVar $ sPMapMV tidal
+                let pat = Map.lookup (show ident) pats
+                return $ maybe (error $ "No pattern with ident " ++ show ident) 
+                               (rotL (toRational now) . pattern)
+                               pat
+-----------------------
+
+d1 
+-- $ bite 8 "0"
+-- $ sometimes (iter 4)
+-- $ palindrome
+$ plyWith 4 (|* gain 0.9)
+$ often (juxBy 0.5 (soak 12 ((fast 1.2) . (|* speed "<0.9 1.1>") . (|+ n "<0 2>"))))
+$ sometimesBy 0.3 (chop 4)
+$ s "[houpfx:3*4, houk hous/2]"
+# cut 1
+-- # legato "1 2 0.5"
+# speed "{1!9 2}%4"
+# coarse "4 0"
+
+pat <- grab 1
+
+d1
+-- xf 1 8
+$ sometimes (plyWith 4 (|* gain 0.9) . (|* legato 0.9))
+$ juxBy (range "-1" 1 $ perlin) (rev . hurry "<0.5 2>")
+$ iter 4
+$ slow "2"
 -- $ jux rev
 -- $ degrade
--- $ echoWith 3 "3%16" (|+ note 7)
--- $ n (runmod "{8 16 8}%4" "{1 3}%5" "{0 2 13 1 21}%8")
--- $ striate 16
--- $ sometimes (plyWith 4 (|* gain 0.9) . (|* legato 0.9))
+-- $ sometimes (striate 16)
+$ echoWith 3 "3%16" (|+ note 7)
+$ n (runmod "{8 16 8}%4" "{1 3}%5" "{0 2 13 1 21}%8")
 -- $ n "<[0 1!3] [0 39 0 41]>"
 -- $ n "[0 1!3]"
-$ s "houclap houhh!3"
+-- # "[[houclap houhh!3],houother]"
 -- # "houother"
--- # "houclap houother"
+# "houclap houother"
 # legato 1
 # shape 0.5
--- # speed "{0.5 1}%3"
+# speed "{0.5 1}%3"
 # accelerate "{-1 2 0}%5"
--- # delay' "1" "2%3" 0.9
--- # lock 1
-# coarse 2
+# delay' "0.5" "{2%99 2%33}%3" 0.4
+# lock 1
+-- # coarse 2
 -- # nudge 0.3
 -- # crush "2 16"
+# mu 3
 
 all $ (~>) "0"
 
 d2
--- $ iter 8
--- $ rarely (plyWith 4 (|* speed 2))
+$ iter 8
+$ rarely (plyWith 4 (|* speed 2))
 -- $ degrade
 $ "houride:0 [~ houride:1] ~ houride:1" 
 # legato 1 

@@ -1,0 +1,28 @@
+d1
+-- $ sometimes (echoWith 2 0 (# bpfbus 0 (range 50 9500 $ saw)))
+$ "inr*4"
+-- # speed "{4 0.9 1 1.2 2.03}%5"
+|* speed "[1,1.02]"
+-- # accelerate "-1"
+-- # bpq "{0 4 1 2}%5"
+-- # delay' 1 "0.2 0.03" 0.9
+
+d2
+$ fast "{3 0.5 1 2}%6"
+$ "imp(<3 2!4 5>,8)"
+# legato "0.01 0.19"
+
+d3
+$ slow 3
+$ "rlooper"
+
+d4
+$ jux rev
+-- $ hurry 4
+$ slice 32 (runmod "{32 64 4}%5" "3 5" "0 8 16")
+$ "loop"
+# gain 0.8
+# coarse 4
+# legato "{1 0.3}%5"
+# lock 1
+# delay' "1 0" "{1%8 1%16 1%32}%5" 0.9

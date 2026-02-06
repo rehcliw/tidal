@@ -1,0 +1,92 @@
+-- test tones
+-- do
+--   d1 $ "lwwizclap*4" # n 6 # legato 0.1
+--   d2 $ "lwwizbd" # n 0
+
+-- pos size dens tex
+-- wet spread fb rvb
+d6
+$ n "{0 1 2 3 4}%8"
+-- $ n "{0 1 6 7}%7" -- fdbk
+# "readorb"
+# legato 1.1
+# clouds 0.2 0.4 0.8 0.1
+# cloudsblend 0.9 0.9 0.4 0.9
+
+d6 silence
+
+-- for fdbk
+d7
+$ n "{0 5 8}%4"
+# "readorb"
+# legato 1.1
+# lpfbus 0 (range 50 5500 $ slow 1.1 $ sine)
+# lpq 0.3
+# delay' 1 "0.01 0.3" 0.9
+
+d8
+$ n "6"
+# "readorb"
+# legato 1.1
+# ring 1
+# ringf 100
+# fshift "-500"
+
+d7 silence
+
+---------------loopy
+
+once $ s "freeLoops"
+
+once $ "olooper" 
+# recordSource "out" 
+# orbit 4
+
+d7 
+-- $ often (bite 16 "8*4")
+$ juxBy 0.2 rev
+-- $ hurry "2 0.5 1"
+-- $ striate 32
+$ slicemod 16 "{3 5}%5" "<0 5 4>"
+$ "loop" 
+# speed "{-1 2}%5"
+# gain 1.2
+-- # accelerate "-0.9 0 2"
+-- # shape 0.1 
+-- # coarse 5 
+
+  d10
+    $ every 12 (# s "freeLoops")
+    $ n "0 1 2 3"
+    # s "olooper"
+    # orbit "{0 1 2 3 4 5 6 7 8}%11"
+
+  d10 silence
+
+  d11
+    -- $ hurry 0.5
+    $ juxBy "1 -1" (rev . hurry "<1 2>")
+    $ n "{2 3 ~ 1 0}%4"
+    # s "loop"
+    # speed "{<-1 1> 0.5}%3"
+    # gain "{1.2 0}%7.5"
+    # legato 1
+    -- # hpf 1500
+    -- # coarse "{2 0 4}%7"
+    # crush "{3 2}%3"
+    -- # shape 0.1
+
+d11 silence
+
+----------- maybe?
+d11
+$ "inr"
+# speed "4"
+-- # accelerate "-1"
+# shape 0.4
+-- # distort 0.9
+# delay 1
+# delayt "0.03 0.3"
+# delayfb 0.9
+-- # clouds 0 0.2 0.2 0.3
+-- # cloudsblend 1 0.3 0.2 0.5

@@ -1,0 +1,92 @@
+setbpm 120
+
+d1 
+$ "bnk:1*4"
+
+
+-- d2
+xfadeIn 2 8
+$ "bns*3"
+
+do
+  -- clutchIn 1 8
+  d1
+    -- $ fast 2
+    -- $ hurry 0.5
+    $ fast "{1 3%2 3%4}%4"
+    $ sometimes (echoWith 2 "e" ((|* gain 0.9) . (|* speed 2)))
+    $ "bnk:1*4"
+    # nTake "n" [3,9,1,14,0]
+    # speedTake "s" [1,2,0.5]
+    # accelerate "-0.5"
+    -- # cut 1
+    # shape 0.5 
+    # gain 1.2
+
+  -- clutchIn 2 8
+  d2
+    $ fast "{1 2 4%3 2%3 8%3}%2"
+    $ "bns*3"
+    # nTake "n" [1,5,9,11]
+    # speedTake "s" [3,4/3,-12,0.2,1]
+    -- # lock 1
+    # delay' "{0.8 0}%1.2" "<1%27 1%3>" 0.9
+    -- # cut 1
+
+  d3
+    -- $ juxBy (range 0.5 "-0.5" $ perlin) (rev . hurry "3%2")
+    -- $ sometimes (echoWith 2 "s" (|* gain 0.9))
+    $ (<~) "1%8"
+    $ n "8*4"
+    # "bnh"
+
+  d4
+    $ n "{1 2 0 4 6}%4"
+    # "readorb"
+    # lpfbus 0 "{1000 100 3000 2750}%3"
+    # lpq 0.3
+    -- # ring "3"
+    -- # ringf "<500 50 1500 5500>"
+    -- |* ringf 2
+    -- # ringdf 0.3
+    -- # fshift "-5000"
+    # coarse 8
+
+  d5
+    $ n "3!3 6"
+    # "readorb"
+    # lock 1
+    # delay' "{0 0.9}%3" "<2%3!7 1%6>" 0.2
+    -- # fshift "500"
+    # clouds 0 0.2 0.9 0.2
+    # cloudsblend "{0.9 0}%3" 0.3 0.3 0.9
+
+  d6
+    $ every 16 (# "freeLoops")
+    $ slow 4
+    $ "olooper"
+    # recordSource "out"
+    # orbit 4
+
+
+
+  d6 silence
+
+  d7
+    -- $ bite 8 "<0 1 2>*8"
+    -- $ repeatCycles 4
+    -- $ bite 4 "0*2"
+    -- $ hurry "0.25 2"
+    -- $ hurry "1%3 4%3"
+    -- $ bite 8 "{0 2 3 5}%8"
+    $ juxBy "0.5 -0.5 0" (rev . hurry "4%3")
+    $ slice "{16 27}%5" (runmod "{16 27}%5" "<3 5>" "0 5")
+    $ "loop"
+    # legato "0.2 1"
+    # speed "{-1%3 4%3 0.5 1}%3"
+    # gain "{0 1.5 0 1 1}%4"
+    -- # lock 1
+    # delay' 1 "{1%81 1%3}%1.5" 0.5
+    # accelerate "-0.4"
+
+  d7 silence

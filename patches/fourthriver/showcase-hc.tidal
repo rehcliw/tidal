@@ -1,0 +1,56 @@
+do
+  -- resetCycles
+  d3
+    $ almostNever ((# lock 1) . (# delay' 0.5 "1%32 1%8" 0.9))
+    $ chunk 4 (hurry "{2 4}%3")
+    -- $ chunk 4 (hurry "<2>")
+    -- $ hurry "1 2 1 1"
+    $ n "3!4"
+    # "gtsclp"
+    # shape 0.5
+    # gain "1.2 1 1 1"
+    |* gain 1.1
+    # legato 0.9
+    # pan 0.6
+
+    d3 silence
+
+d3
+  -- $ bite 16 "0*8"
+  $ mask "{1 0 1 1 1 0 1}%8"
+  $ "kscs:2*16"
+  # shape 0.3
+  # speed 2
+  # legato 1
+  # gain 1.1
+
+d3
+    -- $ sometimes (plyWith 2 (|* speed 2))
+    $ iter 4
+    $ n "{5 ~ <5 ~ ~> 5}%16"
+    # s "tth"
+    # gain 1.1
+
+d4
+    -- $ every 13 (degradeBy 1)
+    $ echoWith 2 "e" (slow 3 . (|+ n 5))
+    $ n "{~ [~ 3*3] ~ ~ ~}%4"
+    # s "ttp"
+
+ d4
+  -- $ every 10 (degradeBy 1)
+  -- $ (~>) "0.45"
+  $ every 16 rev
+  $ every 8 (stutWith 8 "1%32" ((|* gain 0.9) . (|* legato 0.9) . (|* speed "{0.9 -1.1}%2")))
+  $ sometimes (plyWith 4 (|* gain 0.9))
+  $ n "[~ 4]*2"
+  # s "ttc"
+  # legato 1
+  # gain 1.1
+  # speed "<2 1 2>"
+  -- # nudge 0.15
+
+
+-- START
+
+-- # nudge 0.15

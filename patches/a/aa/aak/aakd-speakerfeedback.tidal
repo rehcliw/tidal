@@ -1,0 +1,83 @@
+-- outsidify-style mic & speaker feedback
+-- impulse generation
+d1
+-- clutchIn 1 4
+-- $ hurry 0.1
+$ degradeBy 0.7
+$ juxBy "0.5 -0.5" (rev . hurry "0.25 0.5 2 4")
+$ slow "{3 1 2}%6"
+$ n "0(13,18,<1 0 2>)"
+# "imp"
+# nTake "n" [0,2,19,500,-5]
+# legato "0.01 0.7"
+# gain 2
+# shape 0.7
+|* speed "[1,1.02]"
+# accelerate "{0 -3}%6"
+
+d2
+-- $ slow 4
+-- $ juxBy 0.5 rev
+-- $ degradeBy 0.7
+-- $ "inr(13,18)"
+$ "inr"
+# ring 1
+-- # ringf "500 20 1500 30"
+# ringf 150
+# ringdf 1
+-- # lpfbus "0" (range 25 10500 $ slow 0.02 $ sine)
+-- # lpq 0.2
+# lpf 1500
+# gain 1.1
+-- # fshiftbus 1 "{-500 -1500 500 300}%7"
+# fshift "-50"
+# accelerate "-0.3"
+# clouds 0 0.2 0.3 0.9
+# cloudsblend 1 "0.1 0.9" 0.5 0.9
+-- # crush 2
+-- # delay' "1 0" "<1%55 1%4 1%6>" 0.9
+# delay' "1" "<1%55>" 0.9
+# lock 1
+
+d3
+-- $ hurry "{8 2 0.5}%5"
+-- $ striateBy 128 0.03
+$ juxBy (range "-1" 1 $ perlin) rev
+-- $ degradeBy 0.9
+$ sometimes (plyWith 2 (|* speed "19%12"))
+-- $ n "<5 25>(5,9,<1 0 2>)"
+$ n "<5>(3,9,<1 0 2>)"
+# "gtsk"
+# gain 1.5
+# shape 0.3
+# mu 3
+# distort 0.4
+# cut 1
+-- # crush 2
+# speed "{1!3 2 0.5}%5"
+|* speed "[1,1.01]"
+# accelerate "-1"
+# coarse 4
+-- # delay' 1 "0.015 0.03 0.06" 0.8
+
+
+
+d5 $ slow 4 $ "rlooper"
+
+d4
+-- $ hurry 0.01
+$ juxBy "0.5 -0.5" (rev . hurry "2 0.5")
+-- $ degradeBy 0.3
+$ hurry "{8 2 0.5 1}%7"
+$ euclid "3 5" "8"
+$ sometimes (plyWith 4 (|* gain 0.9))
+$ slice 16 (runmod 16 "3 5" "{0 4 8}%5")
+$ "loop"
+# accelerate "-1"
+# speedTake "s" [1,-2,0.5,1]
+# gain "{1 0 1.2 0.8}%15"
+# legato 0.9
+# lpfbus 0 (smooth $ "{100 3000 5500}%5")
+# lpq "0.2 0 0.3"
+# delay' "1 0" "<1%5 1%4 1%6>" 0.2
+# lock 1

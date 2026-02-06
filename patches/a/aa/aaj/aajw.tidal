@@ -1,4 +1,4 @@
-d4
+d8
 -- $ sometimes (bite 16 "4*16")
 $ jux (rev . hurry 0.5)
 -- $ degradeBy 0.4

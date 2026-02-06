@@ -1,0 +1,55 @@
+-- project "Rew"
+
+d1
+$ stack [id
+  $ n "0(7,16,<0!4 1>)"
+  |- n "{3 9 -15 3}%5"
+  |+ n 0
+  # amp 0.5
+  # "midi"
+  # legato 0.3
+  # ccn 18
+  # ccv "{19 10 0 50 120}%5"
+  , id
+  $ ccv "{10 120 50}%3"
+  # ccn 17
+  , id
+  $ ccv "{0 100}%10"
+  # ccn 16
+]
+# midichan 0 
+# cps 0.7
+d2
+$ echoWith 2 "1%8" (rev)
+$ mask (inv $ "{1 0 1 0 1 1 0}%4")
+$ sometimes (plyWith 4 ((|* amp 0.5) . (|+ n 2)))
+$ n "1*4"
+# "midi"
+# midichan 1
+# legato 0.5
+# amp 0.2
+# ccn 80
+# ccv "{3 30 30}%5"
+
+d3
+$ rev
+$ echoWith 4 "1%16" (|* amp 0.5)
+$ slow 2
+-- $ mask (inv $ "{1 0 1 0 1 1}%7")
+$ n "{0 0 0 0 0 ~ 0 0 ~ 0 0 ~ 0 ~ ~ 0 ~}%16"
+# "midi"
+# midichan 2
+# legato 0.5
+# amp "0.4 0.1!15"
+
+d4
+-- $ slow 2
+$ n "12(<5>,16,0)"
+# "midi"
+# midichan 3
+
+d5
+$ (~>) 0.14
+$ "gtsp:1*2"
+
+d5 silence

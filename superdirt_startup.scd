@@ -13,13 +13,13 @@ s.reboot { // server options are only updated on reboot
 	// s.options.inDevice_("USB Audio CODEC "); // for tidal looping w external input (xenyx)
 	// s.options.inDevice_("Volt 2"); // for tidal looping w volt 2
 	// s.options.inDevice_("MiniFuse 2 Start");
-	s.options.inDevice_("Aggregate Device"); // for tidal looping self t
   // s.options.inDevice_("MacBook Pro Microphone");
-	s.options.outDevice_("Screen Recording Audio"); // for screen recording
+	s.options.inDevice_("Aggregate Device"); // for tidal looping self t
 	// s.options.outDevice_("MacBook Pro Speakers");
 	// s.options.outDevice_("WH-1000XM4");
 	// s.options.outDevice_("External Headphones");
 	// s.options.outDevice_("24E3");
+	s.options.outDevice_("Screen Recording Audio"); // for screen recording
 	// boot the server and start SuperDirt
 	s.waitForBoot {
 		~dirt.stop; // stop any old ones, avoid duplicate dirt (if it is nil, this won't do anything)
@@ -33,6 +33,42 @@ s.reboot { // server options are only updated on reboot
 		~looper.pLevel = 5; // prerecording level
 		// ~looper.linput = 0; // Default 0; Set this to your main input port.
 		// ~looper.lname = "loop"; // default "loop"
+
+		// superdirt-voltage
+		// ensure you update to the correct path on your machine
+		("/Users/may/Documents/music-tools/superdirt-voltage/voltage.scd").load;
+
+		// new pitch synth
+		// set your channels for pitch synths here
+		// they will be usable at p[channel], so p1 and p2 in this example
+		~pitchChannels = [1, 2];
+
+		~cv_ndefs = ~pitchChannels.collect { |i|
+				var channel = ~pitchChannels[i];
+				var name = (\cv_np ++ channel).asSymbol;
+				Ndef(name).source = \persistentPitch;
+				Ndef(name).set(\channel, channel);
+				Ndef(name);
+		};
+
+		~pitchChannels.do { |i|
+				var channel = ~pitchChannels[i];
+				var name = (\p ++ channel).asSymbol;
+				var cv = (\cv_np ++ channel).asSymbol;
+				~dirt.soundLibrary.addSynth((name).asSymbol, (play: {
+						var latency = (~latency ? 0);
+						var freq = ~freq;
+						var portamento = ~portamento;
+						var ndef = Ndef(cv).wakeUp;
+						ndef.wakeUp;
+						// schedule the cycles, prevents delayed signals
+						thisThread.clock.sched(latency - 0.025, {
+								ndef.set(\portamento, portamento);
+								ndef.set(\channel, channel);
+								ndef.set(\freq, freq);
+						});
+				}));
+		};
 
 		// load mi-ugens.scd synthdefs
 		load("Users/may/Library/Application Support/SuperCollider/synthdefs/mi-ugens.scd");
