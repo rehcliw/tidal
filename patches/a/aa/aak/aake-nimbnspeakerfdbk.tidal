@@ -1,11 +1,11 @@
 d1
 -- $ sometimes (echoWith 2 0 (# bpfbus 0 (range 50 9500 $ saw)))
-$ "inr*4"
--- # speed "{4 0.9 1 1.2 2.03}%5"
+$ "inr/1.1"
+# speed "{4 0.9 1 1.2 2.03 0.94}%5"
 |* speed "[1,1.02]"
 -- # accelerate "-1"
 -- # bpq "{0 4 1 2}%5"
--- # delay' 1 "0.2 0.03" 0.9
+# delay' 1 "{0.2 0.03}%3" 0.9
 
 d2
 $ fast "{3 0.5 1 2}%6"

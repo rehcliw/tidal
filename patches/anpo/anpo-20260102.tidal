@@ -53,9 +53,9 @@ d1
 -- $ bite 16 "8*2"
 -- $ hurry "2 4"
 $ jux rev
-$ hurry 0.5
+-- $ hurry 0.5
 -- $ degrade
--- $ echoWith 4 "5%8" (|* speed "{4 2}%5")
+$ echoWith 4 "5%8" (|* speed "{4 2}%5")
 $ n "<[390 1338] 384>"
 # "smg2"
 -- # att 0.3
@@ -73,9 +73,9 @@ $ n "<[390 1338] 384>"
 
 d1
 $ jux rev
-$ degradeBy 0.8
--- $ chop 32
--- $ hurry "{1 2 0.5}%4"
+-- $ degradeBy 0.8
+$ chop 32
+$ hurry "{1 2 0.5}%4"
 $ slow 4
 $ n (runmod 32 "3 5" "{1900!3 1895 340}%5")
 # "smg2"
@@ -95,7 +95,7 @@ $ "super808"
 
 d1
 -- $ hurry 0.5
--- $ hurry "5 0.2 4 1"
+$ hurry "5 0.2 4 1"
 $ plyWith 4 ((|* speed 1.1) . (|* gain 0.9))
 -- $ repeatCycles 8
 -- $ degrade

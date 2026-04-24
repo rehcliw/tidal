@@ -24,7 +24,7 @@ do
 once 
 $ s "rlooper"
 # recordSource "out"
-# orbit 1
+# orbit 0
 
 once $ "freeLoops"
 

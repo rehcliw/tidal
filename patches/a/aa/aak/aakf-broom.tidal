@@ -3,8 +3,8 @@ do
   setbpm 120
   d1
     $ degradeBy 0.2
-    $ hurry 8
-    -- $ juxBy "{-0.5 0.5}%5" (rev . hurry "2 0.5")
+    -- $ hurry 8
+    $ juxBy "{-0.5 0.5}%5" (rev . hurry "2 0.5")
     -- $ sometimes (plyWith "{1 4 8}%5" ((|* gain 0.9) . (|* speed 1.1)))
     $ echoWith 2 "5%8" (|* speed 0.5)
     -- $ slow 4
@@ -83,7 +83,7 @@ $ "loop"
 
 d2
 
---- v1
+--- v0
 do
   setbpm 120
   d1

@@ -60,9 +60,9 @@ $ (id
   # lpq 0.1
   |- n "<7 0>"
 )
--- # modamp 1
--- # velocity 2
--- # detune 0.5
+# modamp 1
+# velocity 2
+# detune 0.5
 -- # legato 1
 -- # cut "{0 1 2}%4"
 # coarse 6

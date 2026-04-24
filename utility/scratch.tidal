@@ -1,3 +1,10 @@
+drawLine "{1 2*2 3}%5"
+
+d1 $ "{sd hh*2 bd}%2"
+
+d2 $ "cp*1"
+
+
 d1
 $ juxBy (range 0.5 "-0.5" $ perlin) (rev . hurry "{0.5 2}%3")
 -- $ repeatCycles 4

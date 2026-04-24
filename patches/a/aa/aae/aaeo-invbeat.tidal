@@ -45,7 +45,7 @@ $ stack [id
   -- # legato 1 
   # noteTake "gravy" [0,-9,-9,14]
   # cut 33
-  -- # nTake "sauce" [10,1,11,1,2]
+  # nTake "sauce" [10,1,11,1,2]
   -- |* speed "-1"
 ]
 |* gain 1.5

@@ -16,18 +16,18 @@ $ n "0(13,18,<1 0 2>)"
 # accelerate "{0 -3}%6"
 
 d2
--- $ slow 4
+$ slow 4
 -- $ juxBy 0.5 rev
 -- $ degradeBy 0.7
 -- $ "inr(13,18)"
 $ "inr"
 # ring 1
--- # ringf "500 20 1500 30"
-# ringf 150
+# ringf "500 20 1500 30"
+-- # ringf 150
 # ringdf 1
--- # lpfbus "0" (range 25 10500 $ slow 0.02 $ sine)
+# lpfbus "0" (range 25 10500 $ slow 0.02 $ sine)
 -- # lpq 0.2
-# lpf 1500
+-- # lpf 1500
 # gain 1.1
 -- # fshiftbus 1 "{-500 -1500 500 300}%7"
 # fshift "-50"
@@ -35,18 +35,18 @@ $ "inr"
 # clouds 0 0.2 0.3 0.9
 # cloudsblend 1 "0.1 0.9" 0.5 0.9
 -- # crush 2
--- # delay' "1 0" "<1%55 1%4 1%6>" 0.9
-# delay' "1" "<1%55>" 0.9
+# delay' "1 0" "<1%55 1%4 1%6>" 0.9
+-- # delay' "1" "<1%55>" 0.9
 # lock 1
 
 d3
--- $ hurry "{8 2 0.5}%5"
+$ hurry "{8 2 0.5}%5"
 -- $ striateBy 128 0.03
 $ juxBy (range "-1" 1 $ perlin) rev
 -- $ degradeBy 0.9
 $ sometimes (plyWith 2 (|* speed "19%12"))
--- $ n "<5 25>(5,9,<1 0 2>)"
-$ n "<5>(3,9,<1 0 2>)"
+$ n "<5 25>(5,9,<1 0 2>)"
+-- $ n "<5>(3,9,<1 0 2>)"
 # "gtsk"
 # gain 1.5
 # shape 0.3
@@ -58,7 +58,7 @@ $ n "<5>(3,9,<1 0 2>)"
 |* speed "[1,1.01]"
 # accelerate "-1"
 # coarse 4
--- # delay' 1 "0.015 0.03 0.06" 0.8
+# delay' 1 "0.015 0.03 0.06" 0.8
 
 
 

@@ -33,7 +33,7 @@ $ "outify"
 # distort 0.5
 # coarse 4
 
-once $ "rlooper" # recordSource "out" # orbit 2 # n 0
+once $ "rlooper" # recordSource "out" # orbit 2 # n 1
 
 d2 
 -- $ hurry 0.25

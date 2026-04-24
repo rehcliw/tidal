@@ -1,0 +1,58 @@
+--- initial tests
+-- d1
+-- $ "1(<5 7>,16,[0,1,2])"
+-- # n "15"
+-- # "dyssnare"
+-- # legato 0.1
+
+-- d2
+-- -- $ chunk 4 (hurry 2)
+-- $ striate 16
+-- $ "inr"
+-- # bpfbus 0 "{100 9500 1400 400}%6"
+-- # bpq "{4 1 2}%5"
+-- # delay' 0.3 0.03 0.7
+-- # lock 1
+-- -- # accelerate "-2"
+
+-- -- # crush 4
+
+-- d3
+-- $ jux rev
+-- $ chunk 4 (ply 4)
+-- $ slat' 16 4
+-- $ "gwfld"
+-- # legato 1
+
+
+------------------------
+-- aada hammond drone
+let modamp = pF "modamp"
+in
+d1
+-- $ jux rev
+-- $ degradeBy 0.5
+$ (id
+  $ slow 8
+  -- $ chop "<2>"
+  $ every 4 (# speed "-1")
+  $ n "[0,14,7] [-7,-14,21]"
+  # s "superhammond"
+  # attack "0.5"
+  # rel 9
+  # sustain 9
+  # voice "{6 2 5 2}%2"
+  -- # decay 0.2
+  # lpfbus 0 (fast "1%4" $ range 500 1500 $ sine)
+  # lpq 0.1
+  |- n "<7 0>"
+)
+# modamp 1
+# velocity 2
+# detune 0.5
+-- # legato 1
+-- # cut "{0 1 2}%4"
+# coarse 6
+# verb 0.9 0.9 0.1 0.1
+
+-- improv w/ aak!

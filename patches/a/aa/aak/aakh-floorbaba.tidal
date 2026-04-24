@@ -1,0 +1,97 @@
+setbpm 150
+
+(120/60/4)
+
+d1
+$ juxBy (range "-1" 1 $ perlin) (rev . hurry 0.5 . (|+ n 4))
+$ repeatCycles 4
+-- $ hurry 0.25
+$ bitemod 16 "4 2" "{3 0}%5"
+-- $ hurry 0.5
+-- $ hurry "{1 2 1 0.5 4 0.25}%5"
+$ slow 2
+-- $ fast 2
+$ every 2 (rotR 0.25)
+$ iter 4
+$ sometimes (ply 2)
+$ n "0 3 [4 1] <2 ~>"
+# "floorbaba-drum-westpest"
+# legato 1
+# speedTake "s" [1,2,0.5,1]
+# shape 0.8
+# lpf 5500
+# gain 1
+-- # distort 0.3
+-- # crush "{2 1 16}%7"
+# legato 0.5
+-- # cps "0.5 0.7 0.3"
+
+d2
+-- $ repeatCycles 2
+-- $ bitemod 16 "4 2" 3
+-- $ hurry 0.25
+$ slow 2
+$ stutWith 8 "5%8 5%16" ((|* gain 0.9) . (|* speed "0.99"))
+-- $ degrade
+$ hurry "{1 2 1 0.5 4 0.25}%5"
+$ note (scale "lydian" $ stutWith 4 "5%8" (|+ "{3 -7 1 0}%5") $ "3 -4")
+# n "3"
+# "floorbaba-bass-westpest"
+# cut 1
+|+ note "-7 7 14"
+# gain 1.1
+# shape 0.7
+-- |* speed "[1,1.03]"
+# squiz "{8 0 2}%7"
+# lpf "{5500 8500 1500 9500}%5"
+# lpq 0.4
+# delay' 0.7 "{5%128 5%8 5%64}%7" 0.7
+# lock 1
+# panbus 0 (range "-1" 1 $ slow 4 $ saw)
+# accelerate "-0.5 0.5"
+# legato 0.5
+
+d3
+-- $ repeatCycles 2
+$ bitemod 8 "4 8" 9
+-- $ hurry 0.5
+$ juxBy (range "-1" 1 $ perlin) (rev . hurry 0.5 . (|* speed 1.1))
+$ sometimes (slow 2 . bitemod 32 3 "{0 5 9}%6")
+$ "1(<5 3>,8)"
+# n "{17 5 2 9 12}%3"
+# "floorbaba-drum-sh4d-vg"
+# shape 0.6
+# gain 1.2
+# comb 0.6
+# legato 0.5
+
+d4
+-- $ repeatCycles 2
+-- $ bitemod 16 "4 2" 3
+$ n "{0 1 2 4 5}%3"
+# "readorb"
+# clouds "{0 0.7}%5" 0.3 0.8 "{0.1 0.9 0.5}%4"
+# cloudsblend "0.8 0" 0.5 0.5 0.8
+# cloudspitch 0.9
+
+d5
+$ n "{0 2 1 5}%5"
+# "readorb"
+# fshift "500 -500"
+
+once $ "rlooper"
+
+d6
+$ juxBy 0.5 (rev . hurry 0.5)
+$ hurry 0.25
+-- $ hurry "{4 0.5 2}%8"
+$ degrade
+$ striate 16
+$ hurry 0.4
+$ "loop"
+# shape 0.8
+# gain 1.2
+# legato 1
+# coarse 8
+-- # speed "-0.5 -2 1"
+

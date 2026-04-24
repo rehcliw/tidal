@@ -22,4 +22,4 @@ $ stack [id
     # freq (range 300 100 $ durX)
     # gain 1.3
 ]
--- # cps ((range 0.5 2 $ durX) * (slow 8 $ range 4 1 $ durX) * (slow 16 $ range 1 4 $ durX))
+# cps ((range 0.5 2 $ durX) * (slow 8 $ range 4 1 $ durX) * (slow 16 $ range 1 4 $ durX))

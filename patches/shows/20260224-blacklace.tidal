@@ -1,0 +1,56 @@
+-- test
+d1 $ "numbers"
+
+---- morphemes
+d1
+-- $ rarely (striate 32)
+$ juxBy (range 0.5 "-0.5" $ perlin) (rev . (|+ n 1) . hurry 1.5)
+-- $ degrade
+-- $ n (stutWith 3 "e" (|+ "<5 20>") "{0 4 [9 4] 3 13 15}%9")
+$ echoWith 5 "5%8 1%16" (|+ n "<4 0>")
+-- $ n "{0 1 2}%2"
+$ n "{0 1 2 14}%2"
+# sTake "s" ["morph-suffix","morph-prefix","morph-latin","morph-greek"]
+# shape 0.9
+-- # distort 0.3
+# cut "{1 0}%7"
+# speedTake "st" [1,1.1,-0.5,1.4,1.3]
+# accelerate "{0.5 0}%5"
+-- # legato 2
+
+-- delay
+d2
+$ n "{0 1 4}%5"
+# "readorb"
+# legato 1.1
+# delay' 1 "<0.024 0.048>" 0.9
+# distort 0.8
+
+-- reverb
+d3
+$ n "1"
+# legato 1.1
+# "readorb"
+# verb 1 0.99 0.1 0.1
+
+-- nimb input
+d4
+$ "inr"
+# accelerate "1"
+-- # shape 0.4
+# legato 1.1
+# speed 0.5
+# fshift "500"
+# lpfbus 0 (range 100 9000 $ perlin)
+
+-- looping
+once $ "olooper"
+
+d5
+$ bite 16 "0*2"
+-- $ hurry "0.5"
+-- $ degrade
+-- $ jux (rev . (|* speed "-2") . fast 2)
+-- $ chunk 4 (hurry 2)
+$ slat' 16 1
+$ "loop"
