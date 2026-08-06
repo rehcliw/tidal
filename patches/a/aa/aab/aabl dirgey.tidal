@@ -8,7 +8,7 @@ $ slow 8
 -- $ juxBy 0.5 rev
 -- $ mask pat
 -- $ every 2 ("<0.25 0.75>" <~)
-$ off "0.2 0.4" ((|+ note "<14 7>") . rev . fast 8 . (# ratio2 0.5) . (# ratio3 0.5))
+-- $ off "0.2 0.4" ((|+ note "<14 7>") . rev . fast 8 . (# ratio2 0.5) . (# ratio3 0.5))
 $ note (id
   $ scale "locrian"
   $ stutWith 4 "<0!2 e 0 e>*0.8" (|+ "[4,{~ -7}%3]")

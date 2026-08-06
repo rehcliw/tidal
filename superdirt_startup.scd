@@ -3,7 +3,7 @@ s.reboot { // server options are only updated on reboot
 	// configure the sound server: here you could add hardware specific options
 	// see http://doc.sccode.org/Classes/ServerOptions.html
 	s.options.numBuffers = 1024 * 256; // increase this if you need to load more samples
-	s.options.memSize = 8192 * 32; // increase this if you get "alloc failed" messages
+	s.options.memSize = 8192 * 64; // increase this if you get "alloc failed" messages
 	s.options.numWireBufs = 2048; // increase this if you get "exceeded number of interconnect buffers" messages
 	s.options.maxNodes = 1024 * 32; // increase this if you are getting drop outs and the message "too many nodes"
 	s.options.numOutputBusChannels = 2; // set this to your hardware output channel size, if necessary
@@ -29,7 +29,7 @@ s.reboot { // server options are only updated on reboot
 		~looper = TidalLooper(~dirt);
 
 		// You can adjust these parameter even in runtime
-		~looper.rLevel = 7; // recording level
+		~looper.rLevel = 14; // recording level
 		~looper.pLevel = 5; // prerecording level
 		// ~looper.linput = 0; // Default 0; Set this to your main input port.
 		// ~looper.lname = "loop"; // default "loop"
