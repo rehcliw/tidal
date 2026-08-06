@@ -1,7 +1,8 @@
 d1
 -- xfadeIn 1 8
+$ hurry 0.5
 $ juxBy (range "-1" 1 $ perlin) (rev . hurry "{0.5 2}%3")
--- $ repeatCycles 16
+$ repeatCycles 16
 $ bite 16 "{0 1 3 7 2}%4"
 -- $ degrade
 -- $ striate' 64 0.1
@@ -10,7 +11,8 @@ $ "{plastic pins aldican}%2"
 # n "{0 1}%1"
 # legato 1
 # delay' "0.5 0" "<0.023 0.1>" 0.8
-# speed "{0.5 0.2 1 2}%5"
-# distort "{0.5 0}%3"
+-- # speed "{0.5 0.2 1 2}%5"
+# speed 0.2
+-- # distort "{0.5 0}%3"
 
 

@@ -54,14 +54,14 @@ $ n "{0 1}%7"
 
 d3
 -- $ hurry 0.25
--- $ every 2 ((<~) 0.25)
+$ every 2 ((<~) 0.25)
 -- $ fix (# delay' 1 "1%32" 0.9) (legato 0.5)
 $ chunk 4 (hurry 0.5)
 $ every 2 (press)
 -- $ stutWith 3 "<3%8 1%16 1%8>" (|+ note 7)
--- $ jux (rev . hurry "2 0.5")
--- $ slice 32 "{[4*2 ~] 5 ~ 4 19}%4"
-$ slice 32 (runmod 16 "3" "<0!3 1!1 2>")
+$ jux (rev . hurry "2 0.5")
+$ slice 32 "{[4*2 ~] 5 ~ 4 19}%4"
+-- $ slice 32 (runmod 16 "3" "<0!3 1!1 2>")
 $ "outify"
 # legato "{0.5 1}%5"
 # shape 0.5
@@ -87,7 +87,7 @@ $ "gwfld:1"
 
 d5
 -- $ rev
--- $ sometimes (plyWith 8 ((|* gain 0.9) . (|* legato 0.9)))
+$ sometimes (plyWith 8 ((|* gain 0.9) . (|* legato 0.9)))
 $ n "51*4"
 # "gwfhp"
 # shape 0.3

@@ -1,0 +1,29 @@
+d1
+$ every 3 (plyWith 2 (|* speed 2))
+$ n "{4 1 <2 ~> 3}%9"
+# "ttk"
+# legato "{1 0.3}%5"
+# cps 0.7
+
+
+d2
+$ speed "{1 0.5 1 2}%4.5"
+# n "9"
+# "tts"
+# nudge 0.01
+# legato "<0.5!4 1>"
+# accelerate "-1"
+
+d3
+$ n "{9 ~ 9 9 ~}%18"
+# "tth"
+
+d4
+$ jux rev
+$ degrade
+$ bite 16 "{4 9 2 0 13}%4.5"
+$ striate 32
+$ "sherman"
+# gain 1
+# legato 0.5
+-- # delay' 1 0.06 0.9

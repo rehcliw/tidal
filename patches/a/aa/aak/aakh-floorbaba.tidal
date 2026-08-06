@@ -4,11 +4,11 @@ setbpm 150
 
 d1
 $ juxBy (range "-1" 1 $ perlin) (rev . hurry 0.5 . (|+ n 4))
-$ repeatCycles 4
+-- $ repeatCycles 4
 -- $ hurry 0.25
 $ bitemod 16 "4 2" "{3 0}%5"
+$ hurry "{1 2 1 0.5 4 0.25}%5"
 -- $ hurry 0.5
--- $ hurry "{1 2 1 0.5 4 0.25}%5"
 $ slow 2
 -- $ fast 2
 $ every 2 (rotR 0.25)
