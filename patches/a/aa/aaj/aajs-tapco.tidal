@@ -1,9 +1,9 @@
 d1
 -- $ fast 0.5
--- $ jux (rev . hurry 1.9)
+$ jux (rev . hurry 1.9)
 $ fix ((# lpf ("{1500 2400 500}%5.5" * (range 0.5 2 $ perlin))) . (# lpq 0.1)) (speed "<1 4 1>")
--- $ sometimes (plyWith 4 (|* gain 0.9))
-$ "1*16"
+$ sometimes (plyWith 4 (|* gain 0.9))
+$ "1*8"
 # speed "{1 2 1 4 0.5 0.25}%5"
 # "inr"
 # accelerate "{-0.5 0.1 0!2 2}%5"
@@ -37,10 +37,10 @@ $ "rlooper"
 d5
 -- $ jux (rev . hurry 0.5)
 -- $ chunk 3 (hurry 0.5)
--- $ strat' "{16 4 32 8}%5" "2 1"
+$ strat' "{16 4 32 8}%5" "2 1"
 -- $ strat' 32 4
 -- $ slat' 16 4
-$ slice 16 (runmod 16 3 "<0 7>")
+$ slice 16 (runmod 16 1 "<0 7 9>")
 $ "loop"
 -- # speed 0.9
 # lpfbus 0 (chunk 4 (|* 0.5) $ "{9500 500 2500 1500}%5")

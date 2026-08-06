@@ -1,6 +1,6 @@
 d1
 -- $ hurry "{2 0.5 0.25 0.125}%3"
--- $ juxBy (range 0.5 "-0.5" $ sine) (rev . (|+ n "{12 24}%5"))
+$ juxBy (range 0.5 "-0.5" $ sine) (rev . (|+ n "{12 24}%5"))
 -- $ striate "{8 4 16 1}%5"
 $ n (id
   $ sometimes (arp "up") 

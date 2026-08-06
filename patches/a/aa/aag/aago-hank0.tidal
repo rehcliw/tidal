@@ -22,7 +22,7 @@ $ s "hank"
 # lock 1
 # legato (range 0.5 2 $ slow 0.3 $ sine)
 # cps 0.5
--- # cps (rangex 0.1 10 $ fast 1.4 $ sine * (fast 1.2 $ sine))
+# cps (rangex 0.1 10 $ fast 1.4 $ sine * (fast 1.2 $ sine))
 
 d2
 $ s "inr*8"

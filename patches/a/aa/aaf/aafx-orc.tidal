@@ -1,7 +1,10 @@
 let pat = "{d4'maj [~ e'maj] <f'maj'4 a'maj>  c'maj'3 a'maj'4}%4"
 
 d1
+-- xfadeIn 1 16
+$ hurry 0.125
 $ juxBy 0.5 rev
+$ degradeBy 0.7
 $ hurry "{2 1 0.5}%4"
 $ every 2 (# cps (0.3 * "{[2 1] 0.5 1.5}%4" * (range 0.9 1.1 $ slow 1.1 $ sine)))
 $ n (
@@ -35,6 +38,7 @@ $ n (
 # delayt 0.1
 # legato 2
 -- # cut 1
+# cps 0.4
 
 d2
 $ slow 4
@@ -48,7 +52,7 @@ $ note (
 # n "{0!4 2 6 1}%5"
 # distort 1.9
 -- # lpf 2500
-# shape 0.2
+# shape 0.3
 # lpfbus 4 (range 1000 1800 $ fast 0.1 $ sine * (fast 0.23 $ saw))
 # lpqbus 5 (range 0 0.1 $ slow 1.3 $ sine)
 -- # orbit 2

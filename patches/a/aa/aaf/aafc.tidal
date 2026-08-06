@@ -1,9 +1,10 @@
 -- xfadeIn 1 8
 d1
 -- xfadeIn 1 8
--- $ hurry 0.125
--- $ jux (rev . (hurry 0.5))
+$ hurry 0.25
+$ jux (rev . (hurry 0.5))
 -- $ degradeBy 1
+$ repeatCycles 8
 $ stack [id
   $ slow 2
   -- $ jux rev
@@ -18,19 +19,19 @@ $ stack [id
   # shape 0.3
   |- note 5
   , id
-  -- $ repeatCycles 8
-  -- $ hurry "{3 2}%3" 
+  $ repeatCycles 8
+  $ hurry "{3 2}%3" 
   -- $ hurry 2
   $ hurry 0.25
-  -- $ juxBy 0.5 rev
+  $ juxBy 0.5 rev
   -- $ chunk 4 (hurry 0.5)
   $ note (scale "mixolydian" $ echoWith "{4 8 1}%2" "{t 7%6 1}%4" ((|+ "{5 -2 3 -4}%3")) $ "<-9 -6 -3>")
   # n "<50>"
-  |+ note "{14 0 -7 7}%3"
+  -- |+ note "{14 0 -7 7}%3"
   |* speed 2
   , id
   -- $ slow 2
-  -- $ iter 4
+  $ iter 4
   $ struct "<t*3!8>" -- "{[~ t]!2 [t ~]!2}%3"
   $ n "27"
   |- note 9
@@ -52,6 +53,6 @@ $ stack [id
 # s "sm64"
 # verb 0.9 0.9 (range 0.1 0.9 $ slow 1.1 $ sine) (range 0.1 0.9 $ sine)
 -- # shape 0.5
--- # cps 0.7
+# cps "0.7 0.3 0.1"
 
-setcps 0.7
+setcps 0.1

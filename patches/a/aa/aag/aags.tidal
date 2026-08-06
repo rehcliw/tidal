@@ -26,6 +26,8 @@ $ rings (id
 # mode "0 1"
 # cps 0.58
 # legato "{4 2 1 0.5}%7"
+# att 0.1
+# rel 4
 -- # clouds (range 0 0.5 $ sine) 0.3 0.3 0.9
 -- # cloudsblend "0 1" 0.6 0.8 0.8
 -- # cut 1
