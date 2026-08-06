@@ -1,0 +1,19 @@
+setbpm 144
+
+-- melody
+d1
+$ stutWith 4 "e" (|+ n 7)
+$ n "0 9 3"
+# "braids"
+# model 4
+# timbre 0.5
+# color 0.5
+
+
+d1
+$ stutWith 4 "e" (|+ n 7)
+$ n "0 9 3"
+# "braids"
+# model 4
+# timbre 0.5
+# color 0.5
