@@ -1,0 +1,205 @@
+-- remember:
+--- cross orbit routing w combl & fold
+setbpm 100
+
+-- fm slow beginning
+d1
+$ slow 5
+$ juxBy (range "-1" 1 $ slow 4.6 $ sine) (rev . hurry 0.5)
+$ n (scale "kumai" $ stutWith 5 "{5%8 3%8 3%4}%4" (|+ "<1 -1>") $ "9 <3 -3> -2 2" + "{2 -1 0 -3}%2.3")
+# "superfm"
+-- # legato 1.4
+|- n 5
+# fma [1,0.5,0.35,0.1]
+# fmr [1,0.98,0.48,2.05]
+# fmel 1 [0,1,0.5,0]
+# fmer 1 [0.1,1,0]
+# fmel 2 [0,1,0.5,0]
+# fmer 2 [0.1,0.3,0.9]
+# fmel 3 [0,1,0.5,0]
+# fmer 3 [0.2,0.9,0.2]
+# fmm 1 ["{0.5 0}%1.1",0.9,0.1,0]
+# fmm 2 [0.3,0.1,0,0]
+# fmm 3 [0.4,0.4,0,0]
+# fmfb 0.2
+# gain "{1 0.9 0.7 0.8 1}%4.5"
+# att 0.5
+# rel 7
+
+d2
+-- xfadeIn 2 16
+$ slow 1.2
+$ n "{0 2}%1.5"
+# legato 1.3
+# "readorb"
+# ringbus 0 (range 0.5 2.5 $ slow 7.5 $ sine)
+# ringfbus 1 (range 25 9500 $ slow 7.6 $ cosine)
+# att 0.4
+# rel 8
+# gain 0.8
+
+d3
+$ n "1"
+# "readorb"
+# legato 1.1
+# delay' 1 0.02 0.9
+
+-- bring in sherman
+-- make it birdy w lowtime boss warm fb
+--- loop transition
+
+once "rlooper"
+
+-- test with it plain
+d4
+-- xfadeIn 4 8
+$ "loop"
+
+d4
+$ slow 2
+$ slicemod 32 5 "<0 9 19>"
+$ "loop"
+# legato 0.2
+
+d2
+$ n "3*32"
+# legato "{0.5 0.9 0.1 0.2 0.9}%8"
+# "readorb"
+# ringbus 0 (range 0.5 2.5 $ slow 7.5 $ sine)
+# ringfbus 1 (range 25 9500 $ slow 7.6 $ cosine)
+
+d3
+$ n "1"
+# "readorb"
+# legato 0.5
+# delay' 0.5 "1%64" 0.9
+# lock 1
+
+
+-- change slicemod number! low drama
+-- clutchIn 4 4
+d4
+$ juxBy (range 0.5 "-0.5" perlin) (rev . hurry "0.5 2")
+$ sometimes (bite 32 "0*32")
+$ sometimes (plyWith 4 (|* gain 0.9))
+$ chunk 3 (fast 2)
+$ slicemod "32" "<5 7 1>" "7 1 14"
+$ "loop"
+# speed "{0.5 1.2 0.25}%5"
+# accelerate "-1"
+# legato "0.5 1 0.2"
+-- # legato "{0.9 0.3 0.1}%5"
+
+d2
+$ n "3*1.5"
+# legato "{0.5 0.9 0.1 0.2 0.9}%8"
+# "readorb"
+# ringbus 0 (range 0.5 2.5 $ slow 7.5 $ sine)
+# ringfbus 1 (range 25 9500 $ slow 7.6 $ cosine)
+
+-- change to a beat
+
+d1
+$ juxBy (range "-1" 1 $ fast 1.5 $ sine) (rev . hurry 2)
+$ struct "1(<7 5>,16,2)"
+$ slice 16 (runmod 16 5 "0 8 15 28")
+$ n "{5 6}%3"
+# "outify"
+# legato 0.1
+-- # legato 0.8
+# speed "{1 0.5 2 0.25}%3"
+-- # accelerate "{0!4 1 -0.4}%5"
+# delay' "{1 0 0.7}%4.5" (rangex 0.002 0.05 $ slow 3.4 $ sine) 0.9
+
+setbpm 135
+
+d2
+$ n "1"
+# legato "{0.5 0.9 0.1 0.2 0.9}%8"
+# "readorb"
+# ringbus 0 (range 0.5 2.5 $ slow 7.5 $ sine)
+# ringfbus 1 (range 25 9500 $ slow 7.6 $ cosine)
+
+
+-- might needa bypass
+d3
+$ every 2 (echoWith 4 "3%16 1%32" ((|* rate 0.9) . (|* voice 1.1)))
+-- $ n "{-3 }"
+-- $ n "-1 0"
+-- $ n "<[-3 4](3,8) -5>"
+$ n "{<-5!4 3> ~!4}%4"
+-- $ n "-5"
+# "super808"
+-- # rate 0.1
+# rate (rangex 0.1 1 $ slow 9.1 $ sine)
+# voice (range 0.2 2 $ slow 12.1 $ sine)
+# crushbus 4 (range 3 16 $ fast 2.9 $ sine)
+# legato "<1 1.1 1.2>"
+-- # legato 4
+-- # cut 1
+
+d2
+$ n "1 2"
+# legato "{1.5 0.9 0.1 0.2 0.9}%4"
+# "readorb"
+# ringbus 0 (range 0.5 2.5 $ slow 7.5 $ sine)
+# ringfbus 1 (range 25 9500 $ slow 7.6 $ cosine)
+
+d4
+-- $ chunk 4 (fast 2)
+$ jux rev
+$ plyWith "<2 4>" ((|* gain 0.9) . (|* legato 0.9) . (|* speed 2))
+$ struct "1(3,8,<1 0 2>)"
+-- $ struct "1*4"
+$ "ukk:6"
+# speed "{1 2 4 0.5}%5"
+# accelerate "-1 0"
+# legato 1
+-- # pan "-1 0"
+# lpfbus 5 (range 150 8500 $ slow 7.2 $ sine)
+# lpqbus 6 (range 0.1 0.4 $ slow 2.1 $ sine)
+
+d5
+$ rarely ((plyWith "<2!3 4>" ((|* gain 0.9) . (|* speed 1.1) . (|* legato 0.9))))
+$ chunk 4 (hurry 2)
+-- $ iter 4
+$ mask (inv $ "1(3,8,<1 0 2>)")
+$ "uks:10*16"
+# speed "{1 2 4 1 0.5 2 2}%8"
+-- # speedTake "s" [1,2,4,1,0.5,2,2]
+-- |* speed 0.5
+# legato 1
+
+d2
+$ n "{0 2 3 4 5 1}%2.3"
+# legato "{1.5 0.9 0.1 0.2 0.9}%4"
+# "readorb"
+# ringbus 0 (range 0.5 2.5 $ slow 7.5 $ sine)
+# ringfbus 1 (range 25 9500 $ slow 7.6 $ cosine)
+
+-- transition
+
+d6
+$ sometimes (iter 4 . rev . striate 16)
+$ "~ ~ ~ ukother:18"
+-- # legato 1
+# speed "[1,<1.01 0.99 1.02>]"
+-- # begin 0.05
+-- # legato 0.1
+# cps (segment 32 $ rangex 0.01 1.2 $ slow 3.2 $ sine)
+
+d7
+-- $ hurry 0.1
+$ bite 16 "4*4"
+$ repeatCycles 16
+$ jux (iter 4 . rev . hurry 0.5)
+-- $ mask "{1 1 0 1 0 1}%7"
+$ slicemod 32 "{1 9 14 2}%5" "{9 3 19 3 0 24}%4"
+-- $ slicemod 128 "1 17 4 2" "102"
+$ "sherman"
+# legato "0.1 0.2"
+# legato 1.2
+# speedTake "s" [1,2,0.5]
+# cps (135/60/4)
+# delay' 0.9 (smooth $ "{0.03 0.001 0.05}%2.2") 0.8
+

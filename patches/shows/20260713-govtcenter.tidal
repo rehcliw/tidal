@@ -1,0 +1,320 @@
+-- aadi
+let vibrato = pF "vibrato"
+    vrate = pF "vrate"
+in
+d1
+$ fast "1%4"
+$ juxBy "<0.5 -0.5>/4" ((|* freq "<3%2 4%5>") . (hurry "3%5") . (# enhance 0.2))
+$ freq "[<55!5 61.875>,<206.250 220!4>]"
+# legato 4.6
+# s "superhammond"
+# vibrato 0.9
+# vrate 0.01
+# voice "<0>"
+# coarsebus 0 (fast 0.8 $ range 1 5 $ cosine)
+# mode 2
+# krush 0.8
+# waveloss "<80 10 50>"
+# scram "<0.2 0.1>"
+# attack 2
+# sustain 23
+# rel 25
+# decay 21
+# combbus 1 (fast 0.7 $ range 0.2 0.9 $ sine)
+# room 0.2
+# sz 0.9
+
+--aadn
+-- d2
+xfadeIn 2 32
+$ stack [id
+$ hurry "[0.5 0.25]/3 1/2 0.125/4"
+$ (# cut "{1 0 2 3 0 4 3}%2")
+$ spreadf [(|* speed "{1.3 2 2.5 [0.7 1] 3}%2"), (|+ n "{3 4 0}%4"), (rev . (slow 4))]
+$ every 2 (juxBy 0.8 rev)
+$ degradeBy 0.2
+$ (# gain 0.8)
+$ (# speed 0.5)
+$ ((# room "{0.1 0 0.2}%7") . (# size "0.8 0"))
+$ ((# attack "{0.1 0 0.2 0.05}%5") . (# rel "5") . (# coarse "4 1") . (# lpf "{1000 2900 1400}%4"))
+$ sound
+$ step' ["nimb:27", "nimb:9", "nimb:13", "nimb:39"]
+  (take 512
+    $ lindenmayer 5 "0:1~2~3~,1:0~~~2~2~~0~~~2~,2:2~1~,~:~~1~,3:~1~0~~~2~3"
+  "1 1 0 1"
+  )
+-- , id
+-- $ n "1*5"
+-- # s "nimb"
+]
+
+
+-- aakp-britbeat
+
+setbpm 145
+
+d1
+$ "1(5,8)"
+# n "11"
+# legato 1
+# "ukk"
+# gainTake "g" [1,1,0.9,1.2,0.5]
+# note (scale "mixolydian" $ "{-2 0 2 4 -4}%6")
+# crush 7
+# shape 0.5
+
+d2
+$ iter 4
+$ juxBy "-0.5 0.5" (rev . hurry 0.5)
+$ echoWith 5 "1%8" ((|* gain 0.9) . (|- crush 1))
+$ n "13"
+# "uks"
+# speed 0.7
+# crush 10
+
+d3
+-- clutchIn 3 16
+-- $ hurry 0.25
+$ juxBy (range "-1" 1 $ perlin) (rev . hurry 2 . (|* legato 0.7))
+$ struct "t(3,8,<1 0 3>)"
+$ n "2 4"
+# "ukcz"
+# legato 1
+# gain 0.7
+# delay' "1 0.9" "{1%16 1%128 1%8}%3" 0.9
+# coarse 2
+# lock 1
+-- # accelerate "{-1 0}%5"
+
+d4
+$ "[~ ukclap]*2"
+# n "4"
+
+d5
+$ plyWith "4 1" (|* speed "{1 2}%5")
+$ "ukhh*4"
+# nudge 0.02
+
+d6
+$ n "<[2 ~ [~ 3] ~] [2 2 ~ ~]>"
+# "bnbass808"
+# legato 2
+-- # cut 1
+# speed "[0.8,<0.807 0.803 0.85>]"
+-- # speed "0.8"
+-- # accelerate "{-0.1 -2}%5"
+# shape 0.8
+# gain 0.4
+
+d7
+$ n "{1 0 2 3 4 5 6 8}%4"
+# "readorb"
+# legato 1
+# cps ("<0.6 {0.6!3 0.3 0.6}%4>")
+# fshift 100
+# ring 1
+# ringf "{300 600 1200}%7"
+# lpfbus 0 (range 50 9500 $ slow 1.5 $ sine)
+# lpq 0.4
+# coarse "{3 0 2 1}%9"
+# lock 1
+
+d8 
+$ slow 2
+$ "rlooper"
+
+d9
+$ bite 16 "8*8"
+$ juxBy "{-0.5 0.5}%7" (rev . hurry "2 0.5")
+$ degrade
+$ slicemod "{16 32 8}%7" "5 3" "0 9"
+$ "loop"
+# distort "0.3 0 0.5 0"
+-- # shape 0.1
+# legato "{1.1 0.2 0.1}%5"
+# legato 1
+# speed "0.5"
+# gain 1
+
+d9 silence
+
+do
+  let cslices = "{16 32 8 2}%3"
+  -- let cslices = ""
+  let pslices = "32 2"
+  d1
+    -- $ fast 0.5
+    -- $ hurry 0.25
+    -- $ degradeBy 1
+    $ juxBy (range "-1" 1 $ slow 1.2 $ sine) (rev . hurry "{0.5 2}%0.5")
+    -- $ repeatCycles 8
+    $ slice cslices (segment cslices $ irand cslices)
+    $ "contact"
+    # legato 1
+    # gain 1
+    # speed "{0.5 [1,<1.05 1.01 2>] 2}%3"
+    # shape 0.9
+    # crush 2
+    # distort 0.9
+    # delay' "{0.5 0 0.2}%2" (smooth $ "{0.02 0.004 0.03}%3.1") 0.9
+    -- # pan "-1"
+  d2
+    -- $ degradeBy 0.9
+    -- $ fast 0.5
+    -- $ hurry 0.25
+    $ juxBy (range "-1" 1 $ slow 1.1 $ perlin) (rev . hurry "{0.5 0.25}%5")
+    $ slice pslices (segment pslices $ irand pslices)
+    $ "plastic:2 plastic:0"
+    # legato 1
+    # shape 0.8
+    # gain 1.4
+    # speed "{0.25 2 1 0.5}%5"
+    -- # squiz 8
+    # accelerate "0.5 0.1 -1"
+    -- # gain 0
+  d3
+    $ degradeBy 1
+    $ slice pslices (segment pslices $ irand pslices)
+    $ "jjbreaks:2"
+    # gain (range 0.5 1 $ fast 2.5 $ sine)
+    # shape 0.4
+    -- # speed 0.5
+    # legato 1.2
+    # delay' "{0.5 0 0.2}%2" (smooth $ "{0.2 0.04 0.3}%3.1") 0.9
+    # gain 1
+  d4
+    -- $ degradeBy 0.5
+    $ hurry "{1 0.5 0.2 2}%7"
+    $ n "{[0,1,2] 4}%9"
+    # "readorb"
+    # lpfbus 0 (range 500 9500 $ slow 2.3 $ sine)
+    # lpq "0.9 0"
+    # fshift "-500 50 500 -50"
+    # shape 0.4
+  d5
+    $ degradeBy 0.4
+    $ n "3*4"
+    # "readorb"
+    # legato 1.1
+    # delay' "{0.5 0 0.2}%2" (smooth $ "{0.02 0.004 0.03}%3.1") 0.9
+    # ring 2
+    # ringfbus 3 (range 500 9500 $ slow 1.4 $ sine)
+    -- # verb 0.9 0.9 "0.3" 0.8
+    -- # ringdf 0.12
+    # shape 0.9
+
+d7 
+$ loopAt 4
+$ "rlooper"
+# n "0"
+
+d6
+-- $ slow 4
+-- $ repeatCycles 8
+$ often (bite "8" "8*8")
+$ juxBy "{-1 1 0.5}%4" (rev . hurry (segment 8 $ range 0.25 4 $ fast 1.5 $ sine))
+-- $ plyWith "4" ((|* speed 1.1) . (|* gain 0.9) . (|* legato 0.9))
+-- $ chunk 4 (hurry 0.25)
+-- $ degrade
+-- $ striate "32 16 64 2"
+-- $ "loop"
+$ "gtsp:2 gtss:4 gtsk!2"
+# legato 0.9
+-- # gain 0.9
+# speed 4
+# accelerate "-1 0"
+# cps (rangex 0.1 2 $ slow 3.4 $ sine)
+
+-- next thing
+
+d1
+-- $ bite 16 "4*16"
+$ slicemod "16 8" "{5 1 4 9 2 3}%4" "{0 9 4 8 13}%4"
+$ loopAt "4 5 4 4"
+$ "ksbrk:5"
+# legato 1
+# cps 0.6
+# speed "[1,<1.03 1 1.01>]"
+# shape 0.4
+-- # crush 3
+-- # accelerate "0.4 -0.4 0"
+
+d2
+-- $ striate 32
+-- $ hurry "0.5 0.6 0.4"
+$ "nimb*4"
+# n "[34,3]"
+-- # legato 2
+# shape 0.5
+# cps 0.6
+-- # att 0.1
+-- # rel 4
+-- # delay' 1 "1%03" 0.9
+-- # lock 1
+# accelerate "-1"
+
+d3
+-- $ hurry 0.25
+$ sometimes (ply 2)
+$ "nimb:5*8"
+# legato 0.1
+# accelerate "-1"
+
+d3 silence
+
+ d4
+    -- $ degradeBy 0.5
+    $ hurry "{1 0.5 0.2 2}%7"
+    $ n "{[0,1,2] 4}%9"
+    # "readorb"
+    # lpfbus 0 (range 500 9500 $ slow 2.3 $ sine)
+    # lpq "0.3 0"
+    # fshift "-500 50 500 -50"
+    # shape 0.4
+
+  d5
+    -- $ degradeBy 0.4
+    $ n "3*4"
+    # "readorb"
+    # legato 1.1
+    # delay' "{0.5 0 0.2}%2" (smooth $ "{0.02 0.004 0.03}%3.1") 0.9
+    # ring 2
+    # ringfbus 3 (range 500 9500 $ slow 1.4 $ sine)
+    # verb 0.9 0.9 "0.3" 0.8
+    -- # ringdf 0.12
+    # shape 0.2
+
+-- cut for effect
+-- xfadeIn 1 16
+d1
+-- $ slow "{3 2%3 6}%4"
+$ repeatCycles 6
+$ hurry "2 0.5 2"
+-- $ hurry "0.5"
+$ juxBy (range "-0.5" 0.5 $ slow 2.3 $ saw) (rev . hurry "{1.5 1 1%3}%4")
+$ stutWith 4 "t 5%3" ((|+ timbre 0.1) . (|* gain 0.9) . (|+ n "{-7 0 7}%4"))
+$ repeatCycles 6
+$ rings (id
+    -- $ degradeBy 0.3
+    $ segment "{6 12!5 4 12!3}%3" 
+    $ every 1 (quantise (1/66))
+    $ range 50 800 $ slow 1.5 $ saw * (fast 3.5 $ sine)
+  ) 
+  "{0.2 0 0.9 0.1}%5"
+  "{0.9 0 0.5}%7"
+  (range 0 1 $ slow 3.4 $ saw) 
+  0
+# s "plaits"
+# n "-7 7"
+# engine 5
+# harm 0
+# timbre 0.2
+# morph 0.7
+# mode "0 1"
+# cps 0.58
+# legato "{4 2 1 0.5}%7"
+-- # att 0.1
+-- # rel 4
+-- # clouds (range 0 0.5 $ sine) 0.3 0.3 0.9
+-- # cloudsblend "0 1" 0.6 0.8 0.8
+# cut 1

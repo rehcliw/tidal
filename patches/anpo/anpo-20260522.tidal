@@ -1,0 +1,134 @@
+setbpm 110
+
+d1
+$ echoWith 2 "0" ((|* gain 0.9) . (|* speed 0.5))
+$ n "0"
+# s "presfx"
+# legato 1.1
+# att 0.2
+# rel 7
+# lpfbus 0 (range 250 9500 $ slow 5.7 $ sine)
+# coarsebus 1 (range 1 8 $ slow 7.2 $ sine)
+# crush 9
+# verb 0.9 0.5 0.4 0.4
+# gain 0.8
+# accelerate 1.3
+
+d2
+-- $ bite 16 "0*16"
+$ degrade
+$ bite 16 "1*32"
+$ off "e" (rev . hurry "{2 0.25}%3")
+-- $ repeatCycles 8
+$ stutWith 3 "s" (|+ n "<12 7>")
+$ n "5 6 29 21"
+# "presp"
+# delay' 1 "<1%32!3 1%64>" 0.9
+# lock 1
+-- # speed 0.2
+# cut 1
+# legato 0.1
+# pan 1
+
+d1
+-- $ repeatCycles 8
+-- $ chunk 4 (hurry 2)
+-- $ bite 32 "5*32"
+-- $ ply 16
+-- $ degrade
+$ fast 9
+$ "inr"
+# gain 1
+# shape 0.1
+# legato 1.1
+# att 0.2
+# rel 4
+# delay' 1 "<1%2>" 0.9
+# lock 1
+# pan 1
+# coarse 8
+# ring 0.5
+# ringfbus 0 (smooth $ "{1100 2200 4400 550}%2")
+|* ringf 3
+# ringdf 1
+# distort 0.5
+# lpfbus 1 (range 50 9500 $ fast 3.2 $ sine)
+# lpq 0.4
+-- # speed "-1"
+# verb 0.8 0.8 0.2 0.2
+-- # gain 0.8
+# accelerate "2.5"
+
+once $ "rlooper"
+
+d2
+-- $ slicemod 16 3 5
+$ "orbit"
+# shape 0.8
+# legato 1
+-- # speed 0.2
+-- # delay' 1 "0.03" 0.9
+
+
+d1
+-- $ sometimes (bite 32 "4*32")
+$ fast 2
+$ off 0 (rev . hurry 0.5)
+$ degradeBy 0.8
+$ slice 32 "{3 9 3 1 19}%8"
+$ n "4 3 0 12"
+|+ n 7
+# "presl"
+# gain 1
+# shape 0.7
+# cut 1
+# legato 0.5
+# speed "{1 2 0.5}%4"
+-- |* speed 0.5
+# delay' 1 "{0.3 0.4 0.5}%5" 0.8
+-- # lock "1"
+-- # accelerate "{-1 0 1}%5"
+
+d1
+-- $ slow 2
+-- $ off 0 (rev . hurry 0.5)
+$ echoWith 4 "s" (|* speed 2)
+-- $ plyWith 
+-- $ slice 32 "17 29 22 3"
+$ striate "{32 64 12 2}%5"
+$ "presl:2"
+-- # legato 0.2
+# speed (rangex 0.1 4 $ fast 5.2 $ sine)
+-- # shape 0.1
+-- # att 0.1
+-- # rel 1
+# pan 1
+# gain 0.8
+-- # distort 0.1
+# delay' 0.8 0.2 0.9
+-- # speed 0.5
+-- # verb 1 0.9 0.2 0.2
+# bpfbus 0 (range 500 9500 $ slow 0.3 $ sine)
+# bpq 4
+
+d1
+-- $ hurry 2
+$ sometimes (bite 16 "8*16")
+-- $ repeatCycles 8
+-- $ off 0 (rev . hurry 2)
+$ echoWith 2 "0" ((hurry 2) . (|* gain 0.9))
+-- $ sometimes (plyWith 2 (|* speed 2))
+-- $ degrade
+$ echoWith 8 "1%3" ((|+ note 7) . (|* gain 0.9))
+$ note "{7 14 0 19}%2"
+# "dystonal:2"
+# legato 0.3
+-- # cut "{1 0}%5"
+-- # shape 0.2
+# att 0.03
+# rel 0.2
+# gain 0.2
+# pan 1
+# room 0.9
+# sz 0.8
+-- # accelerate "-1"

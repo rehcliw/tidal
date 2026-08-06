@@ -1,0 +1,85 @@
+setbpm 145
+
+d1
+$ "1(5,8)"
+# n "11"
+# legato 1
+# "ukk"
+# gainTake "g" [1,1,0.9,1.2,0.5]
+# note (scale "mixolydian" $ "{-2 0 2 4 -4}%6")
+# crush 7
+
+d2
+$ iter 4
+$ juxBy "-0.5 0.5" (rev . hurry 0.5)
+$ echoWith 5 "1%8" ((|* gain 0.9) . (|- crush 1))
+$ n "13"
+# "uks"
+# speed 0.7
+# crush 10
+
+d3
+$ hurry 0.25
+$ juxBy (range "-1" 1 $ perlin) (rev . hurry 2 . (|* legato 0.7))
+$ struct "t(3,8,<1 0 3>)"
+$ n "2 4"
+# "ukcz"
+# legato 1
+# gain 0.7
+# delay' "1 0.9" "{1%16 1%128 1%8}%3" 0.9
+# coarse 2
+# lock 1
+# accelerate "{-1 0}%5"
+
+d4
+$ "[~ ukclap]*2"
+# n "4"
+
+d5
+$ plyWith "4 1" (|* speed "{1 2}%5")
+$ "ukhh*4"
+# nudge 0.02
+
+d6
+$ n "<2 [2 2 ~ ~]>"
+# "bnbass808"
+-- # legato 1
+-- # cut 1
+# speed "[0.8,<0.807 0.803>]"
+# accelerate "{-0.1 -2}%5"
+# shape 0.2
+
+d7
+-- $ n "{1 0 2 3 4 5 6 8}%4"
+$ n "{8 6}%4"
+# "readorb"
+# legato 1
+# cps ("<0.6 {0.6!3 0.3 0.6}%4>")
+# fshift 100
+# ring 1
+# ringf "{300 600 1200}%7"
+# lpfbus 0 (range 50 9500 $ slow 1.5 $ sine)
+# lpq 0.4
+# coarse "{3 0 2 1}%9"
+# lock 1
+
+d8 
+$ slow 2
+$ "rlooper"
+
+d9
+$ hurry "2 [0.4,0.401] 4"
+$ juxBy "{-0.5 0.5}%7" (rev . hurry "2 0.5")
+$ degradeBy 0.7
+$ slicemod "{16 32 8}%7" "<5 3 [6 9 2]>" "0 9 9 24"
+$ "loop"
+# distort "0.3 0 0.5 0"
+# shape 0.1
+# legato "{1.1 0.2 1}%5"
+# legato "{0.01 0.05 0.1}%7"
+# speed "0.5 -2"
+# cps (smooth $ "{0.6 0.9 1.2}%4" * "2 0.1")
+# cut "{1 0}%0.67"
+# crush 2
+
+d9 silence

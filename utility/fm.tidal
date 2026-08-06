@@ -24,13 +24,13 @@ $ s "superfm"
 # fmm 1 ["<0 1 0>","<1 0 0>","<0 0 1>"] -- arr of what mods op 1
 # fmm 2 ["{0 1 0 0}%5","{0 0 1 0}%5",1,"{1 0 0 0}%5","{0 0 0 1}%5"]
 # gain 1.2
-# clouds "0 0.5" 0.9 0.1 "0.9 0.1 0.4"
-# cloudspitch "<0.2 0.9 0.5>"
-# cloudsblend "{1 0 0.5}%5" 0.1 "{0.3 0.2 0 0.6}%5" 0.8
-# cloudsfreeze "{0 1}%5"
-# cloudsfb 0.3
-# orbit 0
-# cut 0
+-- # clouds "0 0.5" 0.9 0.1 "0.9 0.1 0.4"
+-- # cloudspitch "<0.2 0.9 0.5>"
+-- # cloudsblend "{1 0 0.5}%5" 0.1 "{0.3 0.2 0 0.6}%5" 0.8
+-- # cloudsfreeze "{0 1}%5"
+-- # cloudsfb 0.3
+-- # orbit 0
+-- # cut 0
 
 -- delbargia bars
 d1 

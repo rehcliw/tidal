@@ -1,0 +1,339 @@
+-- 20260503 LIBRARY CRASH COURSE
+
+-- basic sounds
+once $ sound "houk"
+
+d1 
+-- $ sound "houk"
+$ sound "hous"
+
+-- alias
+d1
+-- $ s "houk"
+$ "houk"
+
+-- different sample in the folder
+-- using mininotation
+d1
+-- $ s "houk:1"
+-- using the n function
+$ s "houk"
+-- # n "3"
+
+-- sequence: number of events in quotes is number of events per cycle
+d1
+-- $ s "houk hous"
+$ s "houk houhh houk hous houhh houhh houhh houk hous"
+
+-- subsequences
+d1
+-- $ s "houk houhh houk [hous housh]"
+-- $ s "houk houhh houk [housh housh]"
+-- shorthand 
+-- $ s "houk houhh houk housh*2"
+-- can use * on subsequences
+$ s "houk houhh houk [hous housh]*2"
+
+-- print to visualize
+s "houk houhh houk [hous housh]*2"
+
+-- once per cycle
+d1
+$ "houk houhh houk <hous housh>"
+
+-- alternatively, can use /
+d1
+$ "houk houhh houk [hous housh houk]/2"
+
+-- can use * or / with fractions
+d1
+$ s "houk houhh houk [hous housh]*1.5"
+
+-- try drawLine for vizualization
+drawLine "a b a [c d]*1.5"
+
+-- use ! for repeating at same level
+d1
+-- $ s "houk houhh hous hous"
+-- same as
+$ s "houk houhh hous!"
+-- same as
+-- $ s "houk houhh hous!"
+
+-- nesting
+d1
+-- $ s "houk houhh [houk houhh] <hous houk>"
+-- $ s "houk houhh [houk [houhh houpfx]] <hous houk>"
+-- $ s "houk houhh [houk [houhh houpfx]] <hous [housh houk]>"
+$ s "houk houhh [houk [houhh <houpfx houhh>]] <hous [housh houk]>"
+
+-- rests
+d1
+$ s "houk ~ houk [hous housh]"
+
+-- using n as the control pattern
+d1
+$ n "0 ~ 0 [2 1]"
+# s "cpu"
+
+-- multiple subsequences at same time in same mininotation
+d1
+-- $ s "[houk ~ houk [hous housh], houhh*4]"
+-- polyrhythms...
+$ s "[houk ~ houk [hous housh], houhh houpfx houhh]"
+
+-- curly brackets
+d1
+-- first subsequence is in four
+-- so second subsequence cycles through the 3 samples over each quarter note 
+-- (polymeter)
+$ s "{houk ~ houk [hous housh], houhh houpfx houhh}"
+
+drawLine $ "{a b c d, e f g}"
+
+-- instead of first subsequence determining how many steps, can define with %
+d1
+-- $ "{houk ~ houk [hous housh], houhh houpfx houhh}%5"
+-- can be on just one subseq
+$ "{houk ~ houk [hous housh]}%5"
+
+d2
+$ "houclap*2"
+
+-- euclidean patterns
+d1
+-- $ s "houhh(7,16,2)"
+$ s "houhh(<7 5>,16,<1 0 2>)"
+
+drawLine $ "a(2,8)"
+
+d2
+$ s "houclap"
+
+drawLine "0(3,8)"
+
+-- lets say you have longer samples that bleed into each other
+d1
+$ s "houk:2 ~ houk:2 [hous houcrash]"
+-- stop sample once another starts
+-- 1 is the 'group'
+-- # cut 1
+-- alternatively, use legato to make the samples shorter, using cycle proportion as a unit
+-- (if sample takes whole cycle before legato(0.9), now takes 90%; if takes half cycle, now takes 45%; etc)
+-- # legato 0.9
+-- # legato 1.2
+
+-- gain
+d1
+$ s "houk ~ houk [hous housh]"
+# gain 1.2
+
+-- changing sample speed
+d1
+$ s "houk ~ houk [hous housh]"
+# speed 0.04
+
+-- fx
+-- ranges not always well documented
+d1
+$ s "houk ~ houk [hous housh]"
+# speed 0.2
+-- # crush 1 -- 1 to 16 bits crusher
+-- # lpf 1200 -- low pass filter cutoff in hertz
+-- # lpq 0.2 -- low pass filter resonance, 0 to 1
+# delay 1 -- amt
+# delaytime 0.25 -- secs
+# delayfeedback 0.8 -- 0 to 1
+# lock 1 -- when set to 1, delayt is a multiple of a cycle
+
+
+-- you can sequence anything
+d1
+$ s "houk ~ houk [hous housh]"
+-- # speed "2 0.2"
+-- # crush "<16 2> 2"
+# lpf "<1200 9000> <9000 200 1200>"
+# lpq "0.2 0.6 0"
+# delay 1
+# delaytime "<0.25 0.5 [0.125 0.03]>"
+# delayfeedback "<0.8 0.2 0.9 0.4>"
+# lock 1 -- when set to 1, delayt is a multiple of a cycle
+
+-- pattern level fx
+-- reverse
+d1
+$ rev
+$ s "houk ~ houk [hous housh]"
+
+-- palindrome applies rev every other cycle
+d1
+$ palindrome
+$ s "houk ~ houk [hous housh]"
+
+-- ply repeats
+d1
+-- $ ply 2
+$ plyWith 2 (# speed 2)
+$ s "houk ~ houk [hous housh]"
+
+-- tempo
+d1
+-- $ fast 2
+-- $ slow 2
+$ fast 0.5
+$ s "houk ~ houk [hous housh]"
+
+-- hurry combines sample speed and tempo
+d1
+$ hurry 0.2
+$ s "houk ~ houk [hous housh]"
+
+-- can also change tempo with the cps (cycles-per-second) effect, but behaves a little differently
+-- cps affects all patterns
+d1
+$ s "houk ~ houk [hous housh]"
+-- # cps 2
+-- # cps "{2 4 <1 0.5> 8}%3" -- fun to pattern
+-- # cps (120/60/4)
+# cps (135/60/4) -- default 
+
+d2 $ s "houhh*8"
+
+-- jux rev!
+-- jux creates copy, applies function to it, and pans copies across stereo field
+d1
+-- $ jux rev
+-- $ jux (hurry 2) -- need parens if parameters
+-- $ jux (rev . hurry 2) -- can combine with .
+-- $ juxBy 1 (rev . hurry 2) -- juxby lets you control how far it pans
+$ jux (# crush 4) -- to change sound fx, use #
+$ s "houk ~ houk [hous housh]"
+
+-- can create copies and superimpose across time instead of stereo field
+d1
+-- $ off (1/8) (# speed 2) -- need parens for fractions
+$ off "<1%8 1%16>" (# speed 2) -- alternate syntax, can sequence!
+$ s "houk ~ houk [hous housh]" 
+
+-- echoWith is more flexible
+d1
+-- $ echoWith 3 "1%16" (# speed 2)
+$ echoWith 8 "1%16" (|* speed 2) -- to accumulate, use pipe symbol
+$ s "houk ~ houk [hous housh]" 
+
+-- another way to use pipe symbol
+d1
+$ s "houk ~ houk [hous housh]" 
+# speed "0.5 2"
+-- # speed ("0.5 2" * 0.5)
+|* speed 0.5
+
+-- ply with accumulation is nice
+d1
+$ plyWith 8 (|* speed 2)
+$ s "houk ~ houk [hous housh]"
+
+-- nice for making melodies / arpeggios
+d1
+-- $ jux rev
+-- note function changes speed of sample, assumes default speed is middle c
+$ echoWith 16 "1%8" (|+ note "{5 7 14}%4")
+$ s "houtonal:4"
+# legato 1
+
+-- a little more abt notes
+d1
+-- $ note "c d a f"
+-- $ note "c d8 a f7"
+-- $ note "c df a fs"
+$ note (scale "<mixolydian pelog>" $ "3 [-2 10] <1 [9 -3] 5> <9 -7>")
+# "houtonal:5"
+
+scaleList
+
+-- synths have specific parameters
+d1
+$ n (scale "mixolydian" $ "3 [-2 10] <1 [9 -3] 5> <9 -7>")
+# "supersaw"
+# voice 0.5
+# semitone 12
+# resonance 0.9
+# lfo 2
+# rate 0.1
+# pitch1 2
+
+-- input! 
+-- (see audio midi setup)
+d1
+-- $ sound "in"
+$ "inr" -- lets you manipulate speed
+# delay' 1 0.4 0.9
+# speed 2
+
+-- longer samples
+d1
+-- $ slice 16 "0 1 2 4" -- cut into 16 bits and then sequence the bits
+-- $ splice 16 "0 1 2 4" -- same as slice but speed up/down the bits to fit within the cycle portion
+-- $ splice 16 "0"
+-- chop into bits and play all the bits in order
+-- $ chop 16 
+-- $ chop 248 -- get granular..
+$ striate 16 -- weave the samples together
+-- $ "laundry"
+-- $ "laundry jjpads:2"
+$ s "houk ~ houk [hous housh]" -- works with short samples too
+# legato 1
+
+
+-- can get prety complex just by composing together these simple functions
+d1
+$ juxBy "0.5 -0.5" (rev . hurry "<2 [0.5 2] 1>")
+$ plyWith "<4! 2 1 8>" ((|* gain 0.9) . (|* legato 0.9) . (|* speed 1.1))
+$ s "houk ~ houk [hous housh]"
+# legato "<1!3 0.1>"
+# distort 0.3
+# gain 1.1
+
+d2
+$ s "houhh:2*8" # gain 1.1
+
+d3
+$ jux (rev . hurry 0.5)
+$ note (scale "lydian" $ echoWith "3" "<[5%16 3%4] 1%16>" (|+ "{4 7 -4}%4") $ "3 [-2 10] <1 [9 -3] 5> <9 -7>")
+# "supersaw"
+# voice "<0.1 0.9>"
+# resonance "{0.4 0.1!6}%5"
+# distort 0.7
+# legato "<0.1!7 [0.1 1]!4>"
+# delay "<1!4 0.7>" 
+# delayt "<0.03!5 0.2!2>" 
+# delayfb 0.9
+# gain 0.9
+# lpf "700 5000"
+# lpq "0.5 0.2"
+# cut "{1 0}%3"
+# cps "2 1"
+-- # cps (135/60/4)
+
+let delayval = "0.5 2"
+
+d1
+$ fix (# delay 1) (s "houk")
+$ s "{houk hous}%4"
+# n 0
+-- # delay 1
+# delayt "{0.1 0.9 0.03}%5"
+# delayfb 0.8
+
+
+
+d1
+$ striate 16
+$ "sax"
+# legato 1
+
+d2
+$ slow 16
+$ "readorb"
+# bpfbus 0 (range 50 9000 $ slow 0.3 $ sine * (fast 1.1 $ saw))
+# bpq 5

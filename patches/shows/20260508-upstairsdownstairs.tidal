@@ -1,0 +1,83 @@
+-- turn on cross orbit routing !
+
+d1
+-- xfadeIn 1 8
+$ "inr"
+# fadeTime 0.0001
+# fadeInTime 0.0001
+-- # speed 0.99
+-- # accelerate 0.011
+# legato 1.05
+# shape 0.5
+# delay' 0.5 0.9 0.9
+# verb 1 0.9 0.1 0.1
+# ring 2
+# ringfbus 0 (range 500 5500 $ fast 0.12 $ sine)
+# ringdf 3
+# gain 0.3
+
+d2
+-- clutchIn 2 8
+$ hurry 0.25
+-- $ bite 8 "3*8"
+$ juxBy (range "-0.5" 0.5 $ perlin) (rev . hurry "{2 0.5}%5")
+$ repeatCycles 8
+-- $ sometimes (echoWith 8 "1%8" ((|* gain 0.9) . (|* speed 1.01)))
+$ strat' 16 8
+-- $ slow 4
+-- $ struct "t(3,8)"
+-- $ slicemod 32 1 "<4 0 5 14>"
+-- $ slicemod "32" "<3 1 [1 5]>" "<0!3 3 12 4>"
+-- $ slice 32 "3 8"
+-- $ "sherman nimbl:1"
+$ "sherman"
+# legato "{0.5 0.8 1.2}%5"
+# legato 1
+# speed "{0.9 0.2 0.9 0.5 1 2 1.3 1}%7"
+-- |* speed "-1"
+-- # ring 2
+-- # ringfbus 0 (range 500 9500 $ slow 2.34 $ sine)
+-- # ringdf 1
+# shape 0.5
+
+once $ "rlooper" 
+-- # recordSource "out" 
+-- # orbit 1
+
+d3
+-- $ bite 8 "2*16"
+-- $ hurry 0.2
+$ jux rev
+$ hurry "2 0.5"
+$ sometimes (plyWith 4 (|* speed "<-0.9 1 2>"))
+-- $ slow 4
+$ slicemod 32 16 0 
+$ "loop"
+# legato 0.9
+# accelerate "-0.9"
+# speed 0.5
+# delay' 1 0.01 0.9
+# verb 1 0.9 0.1 0.1
+
+d4
+-- $ hurry 0.1
+$ fix (|* accelerate "-4") (speed 15)
+$ slice 16 ("{1 2 5 3}%2.5" + 10)
+-- $ slice 8 "{1 2 5 3}%5"
+$ "{aldican plastic}%3"
+-- $ "aldican sink"
+-- $ "sink"
+# legato 2.7
+# att 0.3
+# rel 9
+# crush "{4 0]%3"
+# coarse "5 1"
+# squiz "8 1"
+# accelerate "-0.4"
+# speed "{1 15 0.5 1.1 0.9}%3"
+# delay' "1" 2.5 0.9
+# lock 1
+-- # verb 1 0.8 0.9 0.8
+
+-- play with aajs-tapco, aaka-pivotpractice, aakc-outsidify, aakh-floorbaba, aakd-speakerfeedback
+
