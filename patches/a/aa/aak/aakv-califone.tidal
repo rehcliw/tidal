@@ -1,0 +1,34 @@
+d1
+$ hurry "0.5"
+$ n "0*2"
+# "califone"
+# legato 1.9
+-- # legato 1
+# begin (range 0 0.5 $ slow 5.12 $ sine)
+# shape 0.8
+# speed "{1 1.01 0.99 0.98 1.02}%4"
+# squiz 1
+
+d2
+$ slow 2
+$ n "1"
+# "califone"
+-- # legato 1.9
+# legato 1.2
+-- # begin (range 0 0.5 $ slow 5.12 $ sine)
+# shape 0.4
+-- # squiz 4
+
+d3
+$ slow 3.4
+$ n "0 <0 1> 2"
+# "readorb"
+# att 0.2
+# rel 4
+# legato 1.4
+# coarse 2
+# fshift "-300"
+# lpfbus 0 (range 100 3500 $ slow 3.2 $ sine)
+# lpq 0.1
+# delay' 0.9 0.5 0.9
+# lock 1

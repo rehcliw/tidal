@@ -19,6 +19,7 @@ $ stack [id
 ]
 # midichan 0 
 # cps 0.7
+
 d2
 $ echoWith 2 "1%8" (rev)
 $ mask (inv $ "{1 0 1 0 1 1 0}%4")

@@ -1,11 +1,43 @@
+-- test
+d1
+$ "numbers:8 numbers:0"
+
+--- rising aakt-harm
+-- expensive! 
+-- d1
+xfadeIn 1 8
+$ juxBy (range "-0.5" 0.5 $ perlin) ((|* freq 1.2) . slow 1.3)
+$ slow "{8 7 9 10}%3"
+$ echoWith 3 "0" ((|+ freq "<5 4 3 6>") . (|* harm "<1.1 0.9 0.95>") . (|* timbre "<1.05 1.1 0.5 0.95>"))
+$ freq "30 32 76"
+# legato 3
+# engine 4
+# att 9
+# rel 19
+# harm (range 0.01 0.99 $ slow 12.41 $ sine)
+# timbre (range 0.01 0.99 $ slow 12.77 $ sine)
+# mode "<0!2 1>"
+# "plaits"
+# morph (range 0.01 0.99 $ slow 13.21 $ sine)
+# accelerate "0.2"
+# coarsebus 0 (range 0 8 $ slow 14.12 $ sine) -- out first step
+# accelerate "1" -- out
+# squiz 2 -- out
+# crush 3 -- out
+# delay' 0.9 0.014 0.9 -- out
+
+
+
 --- aakr pingfilt
 d1
 -- $ fast 2
-$ jux (rev . hurry 2)
+$ jux (rev . hurry "<2 0.5 1>")
+$ plyWith "<1 [2 1!2]> 1" (|* speed 2)
 $ "imp*4 gtsk:1"
-# legato 0.1
+# legato "<0.2 0.1!3> <0.1 0.4 0.2>"
 # cps 0.7
-# speed "1 {0.5 2 0.25 3}%5"
+# speed "{0.5 -2 0.25 3}%5"
+# accelerate "-0.2"
 
 d2
 $ fast "<1 4 8>"
@@ -20,19 +52,21 @@ $ n "0 0 2 <0 4>"
 
 d6 $ slow 2.1 $ "rlooper"
 
+d6 $ silence
+
 d3
 -- $ repeatCycles 4
-$ hurry 0.5
+-- $ hurry 0.5
 -- $ chunk 4 (hurry 0.5)
--- $ jux ((|* speed "-2") . rev)
-$ slicemod "16 8 4" 5 "{0 9 3}%5"
+$ jux ((|* speed "-2") . rev)
+-- $ slicemod "16 8 4" 5 "{0 9 3}%5"
 -- $ slicemod "32" 5 "0"
 $ "loop"
-# gain 0.5
+# gain 0.9
 # legato "{0.5 0.2 0.8}%5"
 # accelerate "{1 -0.3 0}%2"
 # cps (range 2 0.24 $ slow 1.3 $ sine)
-# speed "[0.5,2.03]"
+-- # speed "[0.5,2.03]"
 
 setbpm 125
 
@@ -43,11 +77,11 @@ $ "<rlooper olooper!3>"
 
 d5
 -- $ slow 2
--- $ fast 2
+$ fast 2
 $ jux (rev . hurry 2)
--- $ slicemod 16 "<2 15 5>" "<0!2 5 9>"
--- $ chunk 4 (plyWith 8 ((|* speed 2) . (|* legato 0.9)))
--- $ echoWith 8 "1%4" ((|* gain 0.9) . (|* speed 0.9))
+$ slicemod 16 "<2 15 5>" "<0!2 5 9>"
+$ chunk 4 (plyWith 8 ((|* speed 2) . (|* legato 0.9)))
+$ echoWith 8 "1%4" ((|* gain 0.9) . (|* speed 0.9))
 -- $ degrade
 -- $ striate "<16 1!3 32 1>"
 -- $ hurry "<0.25 2>"
@@ -62,52 +96,223 @@ $ "loop"
 -- # rel 5
 -- # verb 1 0.1 0.1 1
 -- # accelerate 1
--- # clouds "{0 1 0.4}%5" 0.5 0.5 0.7
--- # cloudsblend 0.9 0.2 0.6 0.4
+# clouds "{0 1 0.4}%5" 0.5 0.5 0.7
+# cloudsblend 0.9 0.2 0.6 0.4
 -- # ring "{10 1}%3" 
 -- # ringf "100 500"
--- # crush 2
+# crush 2
 -- # comb 0.4
--- # fshift "1000"
+# fshift "1000"
 -- # coarse 5
--- # lpf "{1000 500}%5"
--- # lpq "{0.5 0.3}%3"
--- # speedTake "s" [1,2,0.5]
--- # delay' 0.9 "{0.02 0.021 0.023}%5" 0.8
+# lpf "{1000 500}%5"
+# lpq "{0.5 0.3}%3"
+# speedTake "s" [1,2,0.5]
+# delay' 0.9 "{0.02 0.021 0.023}%5" 0.8
 # lock 1
 -- # speed "<-1 1!2>"
 
 d1
-$ mask "{1 0 1 0 0 1 1}%8"
-$ "gtsh:2*16"
+$ mask (inv $ "{1 0 1 0 0 1 1 1 0}%8")
+$ n "2*16"
+# "gtsh"
+# legato 0.5
 
 d2
-$ "gtsk:3(5,8)"
-# accelerate "-1"
-# shape 0.5
+$ sometimes (plyWith 3 (|* gain 0.9))
+$ chunk 4 (hurry 2)
+-- $ mask "{1 0 1 1 0 0 1 0}%16"
+$ struct "t(5,8,<1 0>)"
+-- $ n "16"
+$ n "{3!3 2 9 21}%8"
+# "gtsk"
+# accelerate "{1 -1 0}%2"
+-- # shape 0.4
+# legato "{0.9 0.5 0.8}%7"
+# speed "{0.5 2 1}%7"
+# cut 1
+# cps 0.7
 
 d3
-$ "[~ gtss:19 ~ ~ ~]"
+$ mask (inv $ "{1 0 1 0 0 1 1 1 0}%8")
+$ n "20*8 <12*4 20*4>"
+# "gtss"
 # nudge 0.3
 # shape 0.5
--- # speed 2
+# speed "{2 -2 1}%9"
 
 d6
 -- $ hurry 1.1
 -- $ fast 0.25
 -- $ fast 0.25
--- $ jux (rev . hurry 2)
+$ jux (rev . hurry 2)
 $ "inr"
 -- # att 0.2
 -- # rel 4
--- # legato 1.3
--- # accelerate "-1"
+# legato 1.3
+# accelerate "-1"
 -- # phasdp 100
 -- # phasr 1
 # delay' 1 (range "0.04" "0.015" $ slow 1.22 $ sine) 0.95
 -- |* delayt 4
 -- # lock 1
 
+---------
+-- inbtwn califone jammin
+-- transition out with d2 loopin
+d1
+$ hurry "0.5"
+-- $ hurry 0.9
+$ n "0"
+# "califone"
+# legato 1.9
+-- # legato 1
+# begin (range 0 0.5 $ slow 5.12 $ sine)
+# shape 0.8
+-- # squiz 1
+
+-- d2
+xfadeIn 2 8
+$ slow 2
+$ n "1"
+# "califone"
+-- # legato 1.9
+# legato 1.2
+-- # begin (range 0 0.5 $ slow 5.12 $ sine)
+# shape 0.4
+-- # squiz 4
+
+d3
+$ slow 1.2
+$ n "0 <0 1 2> 1"
+# "readorb"
+# att 0.2
+# rel 4
+# legato 1.4
+# coarse 2
+# fshift "-300"
+# lpfbus 0 (range 100 3500 $ slow 3.2 $ sine)
+# lpq 0.1
+# delay' 0.9 0.5 0.9
+# lock 1
+
+
+--------------
+-- inbtwn outify jammin
+d1
+-- xfadeIn 1 8
+$ juxBy (range 0.5 "-0.5" $ perlin) (hurry 0.5)
+$ sometimes (# accelerate "-0.4")
+$ echoWith 5 "1%3" ((|* gain 0.9) . (|* speed "-0.97"))
+$ slow 3
+$ splice "<4!2 5 3>" "{1 0 3 2}%3"
+-- $ slice "4" "{1 0 3 2}%3"
+$ n "<5!4 4 6>"
+-- $ n "1"
+# "outify"
+-- # delay' "{0 1 0.5}%7" "{0.02 0.05 0.01 0.03}%7" 0.95
+# lock 1
+# legato 2.2
+# coarse 1
+-- # squizbus 1 (range 0 2 $ slow 4.2 $ sine)
+-- # lpf "7000 3000 500"
+# lpf 300
+# lpq 0.1
+# fshift "-500"
+-- # speed "[1.03,0.3]"
+# speed 0.25
+# shape 0.5
+# triode 0.9
+-- # combbus 0 (range 0 0.4 $ slow 3.4 $ sine)
+# verb 1 0.1 0.1 1
 
 ---------------
---
+-- aaks smthn
+setbpm 144
+
+-- melody
+d1
+-- clutchIn 1 8
+-- $ sometimes (bite 8 "5*32")
+$ repeatCycles 8
+$ bite 8 "0*16"
+-- $ hurry 0.25
+-- $ every 2 (juxBy (range "-1" 1 $ slow 1.3 $ sine) (rev . (|* color 0.5) . hurry "0.5 2" . (|* timbre 1.3)))
+-- $ chunk 4 (hurry 2)
+$ stutWith 4 "{0 e s}%4" ((|+ n "7") . (|* color 1.1))
+-- $ sometimes (echoWith 2 "1%16" (|* timbre 1.1))
+$ stutWith 4 "0" (|+ n 7)
+$ struct "t(3,8)"
+$ n "0 <9 -2 9 0> 3"
+-- $ n ("0 <9 -5 9 0> 3" - 14)
+# "braids"
+# model "{4 <4!2 18>}%3"
+# timbre 0.5
+# color 0.5
+# legato "{0.5 1 0.8}%5"
+# shape 0.5
+-- # distort 0.9
+-- # cps "0.7 0.35 1.4 0.7"
+# cps 0.68
+-- # cps 0.25
+# accelerate "<0!3 1 -1>"
+
+d1 $ silence
+
+d2
+-- clutchIn 2 8
+$ often (bite 16 "5*16")
+$ chunk 4 (fast 2)
+-- $ repeatCycles 5
+-- $ slow 8
+$ juxBy "<0.5 -0.5>" (rev . hurry 0.5)
+$ plyWith "{1 4 1}%7" ((|* gain 0.9) . (|* speed 1.1) . (|* legato 0.9))
+-- $ slow "1 2 1 1"
+$ struct "t(7,16)"
+-- $ striate 32
+$ n "{0 3 14 23 3}%8"
+# "nimb"
+# legato 0.5
+-- # crush 3
+# distort 0.9
+# shape 0.3
+# cut 1
+-- # accelerate "-1"
+
+d2 $ silence
+
+-- use striations on this to transition out
+d3
+-- $ fast 0.25
+-- $ repeatCycles 3
+$ slow 8
+$ striateBy 64 0.1
+$ n "23(5,8,<1 0>)"
+-- $ n "23 26"
+# "nimb"
+-- # cut 1
+# legato "{0.3 0.2!4 1}%7"
+-- # speed "-0.02"
+# speed "{1 2 4}%4"
+# gain "{1 0.8 0.9}%5"
+
+d3 $ silence
+
+d4
+-- $ repeatCycles 4
+$ slow 5.2
+$ n "{0 1 2 4}%3"
+# legato 1.1
+# "readorb"
+# fshift 100
+# delay' "{0 0.9 1 0.5}%3" "<0.02 0.25>" 0.95
+# lock 1
+
+d5
+$ slow 2.3
+$ n "3"
+# "readorb"
+# legato 1.4
+# ring 10
+# ringfbus 0 (range 100 1000 $ slow 4.2 $ sine)
+# combbus 1 (range 0 0.5 $ slow 3.2 $ sine)
+# verb 0.9 0.1 0.1 0.9

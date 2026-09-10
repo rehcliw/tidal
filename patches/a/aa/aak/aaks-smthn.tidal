@@ -2,18 +2,70 @@ setbpm 144
 
 -- melody
 d1
-$ stutWith 4 "e" (|+ n 7)
-$ n "0 9 3"
+-- $ every 2 (juxBy (range "-1" 1 $ slow 1.3 $ sine) (rev . (|* color 0.5) . hurry "2" . (|* timbre 1.3)))
+-- $ chunk 4 (hurry 2)
+-- $ stutWith 4 "{0 e s}%4" ((|+ n "7") . (|* color 1.2))
+$ sometimes (plyWith 2 (|* timbre 1.5))
+$ stutWith 4 "0" (|+ n 7)
+$ struct "t(3,8)"
+$ n "0 <9 -5 9 0> 3"
+-- $ n ("0 <9 -5 9 0> 3" - 14)
 # "braids"
-# model 4
+# model "4"
 # timbre 0.5
 # color 0.5
+# legato "{0.5 1 0.8}%5"
+# shape 0.5
+# distort 0.9
+-- # cps "0.7 0.35 1.4 0.7"
+-- # cps 0.68
+# cps 0.25
+-- # accelerate "<0!3 1 -1>"
 
+d1 $ silence
 
-d1
-$ stutWith 4 "e" (|+ n 7)
-$ n "0 9 3"
-# "braids"
-# model 4
-# timbre 0.5
-# color 0.5
+d2
+-- $ chunk 4 (fast 2)
+-- $ repeatCycles 5
+$ slow 8
+$ juxBy 0.5 rev
+-- $ plyWith "{1 4 1}%7" ((|* gain 0.9) . (|* speed 1.1) . (|* legato 0.9))
+-- $ slow "1 2 1 1"
+-- $ struct "t(7,16)"
+$ striate 32
+$ n "{0 3 14 23 3}%16"
+# "nimb"
+# legato 0.9
+# distort 0.9
+-- # cut 1
+-- # accelerate "-1"
+
+d3
+$ fast 0.25
+-- $ repeatCycles 3
+$ n "23(5,8,<1 0>)"
+# "nimb"
+# cut 1
+# legato "{0.3 0.2!4 1}%7"
+# speed "{1 2 4}%4"
+# gain "{1 0.8 0.9}%5"
+
+d3 $ silence
+
+d4
+-- $ repeatCycles 4
+$ slow 5
+$ n "{0 1 2 4}%3"
+# legato 1.1
+# "readorb"
+# delay' "{0 0.9 1 0.5}%3" "<0.02 0.25>" 0.95
+# lock 1
+
+d5
+$ n "3"
+# "readorb"
+# legato 1.4
+# ring 10
+# ringfbus 0 (range 100 1000 $ slow 4.2 $ sine)
+# combbus 1 (range 0 0.5 $ slow 3.2 $ sine)
+# verb 0.9 0.1 0.1 0.9

@@ -18,8 +18,8 @@ $ note (id
   # gain 1.2
   # octave (iter 4 "5 4 3 4")
   # s "superfm"
-  # lfof "2 3 4 5 6 7 8"
-  # lfod "0.2 0.3 0.4 0.5 0.6 0.7 0.8"
+  -- # lfof "2 3 4 5 6 7 8"
+  -- # lfod "0.2 0.3 0.4 0.5 0.6 0.7 0.8"
   -- # gain 1
   # fmfb (fast 0.3 $ range 0 0.8 $ sine)
   # fma [1,0,0,1,1,0]
@@ -35,5 +35,5 @@ $ note (id
   # legato 9
   # roombus 0 (fast 0.7 $ range 0.2 0.4 saw)
   # sz 0.7
-  -- # rel 8
+  # rel 8
   -- # cps "0.4 0.8 0.2"
