@@ -36,7 +36,7 @@ s.reboot { // server options are only updated on reboot
 
 		// superdirt-voltage
 		// ensure you update to the correct path on your machine
-		("/Users/may/Documents/music-tools/superdirt-voltage/voltage.scd").load;
+		// ("/Users/may/Documents/music-tools/superdirt-voltage/voltage.scd").load;
 
 		// new pitch synth
 		// set your channels for pitch synths here
@@ -83,6 +83,10 @@ s.reboot { // server options are only updated on reboot
 		// for example: ~dirt.loadSoundFiles("/Users/myUserName/Dirt/samples/*");
 		~dirt.loadSoundFiles("/Users/may/Documents/music-tools/Samples/load/*");
 		~dirt.loadSoundFiles("/Users/may/Documents/music-tools/Samples/load/*/*");
+
+		~drumMachinesDir = Quarks.all.detect({ |x| x.name == "tidal-drum-machines" }).localPath;
+		~nameFunc  = { |x| x.basename.replace("-","")};
+		~dirt.loadSoundFiles(~drumMachinesDir +/+ "machines" +/+ "*" +/+ "*", namingFunction: ~nameFunc);
 
 		// s.sync; // optionally: wait for samples to be read
 		~dirt.start(57120, 0 ! 12); // start listening on port 57120, create two busses each sending audio to channel 0
@@ -157,7 +161,6 @@ s.reboot { // server options are only updated on reboot
 			ReplaceOut.ar(out, sig);
 			}, [\ir]).add;
 		);
-
 
 		// define global effects for mutable instruments effects
 		~dirt.orbits.do { |x|

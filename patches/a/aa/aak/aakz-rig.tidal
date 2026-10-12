@@ -16,6 +16,7 @@ $ n "0(5,16)"
 # "houk"
 # lpf 500
 # delay' 1 "2%3" 0.9
+# lock 1
 
 d3
 $ "rlooper"

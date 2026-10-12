@@ -1,0 +1,48 @@
+setbpm 90
+
+d1
+-- xfadeIn 1 8
+-- $ fast 0.5
+-- $ echoWith 3 0 (|* speed 1.05)
+-- $ jux rev
+-- $ sometimes (plyWith 4 ((|* gain 0.8) . (# speed 1.1)))
+$ hurry 0.29
+$ slice 8 "4"
+$ n "0"
+# "bento"
+# legato 1.04
+# gain 1
+-- # legato 0.3
+# shape 0.4
+-- # speed 0.5
+-- # cps "0.6 0.3"
+
+d2
+-- xfadeIn 2 8
+$ hurry 0.26
+$ slice 8 4
+$ n "4"
+# "bento"
+# legato 1.04
+# shape 0.3
+
+d3
+$ "inr"
+# speed 0.5
+-- # accelerate "-0.1"
+-- # crush 2
+-- # delay' 1 "2%3" 0.9
+-- # lock 1
+-- # fshift 1000
+# cloudspos (range 0 1 $ slow 5.2 $ sine)
+# cloudssize 0.4
+# cloudspitch (range 0 1 $ slow 7.12 $ sine)
+# cloudsdens 0.3
+# cloudstex (range 0 1 $ slow 4.14 $ sine)
+# cloudsgain 0.8
+# cloudswet 0.9
+# cloudsspread 0.5
+# cloudsfb 0.3
+# cloudsrvb 0.9
+# cloudsfreeze "<0 1>"
+# cloudsmode "<3 0!8>"

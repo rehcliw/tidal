@@ -1,11 +1,4 @@
-d1
-$ repeatCycles 8
-$ jux rev
-$ degrade
-$ note (scale "mixolydian" $ echoWith 10 "<[1%32 e] [1%27 1%9]>" (|+ "<7 -3 4>") $ "<[c a f e] [b2 as8 c]>")
-# sound "superpiano"
--- # cut 1
-# legato "0.05 0.02"
+
 
 d2
 $ "cp*4"

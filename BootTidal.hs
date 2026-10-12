@@ -103,7 +103,7 @@ lessDense :: Eq a => Double -> Pattern a -> Pattern a
 lessDense density p = p {query = (densityFilter density). sortOn whole . query p}
 :}
 
--- other custom funcs
+-- other custom funcs / aliases
 :{
     let bounceWith :: Pattern Int -> Pattern Time -> Pattern Rational -> (Pattern a -> Pattern a) -> Pattern a -> Pattern a
         bounceWith n t l f p = innerJoin $ (\a b l -> _bounceWith a b l f p) <$> n Sound.Tidal.Context.<* t Sound.Tidal.Context.<* l
@@ -128,6 +128,7 @@ lessDense density p = p {query = (densityFilter density). sortOn whole . query p
         slicemod r m o     = slice r (runmod r m o)
         bitemod  r m o     = bite r (runmod r m o)
         delay' a t fb = delay a # delayt t # delayfb fb
+        acc = accelerate
 :}
 
 -- tidal-looper
@@ -137,12 +138,23 @@ lessDense density p = p {query = (densityFilter density). sortOn whole . query p
     recordSource = pS "recordSource"
 :}
 
+-- tidal drum machines
+:{
+    drumMachine name ps = stack 
+                    (map (\ x -> 
+                        (# s (name ++| (extractS "s" (x)))) $ x
+                        ) ps)
+    drumFrom name drum = s (name ++| drum)
+    drumM = drumMachine
+    drumF = drumFrom
+:}
+
 -- vocoder
 :{
     vocoder = pF "vocoder"
     pvocoder = pF "pvocoder"
     chord = pF "chord"
-}
+:}
 
 :{
 let getState = streamGet tidal

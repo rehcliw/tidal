@@ -1,0 +1,39 @@
+d1
+xfadeIn 1 4
+$ hurry 0.125
+$ juxBy (range 0.5 "-0.5" $ perlin) (rev . hurry 0.25)
+-- $ bite 8 "2*1"
+-- $ shuffle 8
+-- $ hurry "{1.05 0.95 1}%4"
+$ striate "{32 64 8 5}%5"
+-- $ slow 2
+-- $ hurry "[0.5,0.48]"
+-- $ hurry "[0.8,0.81]"
+-- $ slice 16 "14 15"
+-- $ "erosive"
+-- $ "<erosive!2 crosley:1>"
+$ "{outify:5 ekt geq:2}%3"
+-- # squiz 2
+# legato "1.3"
+-- # speed "[0.8,0.81]"
+-- # att 0.05
+-- # rel 4
+-- # djf 0.4
+# accelerate "-0.1"
+
+d2
+$ slow 2
+$ n "{0!3 2}%3"
+# "readorb"
+# fshift "-1500"
+# delay' 1 "8%3" 0.9
+# lock 1
+# att 0.2
+# rel 2
+
+d3
+$ n "1"
+# "readorb"
+# comb 0.4
+# ring 1
+# ringfbus 1 (range 500 2000 $ slow 2.3 $ sine)

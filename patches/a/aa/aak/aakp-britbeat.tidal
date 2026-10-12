@@ -8,10 +8,11 @@ $ "1(5,8)"
 # gainTake "g" [1,1,0.9,1.2,0.5]
 # note (scale "mixolydian" $ "{-2 0 2 4 -4}%6")
 # crush 7
+-- # cps 0.7
 
 d2
 $ iter 4
-$ juxBy "-0.5 0.5" (rev . hurry 0.5)
+$ juxBy "-0.5 0.5" (rev . hurry "<0.5 2>")
 $ echoWith 5 "1%8" ((|* gain 0.9) . (|- crush 1))
 $ n "13"
 # "uks"
@@ -19,7 +20,8 @@ $ n "13"
 # crush 10
 
 d3
-$ hurry 0.25
+-- xFadeIn 3 8
+$ hurry 0.5
 $ juxBy (range "-1" 1 $ perlin) (rev . hurry 2 . (|* legato 0.7))
 $ struct "t(3,8,<1 0 3>)"
 $ n "2 4"
@@ -32,6 +34,8 @@ $ n "2 4"
 # accelerate "{-1 0}%5"
 
 d4
+$ juxBy "-0.5 0.5" (rev . hurry "<0.5 2>")
+$ sometimes (plyWith 2)
 $ "[~ ukclap]*2"
 # n "4"
 
@@ -47,14 +51,15 @@ $ n "<2 [2 2 ~ ~]>"
 -- # cut 1
 # speed "[0.8,<0.807 0.803>]"
 # accelerate "{-0.1 -2}%5"
-# shape 0.2
+# shape 0.3
+# legato 0.5
 
 d7
 -- $ n "{1 0 2 3 4 5 6 8}%4"
 $ n "{8 6}%4"
 # "readorb"
 # legato 1
-# cps ("<0.6 {0.6!3 0.3 0.6}%4>")
+-- # cps ("<0.6 {0.6!3 0.3 0.6}%4>")
 # fshift 100
 # ring 1
 # ringf "{300 600 1200}%7"

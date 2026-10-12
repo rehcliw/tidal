@@ -9,19 +9,20 @@ xfadeIn 2 8
 $ "bns*3"
 
 do
-  clutchIn 1 8
-  -- d1
-    $ fast 2
-    -- $ hurry 0.5
-    $ fast "{1 3%2 3%4}%4"
+  -- clutchIn 1 8
+  d1
+    -- $ fast 2
+    $ hurry 0.25
+    -- $ fast "{1 3%2 3%4}%4"
     $ sometimes (echoWith 2 "e" ((|* gain 0.9) . (|* speed 2)))
     $ "bnk:1*4"
     # nTake "n" [3,9,1,14,0]
     # speedTake "s" [1,2,0.5]
     # accelerate "-0.5"
-    # cut 1
+    -- # cut 1
     # shape 0.5 
-    # gain 1.2
+    # gain 1.1
+    # cps (range 0.2 1.2 $ slow 1.2 $ saw)
 
   -- clutchIn 2 8
   d2
@@ -31,9 +32,11 @@ do
     # speedTake "s" [3,4/3,-12,0.2,1]
     -- # lock 1
     # delay' "{0.8 0}%1.2" "<1%27 1%3>" 0.9
+    # crush "{4 16}%3"
     -- # cut 1
 
   d3
+    $ slow 2
     $ juxBy (range 0.5 "-0.5" $ perlin) (rev . hurry "3%2")
     $ sometimes (echoWith 2 "s" (|* gain 0.9))
     $ (<~) "1%8"
@@ -47,9 +50,9 @@ do
     # lpq 0.3
     # ring "3"
     # ringf "<500 50 1500 5500>"
-    |* ringf 2
+    |* ringf 1.4
     # ringdf 0.3
-    # fshift "-5000"
+    # fshift "100 5000"
     # coarse 8
 
   d5
@@ -72,16 +75,17 @@ do
 
   d6 silence
 
-  d7
+  -- d7
+  xfadeIn 7 8
     -- $ bite 8 "<0 1 2>*8"
     -- $ repeatCycles 16
-    $ bite 16 "0*32"
+    -- $ bite 16 "0*32"
     -- $ hurry "0.25 2"
     $ hurry "1%3 4%3"
     -- $ bite 8 "{0 2 3 5}%8"
     -- $ degradeBy 0.8
-    $ juxBy "0.5 -0.5 0" (rev . hurry "4%3")
-    $ slice "{16 27}%5" (runmod "{16 27}%5" "<3 5>" "0 5")
+    -- $ juxBy "0.5 -0.5 0" (rev . hurry "4%3")
+    -- $ slice "{16 27}%5" (runmod "{16 27}%5" "<3 5>" "0 5")
     $ "loop"
     # legato "0.2 1"
     # speed "{-1%3 4%3 0.5 1}%3"
