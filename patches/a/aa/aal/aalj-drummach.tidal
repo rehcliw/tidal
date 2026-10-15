@@ -1,4 +1,58 @@
 d1
 $ drumM "rolandtr909" [
-  s "bd*4"
+  "bd*<4.5 6>"
+    # gain 1.1
+  , chunk 4 (hurry 2) 
+    $ "sd(4,9,2)"
+  ,"rim(<7 3 9>,18,<1 0 2 0>)"
+  # note 9
+  ,"[~ cp]*1.5"
+  ,"{hh!7 oh}%9"
+  ,"<lt!2 ht mt>(5,9)"
 ]
+# cps (140/60/4)
+# crush 2
+# shape 0.8
+# lock 1
+
+d1
+$ jux rev
+$ hurry "{0.5 1!3 2}%4"
+$ repeatCycles 8
+$ sometimes (
+  (# bpfbus 0 (smooth $ "{500 5500 9500 1500}%8"))
+  . (# bpq "{0 8 4}%4")
+)
+-- $ hurry 0.5
+$ drumM "rolandtr909" [
+  "bd*3"
+    # note "-7"
+    # gain 1.1
+  , chunk 4 (hurry 2) 
+    $ "sd(4,9,<2 0>)"
+  ,"rim(<7 3 9>,18,<1 0 2 0>)"
+  # note "{0 0.2 -1}%2"
+  ,"[~ cp]*1.5"
+  ,"{hh!7 oh}%9"
+]
+# cps (140/60/4)
+# acc "-1 <0 1>"
+# delay' "{0.5!4 0 0}%4" (range 0.003 0.03 $ slow 3.4 $ saw) "{0.5 0.9 0.95 0.2}%5"
+# room "0.9 0"
+# sz "0 0.9"
+# shape 0.8
+# lock 1
+
+once $ "rlooper"
+
+d2
+-- $ repeatCycles 8
+-- $ degrade
+-- $ hurry 0.25
+$ juxBy (range "-1" 1 $ perlin) (rev . hurry 0.5)
+$ slicemod 18 "{1 5!3 2}%3" "0 13 5"
+-- $ hurry "0.5 2"
+$ "loop"
+-- # crush 2
+# legato 0.3
+# speed "{1 2 0.5}%7"
