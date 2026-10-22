@@ -1,0 +1,59 @@
+d1
+-- $ hurry "{2 1!4 0.5 1!3}%4"
+$ hurry "3"
+$ drumM "emumodular" [
+  fix (echoWith 2 "q" (|* speed 2) . hurry 0.5 . (# lpf 1500)) (s "perc")
+  $ fix ((# ring 1) . (# ringf 300)) (s "misc")
+  $ "<bd bd:1> misc <{perc perc:1 perc}%4 bd perc> misc"
+  # speed "{1 2 0.5}%8"
+  |* speed (smooth $ "{0.95 1.05 0.5}%0.4")
+  # acc "<1 0!5 -1 0!3 -2 0!4>"
+] 
+# cut "{1 0}%3"
+# shape 0.5
+# cps (140/60/4)
+-- # cut 1
+
+d2
+$ drumM "emusp12" [
+  "{~ bd:3 ~ <bd:5 bd:2 bd:3> ~}%12"
+  , "[~ cb:1]*3"
+  # speed "[0.5,<0.51 0.49 0.505 0.495>]"
+  # gain 0.8
+  # acc "-0.01"
+  # nudge 0.02
+  , mask "{1 0 1}%4"
+  "hh(9,12)"
+  , chunk 3 (hurry "<1.5 3 1%3>")
+  $ n "{0!3 3 4}%4"
+  # "misc"
+]
+|* speed ("{0.987 1.01 1}%4")
+
+d3
+$ slow 3
+$ "rlooper"
+# n 0
+# recordSource "out"
+# orbit 1
+
+d3 silence
+
+d4
+-- $ juxBy (range 0.5 "-0.5" $ slow 3.9 $ sine) (rev . hurry 0.5)
+$ hurry "1%4 1"
+$ slicemod 6 "<5 3 4 [1 2]>" "<0 4 0>"
+-- $ loopAt 6
+$ "loop"
+# n "{0!5 1}%3"
+# legato 1
+# speed "<2 1 2 1 [0.5 1]>"
+# legato "0.5 0.59"
+-- # crush 2
+# fshift 50
+
+d5
+$ n "{0 1 3}%8"
+# "readorb"
+
+d5 silence
