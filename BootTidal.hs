@@ -126,6 +126,7 @@ lessDense density p = p {query = (densityFilter density). sortOn whole . query p
         runmod   r m o     = ((run r) |% m |+ o)
         runmod'  r m mul o = ((run r) |% m |* mul |+ o)
         slicemod r m o     = slice r (runmod r m o)
+        splicemod r m o    = splice r (runmod r m o)
         bitemod  r m o     = bite r (runmod r m o)
         delay' a t fb = delay a # delayt t # delayfb fb
         acc = accelerate
@@ -136,6 +137,7 @@ lessDense density p = p {query = (densityFilter density). sortOn whole . query p
     linput = pI "linput" -- change input bus
     lname = pS "lname" -- change buffer name
     recordSource = pS "recordSource"
+    recout a = recordSource "out" # orbit a
 :}
 
 -- tidal drum machines

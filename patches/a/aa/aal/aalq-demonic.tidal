@@ -1,24 +1,27 @@
 d1
--- $ echoWith "{2 1!3}%2" "1%2" ((|* speed 0.5) . (# cut "2 1 0") . (# legato 0.5))
+$ echoWith "{2 1!3}%2" "1%2" ((|* speed 0.5) . (# cut "2 1 0") . (# legato 0.5))
 -- $ hurry 0.5
 $ fix (|* gain 2) (n 0)
 $ sometimes (splice "{16 8}%2" ("0 <2 1!2> {3 0 1 0 5}%4" * "{2 0 1}%4"))
 $ slicemod "{5 4 7}%8" "{3 5 1}%5" "{0 5 7 10}%4"
 -- $ striate 32
 $ n "5 0"
-# "demons ttdl"
-# cut 1
--- # legato 0.3
+# "{demons ttdl}%3"
+-- # "demons"
+-- # cut 1
+# legato 0.3
 # speed "{1 2 0.5}%8"
 |* speed (range 0.98 1.02 $ perlin)
 # delay' 0.2 "<0.03 0.031 0.029>" "{0.2 0.9}%5"
 
-once $ "rlooper" # recordSource "out" # orbit 0
+once $ "rlooper" 
+# recordSource "out" 
+# orbit 0
 
 d2
 $ juxBy (range "-1" 1 $ slow 3.3 $ sine) (hurry 1.01)
 -- $ slow 2
-$ hurry 0.45
+$ hurry 0.5
 $ "loop"
 -- # speed "<-1 1>"
 # lpf 3500

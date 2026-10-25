@@ -1,0 +1,30 @@
+do
+  once
+    $ "attali"
+    # speed "0.8"
+    # delay 1 
+    # delayt 0.03
+    # delayfb 0.6
+    # ring 3
+    # ringf 40
+    # coarse 4
+    # crush 6
+    # fshift "-100"
+    # orbit 1
+
+  d1
+    -- $ degradeBy 0.8
+    $ striate "{32 13 4 18 64 9}%5"
+    $ "attali"
+    # note 11
+    # legato "{0.5 0.9 1 0.2}%7"
+    |* speed "{-1 0.7 0.6 -1.1 -0.75}%8"
+    # ring 1
+    # ringf 25
+    # delay "{1 0}%4"
+    # delaytbus 3 "{0.03 1%4 0.01 1%4!2}%1"
+    # lock 1
+    # delayfbbus 4 "{0.9 0.5 0.7 0.2}%4.3"
+    # gain 0.9
+    -- # fshift "50"
+    # acc "{1 0}%3"

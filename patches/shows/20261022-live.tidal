@@ -1,0 +1,63 @@
+d1
+-- clutchIn 1 4
+$ hurry 0.125
+-- $ every 3 (hurry "{0.1 2}%4")
+$ juxBy (range "-1" 1 $ sine) (rev . hurry "{2 0.5}%9")
+-- $ echoWith 2 "e" (|* speed 4)
+-- $ striateBy 32 0.02
+-- $ sometimes (struct "1(3,8)")
+$ almostAlways (slicemod "8 4" "{5 2 1}%8" "<0 5 8>")
+-- $ fix (plyWith 2 (|* gain 0.9)) (s "ukk")
+$ "{nimbl*2 gtsk plastic radio}%3"
+-- # n "{5!2 2 0}%4"
+-- |* n "9 1 0"
+-- # legato "{0.1 0.5 0.8}%5"
+# legato 1
+-- # cps (range 0.25 0.9 $ saw)
+-- # cps "0.5 0.25 0.8"
+# cps 0.125
+
+d2
+$ n "{0 2 3}%7"
+# "readorb"
+-- # delay' "{0.9 0.5}%8" (range 0.03 0.03 $ slow 2.5 $ sine) 0.95
+-- |* delayt "<0.5 2>"
+# verb 1 0.05 0.1 0.9
+# fshift "{500 -500}%7"
+
+
+
+d3
+-- xfadeIn 3 8
+-- $ echoWith 2 0 (|* speed 1.01)
+-- $ hurry "{3 2}%7"
+-- $ juxBy (range 0.5 2 $ slow 2 $ sine) (rev . hurry 0.5)
+-- $ every 1 (degrade . slicemod 16 5 "{0 3 1}%7")
+$ hurry 0.25
+$ "loop"
+-- # legato 0.6
+-- # att "{0.1 0 0.3}%7"
+-- # rel "<4 9>"
+-- # acc "-1 1 0"
+
+d4
+$ n "{0 1 2}%4"
+# "readorb"
+# fshift "-500"
+# ring 1
+# ringf "{500 1500}%5"
+# crush 2
+
+d5
+$ n "3"
+# "readorb"
+# lpfbus 0 (range 500 9500 $ slow 3.4 $ sine)
+# lpqbus 1 "{0.5 0.3 0}%2"
+
+d6
+$ slow 3
+$ "rlooper" 
+# recout "<0 2 1 3>"
+# n "<0 1>"
+
+d6 silence

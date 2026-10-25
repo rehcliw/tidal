@@ -1,0 +1,24 @@
+d1
+-- $ repeatCycles 4
+$ juxBy (range "-1" 1 $ sine) (rev . hurry 0.98)
+$ degradeBy 0.7
+$ slow "{8 4 12}%5"
+$ slicemod 32 "{5 3 14 11}%9" "{8 3 9 1 0 16 30 20 25 10}%7"
+$ "{scraper plastic}%3"
+# legato 4.1
+# att "{0.1 0 0.03}%10"
+# rel 5
+# speed "[0.9,0.41] <2 0.2>"
+# acc "{-0.05 0.07 0}%5.4"
+# delay' "0.8 1 0" 0.03 "<0.4 0.9 0.2 0.4!4>"
+# cloudspos "{0 1 0.5}%0.3"
+# cloudssize 0.5
+# cloudspitch "<0 0.5 1>"
+# cloudsdens "{0.1 0.3 0.2}%4"
+# cloudstex 0.6
+# cloudsgain 1
+# cloudswet 1
+# cloudsspread 1
+# cloudsfb 0.3
+# cloudsrvb 0.8
+# cloudsfreeze "<1 0>"

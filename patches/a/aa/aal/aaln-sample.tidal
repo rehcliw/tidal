@@ -1,10 +1,10 @@
 -- serge, that other one...
 do
   d1
-    -- $ juxBy 0.3 (hurry 0.97)
+    $ juxBy 0.3 (hurry 0.97)
     $ repeatCycles 16
     -- $ hurry 0.4
-    $ bite 8 "1*2"
+    -- $ bite 8 "1*2"
     $ often (juxBy (range "-1" 1 $ slow 6.5 $ sine) (rev . (# cut "<2 [1 0 2] 2>") . hurry "{4 1.04 0.7}%13"))
     $ slow "<8!3 1>"
     $ echoWith "{1 0 0 0 2 0 0}%1.5" "<0 e>" (|* speed 1.05)
@@ -16,6 +16,7 @@ do
     # legato 1
     # accelerate "<0!4 [0 1 0 0] [-2 0 0 0]>"
     |* gain 0.8
+    # cps (135/60/4)
     -- # room "0.3 0"
     -- # sz 0.2
 
