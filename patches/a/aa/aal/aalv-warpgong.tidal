@@ -1,0 +1,41 @@
+d1  
+  $ stack [id
+    $ jux rev
+    $ every 4 (hurry "{2 0.5 1}%4")
+    $ n (scale "mixolydian" $ echoWith 4 "5%12" (|+ 1) $ "{0 7 9 3 13}%3")
+    # s "supergong"
+    |- n "<2 0 -2>"
+    # decay "{1 0.1 1.2 0.4}%5"
+    , id
+    $ hurry "{3%2 0.5 1!4 2%3 1}%4"
+    $ rarely (struct "1(<7 10 5>,18,[1 0]/1.5)")
+    $ n (scale "mixolydian" $ echoWith 4 "5%12" (|+ 1) $ "{0 7 9 3 13}%3")
+    # "supergong"
+    |- n "<2 0 -2>"
+    |- n "<12 0 24 12>"
+    # voice "{0!7 1 0!5 3}%3"
+    # decay "{2 0.3!17}%4"
+    # nudge 0.02
+    # shape 0.4
+  ]
+  # warpstimb "{0.1 0.9 0.5}%16"
+  # warpsosc "{1 3 1}%4"
+  # warpsalgo "{7 0 2}%5"
+  # warpsfreq 0.1
+  # warpseasteregg 1
+  # delay' "<0.5 0>" "1%18" 0.2
+  # cps (135/60/4)
+
+once $ "rlooper" # recsrc "out" 0
+
+d2
+  $ juxBy (range 0.5 "-0.5" $ sine) (rev . hurry 2)
+  $ degradeBy "<1 [0 1] 1 [1 0] 1 0.5>"
+  $ slicemod 18 "{3 1 5 4 6}%4" "1 6 0"
+  $ "loop"
+  # speed "{2 0.5 1}%4"
+  # shape 0.3
+  # legato 0.9
+  # acc "{-0.5 0 2}%3"
+  # delay' "<0.9 0>" "1%48" 0.9
+

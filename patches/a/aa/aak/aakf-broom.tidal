@@ -6,12 +6,12 @@ do
     -- $ hurry 8
     $ juxBy "{-0.5 0.5}%5" (rev . hurry "2 0.5")
     -- $ sometimes (plyWith "{1 4 8}%5" ((|* gain 0.9) . (|* speed 1.1)))
-    $ echoWith 2 "5%8" (|* speed 0.5)
+    -- $ echoWith 2 "5%8" (|* speed 0.5)
     -- $ slow 4
     -- $ bite 32 "15 19"
     -- $ sometimes (bite 16 "4*8")
-    $ slicemod "{32 16 3}%5" "3 5 1" "<16 10>"
-    -- $ slat' "16 32 4" "{2 4}%5"
+    -- $ slicemod "{32 16 3}%5" "3 5 1" "<16 10>"
+    $ slat' "16 32 4" "{2 4}%5"
     -- $ striate 32
     -- $ slat' 16 "30"
     $ "nupgl:2"
@@ -24,10 +24,10 @@ do
     # cloudsblend 1 0.2 0.4 "{0.9 0 0.5}%6"
 
   d2
-    $ hurry 0.5
-    $ rarely (bite 8 "0*6")
-    $ repeatCycles 4
-    -- $ degradeBy 0.3
+    $ hurry "{0.5 1!4}%2"
+    -- $ rarely (bite 8 "0*6")
+    -- $ repeatCycles 4
+    $ degradeBy 0.3
     $ echoWith 2 "e" (id
         . bitemod "{32 16 3}%5" "3 5 1" "<16 10>"
         . (# bpfbus 0 (range 50 9500 $ slow 1.5 $ saw)) 
@@ -42,9 +42,10 @@ do
     # legato 1
     # shape 0.4
     # mu 2.4
+    # fshift "-100"
 
   d3
-    $ degradeBy 0.2
+    -- $ degradeBy 0.2
     $ hurry 0.5
     $ "loop"
     # gain 0.9
@@ -52,7 +53,7 @@ do
     # speed 0.5
     # mu 1.5
     -- # coarse 2
-    # legato 0.9
+    -- # legato 0.9
 
   d4
     -- $ degradeBy 0.3
@@ -93,8 +94,8 @@ do
     -- $ slow 4
     -- $ bite 32 "15 19"
     -- $ sometimes (bite 16 "4*8")
-    -- $ slicemod "{32 16 3}%5" "3 5 1" "<16 10>"
-    $ slat' "16 32 4" "{2 4}%5"
+    $ slicemod "{32 16 3}%5" "3 5 1" "<16 10>"
+    -- $ slat' "16 32 4" "{2 4}%5"
     -- $ striate 32
     -- $ slat' 16 "30"
     $ "nupgl:2"
@@ -103,15 +104,16 @@ do
     |* speed "[0.5,0.503]"
     # accelerate "{-1 0}%7"
     # mu 3
+    
   d2
     -- $ sometimes (bite 16 "8*4")
     $ echoWith 2 0 (id
         . bitemod "{32 16 3}%5" "3 5 1" "<16 10>"
         . (# bpfbus 0 (range 50 9500 $ slow 1.5 $ saw)) 
-    --     . (# bpf 4) 
-    --     . (# fshift "0 500 -1500 50"))
-    --     . (# delay' "{1 0 0.5}%7" "{1%64 1%4 1%32}%5" 0.8)
-    --     . (# lock 1)
+        . (# bpf 4) 
+        . (# fshift "0 500 -1500 50")
+        . (# delay' "{1 0 0.5}%7" "{1%64 1%4 1%32}%5" 0.8)
+        . (# lock 1)
     )
     $ slat' 16 "3"
     $ n "5"

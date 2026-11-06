@@ -4,7 +4,7 @@ do
   let pat = "{0 1 1 0 1 0 1 1 [0 1 0 1]}%8"
       rest = "{1 0 [0 1 1 0]/3 [0 1]/2 1!5}%8"
   d3
-    $ slow 8
+    -- $ slow 8
     $ sometimes (juxBy 0.5 rev)
     $ every 2 (jux (0.25 ~>))
     $ every 5 (# note "g4 b6 a6")

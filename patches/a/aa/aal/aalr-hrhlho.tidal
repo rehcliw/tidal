@@ -8,8 +8,8 @@ do
     $ n "21*12"
     # sTake "s" ["hrhlhok","hrhlhok", "hrhlhokc","hrhlhok"]
     # shape 0.4
-    # cps 0.1 -- transition in with
-    -- # cps (135/60/4)
+    -- # cps 0.1 -- transition in with
+    # cps (135/60/4)
     -- # legato 0.9
     -- # cut 1
   d2

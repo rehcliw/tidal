@@ -12,8 +12,8 @@ do
     # fshift "-100"
     # orbit 1
 
-  d1
-    -- $ degradeBy 0.8
+  d2
+    $ degradeBy 0.3
     $ striate "{32 13 4 18 64 9}%5"
     $ "attali"
     # note 11

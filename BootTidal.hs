@@ -137,6 +137,7 @@ lessDense density p = p {query = (densityFilter density). sortOn whole . query p
     linput = pI "linput" -- change input bus
     lname = pS "lname" -- change buffer name
     recordSource = pS "recordSource"
+    recsrc a b = recordSource a # orbit b
     recout a = recordSource "out" # orbit a
 :}
 

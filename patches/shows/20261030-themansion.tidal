@@ -1,0 +1,94 @@
+once $ "numbers"
+
+-- intro sherman collection
+do
+  once 
+    $ "rlooper"
+    # recsrc "in" 1
+  d1
+    -- $ striate 16
+    $ jux (rev . hurry "<0.5 2>")
+    $ struct "1(<5 1 3>,8,[1 0 2]/1.5) 1"
+    $ slicemod "<16 8>" "{5 1 3}%4" "{0 3 10 6}%2"
+    $ hurry 0.5
+    $ "loop"
+    -- # legato 0.4
+    # speed (range 0.2 2 $ slow 4.3 $ sine)
+    # cps (range 0.1 0.4 $ perlin)
+    -- # cps (135/60/4)
+    # delay' 0.4 "<0.005 0.003>" 0.5
+    # lock 1
+    # acc "{-1 0}%3"
+    # djf "{0.2 0.9 0.5}%7"
+
+
+-- kaynian?
+d1
+$ slow 2
+$ "dirac(<5 1 3>,8,[1 0 2]/1.5) imp([3 1]/2.3,16,<0 1>) <nimb:4 nimb:18 nimb:13 super808 nimb:23>"
+# legato "{0.3 0.1!7 0.5}%2"
+# cps (range 0.1 0.4 $ perlin)
+# speed (range 0.2 2 $ slow 4.3 $ sine)
+-- # crush "<2 16!12>"
+# voice 0.1
+
+d2
+$ slow 1.1
+$ echoWith 2 0 ((# n "<2 1 5>") . (# gain 0.7))
+$ n "0"
+# legato 1.5
+# "readorb"
+# ringsfreq "<30 60 15 100 3 500>"
+# ringsstruct "{0.05 0.3 0.7 1 0 0.1}%5"
+# ringsbright (smooth "{0.5 0.1 0.9}%4")
+# ringsdamp 0.1
+# ringspos "{0!2 0.3 0.9}%2"
+# ringsmodel "{1 0}%5"
+# bpfbus 0 (range 50 8500 $ slow 2.3 $ perlin)
+# bpq "<3 0 8>"
+# fshift "-100"
+
+d3
+$ slow 1.2
+$ n "{1 5}%3"
+# "readorb"
+# fshift "<50 -50 500 0 -500>"
+# ring "[1 0 0.6]/2.4"
+# ringf "<5 20 100 50 15 30>"
+# delay' "<0.8!7 0>" "{2.2!28 0.03}%2" 0.9
+
+d4
+$ slow 1.3
+$ n "<2 5 1>"
+# "readorb"
+# verb "<1 0>" 0.8 0.1 0.3
+# verbfreeze "<0!2 1>"
+
+d5
+$ slow 1.4
+$ "rlooper"
+# recsrc "out" "<2 1>"
+-- # recsrc "<out!2 in>" "<2 1>"
+
+d6
+$ slow 1.5
+$ juxBy (range "-1" 1 $ slow 4.5 $ sine) (hurry 1.02)
+$ hurry "<0.5!4 0.25 2>"
+$ "loop"
+# speed "<1!6 -1>"
+# acc "<0.1!4 0!5 -0.1!6 -2>"
+# coarse "{4 0}%5"
+# att 0.3
+# rel 8
+# lpfbus 1 (range 500 8500 $ slow 2.1 $ perlin)
+# lpq 0.4
+|* speed 0.5
+-- # djf 0.3
+# gain 0.7
+
+d6 silence
+
+-- depending on time...
+-- go to demons, then broom?, then fming
+
+
